@@ -21,12 +21,12 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<name>com.umlet.plugin.umletBuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>com.umlet.plugin.umletBuilder</name>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
@@ -44,7 +44,7 @@
 		<link>
 			<name>acme-framework</name>
 			<type>2</type>
-			<location>C:/Users/manue/Desktop/US/3º/DP2/Workspace-22.0/Frameworks/Acme-Framework-22.0/target/classes</location>
+			<locationURI>WORKSPACE_LOC/Frameworks/Acme-Framework-22.0/target/classes</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
