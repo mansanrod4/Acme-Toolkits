@@ -20,6 +20,10 @@ master.menu.sign-out = Sign out
 master.menu.anonymous = Anonymous
 master.menu.anonymous.favourite-link = Favourite link
 
+# master.menu.diego #######################################################
+master.menu.diego = Diego
+master.menu.diego.favourite-link = YouTube
+
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrator
