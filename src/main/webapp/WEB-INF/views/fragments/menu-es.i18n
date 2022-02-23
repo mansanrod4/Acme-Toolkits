@@ -20,6 +20,10 @@ master.menu.sign-out = Salir
 master.menu.anonymous = Anónimo
 master.menu.anonymous.favourite-link = Enlace favorito
 
+
+master.menu.diego = 20060486R: Díaz López, Diego Jesús
+master.menu.diego.favourite-link = YouTube
+
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrador
