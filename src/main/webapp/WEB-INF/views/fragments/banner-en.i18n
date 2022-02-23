@@ -8,5 +8,5 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-master.banner.background = #FFFBB2
+master.banner.background = #26275D
 master.banner.alt = Hello World, Inc.
