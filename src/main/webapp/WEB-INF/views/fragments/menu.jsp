@@ -23,6 +23,7 @@
 			<acme:menu-suboption code="master.menu.diego.favourite-link" action="https://www.sanfransentinel.com/youtube998.html"/>
 			<acme:menu-suboption code="master.menu.anonymous.mansanrod4-favourite-link" action="https://defonic.com/"/>
 			<acme:menu-suboption code="master.menu.anonymous.aisqazcev-favourite-link" action="https://www.netflix.com/watch/70151933?trackId=14277283&tctx=-97%2C-97%2C%2C%2C%2C%2C%2C"/>
+			<acme:menu-suboption code="master.menu.anonymous.juanb.favourite-link" action="https://soundcloud.com/hymbeats/talez-from-da-krypt"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">
