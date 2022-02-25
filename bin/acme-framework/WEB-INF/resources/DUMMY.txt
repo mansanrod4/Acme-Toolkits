@@ -1,0 +1,7 @@
+DUMMY.txt
+---------
+
+Unfortunately, the packager doesn't copy empty folders. This is a dummy file
+that simply ensures that this folder's not empty.  This folder is expected 
+to provide the initial-data and sample-data subfolders in the projects that
+use this framework.

@@ -1,0 +1,33 @@
+# general-es.i18n
+#
+# Copyright (C) 2012-2022 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+default.datatables.language	= /libraries/datatables/1.10.18/config/i18n_es.json
+
+default.format.moment = dd/MM/yyyy HH:mm
+
+default.placeholder.moment = dd/mm/yyyy hh:mm
+default.placeholder.money = 123.456,78 EUR
+default.placeholder.double = 123.456,78
+default.placeholder.integer = 123.456
+default.placeholder.textarea = Lorem ipsum
+default.placeholder.textbox = Lorem ipsum
+default.placeholder.email = user@mail.com
+default.placeholder.url = http://www.acme.com
+
+default.error.conversion = Valor incorrecto
+default.error.endpoint-unavailable = End-point no disponible
+default.error.not-authorised = Acceso no autorizado
+
+default.label.return = Volver
+
+default.global.message.success = Operación completada con éxito
+default.global.message.error = Operación completada con errores
+
+master.panic.text.consult-log = La traza es demasiado larga.  Consulte el log, por favor. 
