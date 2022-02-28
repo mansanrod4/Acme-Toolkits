@@ -25,7 +25,6 @@ master.panic.text = \
 	¡Lo sentimos! Se ha producido un error inesperado.  Si impide que pueda \
 	trabajar con nuestro sistema, por favor, póngase en contacto con nosotros \
 	y haremos lo posible por resolverlo cuanto antes.
-	the following information to them.
 master.panic.label.request = Petición:
 master.panic.label.status = Estado:
 master.panic.label.exceptions = Excepciones:
