@@ -1,0 +1,3 @@
+key,enabled,identity,password, username
+user-account-patron-01,true,"UserIdentity(name: 'Marta', surname: 'Guerrero', email: marta.guerrero@acme.com'}",patron01,patron01
+user-account-inventor-01,true,"UserIdentity(name: 'Antonio', surname: 'Pérez', email: antonio.perez@acme.com'}",inventor01,inventor01
