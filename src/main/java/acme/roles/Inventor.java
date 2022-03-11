@@ -42,7 +42,7 @@ public class Inventor extends UserRole {
 	protected String			statement;
 	
 	@URL
-	protected String 			link;
+	protected String 			info;
 	
 	// Derived attributes -----------------------------------------------------
 
