@@ -13,15 +13,19 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.framework.entities.AbstractEntity;
+import lombok.Getter;
+import lombok.Setter;
 
 
 @Entity
+@Getter
+@Setter
 public class Announcement extends AbstractEntity{
 	
-		//Serialisation identifier 
+		// Serialisation identifier 
 		protected static final long serialVersionUID = 1L;
 
-		//Attributes
+		// Attributes
 		@NotBlank
 		@Length(max = 101)
 		protected String title;
@@ -39,7 +43,6 @@ public class Announcement extends AbstractEntity{
 		protected Boolean flag;
 
 		@URL
-		//ES OPCIONAL
 		protected String link;
 
 		// Derived attributes -----------------------------------------------------
