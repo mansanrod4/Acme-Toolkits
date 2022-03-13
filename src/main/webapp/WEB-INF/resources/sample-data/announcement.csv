@@ -1,3 +1,3 @@
-title, moment, body, flag, link
-titulo1, momento1, cuerpo1, flag1, link1
-titulo2, momento2, cuerpo2, flag2
+key,title, moment, body, flag, link
+announcement-01, titulo1, momento1, cuerpo1, flag1, link1
+announcement-02, titulo2, momento2, cuerpo2, flag2
