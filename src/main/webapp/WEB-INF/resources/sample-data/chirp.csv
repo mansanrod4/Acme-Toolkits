@@ -1,3 +1,3 @@
-id,version,moment,title,author,body,email
-01,01,2022/03/09 10:00,Mensajeje,Pedro,Me falta un screw,pepedro@gmail.com
-02,01,2022/03/08 10:00,Mensaje,Autor,Lo tengo,autor@gmail.com
+moment,title,author,body,email
+2022/03/08 10:00,Mensaje01,Autor1,Me falta un screw,pepedro@gmail.com
+2022/03/09 10:00,Mensaje02,Autor2,Lo tengo,autor@gmail.com
