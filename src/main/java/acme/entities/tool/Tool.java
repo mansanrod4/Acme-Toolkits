@@ -2,14 +2,15 @@ package acme.entities.tool;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.PositiveOrZero;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
+import acme.framework.datatypes.Money;
 import acme.framework.entities.AbstractEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -43,9 +44,9 @@ public class Tool extends AbstractEntity{
 	@Length(max = 256)
 	protected String description;
 	
-	@PositiveOrZero
 	@Column(name = "retail_price")
-	protected Double retailPrice;
+	@Valid
+	protected  Money retailPrice;
 	
 	@URL
 	@Column(name = "further_information")
@@ -53,6 +54,8 @@ public class Tool extends AbstractEntity{
 
 	// Derived attributes -----------------------------------------------------
 
+	
+	
 	// Relationships ----------------------------------------------------------
 
 
