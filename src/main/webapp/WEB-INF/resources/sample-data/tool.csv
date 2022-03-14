@@ -1,4 +1,4 @@
-key,name,code,technology,description,retail_price,further_information
+key,name,code,technology,description,retail-price,further_information
 tool-01, Martillo,AAA-000,Clasica,Muy confiable,EUR 22.3,https://ev.us.es/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_29_1
 tool-02, Martillo E.,AAA-000-A,Electico,Demasiado confiable,EUR 50.3,https://ev.us.es/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_29_1
-tool-03, Martillo de Agua,AAB-000-B,Presion,Extremadamente confiable,EUR -80.3,https://ev.us.es/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_29_1
+tool-03, Martillo de Agua,AAB-000-B,Presion,Extremadamente confiable,EUR 80.3,https://ev.us.es/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_29_1

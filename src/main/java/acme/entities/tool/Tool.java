@@ -44,8 +44,8 @@ public class Tool extends AbstractEntity{
 	@Length(max = 256)
 	protected String description;
 	
-	@Column(name = "retail_price")
 	@Valid
+	@NotNull
 	protected  Money retailPrice;
 	
 	@URL
