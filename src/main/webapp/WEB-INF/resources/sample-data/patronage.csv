@@ -1,3 +1,3 @@
-key,status,code,legal_stuff,budget,start_date,period,further_information
-patronage-01,ACCEPTED,AAA-000,legalStuff1,"EUR 36.3",2022/03/08 10:00,2,https://ev.us.es/
-patronage-02,DENIED,AAA-000-B,legalStuff2,"EUR 56.3",2021/03/08 10:00,5,https://ev.us.es/
+key,status,code,legal_stuff,budget,start_date,period,further_information,key:patron,key:inventor
+patronage-01,ACCEPTED,AAA-000,legalStuff1,"EUR 36.3",2022/03/08 10:00,2,https://ev.us.es/,patron-01,inventor-01
+patronage-02,DENIED,AAA-000-B,legalStuff2,"EUR 56.3",2021/03/08 10:00,5,https://ev.us.es/,patron-02,inventor-02
