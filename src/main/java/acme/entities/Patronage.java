@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
@@ -31,8 +33,11 @@ public class Patronage extends AbstractEntity {
 	protected static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
+	@NotNull
+	@Enumerated(EnumType.STRING)
 	protected PatronageStatus	status;
 
+	@NotNull
 	@Column(unique = true)
 	@Pattern(regexp = "[A-Z]{3}-[0-9]{3}(-[A-Z])?$")
 	protected String			code;
