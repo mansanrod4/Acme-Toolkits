@@ -1,0 +1,5 @@
+key,code,title,description,assemblyNotes,key:tool,info
+toolkit-01,ABC123A,Toolkit 1,The new Toolkit number 1,Assemble with care please,tool-1,http://www.yourtoolkit1.com
+toolkit-02,ABC123B,Toolkit 2,The new Toolkit number 2,Assemble with care please,tool-2,null
+toolkit-03,ABC123C,Toolkit 3,The new Toolkit number 3,Assemble with care please,tool-3,http://www.yourtoolkit3.com
+toolkit-04,ABC123D,Toolkit 4,The new Toolkit number 4,Assemble with care please,tool-4,null

@@ -1,0 +1,8 @@
+key,key:component,multiplicity,key:toolkit
+toolkitComponent-01,component-01,2,toolkit-01
+toolkitComponent-02,component-02,3,toolkit-01
+toolkitComponent-03,component-01,1,toolkit-02
+toolkitComponent-04,component-04,6,toolkit-03
+toolkitComponent-05,component-02,9,toolkit-03
+toolkitComponent-06,component-01,5,toolkit-02
+toolkitComponent-07,component-04,7,toolkit-04
