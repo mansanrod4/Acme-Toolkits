@@ -8,11 +8,11 @@ import acme.framework.repositories.AbstractRepository;
 @Repository
 public interface AuthenticatedPatronRepository extends AbstractRepository{
 	
-	@Query("select count(p) from Patronage p where p.status == PROPOSED")
+	@Query("select count(p) from Patronage p where p.status = 'PROPOSED'")
 	Integer numPatronageProposed();
-	@Query("select count(p) from Patronage p where p.status == ACCEPTED")
+	@Query("select count(p) from Patronage p where p.status = 'ACCEPTED'")
 	Integer numPatronageAccepted();
-	@Query("select count(p) from Patronage p where p.status == DENIED")
+	@Query("select count(p) from Patronage p where p.status = 'DENIED'")
 	Integer numPatronageDenied();
 	
 	@Query()
