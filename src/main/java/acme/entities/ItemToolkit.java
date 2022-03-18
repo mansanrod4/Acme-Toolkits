@@ -13,7 +13,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class ToolkitComponent extends AbstractEntity{
+public class ItemToolkit extends AbstractEntity{
 
 	protected static final long serialVersionUID = 1L;
 	
@@ -21,21 +21,17 @@ public class ToolkitComponent extends AbstractEntity{
 	
 	@NotBlank
 	@Positive
-	protected Integer 		multiplicity;
+	protected Integer 	quantity;
 	
 	// Relationships ----------------------------------------------------------
 	
 	@ManyToOne(optional=false)
 	@NotNull
-	protected Component		component;
+	protected Item item;
 	
 	@ManyToOne(optional=false)
 	@NotNull
-	protected Toolkit 		toolkit;
+	protected Toolkit 	toolkit;
 
-	
-	
-	
-	
 	
 }
