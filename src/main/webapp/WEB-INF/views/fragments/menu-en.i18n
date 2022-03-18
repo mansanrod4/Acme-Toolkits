@@ -36,19 +36,19 @@ master.menu.administrator.shut-down = Shut down
 
 # master.menu.provider ########################################################
 
-master.menu.provider = Provider
-master.menu.provider.favourite-link = Favourite link
+master.menu.patron = Patron
+master.menu.patron.favourite-link = Favourite link
 
-# master.menu.consumer ##########################################################
+# master.menu.inventor #########################################################
 
-master.menu.consumer = Consumer
+master.menu.inventor = Inventor
 master.menu.consumer.favourite-link = Favourite link
 
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
 master.menu.user-account.general-data = General data
-master.menu.user-account.provider = Provider data
-master.menu.user-account.become-provider = Become a provider
-master.menu.user-account.consumer = Consumer data
-master.menu.user-account.become-consumer = Become a consumer
+master.menu.user-account.patron = Patron data
+master.menu.user-account.become-patron = Become a patron
+master.menu.user-account.inventor = Inventor data
+master.menu.user-account.become-inventor = Become a inventor
