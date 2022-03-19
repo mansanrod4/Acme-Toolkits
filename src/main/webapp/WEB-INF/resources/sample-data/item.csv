@@ -1,0 +1,7 @@
+key,itemType,name,code,technology,description,retail-price,further_information
+item-01,TOOL,Martillo,AAA-000,Clasica,Muy confiable,EUR 22.3,https://ev.us.es/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_29_1
+item-02,TOOL,Martillo E.,AAA-000-A,Electico,Demasiado confiable,EUR 50.3,null
+item-03,TOOL,Martillo de Agua,AAB-000-B,Presion,Extremadamente confiable,EUR 80.3,https://ev.us.es/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_29_1
+item-04,COMPONENT,Tuerca,BBB-000,Clasica,Increiblemente confiable,EUR 0.5,null
+item-05,COMPONENT,Tuerca D12,BBB-000-B,Clasica,Increiblemente confiable,EUR 0.5,https://ev.us.es/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_29_1
+item-06,COMPONENT,Tuerca D20,BBB-000-C,Clasica,Increiblemente confiable,EUR 0.5,null
