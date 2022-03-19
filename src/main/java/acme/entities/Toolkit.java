@@ -32,15 +32,15 @@ public class Toolkit extends AbstractEntity{
 	
 	
 	@NotBlank
-	@Length(max=101)
+	@Length(min=1,max=100)
 	protected String 		title;
 	
 	@NotBlank
-	@Length(max=256)
+	@Length(min=1,max=255)
 	protected String 		description;
 	
 	@NotBlank
-	@Length(max=256)
+	@Length(min=1,max=255)
 	protected String 		assemblyNotes;
 	
 	@ManyToOne(optional=false)

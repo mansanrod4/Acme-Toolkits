@@ -29,7 +29,7 @@ public class Item extends AbstractEntity{
 	
 	// Attributes -------------------------------------------------------------
 
-	@Length(max = 101)
+	@Length(min=1,max=100)
 	@NotBlank
 	protected String name;
 	
@@ -43,11 +43,11 @@ public class Item extends AbstractEntity{
 	protected ItemType itemType;
 	
 	@NotBlank
-	@Length(max = 101)
+	@Length(min=1,max=100)
 	protected String technology;
 	
 	@NotBlank
-	@Length(max = 256)
+	@Length(min=1,max=255)
 	protected String description;
 	
 	@Valid
