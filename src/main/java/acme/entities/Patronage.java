@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -47,38 +46,33 @@ public class Patronage extends AbstractEntity {
 	protected String			code;
 
 	@NotBlank
-	@Length(max = 256)
+	@Length(min = 1, max = 256)
 	@Column(name = "legal_stuff")
 	protected String			legalStuff;
 
+	@NotNull
 	protected Money			budget;
 
+	
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	protected Date			creationDate;
+	
 	@NotNull
 	@Temporal(TemporalType.DATE)
 	@Column(name = "start_date")
 	protected Date			startDate;
 	
-//	@NotNull
-//	@Temporal(TemporalType.DATE)
-//	protected Date			finalDate;
-//	
 	@NotNull
-	@Min(1) //num meses
-	protected Integer			period;	
-	
+	@Temporal(TemporalType.DATE)
+	protected Date			endDate;
+			
 	@URL
-	@Column(name = "further_information")
-	protected String			furtherInformation;
+	@Column(name = "information")
+	protected String			information;
 
 	// Derived attributes -----------------------------------------------------
 
-	
-//	@Min(1)
-//	public Long period() {
-//
-//		return this.finalDate.getTime()-this.startDate.getTime();
-//		
-//	}
 
 	// Relationships ----------------------------------------------------------
 	
