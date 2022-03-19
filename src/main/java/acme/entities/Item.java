@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -53,9 +54,13 @@ public class Item extends AbstractEntity{
 	@NotNull
 	protected  Money retailPrice;
 	
+	@ManyToOne(optional=false)
+	@NotNull
+	protected Inventor inventor;
+	
 	@URL
 	@Column(name = "further_information")
-	protected String furtherInformation;
+	protected String info;
 
 	// Derived attributes -----------------------------------------------------
 
