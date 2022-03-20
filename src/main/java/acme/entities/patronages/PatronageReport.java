@@ -1,4 +1,4 @@
-package acme.entities;
+package acme.entities.patronages;
 
 import java.util.Date;
 
@@ -54,7 +54,7 @@ public class PatronageReport extends AbstractEntity{
 
 	// Derived attributes -----------------------------------------------------
 	
-	//pattern “〈patronage-code〉:〈serial-number〉
+//	//pattern “〈patronage-code〉:〈serial-number〉
 //	@NotBlank
 //	protected String sequenceNumber(){
 //		return "〈"+this.patronage.getCode() +"〉:〈"+this.serialNumber.toString()+"〉";

@@ -1,4 +1,4 @@
-package acme.entities;
+package acme.entities.toolkits;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;

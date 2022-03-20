@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.entities.patronages;
 
 import java.util.Date;
 
@@ -42,7 +42,7 @@ public class Patronage extends AbstractEntity {
 
 	@NotNull
 	@Column(unique = true)
-	@Pattern(regexp = "[A-Z]{3}-[0-9]{3}(-[A-Z])?$")
+	@Pattern(regexp = "^[A-Z]{3}-[0-9]{3}(-[A-Z])?$")
 	protected String			code;
 
 	@NotBlank
@@ -86,7 +86,4 @@ public class Patronage extends AbstractEntity {
 	@ManyToOne(optional = false)
 	protected Inventor inventor;
 	
-
-
-
 }
