@@ -27,7 +27,7 @@ public class Announcement extends AbstractEntity{
 
 		// Attributes
 		@NotBlank
-		@Length(max = 101)
+		@Length(max = 100)
 		protected String title;
 
 		@Temporal(TemporalType.TIMESTAMP)
@@ -36,7 +36,7 @@ public class Announcement extends AbstractEntity{
 		protected Date moment;
 
 		@NotBlank
-		@Length(max = 256)
+		@Length(max = 255)
 		protected String body;
 		
 		protected boolean critical;

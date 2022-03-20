@@ -1,8 +1,11 @@
-package acme.entities;
+package acme.entities.toolkits;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -10,52 +13,62 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
+import acme.framework.datatypes.Money;
 import acme.framework.entities.AbstractEntity;
+import acme.roles.Inventor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Toolkit extends AbstractEntity{
-	
+public class Item extends AbstractEntity{
+
 	// Serialisation identifier -----------------------------------------------
 
-	protected static final long serialVersionUID = 1L;
+	protected static final long	serialVersionUID	= 1L;
 	
 	// Attributes -------------------------------------------------------------
+
+	@Length(min=1,max=100)
+	@NotBlank
+	protected String name;
 	
-	@Column(unique=true)
+	@Pattern(regexp = "[A-Z]{3}-[0-9]{3}(-[A-Z])?$")
 	@NotNull
-	@Pattern(regexp="^[A-Z]{3}-[0-9]{3}(-[A-Z])?$")	
-	protected String 		code;
+	@Column(unique = true)
+	protected String code;
 	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	protected ItemType itemType;
 	
 	@NotBlank
 	@Length(min=1,max=100)
-	protected String 		title;
+	protected String technology;
 	
 	@NotBlank
 	@Length(min=1,max=255)
-	protected String 		description;
+	protected String description;
 	
-	@NotBlank
-	@Length(min=1,max=255)
-	protected String 		assemblyNotes;
+	@Valid
+	@NotNull
+	protected  Money retailPrice;
 	
 	@ManyToOne(optional=false)
 	@NotNull
 	protected Inventor inventor;
 	
-	@URL	
-	protected String		info;
+	@URL
+	@Column(name = "further_information")
+	protected String info;
 
 	// Derived attributes -----------------------------------------------------
-	
 
+	
+	
 	// Relationships ----------------------------------------------------------
 
-	
-	
+
 	
 }
