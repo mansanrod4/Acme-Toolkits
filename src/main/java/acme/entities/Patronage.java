@@ -46,8 +46,7 @@ public class Patronage extends AbstractEntity {
 	protected String			code;
 
 	@NotBlank
-	@Length(min = 1, max = 256)
-	@Column(name = "legal_stuff")
+	@Length(min = 1, max = 255)
 	protected String			legalStuff;
 
 	@NotNull
@@ -69,7 +68,7 @@ public class Patronage extends AbstractEntity {
 			
 	@URL
 	@Column(name = "information")
-	protected String			information;
+	protected String			info;
 
 	// Derived attributes -----------------------------------------------------
 
