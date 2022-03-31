@@ -18,10 +18,14 @@ public class AnyUserAccountController extends AbstractController<Any, UserAccoun
 	@Autowired
 	protected AnyUserAccountListPatronService listPatronService;
 	
+	@Autowired
+	protected AnyUserAccountShowService showService;
+	
 	@PostConstruct
 	protected void initialise() {
 		super.addCommand("list-inventor", "list", this.listInventorService);
 		super.addCommand("list-patron", "list", this.listPatronService);
+		super.addCommand("show", this.showService);
 	}
 	
 }
