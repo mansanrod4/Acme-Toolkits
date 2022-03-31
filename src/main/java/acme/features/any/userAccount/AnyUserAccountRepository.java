@@ -11,11 +11,10 @@ import acme.framework.repositories.AbstractRepository;
 @Repository
 public interface AnyUserAccountRepository extends AbstractRepository{
 	
+	@Query("select ua from UserAccount ua where ua.id = :id")
+	UserAccount finOneUserAccountById(int id);
 	
 	@Query("select ua from UserAccount ua")
 	Collection<UserAccount> findAllUserAccounts();
-	
-//	@Query("select ua from UserAccount ua where ua.hasRole")
-//	Collection<UserAccount> findAllUserInventors();
 	
 }

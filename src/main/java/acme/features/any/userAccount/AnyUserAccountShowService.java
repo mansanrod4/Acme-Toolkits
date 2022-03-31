@@ -1,7 +1,6 @@
 
 package acme.features.any.userAccount;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,41 +12,33 @@ import acme.framework.entities.UserAccount;
 import acme.framework.entities.UserAccountStatus;
 import acme.framework.roles.Any;
 import acme.framework.roles.UserRole;
-import acme.framework.services.AbstractListService;
+import acme.framework.services.AbstractShowService;
 
 @Service
-public class AnyUserAccountListInventorService implements AbstractListService<Any, UserAccount> {
-
-	// Internal state ---------------------------------------------------------
+public class AnyUserAccountShowService implements AbstractShowService<Any, UserAccount> {
 
 	@Autowired
 	protected AnyUserAccountRepository repository;
 
-	// AbstractListService<Inventor, UserAccount> interface --------------
-
 
 	@Override
 	public boolean authorise(final Request<UserAccount> request) {
-
 		assert request != null;
 
 		return true;
 	}
 
 	@Override
-	public Collection<UserAccount> findMany(final Request<UserAccount> request) {
+	public UserAccount findOne(final Request<UserAccount> request) {
 		assert request != null;
 
-		final Collection<UserAccount> result = new ArrayList<UserAccount>();
-		final Collection<UserAccount> allUserAccounts = this.repository.findAllUserAccounts();
-		for (final UserAccount userAccount : allUserAccounts) {
-			userAccount.getRoles().forEach(r -> {
-				if (r.getAuthorityName().equals("Inventor")) {
-					result.add(userAccount);
-				}
-			});
+		UserAccount result;
+		int id;
 
-		}
+		id = request.getModel().getInteger("id");
+		result = this.repository.finOneUserAccountById(id);
+		result.getRoles().forEach(r -> {
+		});
 		return result;
 	}
 
@@ -56,27 +47,29 @@ public class AnyUserAccountListInventorService implements AbstractListService<An
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-
+		
 		final StringBuilder buffer;
 		final Collection<UserRole> roles;
-
+		
 		request.unbind(entity, model, "username", "identity.name", "identity.surname", "identity.email");
-
+		
 		roles = entity.getRoles();
 		buffer = new StringBuilder();
-		for (final UserRole role : roles) {
+		for(final UserRole role : roles) {
 			buffer.append(role.getAuthorityName());
 			buffer.append(" ");
 		}
-
+		
 		model.setAttribute("roleList", buffer.toString());
-
+		
 		if (entity.isEnabled()) {
 			model.setAttribute("status", UserAccountStatus.ENABLED);
 		} else {
 			model.setAttribute("status", UserAccountStatus.DISABLED);
 		}
-
+		
+		model.setAttribute("canUpdate", false);
 	}
-
+	
+	
 }
