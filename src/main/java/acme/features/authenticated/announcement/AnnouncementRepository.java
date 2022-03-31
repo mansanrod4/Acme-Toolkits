@@ -14,6 +14,10 @@ public interface AnnouncementRepository extends AbstractRepository{
 	
 	@Query("select a from Announcement a where a.moment >= :deadline")
 	Collection<Announcement> findRecentAnnouncements(Date deadline);
+	
+
+	@Query("select a from Announcement a where a.id = :id")
+	Announcement findOneAnnouncementById(int id);
 
 
 }
