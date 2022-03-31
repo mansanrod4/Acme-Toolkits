@@ -23,7 +23,6 @@ master.menu.anonymous.manferrod6-favourite-link= 77866123Z: Fernández Rodrígue
 master.menu.anonymous.mansanrod4-favourite-link =  49236025V: Sánchez Rodríguez, Manuel
 master.menu.anonymous.aisqazcev-favourite-link =  77976716T: Qazza Cevallos, Aisha Doris
 master.menu.anonymous.olisanrod-favourite-link =  47538886W: Sánchez Rodríguez, Oliva
-master.menu.anonymous.juanb-favourite-link = 77871675T: Buiza, Juan
 
 # master.menu.administrator ###################################################
 
@@ -54,3 +53,4 @@ master.menu.user-account.patron = Datos de mecenas
 master.menu.user-account.become-patron = Hazte mecenas
 master.menu.user-account.inventor = Datos de inventor
 master.menu.user-account.become-inventor = Hazte inventor
+master.menu.user-account.announcement.list = Anuncios
