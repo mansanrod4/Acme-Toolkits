@@ -24,7 +24,6 @@
 			<acme:menu-suboption code="master.menu.anonymous.mansanrod4-favourite-link" action="https://defonic.com"/>
 			<acme:menu-suboption code="master.menu.anonymous.aisqazcev-favourite-link" action="https://www.netflix.com/watch/70151933?trackId=14277283&tctx=-97%2C-97%2C%2C%2C%2C%2C%2C"/>
 			<acme:menu-suboption code="master.menu.anonymous.olisanrod-favourite-link" action="https://google.com"/>
-			<acme:menu-suboption code="master.menu.anonymous.juanb-favourite-link" action="https://soundcloud.com/hymbeats/talez-from-da-krypt"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">
@@ -55,6 +54,8 @@
 			<acme:menu-suboption code="master.menu.user-account.patron" action="/authenticated/patron/update" access="hasRole('Patron')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-inventor" action="/authenticated/inventor/create" access="!hasRole('Inventor')"/>
 			<acme:menu-suboption code="master.menu.user-account.inventor" action="/authenticated/inventor/update" access="hasRole('Inventor')"/>
+			<acme:menu-suboption code="master.menu.user-account.announcement.list" action="/authenticated/announcement/list"/>
+			
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.sign-out" action="/master/sign-out" access="isAuthenticated()"/>
