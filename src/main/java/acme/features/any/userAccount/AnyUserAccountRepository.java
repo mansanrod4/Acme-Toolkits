@@ -1,4 +1,4 @@
-package acme.features.authenticated.userAccount;
+package acme.features.any.userAccount;
 
 import java.util.Collection;
 
@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.framework.entities.UserAccount;
-import acme.framework.features.authenticated.userAccount.AuthenticatedUserAccountRepository;
+import acme.framework.repositories.AbstractRepository;
 
 @Repository
-public interface AuthenticatedUserAccountRepository2 extends AuthenticatedUserAccountRepository{
+public interface AnyUserAccountRepository extends AbstractRepository{
 	
 	
 	@Query("select ua from UserAccount ua")

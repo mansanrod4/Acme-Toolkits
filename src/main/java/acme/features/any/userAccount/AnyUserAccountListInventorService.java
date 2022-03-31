@@ -1,6 +1,7 @@
 
-package acme.features.authenticated.userAccount;
+package acme.features.any.userAccount;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,17 +11,17 @@ import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.entities.UserAccount;
 import acme.framework.entities.UserAccountStatus;
-import acme.framework.roles.Authenticated;
+import acme.framework.roles.Any;
 import acme.framework.roles.UserRole;
 import acme.framework.services.AbstractListService;
 
 @Service
-public class AuthenticatedUserAccountListInventorService implements AbstractListService<Authenticated, UserAccount> {
+public class AnyUserAccountListInventorService implements AbstractListService<Any, UserAccount> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AuthenticatedUserAccountRepository2 repository;
+	protected AnyUserAccountRepository repository;
 
 	// AbstractListService<Inventor, UserAccount> interface --------------
 
@@ -37,12 +38,15 @@ public class AuthenticatedUserAccountListInventorService implements AbstractList
 	public Collection<UserAccount> findMany(final Request<UserAccount> request) {
 		assert request != null;
 
-		Collection<UserAccount> result;
-		result = this.repository.findAllUserAccounts();
-		for (final UserAccount userAccount : result) {
+		final Collection<UserAccount> result = new ArrayList<UserAccount>();
+		final Collection<UserAccount> allUserAccounts = this.repository.findAllUserAccounts();
+		for (final UserAccount userAccount : allUserAccounts) {
 			userAccount.getRoles().forEach(r -> {
-				r.getAuthorityName().equals("Inventor");
+				if (r.getAuthorityName().equals("Inventor")){
+					result.add(userAccount);
+				}
 			});
+			
 		}
 		return result;
 	}
