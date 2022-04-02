@@ -18,6 +18,8 @@ master.menu.sign-out = Sign out
 # master.menu.anonymous #######################################################
 
 master.menu.anonymous = Anonymous
+master.menu.anonymous.list-chirp = Chirp
+
 master.menu.anonymous.diedialop-favourite-link =  20060486R: Díaz López, Diego Jesús
 master.menu.anonymous.manferrod6-favourite-link= 77866123Z: Fernández Rodríguez, Manuel
 master.menu.anonymous.mansanrod4-favourite-link =  49236025V: Sánchez Rodríguez, Manuel
@@ -45,6 +47,7 @@ master.menu.consumer.favourite-link = Favourite link
 
 # master.menu.user-account ####################################################
 
+master.menu.user-account.chirp.list = List Chirps
 master.menu.user-account = Account
 master.menu.user-account.list-inventor = Inventors
 master.menu.user-account.list-patron = Patrons

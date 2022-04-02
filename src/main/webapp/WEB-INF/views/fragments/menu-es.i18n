@@ -17,6 +17,7 @@ master.menu.sign-out = Salir
 
 # master.menu.anonymous #######################################################
 
+master.menu.anonymous.chirp.list = Lista mensajes
 master.menu.anonymous = Anónimo
 master.menu.anonymous.diedialop-favourite-link = 20060486R: Díaz López, Diego Jesús
 master.menu.anonymous.manferrod6-favourite-link= 77866123Z: Fernández Rodríguez, Manuel
@@ -45,6 +46,7 @@ master.menu.inventor.favourite-link = Enlace favorito
 
 # master.menu.user-account ####################################################
 
+master.menu.user-account.chirp.list = Lista mensajes
 master.menu.user-account = Cuenta
 master.menu.user-account.list-inventor = Inventores
 master.menu.user-account.list-patron = Mecenas
