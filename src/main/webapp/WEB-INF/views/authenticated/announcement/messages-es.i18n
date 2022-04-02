@@ -1,0 +1,13 @@
+# i18n-es.i18n
+
+authenticated.announcement.form.label.title = Título:
+authenticated.announcement.form.label.moment = Momento:
+authenticated.announcement.form.label.body = Body:
+authenticated.announcement.form.label.critical = Critical:
+authenticated.announcement.form.label.link = Link:
+
+authenticated.announcement.list.label.title = Título
+authenticated.announcement.list.label.moment = Momento
+authenticated.announcement.list.label.body = Body
+authenticated.announcement.list.label.critical = Critical
+authenticated.announcement.list.label.link = Link
