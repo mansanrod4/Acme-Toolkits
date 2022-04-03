@@ -37,9 +37,12 @@ public class AnyUserAccountShowService implements AbstractShowService<Any, UserA
 
 		id = request.getModel().getInteger("id");
 		result = this.repository.finOneUserAccountById(id);
-		if (!result.getRoles().stream().anyMatch(r->(r.getAuthorityName().equals("Inventor"))||r.getAuthorityName().equals("Patron")))
+		final String authorityString = result.getAuthorityString();
+		if (!(authorityString.contains("Administrator") || authorityString.contains("Anonymous")) 
+			&&
+			(authorityString.contains("Inventor") || (authorityString.contains("Patron"))))
 			result = null;
-			
+
 		return result;
 	}
 
@@ -48,29 +51,28 @@ public class AnyUserAccountShowService implements AbstractShowService<Any, UserA
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		
+
 		final StringBuilder buffer;
 		final Collection<UserRole> roles;
-		
+
 		request.unbind(entity, model, "username", "identity.name", "identity.surname", "identity.email");
-		
+
 		roles = entity.getRoles();
 		buffer = new StringBuilder();
-		for(final UserRole role : roles) {
+		for (final UserRole role : roles) {
 			buffer.append(role.getAuthorityName());
 			buffer.append(" ");
 		}
-		
+
 		model.setAttribute("roleList", buffer.toString());
-		
+
 		if (entity.isEnabled()) {
 			model.setAttribute("status", UserAccountStatus.ENABLED);
 		} else {
 			model.setAttribute("status", UserAccountStatus.DISABLED);
 		}
-		
+
 		model.setAttribute("canUpdate", false);
 	}
-	
-	
+
 }
