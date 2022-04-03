@@ -41,12 +41,9 @@ public class AnyUserAccountListInventorService implements AbstractListService<An
 		final Collection<UserAccount> result = new ArrayList<UserAccount>();
 		final Collection<UserAccount> allUserAccounts = this.repository.findAllUserAccounts();
 		for (final UserAccount userAccount : allUserAccounts) {
-			userAccount.getRoles().forEach(r -> {
-				if (r.getAuthorityName().equals("Inventor")) {
-					result.add(userAccount);
-				}
-			});
-
+			final String authorityString = userAccount.getAuthorityString();
+			if (!(authorityString.contains("Administrator")||authorityString.contains("Anonymous"))&&authorityString.contains("Inventor"))
+				result.add(userAccount);
 		}
 		return result;
 	}
