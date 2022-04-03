@@ -38,9 +38,9 @@ public class AnyUserAccountShowService implements AbstractShowService<Any, UserA
 		id = request.getModel().getInteger("id");
 		result = this.repository.finOneUserAccountById(id);
 		final String authorityString = result.getAuthorityString();
-		if (!(authorityString.contains("Administrator") || authorityString.contains("Anonymous")) 
+		if ((authorityString.contains("Administrator") || authorityString.contains("Anonymous")) 
 			&&
-			(authorityString.contains("Inventor") || (authorityString.contains("Patron"))))
+			!(authorityString.contains("Inventor") || (authorityString.contains("Patron"))))
 			result = null;
 
 		return result;
