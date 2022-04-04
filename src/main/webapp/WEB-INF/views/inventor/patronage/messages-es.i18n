@@ -1,0 +1,26 @@
+# i18n-es.i18n
+#
+# Copyright (C) 2012-2022 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+inventor.patronage.label.reference = Referencia:
+inventor.patronage.label.moment = Momento:
+inventor.patronage.label.status = Estado:
+inventor.patronage.label.statement = Defensa:
+inventor.patronage.label.skills = Habilidades:
+inventor.patronage.label.qualifications = Cualificaciones:
+
+inventor.patronage.button.create = Solicitar
+
+inventor.patronage.list.title = Mis patrocinios
+
+inventor.patronage.list.label.code = Código
+inventor.patronage.list.label.status = Estado
+
+
+inventor.patronage.form.error.spam = Parece que su solicitud contiene spam

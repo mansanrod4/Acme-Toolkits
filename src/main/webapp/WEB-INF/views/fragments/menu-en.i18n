@@ -43,7 +43,7 @@ master.menu.patron.favourite-link = Favourite link
 # master.menu.inventor #########################################################
 
 master.menu.inventor = Inventor
-master.menu.consumer.favourite-link = Favourite link
+master.menu.inventor.patronage.list = Patronages
 
 # master.menu.user-account ####################################################
 
