@@ -21,6 +21,7 @@ inventor.patronage.list.title = Mis patrocinios
 
 inventor.patronage.list.label.code = Código
 inventor.patronage.list.label.status = Estado
+inventor.patronage.list.label.patron = Mecenas
 
 
 inventor.patronage.form.error.spam = Parece que su solicitud contiene spam

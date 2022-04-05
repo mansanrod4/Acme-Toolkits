@@ -21,5 +21,7 @@ inventor.patronage.list.title = My patronages
 
 inventor.patronage.list.label.code = Code
 inventor.patronage.list.label.status = Status
+inventor.patronage.list.label.patron = Patron
+
 
 inventor.patronage.form.error.spam = Your application seems to contain spam 

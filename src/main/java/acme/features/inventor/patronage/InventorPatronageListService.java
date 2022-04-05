@@ -44,6 +44,8 @@ public class InventorPatronageListService implements AbstractListService<Invento
 		assert model != null;
 		
 		request.unbind(entity, model, "code", "status");
+		model.setAttribute("patron", entity.getPatron().getUserAccount().getUsername());
+
 	}
 
 }
