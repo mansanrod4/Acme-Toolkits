@@ -42,7 +42,7 @@ master.menu.patron.favourite-link = Enlace favorito
 # master.menu.inventor ##########################################################
 
 master.menu.inventor = Inventor
-master.menu.inventor.favourite-link = Enlace favorito
+master.menu.inventor.patronage.list = Patrocinios
 
 # master.menu.user-account ####################################################
 
