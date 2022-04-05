@@ -8,14 +8,17 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-inventor.patronage.label.reference = Referencia:
-inventor.patronage.label.moment = Momento:
+inventor.patronage.label.code = Código:
+inventor.patronage.label.creationDate = Fecha de creación:
+inventor.patronage.label.startDate = Fecha de inicio:
+inventor.patronage.label.endDate= Fecha final:
 inventor.patronage.label.status = Estado:
-inventor.patronage.label.statement = Defensa:
-inventor.patronage.label.skills = Habilidades:
-inventor.patronage.label.qualifications = Cualificaciones:
+inventor.patronage.label.patron = Mecenas:
+inventor.patronage.label.inventor = Inventor:
+inventor.patronage.label.legalStuff = Cosas legales:
+inventor.patronage.label.budget = Aportación:
+inventor.patronage.label.info = Información:
 
-inventor.patronage.button.create = Solicitar
 
 inventor.patronage.list.title = Mis patrocinios
 

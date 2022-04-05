@@ -8,14 +8,16 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-inventor.patronage.label.reference = Reference:
-inventor.patronage.label.moment = Moment:
+inventor.patronage.label.code = Code:
+inventor.patronage.label.creationDate = Creation date:
+inventor.patronage.label.startDate = Start date:
+inventor.patronage.label.endDate= End date:
 inventor.patronage.label.status = Status:
-inventor.patronage.label.statement = Statement:
-inventor.patronage.label.skills = Skills:
-inventor.patronage.label.qualifications = Qualifications:
-
-inventor.patronage.button.create = Apply
+inventor.patronage.label.patron = Patron:
+inventor.patronage.label.inventor = Inventor:
+inventor.patronage.label.legalStuff = Legal stuff:
+inventor.patronage.label.budget = Budget:
+inventor.patronage.label.info = Info:
 
 inventor.patronage.list.title = My patronages
 
