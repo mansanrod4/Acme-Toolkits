@@ -69,6 +69,7 @@
 			<acme:menu-suboption code="master.menu.user-account.become-inventor" action="/authenticated/inventor/create" access="!hasRole('Inventor')"/>
 			<acme:menu-suboption code="master.menu.user-account.inventor" action="/authenticated/inventor/update" access="hasRole('Inventor')"/>
 			<acme:menu-suboption code="master.menu.user-account.announcement.list" action="/authenticated/announcement/list"/>
+			<acme:menu-suboption code="master.menu.user-account.systemConfiguration.list" action="/authenticated/system-configuration/list"/>
 			
 		</acme:menu-option>
 

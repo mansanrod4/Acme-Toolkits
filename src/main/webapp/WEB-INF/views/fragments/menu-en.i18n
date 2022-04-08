@@ -1,4 +1,4 @@
-# menu-en.i18n
+2# menu-en.i18n
 #
 # Copyright (C) 2012-2022 Rafael Corchuelo.
 #
@@ -57,3 +57,5 @@ master.menu.user-account.become-patron = Become a patron
 master.menu.user-account.inventor = Inventor data
 master.menu.user-account.become-inventor = Become a inventor
 master.menu.user-account.announcement.list = List announcements
+master.menu.user-account.systemConfiguration.list = Currencies information
+

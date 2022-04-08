@@ -1,0 +1,5 @@
+# i18n-en.i18n
+
+authenticated.systemConfiguration.list.label.systemCurrency = System currency
+authenticated.systemConfiguration.list.label.acceptedCurrencies = Accepted currencies
+

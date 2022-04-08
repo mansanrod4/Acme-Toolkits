@@ -15,7 +15,7 @@ public interface AuthenticatedPatronRepository extends AbstractRepository{
 	@Query("select count(p) from Patronage p where p.status = 'DENIED'")
 	Integer numPatronageDenied();
 	
-//	@Query()
+//	@Query("")
 //	Double  averageBudgetProposed();
 //	Double  desviationBudgetProposed();
 //	Double  minimunBudgetProposed();
