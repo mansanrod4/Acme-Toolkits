@@ -57,4 +57,4 @@ master.menu.user-account.become-patron = Become a patron
 master.menu.user-account.inventor = Inventor data
 master.menu.user-account.become-inventor = Become a inventor
 master.menu.user-account.announcement.list = List announcements
-master.menu.user-account.money.list = System configuration
+master.menu.user-account.system-configuration.list = System configuration

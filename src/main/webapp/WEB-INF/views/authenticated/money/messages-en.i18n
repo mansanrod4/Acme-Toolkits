@@ -1,8 +1,0 @@
-# i18n-en.i18n
-
-authenticated.money.list.label.systemCurrency = System Currency
-authenticated.money.list.label.acceptedCurrencies = Accepted Currencies
-authenticated.money.list.label.strongSpamTerms = strongSpamTerms
-authenticated.money.list.label.strongSpamThreshold = strongSpamThreshold
-authenticated.money.list.label.weakSpamTerms = weakSpamTerms
-authenticated.money.list.label.weakSpamThreshold = weakSpamThreshold

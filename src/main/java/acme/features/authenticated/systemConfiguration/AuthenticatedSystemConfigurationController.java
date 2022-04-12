@@ -1,4 +1,4 @@
-package acme.features.authenticated.money;
+package acme.features.authenticated.systemConfiguration;
 
 import javax.annotation.PostConstruct;
 
@@ -10,16 +10,16 @@ import acme.framework.controllers.AbstractController;
 import acme.framework.roles.Authenticated;
 
 @Controller
-public class MoneyController extends AbstractController<Authenticated, SystemConfiguration>{
+public class AuthenticatedSystemConfigurationController extends AbstractController<Authenticated, SystemConfiguration>{
 	
 	@Autowired
-	protected MoneyServiceList	listService;
+	protected AuthenticatedSystemConfigurationShowService	showService;
 
 
 	// Constructors -----------------------------------------------------------
 
 	@PostConstruct
 	protected void initialise() {
-		super.addCommand("list", this.listService);
+		super.addCommand("show", this.showService);
 	}
 }

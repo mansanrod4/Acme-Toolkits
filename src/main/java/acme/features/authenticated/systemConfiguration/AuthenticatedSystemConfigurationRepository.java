@@ -1,6 +1,4 @@
-package acme.features.authenticated.money;
-
-import java.util.Collection;
+package acme.features.authenticated.systemConfiguration;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -9,9 +7,9 @@ import acme.components.configuration.SystemConfiguration;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
-public interface MoneyRepository extends AbstractRepository{
+public interface AuthenticatedSystemConfigurationRepository extends AbstractRepository{
 
 	@Query("select sc from SystemConfiguration sc")
-	Collection<SystemConfiguration> findSystemConfiguration();
+	SystemConfiguration findSystemConfiguration();
 
 }

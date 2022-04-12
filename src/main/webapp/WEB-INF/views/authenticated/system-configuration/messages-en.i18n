@@ -1,0 +1,4 @@
+# i18n-en.i18n
+
+authenticated.money.form.label.systemCurrency = System Currency:
+authenticated.money.form.label.acceptedCurrencies = Accepted Currencies:
