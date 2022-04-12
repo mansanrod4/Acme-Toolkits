@@ -2,12 +2,10 @@
 
 authenticated.announcement.form.label.title = Título:
 authenticated.announcement.form.label.moment = Momento:
-authenticated.announcement.form.label.body = Body:
-authenticated.announcement.form.label.critical = Critical:
-authenticated.announcement.form.label.link = Link:
+authenticated.announcement.form.label.body = Descripción:
+authenticated.announcement.form.label.critical = Es crítico:
+authenticated.announcement.form.label.link = Informacion adicional:
 
 authenticated.announcement.list.label.title = Título
 authenticated.announcement.list.label.moment = Momento
-authenticated.announcement.list.label.body = Body
-authenticated.announcement.list.label.critical = Critical
-authenticated.announcement.list.label.link = Link
+authenticated.announcement.list.label.body = Descripcion
