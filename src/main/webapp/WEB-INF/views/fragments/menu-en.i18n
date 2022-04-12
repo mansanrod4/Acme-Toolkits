@@ -18,12 +18,13 @@ master.menu.sign-out = Sign out
 # master.menu.anonymous #######################################################
 
 master.menu.anonymous = Anonymous
+master.menu.anonymous.list-chirp = Chirp
+
 master.menu.anonymous.diedialop-favourite-link =  20060486R: Díaz López, Diego Jesús
 master.menu.anonymous.manferrod6-favourite-link= 77866123Z: Fernández Rodríguez, Manuel
 master.menu.anonymous.mansanrod4-favourite-link =  49236025V: Sánchez Rodríguez, Manuel
 master.menu.anonymous.aisqazcev-favourite-link =  77976716T: Qazza Cevallos, Aisha Doris
 master.menu.anonymous.olisanrod-favourite-link =  47538886W: Sánchez Rodríguez, Oliva
-master.menu.anonymous.juanb-favourite-link = 77871675T: Buiza, Juan
 
 # master.menu.administrator ###################################################
 
@@ -42,10 +43,11 @@ master.menu.patron.favourite-link = Favourite link
 # master.menu.inventor #########################################################
 
 master.menu.inventor = Inventor
-master.menu.consumer.favourite-link = Favourite link
+master.menu.inventor.patronage.list = Patronages
 
 # master.menu.user-account ####################################################
 
+master.menu.user-account.chirp.list = List Chirps
 master.menu.user-account = Account
 master.menu.user-account.list = User Accounts
 master.menu.user-account.general-data = General data
@@ -53,3 +55,4 @@ master.menu.user-account.patron = Patron data
 master.menu.user-account.become-patron = Become a patron
 master.menu.user-account.inventor = Inventor data
 master.menu.user-account.become-inventor = Become a inventor
+master.menu.user-account.announcement.list = List announcements

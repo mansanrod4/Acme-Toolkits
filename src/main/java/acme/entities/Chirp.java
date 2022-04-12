@@ -1,7 +1,6 @@
 
 package acme.entities;
 
-
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -18,10 +17,10 @@ import acme.framework.entities.AbstractEntity;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+@Entity(name = "Chirp")
 @Getter
 @Setter
-public class Chirp extends AbstractEntity{
+public class Chirp extends AbstractEntity {
 
 	// Serialisation identifier -----------------------------------------------
 
@@ -32,22 +31,22 @@ public class Chirp extends AbstractEntity{
 	@NotNull
 	@Past
 	@Temporal(TemporalType.TIMESTAMP)
-	protected Date moment;
+	protected Date				moment;
 
 	@NotBlank
 	@Length(max = 100)
-	protected String title;
+	protected String			title;
 
 	@NotBlank
 	@Length(max = 100)
-	protected String author;
+	protected String			author;
 
 	@NotBlank
 	@Length(max = 255)
-	protected String body;
+	protected String			body;
 
 	@Email
-	protected String email;
+	protected String			email;
 
 	// Derived attributes -----------------------------------------------------
 
