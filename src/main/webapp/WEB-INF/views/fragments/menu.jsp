@@ -24,11 +24,11 @@
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			
 			<acme:menu-suboption code="master.menu.user-account.chirp.list" action="/any/chirp/list"/>
-
+      		<acme:menu-suboption code="master.menu.user-account.toolkit.list" action="/any/toolkit/list"/>
 		
 			<acme:menu-suboption code="master.menu.user-account.list-inventor" action="/any/user-account/list-inventor"/>
 			<acme:menu-suboption code="master.menu.user-account.list-patron" action="/any/user-account/list-patron"/>
-      
+
 			<acme:menu-suboption code="master.menu.anonymous.manferrod6-favourite-link" action="http://www.gol.gg"/>
 			<acme:menu-suboption code="master.menu.anonymous.diedialop-favourite-link" action="https://www.sanfransentinel.com/youtube998.html"/>
 			<acme:menu-suboption code="master.menu.anonymous.mansanrod4-favourite-link" action="https://defonic.com"/>
