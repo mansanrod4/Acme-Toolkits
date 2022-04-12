@@ -33,7 +33,7 @@ public class PatronageReport extends AbstractEntity{
 	
 	// Attributes -------------------------------------------------------------
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@NotNull
 	@Past
 	@Column(name = "creation_date")
