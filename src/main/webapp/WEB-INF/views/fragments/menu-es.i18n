@@ -29,7 +29,7 @@ master.menu.anonymous.juanb-favourite-link = 77871675T: Buiza, Juan
 
 master.menu.administrator = Administrador
 master.menu.administrator.dashboard = Panel de indicadores
-master.menu.administrator.user-accounts = Cuentas de usuario
+master.menu.administrator.user-accounts = Todas las Cuentas de usuario
 master.menu.administrator.populate-initial = Poblar BD (inicial)
 master.menu.administrator.populate-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-down = Parar el sistema
@@ -47,8 +47,7 @@ master.menu.inventor.favourite-link = Enlace favorito
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta
-master.menu.user-account.list-inventor = Inventores
-master.menu.user-account.list-patron = Mecenas
+master.menu.user-account.list = Cuentas de usuario
 master.menu.user-account.general-data = Datos generales
 master.menu.user-account.patron = Datos de mecenas
 master.menu.user-account.become-patron = Hazte mecenas
