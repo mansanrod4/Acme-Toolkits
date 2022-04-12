@@ -10,5 +10,3 @@ authenticated.announcement.form.label.link = Link:
 authenticated.announcement.list.label.title = Title
 authenticated.announcement.list.label.moment = Moment
 authenticated.announcement.list.label.body = Body
-authenticated.announcement.list.label.critical = Critical
-authenticated.announcement.list.label.link = Link

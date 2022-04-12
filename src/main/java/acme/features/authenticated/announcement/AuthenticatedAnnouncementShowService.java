@@ -1,7 +1,6 @@
 package acme.features.authenticated.announcement;
 
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,33 +10,45 @@ import acme.entities.Announcement;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.roles.Authenticated;
-import acme.framework.services.AbstractListService;
+import acme.framework.services.AbstractShowService;
 
 @Service
-public class AnnouncementServiceList implements AbstractListService<Authenticated, Announcement>{
-	
+public class AuthenticatedAnnouncementShowService implements AbstractShowService<Authenticated, Announcement>{
+
 	@Autowired
-	protected AnnouncementRepository repository;
+	protected AuthenticatedAnnouncementRepository repository;
 	
 	@Override
 	public boolean authorise(final Request<Announcement> request) {
+		
 		assert request != null;
-		return true;
-	}
-
-	@Override
-	public Collection<Announcement> findMany(final Request<Announcement> request) {
-		assert request != null;
-
-		Collection<Announcement> result;
+		boolean result;
 		Calendar calendar;
 		Date deadline;
-
+		Announcement announcement;
+		int id;
+		
+		
 		calendar = Calendar.getInstance();
 		calendar.add(Calendar.MONTH, -1);
 		deadline = calendar.getTime();
+		
+		id = request.getModel().getInteger("id");
+		announcement = this.repository.findOneAnnouncementById(id);
+		result = announcement.getMoment().after(deadline);
 
-		result = this.repository.findRecentAnnouncements(deadline);
+		return result;
+	}
+
+	@Override
+	public Announcement findOne(final Request<Announcement> request) {
+		assert request != null;
+
+		Announcement result;
+		int id;
+
+		id = request.getModel().getInteger("id");
+		result = this.repository.findOneAnnouncementById(id);
 
 		return result;
 	}
@@ -48,8 +59,7 @@ public class AnnouncementServiceList implements AbstractListService<Authenticate
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "moment", "body");
+		request.unbind(entity, model, "title", "moment", "body", "critical", "link");
 	}
-	
 
 }
