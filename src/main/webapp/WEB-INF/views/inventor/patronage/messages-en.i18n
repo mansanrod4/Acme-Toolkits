@@ -19,11 +19,20 @@ inventor.patronage.label.legalStuff = Legal stuff:
 inventor.patronage.label.budget = Budget:
 inventor.patronage.label.info = Info:
 
+inventor.patronage.label.patronFullName = Patron
+inventor.patronage.label.patronEmail = Patron email
+inventor.patronage.label.patronCompany = Patron company
+inventor.patronage.label.patronStatement = Patron statement
+inventor.patronage.label.patronInfo = Patron info
+
+
 inventor.patronage.list.title = My patronages
 
 inventor.patronage.list.label.code = Code
 inventor.patronage.list.label.status = Status
 inventor.patronage.list.label.patron = Patron
+
+
 
 
 inventor.patronage.form.error.spam = Your application seems to contain spam 

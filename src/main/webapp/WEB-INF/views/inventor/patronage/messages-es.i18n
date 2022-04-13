@@ -19,12 +19,20 @@ inventor.patronage.label.legalStuff = Cosas legales:
 inventor.patronage.label.budget = Aportación:
 inventor.patronage.label.info = Información:
 
+inventor.patronage.label.patronFullName = Mecenas
+inventor.patronage.label.patronEmail = Email
+inventor.patronage.label.patronCompany = Compañía
+inventor.patronage.label.patronStatement = Declaración
+inventor.patronage.label.patronInfo = Información
+
 
 inventor.patronage.list.title = Mis patrocinios
 
 inventor.patronage.list.label.code = Código
 inventor.patronage.list.label.status = Estado
 inventor.patronage.list.label.patron = Mecenas
+
+
 
 
 inventor.patronage.form.error.spam = Parece que su solicitud contiene spam

@@ -15,11 +15,18 @@
 		<acme:input-textbox code="inventor.patronage.label.endDate" path="endDate"/>
 		<acme:input-textbox code="inventor.patronage.label.status" path="status"/>
 		
-		<acme:input-textbox code="inventor.patronage.label.patron" path="patronId"/>
-		<acme:input-textbox code="inventor.patronage.label.inventor" path="inventorId"/>
+		
 	</jstl:if>	
 	<acme:input-textarea code="inventor.patronage.label.legalStuff" path="legalStuff"/>
 	<acme:input-textarea code="inventor.patronage.label.budget" path="budget"/>
 	<acme:input-textarea code="inventor.patronage.label.info" path="info"/>			
+	
+	<acme:input-textbox code="inventor.patronage.label.patronFullName" path="patronFullName"/>
+	<acme:input-textbox code="inventor.patronage.label.patronEmail" path="patronEmail"/>
+	<acme:input-textbox code="inventor.patronage.label.patronCompany" path="patronCompany"/>
+	<acme:input-textbox code="inventor.patronage.label.patronStatement" path="patronStatement"/>
+	<acme:input-textbox code="inventor.patronage.label.patronInfo" path="patronInfo"/>
+	
+	
 </acme:form>
 
