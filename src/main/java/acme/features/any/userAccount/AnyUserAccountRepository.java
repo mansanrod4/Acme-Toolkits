@@ -17,4 +17,7 @@ public interface AnyUserAccountRepository extends AbstractRepository{
 	@Query("select ua from UserAccount ua")
 	Collection<UserAccount> findAllUserAccounts();
 	
+//	@Query("select ua from UserAccount ua where ua.")
+//	Collection<UserAccount> findInventorsUserAccounts();
+	
 }

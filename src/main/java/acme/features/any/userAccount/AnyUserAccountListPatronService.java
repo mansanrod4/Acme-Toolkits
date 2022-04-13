@@ -41,14 +41,12 @@ public class AnyUserAccountListPatronService implements AbstractListService<Any,
 		final Collection<UserAccount> result = new ArrayList<UserAccount>();
 		final Collection<UserAccount> allUserAccounts = this.repository.findAllUserAccounts();
 		for (final UserAccount userAccount : allUserAccounts) {
-			userAccount.getRoles().forEach(r -> {
-				if (r.getAuthorityName().equals("Patron")){
-					result.add(userAccount);
-				}
-			});
-			
+			final String authorityString = userAccount.getAuthorityString();
+			if (!(authorityString.contains("Administrator")||authorityString.contains("Anonymous"))&&authorityString.contains("Patron"))
+				result.add(userAccount);
 		}
 		return result;
+
 	}
 
 	@Override
