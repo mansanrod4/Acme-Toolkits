@@ -25,6 +25,8 @@ inventor.patronage.label.patronCompany = Patron company
 inventor.patronage.label.patronStatement = Patron statement
 inventor.patronage.label.patronInfo = Patron info
 
+inventor.patronage.form.button.patronage-reports = Reports
+
 
 inventor.patronage.list.title = My patronages
 
