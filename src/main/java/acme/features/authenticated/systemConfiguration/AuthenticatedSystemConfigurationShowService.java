@@ -15,6 +15,7 @@ public class AuthenticatedSystemConfigurationShowService implements AbstractShow
 	@Autowired
 	protected AuthenticatedSystemConfigurationRepository repository;
 
+
 	@Override
 	public boolean authorise(final Request<SystemConfiguration> request) {
 		assert request != null;
@@ -24,14 +25,12 @@ public class AuthenticatedSystemConfigurationShowService implements AbstractShow
 	@Override
 	public SystemConfiguration findOne(final Request<SystemConfiguration> request) {
 		assert request != null;
-
 		SystemConfiguration result;
 
 		result = this.repository.findSystemConfiguration();
 
 		return result;
-	}	
-	
+	}
 
 	@Override
 	public void unbind(final Request<SystemConfiguration> request, final SystemConfiguration entity, final Model model) {
@@ -40,8 +39,10 @@ public class AuthenticatedSystemConfigurationShowService implements AbstractShow
 		assert model != null;
 
 		request.unbind(entity, model, "systemCurrency", "acceptedCurrencies");
+		model.setAttribute("USDexchange", 0.833171);
+		model.setAttribute("GBPexchange", 1.083546);
+		
 	}
-
 	
 
 }

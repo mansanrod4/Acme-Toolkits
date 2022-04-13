@@ -12,4 +12,6 @@ public interface AuthenticatedSystemConfigurationRepository extends AbstractRepo
 	@Query("select sc from SystemConfiguration sc")
 	SystemConfiguration findSystemConfiguration();
 
+//	@Query("select me from MoneyExchange me")
+//	MoneyExchange findMoneyExchange();
 }

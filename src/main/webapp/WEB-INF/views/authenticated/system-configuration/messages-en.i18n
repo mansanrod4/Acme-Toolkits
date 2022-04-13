@@ -1,4 +1,10 @@
 # i18n-en.i18n
 
-authenticated.money.form.label.systemCurrency = System Currency:
-authenticated.money.form.label.acceptedCurrencies = Accepted Currencies:
+authenticated.money-exchange.form.label.systemCurrency = System Currency:
+authenticated.money-exchange.form.label.acceptedCurrencies = Accepted Currencies:
+
+authenticated.money-exchange.form.title.exchange = Exchange:
+authenticated.money-exchange.form.label.USDexchange = USD:
+authenticated.money-exchange.form.label.GBPexchange = GBP:
+
+
