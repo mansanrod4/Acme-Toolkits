@@ -2,6 +2,7 @@ package acme.entities.patronages;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -15,25 +16,27 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.URL;
 
 import acme.framework.entities.AbstractEntity;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
-@EqualsAndHashCode(callSuper=true)
-@NoArgsConstructor
+@Getter
+@Setter
+//@Data
+//@EqualsAndHashCode(callSuper=true)
+//@NoArgsConstructor
 public class PatronageReport extends AbstractEntity{
 
 	// Serialisation identifier -----------------------------------------------
 
-	private static final long serialVersionUID = 7607756024273072128L;
+	private static final long serialVersionUID = 1L;
 	
 	// Attributes -------------------------------------------------------------
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@NotNull
 	@Past
+	@Column(name = "creation_date")
 	protected Date creationDate;
 	
 	@NotBlank

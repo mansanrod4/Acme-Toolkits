@@ -23,3 +23,4 @@ any.user-account.list.title = Listing of user accounts
 any.user-account.list.label.username = Username
 any.user-account.list.label.name = Name
 any.user-account.list.label.surname = Surname
+any.user-account.list.label.roleList = Roles

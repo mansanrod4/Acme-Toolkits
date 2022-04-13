@@ -10,13 +10,13 @@ import acme.framework.controllers.AbstractController;
 import acme.framework.roles.Authenticated;
 
 @Controller
-public class AnnouncementController extends AbstractController<Authenticated, Announcement>{
+public class AuthenticatedAnnouncementController extends AbstractController<Authenticated, Announcement>{
 
 	@Autowired
-	protected AnnouncementServiceList	service;
+	protected AuthenticatedAnnouncementListService	listService;
 	
 	@Autowired
-	protected AnnouncementServiceShow	showService;
+	protected AuthenticatedAnnouncementShowService	showService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -24,7 +24,7 @@ public class AnnouncementController extends AbstractController<Authenticated, An
 
 	@PostConstruct
 	protected void initialise() {
-		super.addCommand("list", this.service);
+		super.addCommand("list", this.listService);
 		super.addCommand("show", this.showService);
 	}
 }
