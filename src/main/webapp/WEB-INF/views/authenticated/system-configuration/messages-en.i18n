@@ -4,7 +4,7 @@ authenticated.money-exchange.form.label.systemCurrency = System Currency:
 authenticated.money-exchange.form.label.acceptedCurrencies = Accepted Currencies:
 
 authenticated.money-exchange.form.title.exchange = Exchange:
-authenticated.money-exchange.form.label.USDexchange = USD:
-authenticated.money-exchange.form.label.GBPexchange = GBP:
+authenticated.money-exchange.form.label.USDexchange = 1 EUR to USD:
+authenticated.money-exchange.form.label.GBPexchange = 1 EUR to GBP:
 
 
