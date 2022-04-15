@@ -10,7 +10,7 @@ import acme.entities.Announcement;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
-public interface AnnouncementRepository extends AbstractRepository{
+public interface AuthenticatedAnnouncementRepository extends AbstractRepository{
 	
 	@Query("select a from Announcement a where a.moment >= :deadline")
 	Collection<Announcement> findRecentAnnouncements(Date deadline);

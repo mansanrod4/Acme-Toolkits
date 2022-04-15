@@ -29,7 +29,7 @@ master.menu.anonymous.olisanrod-favourite-link =  47538886W: Sánchez Rodríguez
 
 master.menu.administrator = Administrador
 master.menu.administrator.dashboard = Panel de indicadores
-master.menu.administrator.user-accounts = Cuentas de usuario
+master.menu.administrator.user-accounts = Todas las Cuentas de usuario
 master.menu.administrator.populate-initial = Poblar BD (inicial)
 master.menu.administrator.populate-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-down = Parar el sistema
@@ -38,11 +38,13 @@ master.menu.administrator.shut-down = Parar el sistema
 
 master.menu.patron = Mecenas
 master.menu.patron.favourite-link = Enlace favorito
+master.menu.patron.dashboard = Panel de indicadores
 
 # master.menu.inventor ##########################################################
 
 master.menu.inventor = Inventor
-master.menu.inventor.favourite-link = Enlace favorito
+master.menu.inventor.patronage.list = Patrocinios
+master.menu.inventor.patronage-report.list = Reportes de Patronazgos
 
 # master.menu.user-account ####################################################
 
@@ -50,11 +52,12 @@ master.menu.user-account.component.list = Lista de Componentes
 master.menu.user-account.tool.list = Lista de Herramientas
 master.menu.user-account.chirp.list = Lista mensajes
 master.menu.user-account = Cuenta
-master.menu.user-account.list-inventor = Inventores
-master.menu.user-account.list-patron = Mecenas
+master.menu.user-account.list = Cuentas de usuario
 master.menu.user-account.general-data = Datos generales
 master.menu.user-account.patron = Datos de mecenas
 master.menu.user-account.become-patron = Hazte mecenas
 master.menu.user-account.inventor = Datos de inventor
 master.menu.user-account.become-inventor = Hazte inventor
 master.menu.user-account.announcement.list = Anuncios
+master.menu.user-account.systemConfiguration.list = Información sobre monedas
+

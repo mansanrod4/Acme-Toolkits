@@ -1,4 +1,4 @@
-# menu-en.i18n
+2# menu-en.i18n
 #
 # Copyright (C) 2012-2022 Rafael Corchuelo.
 #
@@ -30,7 +30,7 @@ master.menu.anonymous.olisanrod-favourite-link =  47538886W: Sánchez Rodríguez
 
 master.menu.administrator = Administrator
 master.menu.administrator.dashboard = Dashboard
-master.menu.administrator.user-accounts = User accounts
+master.menu.administrator.user-accounts = All User accounts
 master.menu.administrator.populate-initial = Populate DB (initial)
 master.menu.administrator.populate-sample = Populate DB (samples)
 master.menu.administrator.shut-down = Shut down
@@ -39,11 +39,13 @@ master.menu.administrator.shut-down = Shut down
 
 master.menu.patron = Patron
 master.menu.patron.favourite-link = Favourite link
+master.menu.patron.dashboard = Dashboard
 
 # master.menu.inventor #########################################################
 
 master.menu.inventor = Inventor
-master.menu.consumer.favourite-link = Favourite link
+master.menu.inventor.patronage.list = Patronages
+master.menu.inventor.patronage-report.list = Patronages Report
 
 # master.menu.user-account ####################################################
 
@@ -51,11 +53,12 @@ master.menu.user-account.component.list = List Components
 master.menu.user-account.tool.list = List Tools
 master.menu.user-account.chirp.list = List Chirps
 master.menu.user-account = Account
-master.menu.user-account.list-inventor = Inventors
-master.menu.user-account.list-patron = Patrons
+master.menu.user-account.list = User Accounts
 master.menu.user-account.general-data = General data
 master.menu.user-account.patron = Patron data
 master.menu.user-account.become-patron = Become a patron
 master.menu.user-account.inventor = Inventor data
 master.menu.user-account.become-inventor = Become a inventor
 master.menu.user-account.announcement.list = List announcements
+master.menu.user-account.systemConfiguration.list = Currencies information
+

@@ -2,7 +2,6 @@ package acme.forms;
 
 import java.io.Serializable;
 
-import acme.framework.datatypes.Money;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,19 +15,19 @@ public class PatronDashboard implements Serializable{
 	Integer numPatronageAccepted;
 	Integer numPatronageDenied;
 	
-	Money   averageBudgetProposed;
-	Money   desviationBudgetProposed;
-	Money   minimunBudgetProposed;
-	Money   maximunBudgetProposed;
-	
-	Money   averageBudgetAccepted;
-	Money   desviationBudgetAccepted;
-	Money   minimunBudgetAccepted;
-	Money   maximunBudgetAccepted;
-	
-	Money   averageBudgetDenied;
-	Money   desviationBudgetDenied;
-	Money   minimunBudgetDenied;
-	Money   maximunBudgetDenied;
+//	Money   averageBudgetProposed;
+//	Money   desviationBudgetProposed;
+//	Money   minimunBudgetProposed;
+//	Money   maximunBudgetProposed;
+//	
+//	Money   averageBudgetAccepted;
+//	Money   desviationBudgetAccepted;
+//	Money   minimunBudgetAccepted;
+//	Money   maximunBudgetAccepted;
+//	
+//	Money   averageBudgetDenied;
+//	Money   desviationBudgetDenied;
+//	Money   minimunBudgetDenied;
+//	Money   maximunBudgetDenied;
 
 }
