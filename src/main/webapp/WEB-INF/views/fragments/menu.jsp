@@ -27,6 +27,7 @@
 			
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.user-account.component.list" action="/any/item/list-component"/>
+			<acme:menu-suboption code="master.menu.user-account.tool.list" action="/any/item/list-tool"/>
 			<acme:menu-separator/>
 			
 			<acme:menu-suboption code="master.menu.user-account.list-inventor" action="/any/user-account/list-inventor"/>
@@ -75,6 +76,7 @@
 			<acme:menu-suboption code="master.menu.user-account.announcement.list" action="/authenticated/announcement/list"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.user-account.component.list" action="/any/item/list-component"/>
+			<acme:menu-suboption code="master.menu.user-account.tool.list" action="/any/item/list-tool"/>
 			
 		</acme:menu-option>
 

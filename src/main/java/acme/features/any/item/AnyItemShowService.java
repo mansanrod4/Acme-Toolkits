@@ -1,18 +1,16 @@
-package acme.features.any.item.component;
+package acme.features.any.item;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.Announcement;
 import acme.entities.toolkits.Item;
-import acme.features.any.item.AnyItemRepository;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.roles.Any;
 import acme.framework.services.AbstractShowService;
 
 @Service
-public class AnyComponentShowService implements AbstractShowService<Any, Item>{
+public class AnyItemShowService implements AbstractShowService<Any, Item>{
 
 	@Autowired
 	protected AnyItemRepository repository;
@@ -28,13 +26,11 @@ public class AnyComponentShowService implements AbstractShowService<Any, Item>{
 	public Item findOne(final Request<Item> request) {
 		assert request != null;
 		int id;
-		final Announcement result;
-		
+		Item result;
 		id = request.getModel().getInteger("id");
+		result = this.repository.findOneItemById(id);
 		
-		
-		
-		return null;
+		return result;
 	}
 
 	@Override

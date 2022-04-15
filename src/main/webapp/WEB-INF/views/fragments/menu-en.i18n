@@ -48,6 +48,7 @@ master.menu.consumer.favourite-link = Favourite link
 # master.menu.user-account ####################################################
 
 master.menu.user-account.component.list = List Components
+master.menu.user-account.tool.list = List Tools
 master.menu.user-account.chirp.list = List Chirps
 master.menu.user-account = Account
 master.menu.user-account.list-inventor = Inventors

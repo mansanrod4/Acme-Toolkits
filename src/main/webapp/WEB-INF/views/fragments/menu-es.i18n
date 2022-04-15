@@ -27,7 +27,6 @@ master.menu.anonymous.olisanrod-favourite-link =  47538886W: Sánchez Rodríguez
 
 # master.menu.administrator ###################################################
 
-master.menu.user-account.component.list = Lista de Components
 master.menu.administrator = Administrador
 master.menu.administrator.dashboard = Panel de indicadores
 master.menu.administrator.user-accounts = Cuentas de usuario
@@ -47,6 +46,8 @@ master.menu.inventor.favourite-link = Enlace favorito
 
 # master.menu.user-account ####################################################
 
+master.menu.user-account.component.list = Lista de Componentes
+master.menu.user-account.tool.list = Lista de Herramientas
 master.menu.user-account.chirp.list = Lista mensajes
 master.menu.user-account = Cuenta
 master.menu.user-account.list-inventor = Inventores
