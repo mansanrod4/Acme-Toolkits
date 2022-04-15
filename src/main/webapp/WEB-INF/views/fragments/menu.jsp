@@ -62,6 +62,9 @@
 			<acme:menu-suboption code="master.menu.user-account.list"				action="/any/user-account/list" />
 			<acme:menu-suboption code="master.menu.inventor.patronage.list" action="/inventor/patronage/list"/>
 			<acme:menu-suboption code="master.menu.inventor.patronage-report.list" action="/inventor/patronage-report/list"/>
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.inventor.component.list" action="/inventor/item/list-component"/>
+			<acme:menu-suboption code="master.menu.inventor.tool.list" action="/inventor/item/list-tool"/>
 
 		</acme:menu-option>
 	</acme:menu-left>

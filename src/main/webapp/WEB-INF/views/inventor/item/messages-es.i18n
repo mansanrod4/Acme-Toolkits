@@ -1,0 +1,6 @@
+inventor.component.list.label.code = Código del componente
+inventor.component.list.label.name = Nombre
+inventor.component.list.label.tech = Tecnología 
+inventor.component.list.label.description = Descripción
+inventor.component.list.label.price = Precio
+inventor.component.list.label.info = Información Adicional
