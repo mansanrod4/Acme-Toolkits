@@ -44,7 +44,6 @@ master.menu.patron.dashboard = Panel de indicadores
 
 master.menu.inventor = Inventor
 master.menu.inventor.patronage.list = Patrocinios
-master.menu.inventor.patronage-report.list = Reportes de Patronazgos
 
 # master.menu.user-account ####################################################
 

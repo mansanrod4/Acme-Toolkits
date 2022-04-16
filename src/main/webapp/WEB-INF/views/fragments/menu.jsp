@@ -64,8 +64,6 @@
 		<acme:menu-option code="master.menu.inventor"	access="hasRole('Inventor')">
 			<acme:menu-suboption code="master.menu.user-account.list"				action="/any/user-account/list" />
 			<acme:menu-suboption code="master.menu.inventor.patronage.list" action="/inventor/patronage/list"/>
-			<acme:menu-suboption code="master.menu.inventor.patronage-report.list" action="/inventor/patronage-report/list"/>
-
 		</acme:menu-option>
 	</acme:menu-left>
 
