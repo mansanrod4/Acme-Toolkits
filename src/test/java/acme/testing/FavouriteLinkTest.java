@@ -38,13 +38,6 @@ public class FavouriteLinkTest extends TestHarness {
 	
 	@Test
 	@Order(10)
-	public void favouriteLink3() {
-		super.navigateHome();
-		super.clickOnMenu("Anonymous", "77871675T: Buiza, Juan");		
-		super.checkCurrentUrl("https://soundcloud.com/hymbeats/talez-from-da-krypt");
-	}
-	@Test
-	@Order(10)
 	public void favouriteLink4() {
 		super.navigateHome();
 		super.clickOnMenu("Anonymous", "77866123Z: Fernández Rodríguez, Manuel");		
