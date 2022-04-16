@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import acme.entities.toolkits.Item;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
-import acme.framework.entities.UserAccount;
 import acme.framework.features.authenticated.userAccount.AuthenticatedUserAccountRepository;
 import acme.framework.services.AbstractShowService;
 import acme.roles.Inventor;
@@ -23,11 +22,10 @@ public class InventorItemShowService implements AbstractShowService<Inventor, It
 	@Override
 	public boolean authorise(final Request<Item> request) {
 		assert request!=null;
-		final int inventorId = request.getPrincipal().getActiveRoleId();
+		final int inventorId = request.getPrincipal().getActiveRoleId(); 	
 		final int id = request.getModel().getInteger("id");
 		final Item item = this.repository.findOneItemByIdFromInventor(id, inventorId);
-		final UserAccount currentUser = this.userRepository.findOneUserAccountById(inventorId);
-		return (currentUser.getId() == item.getInventor().getUserAccount().getId());
+		return (inventorId == item.getInventor().getId());
 	}
 
 	@Override
