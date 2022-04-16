@@ -2,7 +2,6 @@ package acme.entities.patronages;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -33,11 +32,10 @@ public class PatronageReport extends AbstractEntity{
 	
 	// Attributes -------------------------------------------------------------
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
 	@Past
-	@Column(name = "creation_date")
-	protected Date creationDate;
+	protected Date moment;
 	
 	@NotBlank
 	@Size(max=255)
@@ -53,6 +51,7 @@ public class PatronageReport extends AbstractEntity{
 //	
 	//pattern “〈patronage-code〉:〈serial-number〉
 	@NotBlank
+//	@Column(name = "sequence_number")
 	protected String sequenceNumber;
 
 	// Derived attributes -----------------------------------------------------
