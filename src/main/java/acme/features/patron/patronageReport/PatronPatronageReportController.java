@@ -16,14 +16,14 @@ public class PatronPatronageReportController extends AbstractController<Patron, 
 	@Autowired
 	protected PatronPatronageReportListService listService;
 	
-//	@Autowired
-//	protected PatronPatronageReportServiceShow showService;
+	@Autowired
+	protected PatronPatronageReportServiceShow showService;
 
 
 	@PostConstruct
 	protected void initialse() {
 		super.addCommand("list", this.listService);
-//		super.addCommand("show", this.showService);
+		super.addCommand("show", this.showService);
 
 	}
 }

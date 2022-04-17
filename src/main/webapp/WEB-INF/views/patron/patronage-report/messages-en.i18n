@@ -9,10 +9,10 @@
 # they accept any liabilities with respect to them.
 
 
-#patron.patronage-report.form.label.moment = Moment:
-#patron.patronage-report.form.label.memorandum = Memorandum:
-#patron.patronage-report.form.label.info = Info:
-#patron.patronage-report.form.label.sequence_number = Sequence Number:
+patron.patronage-report.form.label.moment = Moment:
+patron.patronage-report.form.label.memorandum = Memorandum:
+patron.patronage-report.form.label.info = Info:
+patron.patronage-report.form.label.sequence_number = Sequence Number:
 
 
 patron.patronage.button.create = Apply
