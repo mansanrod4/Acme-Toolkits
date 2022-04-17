@@ -7,6 +7,6 @@
 	<acme:input-textbox code="patron.patronage-report.form.label.moment" path="moment"/>
 	<acme:input-textbox code="patron.patronage-report.form.label.memorandum" path="memorandum"/>
 	<acme:input-textbox code="patron.patronage-report.form.label.info" path="info"/>
-	<acme:input-textbox code="patron.patronage-report.form.label.sequence_number" path="sequence number"/>
+	<acme:input-textbox code="patron.patronage-report.form.label.number" path="number"/>
 
 </acme:form>
