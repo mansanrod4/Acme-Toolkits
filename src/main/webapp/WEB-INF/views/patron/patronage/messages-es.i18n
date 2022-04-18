@@ -8,24 +8,24 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-inventor.patronage.label.code = Código:
-inventor.patronage.label.creationDate = Fecha de creación:
-inventor.patronage.label.startDate = Fecha de inicio:
-inventor.patronage.label.endDate= Fecha final:
-inventor.patronage.label.status = Estado:
-inventor.patronage.label.patron = Mecenas:
-inventor.patronage.label.inventor = Inventor:
-inventor.patronage.label.legalStuff = Cosas legales:
-inventor.patronage.label.budget = Aportación:
-inventor.patronage.label.info = Información:
+patron.patronage.label.code = Código:
+patron.patronage.label.creationDate = Fecha de creación:
+patron.patronage.label.startDate = Fecha de inicio:
+patron.patronage.label.endDate= Fecha final:
+patron.patronage.label.status = Estado:
+patron.patronage.label.patron = Patrón:
+patron.patronage.label.inventor = Inventor:
+patron.patronage.label.legalStuff = Cosas legales:
+patron.patronage.label.budget = Aportación:
+patron.patronage.label.info = Información:
 
-inventor.patronage.label.patronFullName = Mecenas
-inventor.patronage.label.patronEmail = Email
-inventor.patronage.label.patronCompany = Compañía
-inventor.patronage.label.patronStatement = Declaración
-inventor.patronage.label.patronInfo = Información
+patron.patronage.label.patronFullName = Patrón
+patron.patronage.label.patronEmail = Email
+patron.patronage.label.patronCompany = Compañía
+patron.patronage.label.patronStatement = Declaración
+patron.patronage.label.patronInfo = Información
 
-inventor.patronage.form.button.patronage-reports = Reportes
+patron.patronage.form.button.patronage-reports = Reportes
 
 
 

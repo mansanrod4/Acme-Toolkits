@@ -8,24 +8,24 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-inventor.patronage.label.code = Code:
-inventor.patronage.label.creationDate = Creation date:
-inventor.patronage.label.startDate = Start date:
-inventor.patronage.label.endDate= End date:
-inventor.patronage.label.status = Status:
-inventor.patronage.label.patron = Patron:
-inventor.patronage.label.inventor = Inventor:
-inventor.patronage.label.legalStuff = Legal stuff:
-inventor.patronage.label.budget = Budget:
-inventor.patronage.label.info = Info:
+patron.patronage.label.code = Code:
+patron.patronage.label.creationDate = Creation date:
+patron.patronage.label.startDate = Start date:
+patron.patronage.label.endDate= End date:
+patron.patronage.label.status = Status:
+patron.patronage.label.patron = Patron:
+patron.patronage.label.inventor = Inventor:
+patron.patronage.label.legalStuff = Legal stuff:
+patron.patronage.label.budget = Budget:
+patron.patronage.label.info = Info:
 
-inventor.patronage.label.patronFullName = Patron
-inventor.patronage.label.patronEmail = Patron email
-inventor.patronage.label.patronCompany = Patron company
-inventor.patronage.label.patronStatement = Patron statement
-inventor.patronage.label.patronInfo = Patron info
+patron.patronage.label.inventorFullName = Inventor
+patron.patronage.label.inventorEmail = Inventor email
+patron.patronage.label.inventorCompany = Inventor company
+patron.patronage.label.inventorStatement = Inventor statement
+patron.patronage.label.inventorInfo = Inventor info
 
-inventor.patronage.form.button.patronage-reports = Reports
+patron.patronage.form.button.patronage-reports = Reports
 
 
 patron.patronage.list.title = My patronages
@@ -35,6 +35,4 @@ patron.patronage.list.label.status = Status
 patron.patronage.list.label.inventor = Inventor
 
 
-
-
-inventor.patronage.form.error.spam = Your application seems to contain spam 
+patron.patronage.form.error.spam = Your application seems to contain spam 
