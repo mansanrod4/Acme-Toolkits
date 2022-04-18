@@ -45,9 +45,14 @@ master.menu.patron.dashboard = Dashboard
 
 master.menu.inventor = Inventor
 master.menu.inventor.patronage.list = Patronages
+master.menu.inventor.component.list = My Components
+master.menu.inventor.tool.list = My Tools
+
 
 # master.menu.user-account ####################################################
 
+master.menu.user-account.component.list = List Components
+master.menu.user-account.tool.list = List Tools
 master.menu.user-account.chirp.list = List Chirps
 master.menu.user-account = Account
 master.menu.user-account.list = User Accounts

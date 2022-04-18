@@ -45,8 +45,13 @@ master.menu.patron.dashboard = Panel de indicadores
 master.menu.inventor = Inventor
 master.menu.inventor.patronage.list = Patrocinios
 
+master.menu.inventor.component.list = Mis Componentes
+master.menu.inventor.tool.list = Mis herramientas
+
 # master.menu.user-account ####################################################
 
+master.menu.user-account.component.list = Lista de Componentes
+master.menu.user-account.tool.list = Lista de Herramientas
 master.menu.user-account.chirp.list = Lista mensajes
 master.menu.user-account = Cuenta
 master.menu.user-account.list = Cuentas de usuario
