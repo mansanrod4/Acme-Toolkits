@@ -61,7 +61,5 @@ master.menu.user-account.become-patron = Hazte mecenas
 master.menu.user-account.inventor = Datos de inventor
 master.menu.user-account.become-inventor = Hazte inventor
 master.menu.user-account.announcement.list = Anuncios
-
-master.menu.user-account.system-configuration.list = Información sobre monedas
-
+master.menu.user-account.systemConfiguration.list = Información sobre monedas
 
