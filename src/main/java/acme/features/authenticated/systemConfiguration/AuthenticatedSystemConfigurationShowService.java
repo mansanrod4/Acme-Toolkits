@@ -41,6 +41,7 @@ public class AuthenticatedSystemConfigurationShowService implements AbstractShow
 		request.unbind(entity, model, "systemCurrency", "acceptedCurrencies");
 		model.setAttribute("USDexchange", 0.833171);
 		model.setAttribute("GBPexchange", 1.083546);
+		;
 		
 	}
 	

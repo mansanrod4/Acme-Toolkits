@@ -15,15 +15,11 @@ public class AuthenticatedSystemConfigurationController extends AbstractControll
 	@Autowired
 	protected AuthenticatedSystemConfigurationShowService	showService;
 
-//	@Autowired
-//	protected AuthenticatedmoneyExchangePerformService perfomService;
-
 	// Constructors -----------------------------------------------------------
 
 	@PostConstruct
 	protected void initialise() {
 		super.addCommand("show", this.showService);
-//		super.addCommand("perform", this.perfomService);
 		
 	}
 }
