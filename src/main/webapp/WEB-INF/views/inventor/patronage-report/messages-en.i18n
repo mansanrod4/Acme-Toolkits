@@ -12,7 +12,7 @@
 inventor.patronage-report.form.label.moment = Moment:
 inventor.patronage-report.form.label.memorandum = Memorandum:
 inventor.patronage-report.form.label.info = Info:
-inventor.patronage-report.form.label.sequence_number = Sequence Number:
+inventor.patronage-report.form.label.number = Sequence Number:
 
 
 inventor.patronage.button.create = Apply

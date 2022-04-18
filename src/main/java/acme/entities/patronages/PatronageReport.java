@@ -1,11 +1,15 @@
 package acme.entities.patronages;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -21,9 +25,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-//@Data
-//@EqualsAndHashCode(callSuper=true)
-//@NoArgsConstructor
+
 public class PatronageReport extends AbstractEntity{
 
 	// Serialisation identifier -----------------------------------------------
@@ -44,23 +46,29 @@ public class PatronageReport extends AbstractEntity{
 	@URL
 	protected String info;
 //	
-//	@NotNull
-//	@Digits( integer = 4, fraction = 0)
-//	protected Integer serialNumber;
+	@NotNull
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	protected Integer serialNumber;
 //	
 //	
 	//pattern “〈patronage-code〉:〈serial-number〉
-	@NotBlank
-//	@Column(name = "sequence_number")
-	protected String sequenceNumber;
+//	@NotBlank
+//	protected String sequenceNumber;
 
+
+	
 	// Derived attributes -----------------------------------------------------
 	
 //	//pattern “〈patronage-code〉:〈serial-number〉
-//	@NotBlank
-//	protected String sequenceNumber(){
-//		return "〈"+this.patronage.getCode() +"〉:〈"+this.serialNumber.toString()+"〉";
-//	}
+	@NotBlank
+	@Transient
+	public String getSequenceNumber(){
+//		final String formatString = String.format("%0"+(5-this.serialNumber.toString().length())+"s",this.serialNumber.toString());
+		final DecimalFormat decimalFormat = new DecimalFormat("0000");
+		
+//		final String formatString = String.format("%02d",this.serialNumber);
+		return this.patronage.getCode() +":"+decimalFormat.format(this.serialNumber);
+	}
 //	
 	// Relationships ----------------------------------------------------------
 	

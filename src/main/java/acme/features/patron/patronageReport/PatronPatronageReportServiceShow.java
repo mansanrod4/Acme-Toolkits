@@ -1,5 +1,5 @@
 
-package acme.features.inventor.patronageReport;
+package acme.features.patron.patronageReport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,13 +8,13 @@ import acme.entities.patronages.PatronageReport;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractShowService;
-import acme.roles.Inventor;
+import acme.roles.Patron;
 
 @Service
-public class InventorPatronageReportServiceShow implements AbstractShowService<Inventor, PatronageReport> {
+public class PatronPatronageReportServiceShow implements AbstractShowService<Patron, PatronageReport> {
 
 	@Autowired
-	protected InventorPatronageReportRepository repository;
+	protected PatronPatronageReportRepository repository;
 
 
 	@Override
@@ -52,9 +52,11 @@ public class InventorPatronageReportServiceShow implements AbstractShowService<I
 		assert model != null;
 		
 		request.unbind(entity, model, "moment", "memorandum", "info");
-		model.setAttribute("number", entity.getSequenceNumber());
+//		model.setAttribute("patronage", entity.getPatronage().getId());
 
+		model.setAttribute("number", entity.getSequenceNumber());
 		
+
 		
 	}
 

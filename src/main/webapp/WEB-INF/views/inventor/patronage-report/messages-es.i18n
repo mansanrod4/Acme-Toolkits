@@ -11,7 +11,7 @@
 inventor.patronage-report.form.label.moment = Fecha de creación:
 inventor.patronage-report.form.label.memorandum = Memorandum:
 inventor.patronage-report.form.label.info = Info:
-inventor.patronage-report.form.label.sequence_number = Numero de secuencia:
+inventor.patronage-report.form.label.number = Numero de secuencia:
 
 
 inventor.patronage.button.create = Solicitar
