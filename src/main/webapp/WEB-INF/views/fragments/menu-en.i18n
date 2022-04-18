@@ -38,7 +38,7 @@ master.menu.administrator.shut-down = Shut down
 # master.menu.provider ########################################################
 
 master.menu.patron = Patron
-master.menu.patron.favourite-link = Favourite link
+master.menu.patron.patronage.list = Patronages
 master.menu.patron.dashboard = Dashboard
 
 # master.menu.inventor #########################################################
