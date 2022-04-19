@@ -4,9 +4,11 @@
 <%@taglib prefix="acme" uri="urn:jsptagdir:/WEB-INF/tags"%>
 
 <acme:form readonly="true">
+	<acme:input-textbox code="inventor.patronage-report.form.label.patronageId" path="patronageId"/> 
 	<acme:input-textbox code="inventor.patronage-report.form.label.moment" path="moment"/>
 	<acme:input-textbox code="inventor.patronage-report.form.label.memorandum" path="memorandum"/>
 	<acme:input-textbox code="inventor.patronage-report.form.label.info" path="info"/>
-	<acme:input-textbox code="inventor.patronage-report.form.label.number" path="number"/>
+	<acme:input-textbox code="inventor.patronage-report.form.label.sequenceNumber" path="sequenceNumber"/>
+	
 
 </acme:form>

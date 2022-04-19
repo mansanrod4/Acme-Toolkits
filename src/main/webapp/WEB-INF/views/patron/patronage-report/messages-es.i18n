@@ -8,16 +8,18 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
+patron.patronage-report.form.label.patronageId = Id patronazgo:
 patron.patronage-report.form.label.moment = Fecha de creación:
 patron.patronage-report.form.label.memorandum = Memorandum:
 patron.patronage-report.form.label.info = Info:
-patron.patronage-report.form.label.number = Numero de secuencia:
+patron.patronage-report.form.label.sequenceNumber = Numero de secuencia:
 
 
 patron.patronage.button.create = Solicitar
 
 patron.patronage-report.list.title = Mis informes de patronazgos
 
+patron.patronage-report.list.label.patronageId = Id de Patronazgos
 patron.patronage-report.list.label.memorandum = Memorandum
 patron.patronage-report.list.label.info = Info
 
