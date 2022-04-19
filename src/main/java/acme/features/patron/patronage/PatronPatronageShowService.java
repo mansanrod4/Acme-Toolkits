@@ -1,5 +1,5 @@
 
-package acme.features.inventor.patronage;
+package acme.features.patron.patronage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,13 +8,13 @@ import acme.entities.patronages.Patronage;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractShowService;
-import acme.roles.Inventor;
+import acme.roles.Patron;
 
 @Service
-public class InventorPatronageShowService implements AbstractShowService<Inventor, Patronage> {
+public class PatronPatronageShowService implements AbstractShowService<Patron, Patronage> {
 
 	@Autowired
-	protected InventorPatronageRepository repository;
+	protected PatronPatronageRepository repository;
 
 
 	@Override
@@ -27,7 +27,7 @@ public class InventorPatronageShowService implements AbstractShowService<Invento
 
 		patronageId = request.getModel().getInteger("id");
 		patronage = this.repository.findOnePatronageById(patronageId);
-		result = patronage != null && patronage.getInventor().getId() == request.getPrincipal().getActiveRoleId();
+		result = patronage != null && patronage.getPatron().getId() == request.getPrincipal().getActiveRoleId();
 
 		return result;
 	}
@@ -52,13 +52,13 @@ public class InventorPatronageShowService implements AbstractShowService<Invento
 		assert model != null;
 
 		request.unbind(entity, model, "code", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info", "status");
-		model.setAttribute("inventorId", entity.getInventor().getId());
 		model.setAttribute("patronId", entity.getPatron().getId());
-		model.setAttribute("patronCompany", entity.getPatron().getCompany());
-		model.setAttribute("patronStatement", entity.getPatron().getStatement());
-		model.setAttribute("patronFullName", entity.getPatron().getIdentity().getFullName());
-		model.setAttribute("patronEmail", entity.getPatron().getIdentity().getEmail());
-		model.setAttribute("patronInfo", entity.getPatron().getInfo());
+		model.setAttribute("inventorId", entity.getInventor().getId());
+		model.setAttribute("inventorCompany", entity.getInventor().getCompany());
+		model.setAttribute("inventorStatement", entity.getInventor().getStatement());
+		model.setAttribute("inventorFullName", entity.getInventor().getIdentity().getFullName());
+		model.setAttribute("inventorEmail", entity.getInventor().getIdentity().getEmail());
+		model.setAttribute("inventorInfo", entity.getInventor().getInfo());
 
 	}
 
