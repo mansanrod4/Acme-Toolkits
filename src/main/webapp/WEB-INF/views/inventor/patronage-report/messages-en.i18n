@@ -9,17 +9,18 @@
 # they accept any liabilities with respect to them.
 
 
+inventor.patronage-report.form.label.patronageId = Id patronage:
 inventor.patronage-report.form.label.moment = Moment:
 inventor.patronage-report.form.label.memorandum = Memorandum:
 inventor.patronage-report.form.label.info = Info:
-inventor.patronage-report.form.label.number = Sequence Number:
+inventor.patronage-report.form.label.sequenceNumber = Sequence Number:
 
 
 inventor.patronage.button.create = Apply
 
 inventor.patronage-report.list.title = My patronages report
 
-#inventor.patronage-report.list.label.patronage = Patronage
+inventor.patronage-report.list.label.patronageId = Id Patronage
 inventor.patronage-report.list.label.memorandum = Memorandum
 inventor.patronage-report.list.label.info = info
 

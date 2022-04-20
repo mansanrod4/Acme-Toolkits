@@ -28,7 +28,8 @@ public class PatronPatronageReportServiceShow implements AbstractShowService<Pat
 
 		patronageReportId = request.getModel().getInteger("id");
 		pr = this.repository.findOnePatronageReportById(patronageReportId);
-		result = pr != null;
+		result = pr.getPatronage().getPatron().getId() == request.getPrincipal().getActiveRoleId();
+
 		return result;
 	}
 
@@ -51,10 +52,9 @@ public class PatronPatronageReportServiceShow implements AbstractShowService<Pat
 		assert entity != null;
 		assert model != null;
 		
-		request.unbind(entity, model, "moment", "memorandum", "info");
-//		model.setAttribute("patronage", entity.getPatronage().getId());
+		request.unbind(entity, model, "moment", "memorandum", "info","sequenceNumber");
+		model.setAttribute("patronageId", entity.getPatronage().getId());
 
-		model.setAttribute("number", entity.getSequenceNumber());
 		
 
 		
