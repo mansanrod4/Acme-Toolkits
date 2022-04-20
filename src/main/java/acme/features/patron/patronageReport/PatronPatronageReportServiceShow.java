@@ -28,7 +28,8 @@ public class PatronPatronageReportServiceShow implements AbstractShowService<Pat
 
 		patronageReportId = request.getModel().getInteger("id");
 		pr = this.repository.findOnePatronageReportById(patronageReportId);
-		result = pr != null;
+		result = pr.getPatronage().getPatron().getId() == request.getPrincipal().getActiveRoleId();
+
 		return result;
 	}
 

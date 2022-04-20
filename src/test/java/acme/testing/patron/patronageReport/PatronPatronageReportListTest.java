@@ -1,4 +1,4 @@
-package acme.testing.inventor.patronageReport;
+package acme.testing.patron.patronageReport;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -6,22 +6,24 @@ import org.springframework.core.annotation.Order;
 
 import acme.testing.TestHarness;
 
-public class InventorPatronageReportListTest extends TestHarness {
-		
+public class PatronPatronageReportListTest extends TestHarness {
+	
+
+	
 	@ParameterizedTest
-	@CsvFileSource(resources = "/inventor/patronage-report/list-patronage-report.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/patron/patronage-report/list-patronage-report.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void checkListAllPatronageReportShow(final int reportIndex,final int recordIndex, final String reference,
 		 final String moment, final String memorandum, final String info, final String sequenceNumber) {
 	
 		
 		
-		super.signIn("inventor1", "inventor1");
+		super.signIn("patron2", "patron2");
 		
 		super.navigateHome();
 		
 		//patronages
-		super.clickOnMenu("Inventor", "Patronages");
+		super.clickOnMenu("Patron", "Patronages");
 		this.clickOnListingRecord(reportIndex); 
 		super.clickOnButton("Reports");
 
