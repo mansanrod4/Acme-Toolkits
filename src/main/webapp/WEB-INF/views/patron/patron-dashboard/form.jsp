@@ -3,9 +3,9 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="urn:jsptagdir:/WEB-INF/tags"%>
 
-<h2>
-	<acme:message code="patron.dashboard.form.title"/>
-</h2>
+	<h2>
+		<acme:message code="patron.dashboard.form.title.dashboard"/>
+	</h2>
 
 <table class="table table-sm">
 	<tr>

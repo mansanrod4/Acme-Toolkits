@@ -16,13 +16,13 @@ public class PatronDashboard implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	EnumMap<PatronageStatus, Integer> numberOfPatronagesByStatus;
+	EnumMap<PatronageStatus, Integer> numPatronagesByStatus;
 	
-	Map<Pair<PatronageStatus, String>, Double> averageNumberOfBudgetsByCurrencyAndStatus;
+	Map<Pair<PatronageStatus, String>, Double> averageBudgetsByStatus;
 	
-	Map<Pair<PatronageStatus, String>, Double> deviationOfBudgetsByCurrencyAndStatus;
+	Map<Pair<PatronageStatus, String>, Double> deviationBudgetsByStatus;
 	
-	Map<Pair<PatronageStatus, String>, Double> minBudgetByCurrencyAndStatus;
+	Map<Pair<PatronageStatus, String>, Double> minBudgetByStatus;
 	
-	Map<Pair<PatronageStatus, String>, Double> maxBudgetByCurrencyAndStatus;
+	Map<Pair<PatronageStatus, String>, Double> maxBudgetByStatus;
 }

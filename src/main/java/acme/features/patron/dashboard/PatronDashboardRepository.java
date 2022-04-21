@@ -14,17 +14,23 @@ import acme.framework.repositories.AbstractRepository;
 public interface PatronDashboardRepository extends AbstractRepository{
 	
 	@Query("select count(p) from Patronage p where p.status = :status")
-	Integer numberOfPatronagesByStatus(PatronageStatus status);
+	Integer numPatronagesByStatus(PatronageStatus status);
   
-    @Query("select p.budget.currency, avg(p.budget.amount) from Patronage p where p.status = :status group by p.budget.currency")
-	Collection<Tuple> averageNumberOfBudgetsByCurrencyAndStatus(PatronageStatus status);
+	//Gruping by currency
 	
-	@Query("select p.budget.currency, stddev(p.budget.amount) from Patronage p where p.status = :status group by p.budget.currency")
-	Collection<Tuple> deviationOfBudgetsByCurrencyAndStatus(PatronageStatus status);
+    @Query("select p.budget.currency, avg(p.budget.amount) "
+    	+ "from Patronage p where p.status = :status group by p.budget.currency")
+	Collection<Tuple> averageBudgetsByStatus(PatronageStatus status);
 	
-	@Query("select p.budget.currency, min(p.budget.amount) from Patronage p where p.status = :status group by p.budget.currency")
-	Collection<Tuple> minBudgetByCurrencyAndStatus(PatronageStatus status);
+	@Query("select p.budget.currency, stddev(p.budget.amount) "
+		+ "from Patronage p where p.status = :status group by p.budget.currency")
+	Collection<Tuple> deviationBudgetsByStatus(PatronageStatus status);
 	
-	@Query("select p.budget.currency, max(p.budget.amount) from Patronage p where p.status = :status group by p.budget.currency")
-	Collection<Tuple> maxBudgetByCurrencyAndStatus(PatronageStatus status);
+	@Query("select p.budget.currency, min(p.budget.amount) "
+		+ "from Patronage p where p.status = :status group by p.budget.currency")
+	Collection<Tuple> minBudgetByStatus(PatronageStatus status);
+	
+	@Query("select p.budget.currency, max(p.budget.amount) "
+		+ "from Patronage p where p.status = :status group by p.budget.currency")
+	Collection<Tuple> maxBudgetByStatus(PatronageStatus status);
 }

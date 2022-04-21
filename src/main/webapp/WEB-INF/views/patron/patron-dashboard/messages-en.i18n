@@ -8,10 +8,14 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-patron.dashboard.form.title.general-indicators = General indicators
-patron.dashboard.form.title.application-statuses = Application statuses  
+patron.dashboard.form.title.dashboard = Dashboard
 
-patron.dashboard.form.label.number-of-patronages-by-status = Patronage by status
-patron.dashboard.form.label.average-number-of-budgets-by-currency-and-status = Average of budget by status
+patron.dashboard.form.label.number-of-patronages-by-status = Number of patronage
+patron.dashboard.form.label.average-number-of-budgets-by-currency-and-status = Average of budget
+patron.dashboard.form.label.deviation-of-budgets-by-currency-and-status = Desviation of budget
+patron.dashboard.form.label.min-budget-by-currency-and-status = Minimum budget
+patron.dashboard.form.label.max-budget-by-currency-and-status = Maximum budget
+
+
 
 
