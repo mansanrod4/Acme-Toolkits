@@ -54,16 +54,16 @@ public class Patronage extends AbstractEntity {
 
 	
 	@NotNull
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	protected Date			creationDate;
 	
 	@NotNull
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "start_date")
 	protected Date			startDate;
 	
 	@NotNull
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	protected Date			endDate;
 			
 	@URL
