@@ -1,0 +1,4 @@
+recordIndex,itemType,name,code,technology,description,retail-price,key:inventor,info
+0,COMPONENT,Tuerca,BBB-000,Clasica,Increiblemente confiable,EUR 0.50,inventor-04,
+1,COMPONENT,Tuerca D12,BBB-000-B,Clasica,Increiblemente confiable,EUR 0.50,inventor-05,https://ev.us.es/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_29_1
+2,COMPONENT,Tuerca D20,BBB-000-C,Clasica,Increiblemente confiable,EUR 0.50,inventor-03,
