@@ -13,7 +13,7 @@ public class PatronPatronageReportListTest extends TestHarness {
 	@ParameterizedTest
 	@CsvFileSource(resources = "/patron/patronage-report/list-patronage-report.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void checkListAllPatronageReportShow(final int reportIndex,final int recordIndex, final String reference,
+	public void checkListAllPatronageReportShow(final int patronageIndex,final int recordIndex, final String reference,
 		 final String moment, final String memorandum, final String info, final String sequenceNumber) {
 	
 		
@@ -24,7 +24,7 @@ public class PatronPatronageReportListTest extends TestHarness {
 		
 		//patronages
 		super.clickOnMenu("Patron", "Patronages");
-		this.clickOnListingRecord(reportIndex); 
+		this.clickOnListingRecord(patronageIndex); 
 		super.clickOnButton("Reports");
 
 		//reports
