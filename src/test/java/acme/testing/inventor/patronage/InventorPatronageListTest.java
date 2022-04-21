@@ -24,7 +24,6 @@ public class InventorPatronageListTest extends TestHarness {
 
 		super.checkColumnHasValue(recordIndex, 0, code);
 		super.checkColumnHasValue(recordIndex, 1, patron);
-
 		super.checkColumnHasValue(recordIndex, 2, status);
 
 		super.clickOnListingRecord(recordIndex);

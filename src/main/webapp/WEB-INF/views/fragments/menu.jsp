@@ -29,8 +29,7 @@
 			<acme:menu-suboption code="master.menu.user-account.tool.list" action="/any/item/list-tool"/>
 			<acme:menu-separator/>
 			
-			<acme:menu-suboption code="master.menu.user-account.list-inventor" action="/any/user-account/list-inventor"/>
-			<acme:menu-suboption code="master.menu.user-account.list-patron" action="/any/user-account/list-patron"/>
+			<acme:menu-suboption code="master.menu.user-account.list"				action="/any/user-account/list" />
       
       		<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.anonymous.manferrod6-favourite-link" action="http://www.gol.gg"/>
