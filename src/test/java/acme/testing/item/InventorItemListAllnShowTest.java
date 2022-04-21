@@ -1,10 +1,10 @@
-package acme.testing;
+package acme.testing.item;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
-public class InventorItemListAllnShowTest extends TestHarness{
+public class InventorItemListAllnShowTest extends TestItem{
 	
 	@ParameterizedTest
 	@CsvFileSource(resources = "/inventor/item/list-all-components-empty.csv", encoding = "utf-8", numLinesToSkip = 1)
@@ -44,8 +44,7 @@ public class InventorItemListAllnShowTest extends TestHarness{
 		super.navigateHome();
 		
 		super.clickOnMenu("Inventor", "My Components");
-		this.checkListAllItemsNShow(recordIndex, code, name, technology, retailPrice, description, info);
-		
+		super.checkListAllItemsNShow(recordIndex, code, name, technology, retailPrice, description, info);
 	}
 	
 	@ParameterizedTest
@@ -56,29 +55,9 @@ public class InventorItemListAllnShowTest extends TestHarness{
 		
 		super.signIn(username, password);
 		super.navigateHome();
-		
 		super.clickOnMenu("Inventor", "My Tools");
-		this.checkListAllItemsNShow(recordIndex, code, name, technology, retailPrice, description, info);
+		super.checkListAllItemsNShow(recordIndex, code, name, technology, retailPrice, description, info);
 		
-	}
-	
-	private void checkListAllItemsNShow(final int recordIndex, final String code, final String name, final String technology, final String retailPrice, final String description, final String info) {
-		super.checkListingExists();
-		super.sortListing(0, "asc");
-		
-		super.checkColumnHasValue(recordIndex, 0, code);
-		super.checkColumnHasValue(recordIndex, 1, name);
-		super.checkColumnHasValue(recordIndex, 2, technology);
-		super.checkColumnHasValue(recordIndex, 3, retailPrice);
-		
-		super.clickOnListingRecord(recordIndex);
-		super.checkFormExists();
-		super.checkInputBoxHasValue("code", code);
-		super.checkInputBoxHasValue("name", name);
-		super.checkInputBoxHasValue("technology", technology);
-		super.checkInputBoxHasValue("description", description);
-		super.checkInputBoxHasValue("retailPrice", retailPrice);
-		super.checkInputBoxHasValue("info", info);
 	}
 	
 
