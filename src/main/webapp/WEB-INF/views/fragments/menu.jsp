@@ -29,8 +29,7 @@
 			<acme:menu-suboption code="master.menu.user-account.tool.list" action="/any/item/list-tool"/>
 			<acme:menu-separator/>
 			
-			<acme:menu-suboption code="master.menu.user-account.list-inventor" action="/any/user-account/list-inventor"/>
-			<acme:menu-suboption code="master.menu.user-account.list-patron" action="/any/user-account/list-patron"/>
+			<acme:menu-suboption code="master.menu.user-account.list"				action="/any/user-account/list" />
       
       		<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.anonymous.manferrod6-favourite-link" action="http://www.gol.gg"/>
@@ -54,6 +53,7 @@
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.patron" access="hasRole('Patron')">
+			<acme:menu-suboption code="master.menu.patron.patronage.list" action="/patron/patronage/list"/>
 			<acme:menu-suboption code="master.menu.patron.dashboard" action="/patron/patron-dashboard/show"/>
 			<acme:menu-suboption code="master.menu.user-account.list"	action="/any/user-account/list" />
 		</acme:menu-option>
@@ -87,6 +87,7 @@
 			<acme:menu-suboption code="master.menu.user-account.become-inventor" action="/authenticated/inventor/create" access="!hasRole('Inventor')"/>
 			<acme:menu-suboption code="master.menu.user-account.inventor" action="/authenticated/inventor/update" access="hasRole('Inventor')"/>
 			<acme:menu-suboption code="master.menu.user-account.announcement.list" action="/authenticated/announcement/list"/>
+			<acme:menu-suboption code="master.menu.user-account.system-configuration.list" action="/authenticated/system-configuration/show"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.user-account.component.list" action="/any/item/list-component"/>
 			<acme:menu-suboption code="master.menu.user-account.tool.list" action="/any/item/list-tool"/>

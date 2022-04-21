@@ -22,9 +22,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-//@Data
-//@EqualsAndHashCode(callSuper=true)
-//@NoArgsConstructor
+
 public class PatronageReport extends AbstractEntity{
 
 	// Serialisation identifier -----------------------------------------------
@@ -33,11 +31,10 @@ public class PatronageReport extends AbstractEntity{
 	
 	// Attributes -------------------------------------------------------------
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
 	@Past
-	@Column(name = "creation_date")
-	protected Date creationDate;
+	protected Date moment;
 	
 	@NotBlank
 	@Size(max=255)
@@ -45,24 +42,28 @@ public class PatronageReport extends AbstractEntity{
 	
 	@URL
 	protected String info;
-//	
-//	@NotNull
-//	@Digits( integer = 4, fraction = 0)
-//	protected Integer serialNumber;
-//	
-//	
-	//pattern “〈patronage-code〉:〈serial-number〉
+	
 	@NotBlank
+//	@Pattern(regexp = "^[A-Z]{3}-[0-9]{3}(-[A-Z])?:[0-9]{4}$")
+	@Column(unique = true)
 	protected String sequenceNumber;
+	
+//	@NotNull
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+//	protected Integer serialNumber;
 
+	
 	// Derived attributes -----------------------------------------------------
 	
 //	//pattern “〈patronage-code〉:〈serial-number〉
 //	@NotBlank
-//	protected String sequenceNumber(){
-//		return "〈"+this.patronage.getCode() +"〉:〈"+this.serialNumber.toString()+"〉";
+//	@Transient
+//	public String getSequenceNumber(){
+//		final String formatString = String.format("%0"+(5-this.serialNumber.toString().length())+"s",this.serialNumber.toString());
+//		final DecimalFormat decimalFormat = new DecimalFormat("0000");
+//		return this.patronage.getCode() +":"+decimalFormat.format(this.serialNumber);
 //	}
-//	
+	
 	// Relationships ----------------------------------------------------------
 	
 	@NotNull

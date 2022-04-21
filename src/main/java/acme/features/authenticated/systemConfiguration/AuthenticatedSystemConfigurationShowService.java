@@ -1,6 +1,4 @@
-package acme.features.authenticated.SystemConfiguration;
-
-import java.util.Collection;
+package acme.features.authenticated.systemConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,13 +7,14 @@ import acme.components.configuration.SystemConfiguration;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.roles.Authenticated;
-import acme.framework.services.AbstractListService;
+import acme.framework.services.AbstractShowService;
 
 @Service
-public class SystemConfigurationService implements AbstractListService<Authenticated, SystemConfiguration>{
+public class AuthenticatedSystemConfigurationShowService implements AbstractShowService<Authenticated, SystemConfiguration>{
 
 	@Autowired
-	protected SystemConfigurationRepository repository;
+	protected AuthenticatedSystemConfigurationRepository repository;
+
 
 	@Override
 	public boolean authorise(final Request<SystemConfiguration> request) {
@@ -24,14 +23,11 @@ public class SystemConfigurationService implements AbstractListService<Authentic
 	}
 
 	@Override
-	public Collection<SystemConfiguration> findMany(final Request<SystemConfiguration> request) {
+	public SystemConfiguration findOne(final Request<SystemConfiguration> request) {
 		assert request != null;
-		
-		Collection<SystemConfiguration> result;
-		final int id;
-		
-		id = request.getModel().getInteger("id");
-		result = this.repository.findConfigurationById(id);
+		SystemConfiguration result;
+
+		result = this.repository.findSystemConfiguration();
 
 		return result;
 	}
@@ -43,6 +39,11 @@ public class SystemConfigurationService implements AbstractListService<Authentic
 		assert model != null;
 
 		request.unbind(entity, model, "systemCurrency", "acceptedCurrencies");
+		model.setAttribute("USDexchange", 0.833171);
+		model.setAttribute("GBPexchange", 1.083546);
+		;
+		
 	}
 	
+
 }
