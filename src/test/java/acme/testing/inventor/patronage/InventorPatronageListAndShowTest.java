@@ -1,5 +1,5 @@
 
-package acme.testing.patron.patronage;
+package acme.testing.inventor.patronage;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -7,24 +7,23 @@ import org.springframework.core.annotation.Order;
 
 import acme.testing.TestHarness;
 
-public class PatronPatronageListTest extends TestHarness {
+public class InventorPatronageListAndShowTest extends TestHarness {
 
 	@ParameterizedTest
-	@CsvFileSource(resources = "/patron/patronage/list-patronage.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/inventor/patronage/list-patronage.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void positivePatronageTest(final int recordIndex, final String status, final String code, final String legal_stuff, final String budget, final String creation_date, final String start_date, final String end_date, final String info,
-		final String patron, final String inventor, final String inventor_name, final String inventor_surname, final String inventor_email, final String inventor_company, final String inventor_statement, final String inventor_info) {
+		final String patron, final String inventor, final String patron_name, final String patron_surname, final String patron_email, final String patron_company, final String patron_statement, final String patron_info) {
 
-		super.signIn("patron1", "patron1");
+		super.signIn("inventor1", "inventor1");
 		super.navigateHome();
 
-		super.clickOnMenu("Patron", "Patronages");
+		super.clickOnMenu("Inventor", "Patronages");
 		super.checkListingExists();
 		super.sortListing(0, "asc");
 
 		super.checkColumnHasValue(recordIndex, 0, code);
-		super.checkColumnHasValue(recordIndex, 1, inventor);
-
+		super.checkColumnHasValue(recordIndex, 1, patron);
 		super.checkColumnHasValue(recordIndex, 2, status);
 
 		super.clickOnListingRecord(recordIndex);
@@ -36,11 +35,11 @@ public class PatronPatronageListTest extends TestHarness {
 		super.checkInputBoxHasValue("startDate", start_date);
 		super.checkInputBoxHasValue("endDate", end_date);
 		super.checkInputBoxHasValue("status", status);
-		super.checkInputBoxHasValue("inventorFullName", inventor_surname+", "+inventor_name);
-		super.checkInputBoxHasValue("inventorEmail", inventor_email);
-		super.checkInputBoxHasValue("inventorCompany", inventor_company);
-		super.checkInputBoxHasValue("inventorStatement", inventor_statement);
-		super.checkInputBoxHasValue("inventorInfo", inventor_info);
+		super.checkInputBoxHasValue("patronFullName", patron_surname+", "+patron_name);
+		super.checkInputBoxHasValue("patronEmail", patron_email);
+		super.checkInputBoxHasValue("patronCompany", patron_company);
+		super.checkInputBoxHasValue("patronStatement", patron_statement);
+		super.checkInputBoxHasValue("patronInfo", patron_info);
 
 		super.signOut();
 	}

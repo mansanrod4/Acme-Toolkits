@@ -7,7 +7,7 @@ import org.springframework.core.annotation.Order;
 
 import acme.testing.TestHarness;
 
-public class AnyUserAccountListTest extends TestHarness {
+public class AnyUserAccountListAndShowTest extends TestHarness {
 
 	@ParameterizedTest
 	@CsvFileSource(resources = "/any/user-account/user-account.csv", encoding = "utf-8", numLinesToSkip = 1)
