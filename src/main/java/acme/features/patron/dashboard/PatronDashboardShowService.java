@@ -51,19 +51,19 @@ public class PatronDashboardShowService implements AbstractShowService<Patron, P
 
 		final PatronDashboard result;
 		final EnumMap<PatronageStatus, Integer> numPatronagesByStatus;
-//		numPatronagesByStatus = new EnumMap<>(PatronageStatus.class);
+		numPatronagesByStatus = new EnumMap<>(PatronageStatus.class);
 		final Map<Pair<PatronageStatus, String>, Double> averageBudgetsByStatus;
 		final Map<Pair<PatronageStatus, String>, Double> deviationBudgetsByStatus;
 		Map<Pair<PatronageStatus, String>, Double> minBudgetByStatus;
 		Map<Pair<PatronageStatus, String>, Double> maxBudgetByStatus;
 
-//		final Integer numPatronagesByStatus = this.repository.numPatronagesByStatus(PatronageStatus.PROPOSED);
-//		final Integer numPatronagesByStatus = this.repository.numPatronagesByStatus(PatronageStatus.ACCEPTED);
-//		final Integer numPatronagesByStatus = this.repository.numPatronagesByStatus(PatronageStatus.DENIED);
-//		numOfPatronagesByStatus.put(PatronageStatus.PROPOSED, numPatronagesByStatus);
-//		numOfPatronagesByStatus.put(PatronageStatus.ACCEPTED, numPatronagesByStatus);
-//		numOfPatronagesByStatus.put(PatronageStatus.DENIED, numPatronagesByStatus);
-//		
+		final Integer numPatronagesProposed = this.repository.numPatronagesByStatus(PatronageStatus.PROPOSED);
+		final Integer numPatronagesAccepted = this.repository.numPatronagesByStatus(PatronageStatus.ACCEPTED);
+		final Integer numPatronagesDenied = this.repository.numPatronagesByStatus(PatronageStatus.DENIED);
+		numPatronagesByStatus.put(PatronageStatus.PROPOSED, numPatronagesProposed);
+		numPatronagesByStatus.put(PatronageStatus.ACCEPTED, numPatronagesAccepted);
+		numPatronagesByStatus.put(PatronageStatus.DENIED, numPatronagesDenied);
+		
 		averageBudgetsByStatus = new HashMap<>();	
 		this.repository.averageBudgetsByStatus(PatronageStatus.PROPOSED).stream()
 		.forEach(x->
@@ -145,7 +145,7 @@ public class PatronDashboardShowService implements AbstractShowService<Patron, P
 			);
 
 		result = new PatronDashboard();
-//		result.setNumPatronagesByStatus(numPatronagesByStatus);
+		result.setNumPatronagesByStatus(numPatronagesByStatus);
 		result.setAverageBudgetsByStatus(averageBudgetsByStatus);
 		result.setDeviationBudgetsByStatus(deviationBudgetsByStatus);
 		result.setMinBudgetByStatus(minBudgetByStatus);
@@ -161,13 +161,11 @@ public class PatronDashboardShowService implements AbstractShowService<Patron, P
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, //
-			"numberOfPatronagesByStatus", "averageNumberOfBudgetsByCurrencyAndStatus", // 
-			"deviationOfBudgetsByCurrencyAndStatus", "minBudgetByCurrencyAndStatus", //
-			"maxBudgetByCurrencyAndStatus");
+		request.unbind(entity, model, "numPatronagesByStatus", "averageBudgetsByStatus", "deviationBudgetsByStatus", 
+			"minBudgetByStatus", "maxBudgetByStatus");
 	
 	}
-	//
+	
 
 	
 }

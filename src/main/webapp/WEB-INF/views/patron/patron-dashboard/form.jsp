@@ -10,51 +10,51 @@
 <table class="table table-sm">
 	<tr>
 		<th scope="row">
-			<acme:message code="patron.dashboard.form.label.number-of-patronages-by-status"/>
+			<acme:message code="patron.dashboard.form.label.num-patronages-by-status"/>
 		</th>
 		<td>
 			<div>
-				<canvas id="patronagesByStatus"></canvas>
+				<canvas id="numPatronages"></canvas>
 			</div>
 		</td>
 	</tr>
 	<tr>
 		<th scope="row">
-			<acme:message code="patron.dashboard.form.label.average-number-of-budgets-by-currency-and-status"/>
+			<acme:message code="patron.dashboard.form.label.average-budgets-by-status"/>
 		</th>
 		<td>
 			<div>
-				<canvas id="averageNumberOfBudgetsByCurrencyAndStatus"></canvas>
+				<canvas id="averageBudgets"></canvas>
 			</div>
 		</td>
 	</tr>
 	<tr>
 		<th scope="row">
-			<acme:message code="patron.dashboard.form.label.deviation-of-budgets-by-currency-and-status"/>
+			<acme:message code="patron.dashboard.form.label.deviation-budgets-by-status"/>
 		</th>
 		<td>
 			<div>
-				<canvas id="deviationOfBudgetsByCurrencyAndStatus"></canvas>
+				<canvas id="deviationBudgets"></canvas>
 			</div>
 		</td>
 	</tr>
 	<tr>
 		<th scope="row">
-			<acme:message code="patron.dashboard.form.label.min-budget-by-currency-and-status"/>
+			<acme:message code="patron.dashboard.form.label.min-budget-by-status"/>
 		</th>
 		<td>
 			<div>
-				<canvas id="minBudgetByCurrencyAndStatus"></canvas>
+				<canvas id="minBudget"></canvas>
 			</div>
 		</td>
 	</tr>
 	<tr>
 		<th scope="row">
-			<acme:message code="patron.dashboard.form.label.max-budget-by-currency-and-status"/>
+			<acme:message code="patron.dashboard.form.label.max-budget-by-status"/>
 		</th>
 		<td>
 			<div>
-				<canvas id="maxBudgetByCurrencyAndStatus"></canvas>
+				<canvas id="maxBudget"></canvas>
 			</div>
 		</td>
 	</tr>
@@ -66,18 +66,18 @@ $(document).ready(function() {
 	let ACCEPTED = "ACCEPTED";
 	let DENIED = "DENIED";
 	let PROPOSED = "PROPOSED";
-	let ACCEPTEDEUR = "ACCEPTED <-> EUR";
-	let ACCEPTEDGBP = "ACCEPTED <-> GBP";
-	let ACCEPTEDUSD = "ACCEPTED <-> USD";
-	let DENIEDEUR = "DENIED <-> EUR";
-	let DENIEDGBP = "DENIED <-> GBP";
-	let DENIEDUSD = "DENIED <-> USD";
-	let PROPOSEDEUR = "PROPOSED <-> EUR";
-	let PROPOSEDGBP = "PROPOSED <-> GBP";
-	let PROPOSEDUSD = "PROPOSED <-> USD";
+	let ACCEPTEDEUR = "ACCEPTED (EUR)";
+	let ACCEPTEDGBP = "ACCEPTED (GBP)";
+	let ACCEPTEDUSD = "ACCEPTED (USD)";
+	let DENIEDEUR = "DENIED (EUR)";
+	let DENIEDGBP = "DENIED (GBP)";
+	let DENIEDUSD = "DENIED (USD)";
+	let PROPOSEDEUR = "PROPOSED (EUR)";
+	let PROPOSEDGBP = "PROPOSED (GBP)";
+	let PROPOSEDUSD = "PROPOSED (USD)";
 	
 	function createChart(labelList, dataList, id){
-		var barColors = ["#2F4F4F", "#008080","#3CB371","#11cf43","#004d14", "#769146", "#a5ad97", "#b1f046", "#53574c"];
+		/* var barColors = [""]; */
 		var data = {
 			labels : labelList,
 			datasets : [
@@ -93,7 +93,7 @@ $(document).ready(function() {
 					{
 						ticks : {
 							suggestedMin : 0.0,
-							suggestedMax : 1.0
+							suggestedMax : 10.0
 						}
 					}
 				]
@@ -115,83 +115,83 @@ $(document).ready(function() {
 	
 	//PATRONAGES_BY_STATUS
 	let labels1 = [
-		<jstl:forEach items="${numberOfPatronagesByStatus}" var="numberOfPatronagesByStatus">
-			<acme:print value="${numberOfPatronagesByStatus['key']}"></acme:print>
+		<jstl:forEach items="${numPatronagesByStatus}" var="numPatronagesByStatus">
+			<acme:print value="${numPatronagesByStatus['key']}"></acme:print>
 			<acme:print value=","></acme:print>
 		</jstl:forEach>
 	]
 	let data1 = [
-		<jstl:forEach items="${numberOfPatronagesByStatus}" var="numberOfPatronagesByStatus">
-			<acme:print value="${numberOfPatronagesByStatus['value'].toString()}"></acme:print>
+		<jstl:forEach items="${numPatronagesByStatus}" var="numPatronagesByStatus">
+			<acme:print value="${numPatronagesByStatus['value'].toString()}"></acme:print>
 			<acme:print value=","></acme:print>
 		</jstl:forEach>
 	]
 	
-	createChart(labels1, data1, "patronagesByStatus");
+	createChart(labels1, data1, "numPatronages");
 	
 	//AVERAGE_NUMBER_OF_BUDGETS_BY_CURRENCY_AND_STATUS
 	let labels2 = [
-		<jstl:forEach items="${averageNumberOfBudgetsByCurrencyAndStatus}" var="averageNumberOfBudgetsByCurrencyAndStatus">
-			<acme:print value="${averageNumberOfBudgetsByCurrencyAndStatus['key'].getFirst()}${averageNumberOfBudgetsByCurrencyAndStatus['key'].getSecond()}"></acme:print>
+		<jstl:forEach items="${averageBudgetsByStatus}" var="averageBudgetsByStatus">
+			<acme:print value="${averageBudgetsByStatus['key'].getFirst()}${averageBudgetsByStatus['key'].getSecond()}"></acme:print>
 			<acme:print value=","></acme:print>
 		</jstl:forEach>
 	]
 	let data2 = [
-		<jstl:forEach items="${averageNumberOfBudgetsByCurrencyAndStatus}" var="averageNumberOfBudgetsByCurrencyAndStatus">
-			<acme:print value="${averageNumberOfBudgetsByCurrencyAndStatus['value'].toString()}"></acme:print>
+		<jstl:forEach items="${averageBudgetsByStatus}" var="averageBudgetsByStatus">
+			<acme:print value="${averageBudgetsByStatus['value'].toString()}"></acme:print>
 			<acme:print value=","></acme:print>
 		</jstl:forEach>
 	]
 	
-	createChart(labels2, data2, "averageNumberOfBudgetsByCurrencyAndStatus");
+	createChart(labels2, data2, "averageBudgets");
 	
 	//DESVIATION_OF_BUDGETS_BY_CURRENCY_AND_STATUS
 	let labels3 = [
-		<jstl:forEach items="${deviationOfBudgetsByCurrencyAndStatus}" var="deviationOfBudgetsByCurrencyAndStatus">
-			<acme:print value="${deviationOfBudgetsByCurrencyAndStatus['key'].getFirst()}${deviationOfBudgetsByCurrencyAndStatus['key'].getSecond()}"></acme:print>
+		<jstl:forEach items="${deviationBudgetsByStatus}" var="deviationBudgetsByStatus">
+			<acme:print value="${deviationBudgetsByStatus['key'].getFirst()}${deviationBudgetsByStatus['key'].getSecond()}"></acme:print>
 			<acme:print value=","></acme:print>
 		</jstl:forEach>
 	]
 	let data3 = [
-		<jstl:forEach items="${deviationOfBudgetsByCurrencyAndStatus}" var="deviationOfBudgetsByCurrencyAndStatus">
-			<acme:print value="${deviationOfBudgetsByCurrencyAndStatus['value'].toString()}"></acme:print>
+		<jstl:forEach items="${deviationBudgetsByStatus}" var="deviationBudgetsByStatus">
+			<acme:print value="${deviationBudgetsByStatus['value'].toString()}"></acme:print>
 			<acme:print value=","></acme:print>
 		</jstl:forEach>
 	]
 	
-	createChart(labels3, data3, "deviationOfBudgetsByCurrencyAndStatus");
+	createChart(labels3, data3, "deviationBudgets");
 	
 	//MIN_BUDGET_BY_CURRENCY_AND_STATUS
 	let labels4 = [
-		<jstl:forEach items="${minBudgetByCurrencyAndStatus}" var="minBudgetByCurrencyAndStatus">
-			<acme:print value="${minBudgetByCurrencyAndStatus['key'].getFirst()}${minBudgetByCurrencyAndStatus['key'].getSecond()}"></acme:print>
+		<jstl:forEach items="${minBudgetByStatus}" var="minBudgetByStatus">
+			<acme:print value="${minBudgetByStatus['key'].getFirst()}${minBudgetByStatus['key'].getSecond()}"></acme:print>
 			<acme:print value=","></acme:print>
 		</jstl:forEach>
 	]
 	let data4 = [
-		<jstl:forEach items="${minBudgetByCurrencyAndStatus}" var="minBudgetByCurrencyAndStatus">
-			<acme:print value="${minBudgetByCurrencyAndStatus['value'].toString()}"></acme:print>
+		<jstl:forEach items="${minBudgetByStatus}" var="minBudgetByStatus">
+			<acme:print value="${minBudgetByStatus['value'].toString()}"></acme:print>
 			<acme:print value=","></acme:print>
 		</jstl:forEach>
 	]
 	
-	createChart(labels4, data4, "minBudgetByCurrencyAndStatus");
+	createChart(labels4, data4, "minBudget");
 	
 	//MAX_BUDGET_BY_CURRENCY_AND_STATUS
 	let labels5 = [
-		<jstl:forEach items="${maxBudgetByCurrencyAndStatus}" var="maxBudgetByCurrencyAndStatus">
-			<acme:print value="${maxBudgetByCurrencyAndStatus['key'].getFirst()}${maxBudgetByCurrencyAndStatus['key'].getSecond()}"></acme:print>
+		<jstl:forEach items="${maxBudgetByStatus}" var="maxBudgetByStatus">
+			<acme:print value="${maxBudgetByStatus['key'].getFirst()}${maxBudgetByStatus['key'].getSecond()}"></acme:print>
 			<acme:print value=","></acme:print>
 		</jstl:forEach>
 	]
 	let data5 = [
-		<jstl:forEach items="${maxBudgetByCurrencyAndStatus}" var="maxBudgetByCurrencyAndStatus">
-			<acme:print value="${maxBudgetByCurrencyAndStatus['value'].toString()}"></acme:print>
+		<jstl:forEach items="${maxBudgetByStatus}" var="maxBudgetByStatus">
+			<acme:print value="${maxBudgetByStatus['value'].toString()}"></acme:print>
 			<acme:print value=","></acme:print>
 		</jstl:forEach>
 	]
 	
-	createChart(labels5, data5, "maxBudgetByCurrencyAndStatus");
+	createChart(labels5, data5, "maxBudget");
 	
 	});
 </script>
