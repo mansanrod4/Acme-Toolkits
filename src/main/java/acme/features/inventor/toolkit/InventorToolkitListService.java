@@ -1,4 +1,4 @@
-package acme.features.any.toolkits;
+package acme.features.inventor.toolkit;
 
 import java.util.Collection;
 
@@ -9,21 +9,23 @@ import acme.entities.toolkits.Toolkit;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
-import acme.framework.roles.Any;
 import acme.framework.services.AbstractListService;
+import acme.roles.Inventor;
 
 @Service
-public class AnyToolkitListService implements AbstractListService<Any, Toolkit>{
+public class InventorToolkitListService implements AbstractListService<Inventor, Toolkit>{
 	
 	// Internal State ------------------------------------------------------------------
 	
 	@Autowired
-	protected AnyToolkitRepository repository;
+	protected InventorToolkitRepository repository;
 
 	@Override
 	public boolean authorise(final Request<Toolkit> request) {
-		assert request != null;
-		return true;
+		assert request!=null;
+		final int inventorId = request.getPrincipal().getActiveRoleId(); 	
+		final Collection<Toolkit> toolkits = this.repository.findAllToolkitsByInventor(inventorId);
+		return toolkits.stream().allMatch(e-> e.getInventor().getId()==inventorId);
 	}
 
 	@Override
@@ -31,8 +33,8 @@ public class AnyToolkitListService implements AbstractListService<Any, Toolkit>{
 		assert request !=null;
 		
 		final Collection<Toolkit> result;
-		
-		result= this.repository.findAllToolkits();
+		final int inventorId = request.getPrincipal().getActiveRoleId();
+		result= this.repository.findAllToolkitsByInventor(inventorId);
 		
 		return result;
 	}

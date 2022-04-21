@@ -44,7 +44,8 @@ master.menu.patron.favourite-link = Favourite link
 # master.menu.inventor #########################################################
 
 master.menu.inventor = Inventor
-master.menu.consumer.favourite-link = Favourite link
+master.menu.inventor.favourite-link = Favourite link
+master.menu.inventor.toolkit.list = List my Toolkits
 
 # master.menu.user-account ####################################################
 

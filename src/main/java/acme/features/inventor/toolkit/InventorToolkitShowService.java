@@ -1,4 +1,4 @@
-package acme.features.any.toolkits;
+package acme.features.inventor.toolkit;
 
 import java.util.Collection;
 
@@ -10,31 +10,33 @@ import acme.entities.toolkits.Toolkit;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
-import acme.framework.roles.Any;
 import acme.framework.services.AbstractShowService;
+import acme.roles.Inventor;
 
 @Service
-public class AnyToolkitShowService implements AbstractShowService<Any, Toolkit>{
+public class InventorToolkitShowService implements AbstractShowService<Inventor, Toolkit>{
 	
 	// Internal State -------------------------------------------------------------------
 	
 	@Autowired
-	protected AnyToolkitRepository repository;
+	protected InventorToolkitRepository repository;
 
 	@Override
 	public boolean authorise(final Request<Toolkit> request) {
-		assert request != null;
-
-		return true;
+		assert request!=null;
+		final int inventorId = request.getPrincipal().getActiveRoleId(); 	
+		final int id = request.getModel().getInteger("id");
+		final Toolkit toolkit = this.repository.findOneToolkitByIdFromInventor(id, inventorId);
+		return (inventorId == toolkit.getInventor().getId());
 	}
 
 	@Override
 	public Toolkit findOne(final Request<Toolkit> request) {
 		int id;
 		Toolkit toolkit;
-		
+		final int inventorId = request.getPrincipal().getActiveRoleId(); 	
 		id = request.getModel().getInteger("id");
-		toolkit = this.repository.findOneToolkitById(id);
+		toolkit = this.repository.findOneToolkitByIdFromInventor(id, inventorId);
 		return toolkit;
 	}
 	
@@ -56,7 +58,6 @@ public class AnyToolkitShowService implements AbstractShowService<Any, Toolkit>{
 		money.setAmount(price);
 		money.setCurrency("EUR");
 		model.setAttribute("price", money);
-		
 	}
 
 }

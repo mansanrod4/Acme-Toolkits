@@ -17,10 +17,7 @@
 <%@taglib prefix="acme" uri="urn:jsptagdir:/WEB-INF/tags"%>
 
 <acme:menu-bar code="master.menu.home">
-	<acme:menu-left>
-
-
-	
+	<acme:menu-left>	
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			
 			<acme:menu-suboption code="master.menu.user-account.chirp.list" action="/any/chirp/list"/>
@@ -51,6 +48,7 @@
 
 		<acme:menu-option code="master.menu.inventor" access="hasRole('Inventor')">
 			<acme:menu-suboption code="master.menu.inventor.favourite-link" action="http://www.example.com/"/>
+			<acme:menu-suboption code="master.menu.inventor.toolkit.list" action="/inventor/toolkit/list"/>
 		</acme:menu-option>
 	</acme:menu-left>
 

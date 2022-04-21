@@ -1,4 +1,4 @@
-package acme.features.any.toolkits;
+package acme.features.inventor.toolkit;
 
 import java.util.Collection;
 
@@ -10,7 +10,7 @@ import acme.entities.toolkits.Toolkit;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
-public interface AnyToolkitRepository extends AbstractRepository {
+public interface InventorToolkitRepository extends AbstractRepository {
 
 	@Query("select t from Toolkit t")
 	Collection<Toolkit> findAllToolkits() ;
@@ -27,5 +27,11 @@ public interface AnyToolkitRepository extends AbstractRepository {
 	
 	@Query("select it.item from ItemToolkit it where it.toolkit.id=:id and it.item.itemType='TOOL'")
 	Collection<Item> getToolsFromToolkit(int id);
+
+	@Query("select t from Toolkit t where t.id=:id and t.inventor.id=:inventorId")
+	Toolkit findOneToolkitByIdFromInventor(int id, int inventorId);
+
+	@Query("select t from Toolkit t where t.inventor.id=:inventorId")
+	Collection<Toolkit> findAllToolkitsByInventor(int inventorId);
 	
 }
