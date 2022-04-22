@@ -51,8 +51,6 @@ master.menu.inventor.tool.list = My Tools
 
 # master.menu.user-account ####################################################
 
-master.menu.user-account.component.list = List Components
-master.menu.user-account.tool.list = List Tools
 master.menu.user-account = Account
 master.menu.user-account.list = User Accounts
 master.menu.user-account.general-data = General data
@@ -71,5 +69,11 @@ master.menu.announcements.chirp.list = List Chirps
 
 master.menu.sc = System Configuration
 master.menu.sc.system-configuration.list = Currencies information
+
+# master.menu.components-tools ##########################################
+
+master.menu.components-tools = Components and tools
+master.menu.components-tools.component.list = List Tools
+master.menu.components-tools.tool.list = List Components
 
 
