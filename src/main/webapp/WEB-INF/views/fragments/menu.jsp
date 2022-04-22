@@ -70,23 +70,19 @@
 	</acme:menu-left>
 
 	<acme:menu-right>
-		<acme:menu-option code="master.menu.sign-up"
-			action="/anonymous/user-account/create" access="isAnonymous()" />
-		<acme:menu-option code="master.menu.sign-in" action="/master/sign-in"
-			access="isAnonymous()" />
+		<acme:menu-option code="master.menu.sign-up" action="/anonymous/user-account/create" access="isAnonymous()" />
+		<acme:menu-option code="master.menu.sign-in" action="/master/sign-in"	access="isAnonymous()" />
     
 		<acme:menu-option code="master.menu.user-account" access="isAuthenticated()">
 		
 			<acme:menu-suboption code="master.menu.user-account.chirp.list" action="/any/chirp/list"/>
-
-      <acme:menu-suboption code="master.menu.user-account.announcement.list" action="/authenticated/announcement/list"/>
+      		<acme:menu-suboption code="master.menu.user-account.announcement.list" action="/authenticated/announcement/list"/>
       
 			<acme:menu-suboption code="master.menu.user-account.general-data" action="/authenticated/user-account/update"/>
 			<acme:menu-suboption code="master.menu.user-account.become-patron" action="/authenticated/patron/create" access="!hasRole('Patron')"/>
 			<acme:menu-suboption code="master.menu.user-account.patron" action="/authenticated/patron/update" access="hasRole('Patron')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-inventor" action="/authenticated/inventor/create" access="!hasRole('Inventor')"/>
 			<acme:menu-suboption code="master.menu.user-account.inventor" action="/authenticated/inventor/update" access="hasRole('Inventor')"/>
-			<acme:menu-suboption code="master.menu.user-account.announcement.list" action="/authenticated/announcement/list"/>
 			<acme:menu-suboption code="master.menu.user-account.system-configuration.list" action="/authenticated/system-configuration/show"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.user-account.component.list" action="/any/item/list-component"/>
