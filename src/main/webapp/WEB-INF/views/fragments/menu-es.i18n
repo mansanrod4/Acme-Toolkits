@@ -52,7 +52,6 @@ master.menu.inventor.tool.list = Mis herramientas
 
 master.menu.user-account.component.list = Lista de Componentes
 master.menu.user-account.tool.list = Lista de Herramientas
-master.menu.user-account.chirp.list = Lista mensajes
 master.menu.user-account = Cuenta
 master.menu.user-account.list = Cuentas de usuario
 master.menu.user-account.general-data = Datos generales
@@ -60,6 +59,16 @@ master.menu.user-account.patron = Datos de mecenas
 master.menu.user-account.become-patron = Hazte mecenas
 master.menu.user-account.inventor = Datos de inventor
 master.menu.user-account.become-inventor = Hazte inventor
-master.menu.user-account.announcement.list = Anuncios
-master.menu.user-account.system-configuration.list = Información sobre monedas
+
+# master.menu.announcements ##########################################
+
+master.menu.announcements = Anuncios
+master.menu.announcements.announcement.list = Anuncios
+master.menu.announcements.chirp.list = Mensajes
+
+# master.menu.sc ##########################################
+
+master.menu.sc = Configuración del sistema
+master.menu.sc.system-configuration.list = Información sobre monedas
+
 

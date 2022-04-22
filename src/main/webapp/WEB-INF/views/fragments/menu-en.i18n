@@ -53,7 +53,6 @@ master.menu.inventor.tool.list = My Tools
 
 master.menu.user-account.component.list = List Components
 master.menu.user-account.tool.list = List Tools
-master.menu.user-account.chirp.list = List Chirps
 master.menu.user-account = Account
 master.menu.user-account.list = User Accounts
 master.menu.user-account.general-data = General data
@@ -61,6 +60,16 @@ master.menu.user-account.patron = Patron data
 master.menu.user-account.become-patron = Become a patron
 master.menu.user-account.inventor = Inventor data
 master.menu.user-account.become-inventor = Become a inventor
-master.menu.user-account.announcement.list = List announcements
-master.menu.user-account.system-configuration.list = Currencies information
+
+# master.menu.announcements ##########################################
+
+master.menu.announcements = Announcements
+master.menu.announcements.announcement.list = List announcements
+master.menu.announcements.chirp.list = List Chirps
+
+# master.menu.sc ##########################################
+
+master.menu.sc = System Configuration
+master.menu.sc.system-configuration.list = Currencies information
+
 
