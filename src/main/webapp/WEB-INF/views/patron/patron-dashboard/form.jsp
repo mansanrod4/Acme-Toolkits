@@ -76,14 +76,15 @@ $(document).ready(function() {
 	let PROPOSEDGBP = "PROPOSED (GBP)";
 	let PROPOSEDUSD = "PROPOSED (USD)";
 	
-	function createChart(labelList, dataList, id){
-		/* var barColors = [""]; */
+	function dashboard(labels, dataSet, id){
+	    var colors = ["#AED6F1", "#ABEBC6", "#F5B7B1", "#AED6F1", "#ABEBC6", "#F5B7B1",
+	    	"#AED6F1", "#ABEBC6", "#F5B7B1", "#AED6F1", "#ABEBC6", "#F5B7B1", "#AED6F1", "#ABEBC6", "#F5B7B1"]; 
 		var data = {
-			labels : labelList,
+			labels : labels,
 			datasets : [
 				{
-				//	backgroundColor: barColors,
-					data : dataList
+					backgroundColor: colors,
+					data : dataSet
 				}
 			]
 		};
@@ -113,8 +114,8 @@ $(document).ready(function() {
 		   
 	}
 	
-	//PATRONAGES_BY_STATUS
-	let labels1 = [
+	//Num patronage
+	let label1 = [
 		<jstl:forEach items="${numPatronagesByStatus}" var="numPatronagesByStatus">
 			<acme:print value="${numPatronagesByStatus['key']}"></acme:print>
 			<acme:print value=","></acme:print>
@@ -127,10 +128,10 @@ $(document).ready(function() {
 		</jstl:forEach>
 	]
 	
-	createChart(labels1, data1, "numPatronages");
+	dashboard(label1, data1, "numPatronages");
 	
-	//AVERAGE_NUMBER_OF_BUDGETS_BY_CURRENCY_AND_STATUS
-	let labels2 = [
+	//Average of budget
+	let label2 = [
 		<jstl:forEach items="${averageBudgetsByStatus}" var="averageBudgetsByStatus">
 			<acme:print value="${averageBudgetsByStatus['key'].getFirst()}${averageBudgetsByStatus['key'].getSecond()}"></acme:print>
 			<acme:print value=","></acme:print>
@@ -143,10 +144,10 @@ $(document).ready(function() {
 		</jstl:forEach>
 	]
 	
-	createChart(labels2, data2, "averageBudgets");
+	dashboard(label2, data2, "averageBudgets");
 	
-	//DESVIATION_OF_BUDGETS_BY_CURRENCY_AND_STATUS
-	let labels3 = [
+	//Desviation of budget
+	let label3 = [
 		<jstl:forEach items="${deviationBudgetsByStatus}" var="deviationBudgetsByStatus">
 			<acme:print value="${deviationBudgetsByStatus['key'].getFirst()}${deviationBudgetsByStatus['key'].getSecond()}"></acme:print>
 			<acme:print value=","></acme:print>
@@ -159,10 +160,10 @@ $(document).ready(function() {
 		</jstl:forEach>
 	]
 	
-	createChart(labels3, data3, "deviationBudgets");
+	dashboard(label3, data3, "deviationBudgets");
 	
-	//MIN_BUDGET_BY_CURRENCY_AND_STATUS
-	let labels4 = [
+	//Minimum budget
+	let label4 = [
 		<jstl:forEach items="${minBudgetByStatus}" var="minBudgetByStatus">
 			<acme:print value="${minBudgetByStatus['key'].getFirst()}${minBudgetByStatus['key'].getSecond()}"></acme:print>
 			<acme:print value=","></acme:print>
@@ -175,10 +176,10 @@ $(document).ready(function() {
 		</jstl:forEach>
 	]
 	
-	createChart(labels4, data4, "minBudget");
+	dashboard(label4, data4, "minBudget");
 	
-	//MAX_BUDGET_BY_CURRENCY_AND_STATUS
-	let labels5 = [
+	//Maximum badget
+	let label5 = [
 		<jstl:forEach items="${maxBudgetByStatus}" var="maxBudgetByStatus">
 			<acme:print value="${maxBudgetByStatus['key'].getFirst()}${maxBudgetByStatus['key'].getSecond()}"></acme:print>
 			<acme:print value=","></acme:print>
@@ -191,7 +192,7 @@ $(document).ready(function() {
 		</jstl:forEach>
 	]
 	
-	createChart(labels5, data5, "maxBudget");
+	dashboard(label5, data5, "maxBudget");
 	
 	});
 </script>
