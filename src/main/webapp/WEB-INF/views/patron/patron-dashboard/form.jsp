@@ -82,7 +82,7 @@ $(document).ready(function() {
 			labels : labelList,
 			datasets : [
 				{
-					backgroundColor: barColors,
+				//	backgroundColor: barColors,
 					data : dataList
 				}
 			]

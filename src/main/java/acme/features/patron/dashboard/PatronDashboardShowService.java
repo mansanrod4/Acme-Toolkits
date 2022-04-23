@@ -12,9 +12,12 @@
 
 package acme.features.patron.dashboard;
 
+import java.util.Collection;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.persistence.Tuple;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
@@ -38,11 +41,7 @@ public class PatronDashboardShowService implements AbstractShowService<Patron, P
 	@Override
 	public boolean authorise(final Request<PatronDashboard> request) {
 		assert request != null;
-		boolean result;
-
-		result = request.getPrincipal().hasRole(Patron.class);
-
-		return result;
+		return true;
 	}
 
 	@Override
@@ -50,100 +49,52 @@ public class PatronDashboardShowService implements AbstractShowService<Patron, P
 		assert request != null;
 
 		final PatronDashboard result;
-		final EnumMap<PatronageStatus, Integer> numPatronagesByStatus;
-		numPatronagesByStatus = new EnumMap<>(PatronageStatus.class);
-		final Map<Pair<PatronageStatus, String>, Double> averageBudgetsByStatus;
-		final Map<Pair<PatronageStatus, String>, Double> deviationBudgetsByStatus;
-		Map<Pair<PatronageStatus, String>, Double> minBudgetByStatus;
-		Map<Pair<PatronageStatus, String>, Double> maxBudgetByStatus;
+		final Map<PatronageStatus, Integer> numPatronagesByStatus = 
+			new EnumMap<PatronageStatus, Integer>(PatronageStatus.class);
+		final Map<Pair<PatronageStatus, String>, Double> averageBudgetsByStatus = new HashMap<>();
+		final Map<Pair<PatronageStatus, String>, Double> deviationBudgetsByStatus = new HashMap<>();
+		final Map<Pair<PatronageStatus, String>, Double> minBudgetByStatus = new HashMap<>();
+		final Map<Pair<PatronageStatus, String>, Double> maxBudgetByStatus = new HashMap<>();
 
-		final Integer numPatronagesProposed = this.repository.numPatronagesByStatus(PatronageStatus.PROPOSED);
-		final Integer numPatronagesAccepted = this.repository.numPatronagesByStatus(PatronageStatus.ACCEPTED);
-		final Integer numPatronagesDenied = this.repository.numPatronagesByStatus(PatronageStatus.DENIED);
-		numPatronagesByStatus.put(PatronageStatus.PROPOSED, numPatronagesProposed);
-		numPatronagesByStatus.put(PatronageStatus.ACCEPTED, numPatronagesAccepted);
-		numPatronagesByStatus.put(PatronageStatus.DENIED, numPatronagesDenied);
+		//Num patronage 
+		for(final PatronageStatus ps: PatronageStatus.values()) {
+			final Integer numPatronages = this.repository.numPatronagesByStatus(ps);
+			numPatronagesByStatus.put(ps, numPatronages);
+		}
 		
-		averageBudgetsByStatus = new HashMap<>();	
-		this.repository.averageBudgetsByStatus(PatronageStatus.PROPOSED).stream()
-		.forEach(x->
-		averageBudgetsByStatus.put(
-				Pair.of(PatronageStatus.PROPOSED, x.get(0).toString()),
-				Double.parseDouble(x.get(1).toString()))
-			);
-		this.repository.averageBudgetsByStatus(PatronageStatus.ACCEPTED).stream()
-		.forEach(x->
-		averageBudgetsByStatus.put(
-				Pair.of(PatronageStatus.ACCEPTED, x.get(0).toString()),
-				Double.parseDouble(x.get(1).toString()))
-			);
-		this.repository.averageBudgetsByStatus(PatronageStatus.DENIED).stream()
-		.forEach(x->
-		averageBudgetsByStatus.put(
-				Pair.of(PatronageStatus.DENIED, x.get(0).toString()),
-				Double.parseDouble(x.get(1).toString()))
-			);
-		
-		deviationBudgetsByStatus = new HashMap<Pair<PatronageStatus, String>, Double>();	
-		this.repository.deviationBudgetsByStatus(PatronageStatus.PROPOSED).stream()
-		.forEach(x->
-		deviationBudgetsByStatus.put(
-				Pair.of(PatronageStatus.PROPOSED, x.get(0).toString()),
-				Double.parseDouble(x.get(1).toString()))
-			);
-		this.repository.deviationBudgetsByStatus(PatronageStatus.ACCEPTED).stream()
-		.forEach(x->
-		deviationBudgetsByStatus.put(
-				Pair.of(PatronageStatus.ACCEPTED, x.get(0).toString()),
-				Double.parseDouble(x.get(1).toString()))
-			);
-		this.repository.deviationBudgetsByStatus(PatronageStatus.DENIED).stream()
-		.forEach(x->
-		deviationBudgetsByStatus.put(
-				Pair.of(PatronageStatus.DENIED, x.get(0).toString()),
-				Double.parseDouble(x.get(1).toString()))
-			);
-		
-		minBudgetByStatus = new HashMap<Pair<PatronageStatus, String>, Double>();	
-		this.repository.minBudgetByStatus(PatronageStatus.PROPOSED).stream()
-		.forEach(x->
-		minBudgetByStatus.put(
-				Pair.of(PatronageStatus.PROPOSED, x.get(0).toString()),
-				Double.parseDouble(x.get(1).toString()))
-			);
-		this.repository.minBudgetByStatus(PatronageStatus.ACCEPTED).stream()
-		.forEach(x->
-		minBudgetByStatus.put(
-				Pair.of(PatronageStatus.ACCEPTED, x.get(0).toString()),
-				Double.parseDouble(x.get(1).toString()))
-			);
-		this.repository.minBudgetByStatus(PatronageStatus.DENIED).stream()
-		.forEach(x->
-		minBudgetByStatus.put(
-				Pair.of(PatronageStatus.DENIED, x.get(0).toString()),
-				Double.parseDouble(x.get(1).toString()))
-			);
-		
-		maxBudgetByStatus = new HashMap<Pair<PatronageStatus, String>, Double>();	
-		this.repository.maxBudgetByStatus(PatronageStatus.PROPOSED).stream()
-		.forEach(x->
-		maxBudgetByStatus.put(
-				Pair.of(PatronageStatus.PROPOSED, x.get(0).toString()),
-				Double.parseDouble(x.get(1).toString()))
-			);
-		this.repository.maxBudgetByStatus(PatronageStatus.ACCEPTED).stream()
-		.forEach(x->
-		maxBudgetByStatus.put(
-				Pair.of(PatronageStatus.ACCEPTED, x.get(0).toString()),
-				Double.parseDouble(x.get(1).toString()))
-			);
-		this.repository.maxBudgetByStatus(PatronageStatus.DENIED).stream()
-		.forEach(x->
-		maxBudgetByStatus.put(
-				Pair.of(PatronageStatus.DENIED, x.get(0).toString()),
-				Double.parseDouble(x.get(1).toString()))
-			);
+		//Average
+		for(final PatronageStatus ps: PatronageStatus.values()) {
+			final Collection<Tuple> average = this.repository.averageBudgetsByStatus(ps);
+			average.stream().forEach(x-> averageBudgetsByStatus.put(
+				Pair.of(ps, x.get(0).toString()),
+				Double.parseDouble(x.get(1).toString())));
+			}
 
+		//Desviation
+		for(final PatronageStatus ps: PatronageStatus.values()) {
+			final Collection<Tuple> desviation = this.repository.deviationBudgetsByStatus(ps);
+			desviation.stream().forEach(x-> deviationBudgetsByStatus.put(
+				Pair.of(ps, x.get(0).toString()),
+				Double.parseDouble(x.get(1).toString())));
+			}
+		
+		//Minimum
+		for(final PatronageStatus ps: PatronageStatus.values()) {
+			final Collection<Tuple> minimum = this.repository.minBudgetByStatus(ps);
+			minimum.stream().forEach(x-> minBudgetByStatus.put(
+				Pair.of(ps, x.get(0).toString()),
+				Double.parseDouble(x.get(1).toString())));
+			}
+		
+		//Maximum
+		for(final PatronageStatus ps: PatronageStatus.values()) {
+			final Collection<Tuple> maximum = this.repository.maxBudgetByStatus(ps);
+			maximum.stream().forEach(x-> maxBudgetByStatus.put(
+				Pair.of(ps, x.get(0).toString()),
+				Double.parseDouble(x.get(1).toString())));
+			}
+	
+		//Create Dashboard
 		result = new PatronDashboard();
 		result.setNumPatronagesByStatus(numPatronagesByStatus);
 		result.setAverageBudgetsByStatus(averageBudgetsByStatus);

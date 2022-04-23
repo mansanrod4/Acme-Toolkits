@@ -1,7 +1,6 @@
 package acme.forms;
 
 import java.io.Serializable;
-import java.util.EnumMap;
 import java.util.Map;
 
 import org.springframework.data.util.Pair;
@@ -16,7 +15,7 @@ public class PatronDashboard implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	EnumMap<PatronageStatus, Integer> numPatronagesByStatus;
+	Map<PatronageStatus, Integer> numPatronagesByStatus;
 	
 	Map<Pair<PatronageStatus, String>, Double> averageBudgetsByStatus;
 	
