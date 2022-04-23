@@ -56,43 +56,33 @@ public class PatronDashboardShowService implements AbstractShowService<Patron, P
 		final Map<Pair<PatronageStatus, String>, Double> minBudgetByStatus = new HashMap<>();
 		final Map<Pair<PatronageStatus, String>, Double> maxBudgetByStatus = new HashMap<>();
 
-		//Num patronage 
+		
 		for(final PatronageStatus ps: PatronageStatus.values()) {
+			//Num patronage 
 			final Integer numPatronages = this.repository.numPatronagesByStatus(ps);
 			numPatronagesByStatus.put(ps, numPatronages);
-		}
-		
-		//Average
-		for(final PatronageStatus ps: PatronageStatus.values()) {
+			//Average
 			final Collection<Tuple> average = this.repository.averageBudgetsByStatus(ps);
 			average.stream().forEach(x-> averageBudgetsByStatus.put(
 				Pair.of(ps, x.get(0).toString()),
 				Double.parseDouble(x.get(1).toString())));
-			}
-
-		//Desviation
-		for(final PatronageStatus ps: PatronageStatus.values()) {
+			//Desviation
 			final Collection<Tuple> desviation = this.repository.deviationBudgetsByStatus(ps);
 			desviation.stream().forEach(x-> deviationBudgetsByStatus.put(
 				Pair.of(ps, x.get(0).toString()),
 				Double.parseDouble(x.get(1).toString())));
-			}
-		
-		//Minimum
-		for(final PatronageStatus ps: PatronageStatus.values()) {
+			//Minimum
 			final Collection<Tuple> minimum = this.repository.minBudgetByStatus(ps);
 			minimum.stream().forEach(x-> minBudgetByStatus.put(
 				Pair.of(ps, x.get(0).toString()),
 				Double.parseDouble(x.get(1).toString())));
-			}
-		
-		//Maximum
-		for(final PatronageStatus ps: PatronageStatus.values()) {
+			//Maximum
 			final Collection<Tuple> maximum = this.repository.maxBudgetByStatus(ps);
 			maximum.stream().forEach(x-> maxBudgetByStatus.put(
 				Pair.of(ps, x.get(0).toString()),
 				Double.parseDouble(x.get(1).toString())));
-			}
+			
+		}
 	
 		//Create Dashboard
 		result = new PatronDashboard();
