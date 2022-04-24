@@ -7,13 +7,10 @@
 	<acme:input-textbox code="inventor.toolkit.form.label.title" path="title"/>
 	<acme:input-textarea code="inventor.toolkit.form.label.description" path="description"/>
 	<acme:input-textarea code="inventor.toolkit.form.label.assemblyNotes" path="assemmblyNotes"/>
+	<acme:input-textbox code="inventor.toolkit.form.label.inventor" path="inventor"/>
 	<acme:input-money code="inventor.toolkit.form.label.price" path="price"/>
 	<acme:input-url code="inventor.toolkit.form.label.info" path="info"/>
 </acme:form>
 
-<acme:list>
-	<acme:list-column code="inventor.toolkit.form.label.code" path="code" width="20%"/>
-	<acme:list-column code="inventor.toolkit.form.label.name" path="name" width="10%"/>
-	<acme:list-column code="inventor.toolkit.form.label.technology" path="technology" width="20%"/>
-	<acme:list-column code="inventor.toolkit.form.label.retailPrice" path="retailPrice" width="20%"/>
-</acme:list>
+<acme:button code="inventor.toolkit.form.label.content" action="/any/item-toolkit/list?masterId=${id}"/>
+

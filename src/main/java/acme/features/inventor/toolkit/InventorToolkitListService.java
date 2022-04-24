@@ -1,11 +1,15 @@
 package acme.features.inventor.toolkit;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.Toolkit;
+import acme.forms.MoneyExchange;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
@@ -44,13 +48,25 @@ public class InventorToolkitListService implements AbstractListService<Inventor,
 		assert request !=null;
 		assert entity !=null;
 		assert model !=null;
+		final List<Money> prices=new ArrayList<>();
+		final SystemConfiguration sc = this.repository.findSystemConfiguration();
+		for(final String curr:sc.getAcceptedCurrencies().trim().split(",")) {
+			final Money price=new Money();
+			price.setCurrency(curr);
+			price.setAmount(this.repository.getToolkitPricesByIdAndCurrency(entity.getId(), curr));
+			prices.add(price);
+		}
 		
-		final Double price=this.repository.getToolkitPriceById(entity.getId());
+		request.unbind(entity, model, "title", "description");
+		
+		final MoneyExchange mE = new MoneyExchange();
+		final List<Money> pricesFix=mE.convertMoney(prices, sc.getSystemCurrency());
+	
 		final Money money = new Money();
-		money.setAmount(price);
-		money.setCurrency("EUR");
-		
-		request.unbind(entity, model, "title", "description", "price");
+		final Double amount=pricesFix.stream().mapToDouble(x->x.getAmount()).sum();
+		money.setAmount(amount);
+		money.setCurrency(sc.getSystemCurrency());
+
 		
 		model.setAttribute("price", money);
 	}

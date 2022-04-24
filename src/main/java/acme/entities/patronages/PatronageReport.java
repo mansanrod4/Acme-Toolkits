@@ -2,6 +2,7 @@ package acme.entities.patronages;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -15,26 +16,25 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.URL;
 
 import acme.framework.entities.AbstractEntity;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
-@EqualsAndHashCode(callSuper=true)
-@NoArgsConstructor
+@Getter
+@Setter
+
 public class PatronageReport extends AbstractEntity{
 
 	// Serialisation identifier -----------------------------------------------
 
-	private static final long serialVersionUID = 7607756024273072128L;
+	private static final long serialVersionUID = 1L;
 	
 	// Attributes -------------------------------------------------------------
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
 	@Past
-	protected Date creationDate;
+	protected Date moment;
 	
 	@NotBlank
 	@Size(max=255)
@@ -42,24 +42,28 @@ public class PatronageReport extends AbstractEntity{
 	
 	@URL
 	protected String info;
-//	
-//	@NotNull
-//	@Digits( integer = 4, fraction = 0)
-//	protected Integer serialNumber;
-//	
-//	
-	//pattern “〈patronage-code〉:〈serial-number〉
+	
 	@NotBlank
+//	@Pattern(regexp = "^[A-Z]{3}-[0-9]{3}(-[A-Z])?:[0-9]{4}$")
+	@Column(unique = true)
 	protected String sequenceNumber;
+	
+//	@NotNull
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+//	protected Integer serialNumber;
 
+	
 	// Derived attributes -----------------------------------------------------
 	
 //	//pattern “〈patronage-code〉:〈serial-number〉
 //	@NotBlank
-//	protected String sequenceNumber(){
-//		return "〈"+this.patronage.getCode() +"〉:〈"+this.serialNumber.toString()+"〉";
+//	@Transient
+//	public String getSequenceNumber(){
+//		final String formatString = String.format("%0"+(5-this.serialNumber.toString().length())+"s",this.serialNumber.toString());
+//		final DecimalFormat decimalFormat = new DecimalFormat("0000");
+//		return this.patronage.getCode() +":"+decimalFormat.format(this.serialNumber);
 //	}
-//	
+	
 	// Relationships ----------------------------------------------------------
 	
 	@NotNull

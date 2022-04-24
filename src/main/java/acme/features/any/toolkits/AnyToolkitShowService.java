@@ -1,12 +1,14 @@
 package acme.features.any.toolkits;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.toolkits.Item;
+import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.Toolkit;
+import acme.forms.MoneyExchange;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
@@ -45,17 +47,29 @@ public class AnyToolkitShowService implements AbstractShowService<Any, Toolkit>{
 		assert request !=null;
 		assert entity !=null;
 		assert model !=null;
-		final Collection<Item> comps = this.repository.getComponentsFromToolkit(entity.getId());
-		for (final Item cmp:comps){
-			request.unbind(cmp, model, "code","name","technology","retailPrice");
+		
+		request.unbind(entity, model, "title", "description", "assemblyNotes");
+		
+		final List<Money> prices=new ArrayList<>();
+		final SystemConfiguration sc = this.repository.findSystemConfiguration();
+		for(final String curr:sc.getAcceptedCurrencies().trim().split(",")) {
+			final Money price=new Money();
+			price.setCurrency(curr);
+			price.setAmount(this.repository.getToolkitPricesByIdAndCurrency(entity.getId(), curr));
+			prices.add(price);
 		}
 		
-		request.unbind(entity, model, "title", "description", "assemblyNotes", "price", "tools", "components");
-		final Double price=this.repository.getToolkitPriceById(entity.getId());
+		final MoneyExchange mE = new MoneyExchange();
+		final List<Money> pricesFix=mE.convertMoney(prices, sc.getSystemCurrency());
+	
 		final Money money = new Money();
-		money.setAmount(price);
-		money.setCurrency("EUR");
+		final Double amount=pricesFix.stream().mapToDouble(x->x.getAmount()).sum();
+		money.setAmount(amount);
+		money.setCurrency(sc.getSystemCurrency());
+
+		
 		model.setAttribute("price", money);
+		model.setAttribute("inventor", entity.getInventor().getIdentity().getFullName());
 		
 	}
 

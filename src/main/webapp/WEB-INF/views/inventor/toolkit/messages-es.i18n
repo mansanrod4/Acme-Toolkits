@@ -5,12 +5,4 @@ inventor.toolkit.form.label.description = Descripción:
 inventor.toolkit.form.label.assemblyNotes = Notas de Montaje:
 inventor.toolkit.form.label.price = Precio
 inventor.toolkit.form.label.info = Info:
-
-inventor.toolkit.list.label.title = Título
-inventor.toolkit.list.label.description = Descripción
-inventor.toolkit.list.label.price = Precio
-
-inventor.toolkit.form.label.code = Código
-inventor.toolkit.form.label.name = Nombre
-inventor.toolkit.form.label.technology = Tecnología
-inventor.toolkit.form.label.retailPrice = Precio
+inventor.toolkit.form.label.inventor = Inventor
