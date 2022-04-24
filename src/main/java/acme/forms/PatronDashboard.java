@@ -1,7 +1,11 @@
 package acme.forms;
 
 import java.io.Serializable;
+import java.util.Map;
 
+import org.springframework.data.util.Pair;
+
+import acme.entities.patronages.PatronageStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,23 +15,13 @@ public class PatronDashboard implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	Integer numPatronageProposed;
-	Integer numPatronageAccepted;
-	Integer numPatronageDenied;
+	Map<PatronageStatus, Integer> numPatronagesByStatus;
 	
-//	Money   averageBudgetProposed;
-//	Money   desviationBudgetProposed;
-//	Money   minimunBudgetProposed;
-//	Money   maximunBudgetProposed;
-//	
-//	Money   averageBudgetAccepted;
-//	Money   desviationBudgetAccepted;
-//	Money   minimunBudgetAccepted;
-//	Money   maximunBudgetAccepted;
-//	
-//	Money   averageBudgetDenied;
-//	Money   desviationBudgetDenied;
-//	Money   minimunBudgetDenied;
-//	Money   maximunBudgetDenied;
-
+	Map<Pair<PatronageStatus, String>, Double> averageBudgetsByStatus;
+	
+	Map<Pair<PatronageStatus, String>, Double> deviationBudgetsByStatus;
+	
+	Map<Pair<PatronageStatus, String>, Double> minBudgetByStatus;
+	
+	Map<Pair<PatronageStatus, String>, Double> maxBudgetByStatus;
 }
