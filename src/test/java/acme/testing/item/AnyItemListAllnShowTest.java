@@ -12,7 +12,7 @@ public class AnyItemListAllnShowTest extends TestItem {
 	@Order(10)
 	public void positiveComponentTest(final int recordIndex, final String itemType, final String name, final String code, final String technology, final String description, final String retailPrice, final String inventor, final String info) {
 		super.navigateHome();
-		super.clickOnMenu("Anonymous", "List Components");
+		super.clickOnMenu("Components and tools", "Components");
 
 		this.checkListAllItemsNShow(recordIndex, code, name, technology, retailPrice, description, info);
 	}
@@ -23,7 +23,7 @@ public class AnyItemListAllnShowTest extends TestItem {
 	public void positiveToolTest(final int recordIndex, final String itemType, final String name, final String code, final String technology, final String description, final String retailPrice, final String inventor, final String info) {
 		super.navigateHome();
 
-		super.clickOnMenu("Anonymous", "List Tools");
+		super.clickOnMenu("Components and tools", "Tools");
 
 		this.checkListAllItemsNShow(recordIndex, code, name, technology, retailPrice, description, info);
 	}

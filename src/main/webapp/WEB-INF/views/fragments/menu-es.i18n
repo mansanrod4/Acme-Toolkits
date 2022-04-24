@@ -17,7 +17,6 @@ master.menu.sign-out = Salir
 
 # master.menu.anonymous #######################################################
 
-master.menu.anonymous.chirp.list = Lista mensajes
 master.menu.anonymous = Anónimo
 master.menu.anonymous.diedialop-favourite-link = 20060486R: Díaz López, Diego Jesús
 master.menu.anonymous.manferrod6-favourite-link= 77866123Z: Fernández Rodríguez, Manuel
@@ -36,15 +35,14 @@ master.menu.administrator.shut-down = Parar el sistema
 
 # master.menu.patron ########################################################
 
-master.menu.patron = Patrón
-master.menu.patron.patronage.list = Patronazgos
+master.menu.patron = Patrocinador
+master.menu.patron.patronage.list = Mis Patrocinios
 master.menu.patron.dashboard = Panel de indicadores
 
 # master.menu.inventor ##########################################################
 
 master.menu.inventor = Inventor
-master.menu.inventor.patronage.list = Patrocinios
-
+master.menu.inventor.patronage.list = Mis Patrocinios
 master.menu.inventor.component.list = Mis Componentes
 master.menu.inventor.tool.list = Mis herramientas
 
@@ -52,7 +50,6 @@ master.menu.inventor.tool.list = Mis herramientas
 
 master.menu.user-account.component.list = Lista de Componentes
 master.menu.user-account.tool.list = Lista de Herramientas
-master.menu.user-account.chirp.list = Lista mensajes
 master.menu.user-account = Cuenta
 master.menu.user-account.list = Cuentas de usuario
 master.menu.user-account.general-data = Datos generales
@@ -60,6 +57,23 @@ master.menu.user-account.patron = Datos de mecenas
 master.menu.user-account.become-patron = Hazte mecenas
 master.menu.user-account.inventor = Datos de inventor
 master.menu.user-account.become-inventor = Hazte inventor
-master.menu.user-account.announcement.list = Anuncios
-master.menu.user-account.system-configuration.list = Información sobre monedas
+
+# master.menu.announcements ##########################################
+
+master.menu.announcements = Mensajes
+master.menu.announcements.announcement.list = Anuncios
+master.menu.announcements.chirp.list = Mensajito
+
+# master.menu.sc ##########################################
+
+master.menu.sc = Configuración del sistema
+master.menu.sc.system-configuration.list = Información sobre monedas
+
+# master.menu.components-tools ##########################################
+
+master.menu.components-tools = Componentes y herramientas
+master.menu.components-tools.component.list = Componentes
+master.menu.components-tools.tool.list = Herramientas
+
+
 
