@@ -21,15 +21,8 @@
 	<acme:menu-left>
 	
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
-			
-	
-			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.user-account.component.list" action="/any/item/list-component"/>
-			<acme:menu-suboption code="master.menu.user-account.tool.list" action="/any/item/list-tool"/>
-			<acme:menu-separator/>
-			
+				
 			<acme:menu-suboption code="master.menu.user-account.list" action="/any/user-account/list" />
-      
       		<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.anonymous.manferrod6-favourite-link" action="http://www.gol.gg"/>
 			<acme:menu-suboption code="master.menu.anonymous.diedialop-favourite-link" action="https://www.sanfransentinel.com/youtube998.html"/>
@@ -54,17 +47,18 @@
 		<acme:menu-option code="master.menu.patron" access="hasRole('Patron')">
 			<acme:menu-suboption code="master.menu.patron.patronage.list" action="/patron/patronage/list"/>
 			<acme:menu-suboption code="master.menu.patron.dashboard" action="/patron/patron-dashboard/show"/>
+			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.user-account.list"	action="/any/user-account/list" />
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.inventor"	access="hasRole('Inventor')">
-			<acme:menu-suboption code="master.menu.user-account.list"				action="/any/user-account/list" />
-			<acme:menu-suboption code="master.menu.inventor.patronage.list" action="/inventor/patronage/list"/>
-
-			<acme:menu-separator/>
+			
 			<acme:menu-suboption code="master.menu.inventor.component.list" action="/inventor/item/list-component"/>
 			<acme:menu-suboption code="master.menu.inventor.tool.list" action="/inventor/item/list-tool"/>
-
+			<acme:menu-suboption code="master.menu.inventor.patronage.list" action="/inventor/patronage/list"/>
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.user-account.list" action="/any/user-account/list" />
+			
 		</acme:menu-option>
 	</acme:menu-left>
 
