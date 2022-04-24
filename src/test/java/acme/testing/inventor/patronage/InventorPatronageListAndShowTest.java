@@ -18,7 +18,7 @@ public class InventorPatronageListAndShowTest extends TestHarness {
 		super.signIn("inventor1", "inventor1");
 		super.navigateHome();
 
-		super.clickOnMenu("Inventor", "Patronages");
+		super.clickOnMenu("Inventor", "My Patronages");
 		super.checkListingExists();
 		super.sortListing(0, "asc");
 

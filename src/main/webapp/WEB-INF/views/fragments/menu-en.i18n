@@ -18,8 +18,6 @@ master.menu.sign-out = Sign out
 # master.menu.anonymous #######################################################
 
 master.menu.anonymous = Anonymous
-master.menu.anonymous.list-chirp = Chirp
-
 master.menu.anonymous.diedialop-favourite-link =  20060486R: Díaz López, Diego Jesús
 master.menu.anonymous.manferrod6-favourite-link= 77866123Z: Fernández Rodríguez, Manuel
 master.menu.anonymous.mansanrod4-favourite-link =  49236025V: Sánchez Rodríguez, Manuel
@@ -38,16 +36,15 @@ master.menu.administrator.shut-down = Shut down
 # master.menu.provider ########################################################
 
 master.menu.patron = Patron
-master.menu.patron.patronage.list = Patronages
+master.menu.patron.patronage.list = My Patronages
 master.menu.patron.dashboard = Dashboard
 
 # master.menu.inventor #########################################################
 
 master.menu.inventor = Inventor
-master.menu.inventor.patronage.list = Patronages
+master.menu.inventor.patronage.list = My Patronages
 master.menu.inventor.component.list = My Components
 master.menu.inventor.tool.list = My Tools
-
 
 # master.menu.user-account ####################################################
 
@@ -61,9 +58,9 @@ master.menu.user-account.become-inventor = Become a inventor
 
 # master.menu.announcements ##########################################
 
-master.menu.announcements = Announcements
-master.menu.announcements.announcement.list = List announcements
-master.menu.announcements.chirp.list = List Chirps
+master.menu.announcements = Posts
+master.menu.announcements.announcement.list = Announcements
+master.menu.announcements.chirp.list = Chirps
 
 # master.menu.sc ##########################################
 
@@ -73,7 +70,7 @@ master.menu.sc.system-configuration.list = Currencies information
 # master.menu.components-tools ##########################################
 
 master.menu.components-tools = Components and tools
-master.menu.components-tools.component.list = List Tools
-master.menu.components-tools.tool.list = List Components
+master.menu.components-tools.component.list = Components
+master.menu.components-tools.tool.list = Tools
 
 

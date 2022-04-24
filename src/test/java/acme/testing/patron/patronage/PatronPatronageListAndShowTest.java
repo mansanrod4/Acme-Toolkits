@@ -18,7 +18,7 @@ public class PatronPatronageListAndShowTest extends TestHarness {
 		super.signIn("patron1", "patron1");
 		super.navigateHome();
 
-		super.clickOnMenu("Patron", "Patronages");
+		super.clickOnMenu("Patron", "My Patronages");
 		super.checkListingExists();
 		super.sortListing(0, "asc");
 

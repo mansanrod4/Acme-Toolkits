@@ -21,7 +21,7 @@ public class InventorPatronageReportListTest extends TestHarness {
 		super.navigateHome();
 		
 		//patronages
-		super.clickOnMenu("Inventor", "Patronages");
+		super.clickOnMenu("Inventor", "My Patronages");
 		this.clickOnListingRecord(reportIndex); 
 		super.clickOnButton("Reports");
 

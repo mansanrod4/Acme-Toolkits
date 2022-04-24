@@ -17,7 +17,7 @@ public class AuthenticatedSystemConfigurationShowTest extends TestHarness {
 		super.signIn("patron1", "patron1");
 		
 		super.navigateHome();
-		super.clickOnMenu("Account", "Currencies information");
+		super.clickOnMenu("System Configuration", "Currencies information");
 
 		super.checkFormExists();
 		super.checkInputBoxHasValue("systemCurrency", systemCurrency);

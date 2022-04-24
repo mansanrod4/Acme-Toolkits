@@ -22,8 +22,7 @@
 	
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			
-			<acme:menu-suboption code="master.menu.user-account.chirp.list" action="/any/chirp/list"/>
-			
+	
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.user-account.component.list" action="/any/item/list-component"/>
 			<acme:menu-suboption code="master.menu.user-account.tool.list" action="/any/item/list-tool"/>
@@ -70,16 +69,12 @@
 	</acme:menu-left>
 
 	<acme:menu-right>
-		<acme:menu-option code="master.menu.sign-up" action="/anonymous/user-account/create" access="isAnonymous()" />
-		<acme:menu-option code="master.menu.sign-in" action="/master/sign-in"	access="isAnonymous()" />
-    
-		
-		<acme:menu-option code="master.menu.announcements" access="isAuthenticated()">
+		<acme:menu-option code="master.menu.announcements">
 		<acme:menu-suboption code="master.menu.announcements.chirp.list" action="/any/chirp/list"/>
-      	<acme:menu-suboption code="master.menu.announcements.announcement.list" action="/authenticated/announcement/list"/>
+      	<acme:menu-suboption code="master.menu.announcements.announcement.list" action="/authenticated/announcement/list" access="isAuthenticated()"/>
      	</acme:menu-option>
      	
-     	<acme:menu-option code="master.menu.components-tools" access="isAuthenticated()">
+     	<acme:menu-option code="master.menu.components-tools">
      	<acme:menu-suboption code="master.menu.components-tools.component.list" action="/any/item/list-component"/>
 		<acme:menu-suboption code="master.menu.components-tools.tool.list" action="/any/item/list-tool"/>
 		</acme:menu-option>
@@ -95,6 +90,9 @@
 		<%-- <acme:menu-suboption code="master.menu.user-account.become-inventor" action="/authenticated/inventor/create" access="!hasRole('Inventor')"/> --%>
 		<%-- <acme:menu-suboption code="master.menu.user-account.inventor" action="/authenticated/inventor/update" access="hasRole('Inventor')"/> --%>
 		</acme:menu-option>
+     	
+     	<acme:menu-option code="master.menu.sign-up" action="/anonymous/user-account/create" access="isAnonymous()" />
+		<acme:menu-option code="master.menu.sign-in" action="/master/sign-in"	access="isAnonymous()" />
      	
      	
 		<acme:menu-option code="master.menu.sign-out"

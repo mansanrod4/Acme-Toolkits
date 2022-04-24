@@ -23,7 +23,7 @@ public class PatronPatronageReportListTest extends TestHarness {
 		super.navigateHome();
 		
 		//patronages
-		super.clickOnMenu("Patron", "Patronages");
+		super.clickOnMenu("Patron", "My Patronages");
 		this.clickOnListingRecord(patronageIndex); 
 		super.clickOnButton("Reports");
 
