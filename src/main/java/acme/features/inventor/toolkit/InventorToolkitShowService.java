@@ -58,7 +58,7 @@ public class InventorToolkitShowService implements AbstractShowService<Inventor,
 			prices.add(price);
 		}
 		
-		request.unbind(entity, model, "title", "description");
+		request.unbind(entity, model, "title", "description", "assemblyNotes", "info");
 		
 		final MoneyExchange mE = new MoneyExchange();
 		final List<Money> pricesFix=mE.convertMoney(prices, sc.getSystemCurrency());
@@ -69,6 +69,7 @@ public class InventorToolkitShowService implements AbstractShowService<Inventor,
 		money.setCurrency(sc.getSystemCurrency());
 
 		model.setAttribute("price", money);
+		model.setAttribute("inventor", entity.getInventor().getIdentity().getFullName());
 	}
 
 }

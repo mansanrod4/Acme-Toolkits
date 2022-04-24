@@ -44,7 +44,7 @@ master.menu.patron.dashboard = Panel de indicadores
 # master.menu.inventor ##########################################################
 
 master.menu.inventor = Inventor
-master.menu.inventor.toolkit.list = Listar mis Toolkits
+master.menu.inventor.toolkit.list = Mis Toolkits
 master.menu.inventor.patronage.list = Mis Patrocinios
 master.menu.inventor.component.list = Mis Componentes
 master.menu.inventor.tool.list = Mis herramientas
