@@ -3,7 +3,10 @@ package acme.forms;
 import java.io.Serializable;
 import java.util.Map;
 
-import acme.framework.datatypes.Money;
+import org.springframework.data.util.Pair;
+
+import acme.datatypes.StatData;
+import acme.entities.patronages.PatronageStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,29 +24,17 @@ public class AdminDashboard implements Serializable{
 	Integer numPatronageAccepted;
 	Integer numPatronageDenied;
 	
-	Map<String, Money> avgRetailerCompPrice;
-	Map<String, Money> deviationRetailerCompPrice;
-	Map<String, Money> minRetailerCompPrice;
-	Map<String, Money> maxRetailerCompPrice;
+	//StatData=[Sum, Average, Desviation, Minimum, Maximum]
 	
-	Map<String, Money> avgRetailerToolPrice;
-	Map<String, Money> deviationRetailerToolPrice;
-	Map<String, Money> minRetailerToolPrice;
-	Map<String, Money> maxRetailerToolPrice;
+	Map<String,StatData> componentsDataByCurrency;
 	
-	Money avgPatronagRequestedBudget;
-	Money deviationPatronagRequestedBudget;
-	Money minPatronagRequestedBudget;
-	Money maxPatronagRequestedBudget;
+	Map<Pair<String,String>,StatData> componentsDataByTechnology;
 	
-	Money avgPatronageAcceptedBudget;
-	Money deviationPatronageAcceptedBudget;
-	Money minPatronageAcceptedBudget;
-	Money maxPatronageAcceptedBudget;
+	Map<String,StatData> toolsDataByCurrency;
 	
-	Money avgPatronageDenniedBudget;
-	Money deviationPatronageDenniedBudget;
-	Money minPatronageDenniedBudget;
-	Money maxPatronageDenniedBudget;
+	Map<Pair<String,String>,StatData> toolsDataByTechnology;
+	
+	Map<Pair<PatronageStatus,String>,StatData> patronageBudgetData;
+
 	
 }
