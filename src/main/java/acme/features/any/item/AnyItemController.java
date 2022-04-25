@@ -24,6 +24,7 @@ public class AnyItemController extends AbstractController<Any, Item>{
 	protected AnyToolListAllService anyToolListAllService;
 	
 	
+	
 	@PostConstruct
 	protected void initialize() {
 		super.addCommand("list-component","list", this.anyComponentListAllService);

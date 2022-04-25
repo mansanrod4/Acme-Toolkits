@@ -18,6 +18,8 @@ master.menu.sign-out = Sign out
 # master.menu.anonymous #######################################################
 
 master.menu.anonymous = Anonymous
+master.menu.anonymous.list-toolkit = Toolkits
+
 master.menu.anonymous.diedialop-favourite-link =  20060486R: Díaz López, Diego Jesús
 master.menu.anonymous.manferrod6-favourite-link= 77866123Z: Fernández Rodríguez, Manuel
 master.menu.anonymous.mansanrod4-favourite-link =  49236025V: Sánchez Rodríguez, Manuel
@@ -42,12 +44,15 @@ master.menu.patron.dashboard = Dashboard
 # master.menu.inventor #########################################################
 
 master.menu.inventor = Inventor
+master.menu.inventor.toolkit.list = My Toolkits
 master.menu.inventor.patronage.list = My Patronages
 master.menu.inventor.component.list = My Components
 master.menu.inventor.tool.list = My Tools
 
+
 # master.menu.user-account ####################################################
 
+master.menu.user-account.toolkit.list = Toolkits
 master.menu.user-account = Account
 master.menu.user-account.list = User Accounts
 master.menu.user-account.general-data = General data
