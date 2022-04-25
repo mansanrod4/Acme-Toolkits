@@ -71,6 +71,7 @@ master.menu.announcements.chirp.list = Chirps
 
 master.menu.sc = System Configuration
 master.menu.sc.system-configuration.list = Currencies information
+master.menu.administrator.sc.system-configuration.list = System Details
 
 # master.menu.components-tools ##########################################
 

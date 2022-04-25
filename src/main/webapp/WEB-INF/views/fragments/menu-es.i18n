@@ -73,6 +73,7 @@ master.menu.announcements.chirp.list = Mensajito
 
 master.menu.sc = Configuración del sistema
 master.menu.sc.system-configuration.list = Información sobre monedas
+master.menu.administrator.sc.system-configuration.list = Información del Sistema
 
 # master.menu.components-tools ##########################################
 
