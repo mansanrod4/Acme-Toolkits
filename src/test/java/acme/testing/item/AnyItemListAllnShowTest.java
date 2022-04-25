@@ -14,7 +14,6 @@ public class AnyItemListAllnShowTest extends TestItem {
 		super.navigateHome();
 		super.clickOnMenu("Components and tools", "Components");
 
-		this.checkListAllItemsNShow(recordIndex, code, name, technology, retailPrice, description, info);
 	}
 
 	@ParameterizedTest
