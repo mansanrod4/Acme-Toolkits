@@ -1,3 +1,4 @@
+
 package acme.features.any.userAccount;
 
 import javax.annotation.PostConstruct;
@@ -10,19 +11,19 @@ import acme.framework.entities.UserAccount;
 import acme.framework.roles.Any;
 
 @Controller
-public class AnyUserAccountController extends AbstractController<Any, UserAccount>{
-
+public class AnyUserAccountController extends AbstractController<Any, UserAccount> {
 
 	@Autowired
-	protected AnyUserAccountListService listService;
-	
+	protected AnyUserAccountListService	listService;
+
 	@Autowired
-	protected AnyUserAccountShowService showService;
-	
+	protected AnyUserAccountShowService	showService;
+
+
 	@PostConstruct
 	protected void initialise() {
 		super.addCommand("list", this.listService);
 		super.addCommand("show", this.showService);
 	}
-	
+
 }

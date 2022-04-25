@@ -30,7 +30,6 @@ import lombok.Setter;
 @Entity
 public class Patronage extends AbstractEntity {
 
-
 	// Serialisation identifier -----------------------------------------------
 
 	protected static final long	serialVersionUID	= 1L;
@@ -50,40 +49,37 @@ public class Patronage extends AbstractEntity {
 	protected String			legalStuff;
 
 	@NotNull
-	protected Money			budget;
+	protected Money				budget;
 
-	
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	protected Date			creationDate;
-	
+	protected Date				creationDate;
+
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "start_date")
-	protected Date			startDate;
-	
+	protected Date				startDate;
+
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	protected Date			endDate;
-			
+	protected Date				endDate;
+
 	@URL
 	@Column(name = "information")
 	protected String			info;
 
 	// Derived attributes -----------------------------------------------------
 
-
 	// Relationships ----------------------------------------------------------
-	
-	
+
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	protected Patron patron;
-	
+	protected Patron			patron;
+
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	protected Inventor inventor;
-	
+	protected Inventor			inventor;
+
 }

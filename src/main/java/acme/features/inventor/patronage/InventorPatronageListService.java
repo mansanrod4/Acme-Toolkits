@@ -1,3 +1,4 @@
+
 package acme.features.inventor.patronage;
 
 import java.util.Collection;
@@ -12,28 +13,29 @@ import acme.framework.services.AbstractListService;
 import acme.roles.Inventor;
 
 @Service
-public class InventorPatronageListService implements AbstractListService<Inventor, Patronage>{
+public class InventorPatronageListService implements AbstractListService<Inventor, Patronage> {
 
 	@Autowired
 	protected InventorPatronageRepository repository;
-	
+
+
 	@Override
 	public boolean authorise(final Request<Patronage> request) {
 		assert request != null;
-		
+
 		return true;
 	}
 
 	@Override
 	public Collection<Patronage> findMany(final Request<Patronage> request) {
 		assert request != null;
-		
+
 		Collection<Patronage> result;
 		int inventorId;
-		
+
 		inventorId = request.getPrincipal().getActiveRoleId();
 		result = this.repository.findManyPatronagesByInventorId(inventorId);
-		
+
 		return result;
 	}
 
@@ -42,7 +44,7 @@ public class InventorPatronageListService implements AbstractListService<Invento
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		
+
 		request.unbind(entity, model, "code", "status");
 		model.setAttribute("patron", entity.getPatron().getUserAccount().getUsername());
 

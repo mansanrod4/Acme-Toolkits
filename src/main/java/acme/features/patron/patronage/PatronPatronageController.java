@@ -14,10 +14,10 @@ import acme.roles.Patron;
 public class PatronPatronageController extends AbstractController<Patron, Patronage> {
 
 	@Autowired
-	protected PatronPatronageListService listService;
-	
+	protected PatronPatronageListService	listService;
+
 	@Autowired
-	protected PatronPatronageShowService showService;
+	protected PatronPatronageShowService	showService;
 
 
 	@PostConstruct

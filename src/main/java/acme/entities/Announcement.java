@@ -1,3 +1,4 @@
+
 package acme.entities;
 
 import java.util.Date;
@@ -16,40 +17,35 @@ import acme.framework.entities.AbstractEntity;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Entity
 @Getter
 @Setter
-public class Announcement extends AbstractEntity{
-	
-		// Serialisation identifier 
-		protected static final long serialVersionUID = 1L;
+public class Announcement extends AbstractEntity {
 
-		// Attributes
-		@NotBlank
-		@Length(max = 100)
-		protected String title;
+	// Serialisation identifier 
+	protected static final long	serialVersionUID	= 1L;
 
-		@Temporal(TemporalType.TIMESTAMP)
-		@Past
-		@NotNull
-		protected Date moment;
+	// Attributes
+	@NotBlank
+	@Length(max = 100)
+	protected String			title;
 
-		@NotBlank
-		@Length(max = 255)
-		protected String body;
-		
-		protected boolean critical;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Past
+	@NotNull
+	protected Date				moment;
 
-		@URL
-		protected String link;
+	@NotBlank
+	@Length(max = 255)
+	protected String			body;
 
-		// Derived attributes -----------------------------------------------------
+	protected boolean			critical;
 
-		// Relationships ----------------------------------------------------------
+	@URL
+	protected String			link;
 
-	
+	// Derived attributes -----------------------------------------------------
 
-
+	// Relationships ----------------------------------------------------------
 
 }

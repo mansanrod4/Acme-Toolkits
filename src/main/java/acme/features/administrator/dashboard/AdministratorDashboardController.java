@@ -1,3 +1,4 @@
+
 package acme.features.administrator.dashboard;
 
 import javax.annotation.PostConstruct;
@@ -10,8 +11,7 @@ import acme.framework.controllers.AbstractController;
 import acme.framework.roles.Administrator;
 
 @Controller
-public class AdministratorDashboardController extends AbstractController<Administrator, AdminDashboard>{
-	
+public class AdministratorDashboardController extends AbstractController<Administrator, AdminDashboard> {
 
 	// Internal state ---------------------------------------------------------
 
