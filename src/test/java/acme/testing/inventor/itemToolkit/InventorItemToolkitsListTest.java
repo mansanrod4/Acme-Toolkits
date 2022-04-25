@@ -6,7 +6,7 @@ import org.springframework.core.annotation.Order;
 
 import acme.testing.TestHarness;
 
-public class InventorListItemToolkits extends TestHarness{
+public class InventorItemToolkitsListTest extends TestHarness{
 	
 	@ParameterizedTest
 	@CsvFileSource(resources = "/inventor/itemToolkit/list-item-toolkit.csv", encoding = "utf-8", numLinesToSkip = 1)
