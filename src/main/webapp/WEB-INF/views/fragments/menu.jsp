@@ -21,7 +21,9 @@
 	<acme:menu-left>
 	
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
-				
+      		<acme:menu-suboption code="master.menu.user-account.toolkit.list" action="/any/toolkit/list"/>
+			<acme:menu-suboption code="master.menu.user-account.list-inventor" action="/any/user-account/list-inventor"/>
+			<acme:menu-suboption code="master.menu.user-account.list-patron" action="/any/user-account/list-patron"/>
 			<acme:menu-suboption code="master.menu.user-account.list" action="/any/user-account/list" />
       		<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.anonymous.manferrod6-favourite-link" action="http://www.gol.gg"/>
@@ -36,6 +38,7 @@
 
 			<acme:menu-suboption code="master.menu.administrator.user-accounts"	action="/administrator/user-account/list" />
 			<acme:menu-suboption code="master.menu.user-account.list"	action="/any/user-account/list" />
+			<acme:menu-suboption code="master.menu.administrator.dashboard" action="/administrator/admin-dashboard/show"/>
 			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.administrator.populate-initial" action="/administrator/populate-initial" />
 			<acme:menu-suboption code="master.menu.administrator.populate-sample" action="/administrator/populate-sample" />
@@ -51,14 +54,14 @@
 			<acme:menu-suboption code="master.menu.user-account.list"	action="/any/user-account/list" />
 		</acme:menu-option>
 
-		<acme:menu-option code="master.menu.inventor"	access="hasRole('Inventor')">
-			
+
+		<acme:menu-option code="master.menu.inventor" access="hasRole('Inventor')">
+			<acme:menu-suboption code="master.menu.inventor.toolkit.list" action="/inventor/toolkit/list"/>
 			<acme:menu-suboption code="master.menu.inventor.component.list" action="/inventor/item/list-component"/>
 			<acme:menu-suboption code="master.menu.inventor.tool.list" action="/inventor/item/list-tool"/>
 			<acme:menu-suboption code="master.menu.inventor.patronage.list" action="/inventor/patronage/list"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.user-account.list" action="/any/user-account/list" />
-			
 		</acme:menu-option>
 	</acme:menu-left>
 
@@ -75,6 +78,7 @@
      	
      	<acme:menu-option code="master.menu.sc" access="isAuthenticated()">
 		<acme:menu-suboption code="master.menu.sc.system-configuration.list" action="/authenticated/system-configuration/show"/>
+		<acme:menu-suboption code="master.menu.administrator.sc.system-configuration.list"  access="hasRole('Administrator')" action="/administrator/system-configuration/show"/>
 		</acme:menu-option>
      	
      	<acme:menu-option code="master.menu.user-account" access="isAuthenticated()">

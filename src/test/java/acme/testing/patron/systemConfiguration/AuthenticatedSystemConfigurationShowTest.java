@@ -10,7 +10,7 @@ import acme.testing.TestHarness;
 public class AuthenticatedSystemConfigurationShowTest extends TestHarness {
 
 	@ParameterizedTest
-	@CsvFileSource(resources = "/patron/systemConfiguration/show-system-configuration.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/authenticated/systemConfiguration/show-system-configuration.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void positiveSystemConfigurationTest(final int recordIndex, final String systemCurrency, final String acceptedCurrencies) {
 		
