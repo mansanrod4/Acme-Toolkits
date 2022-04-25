@@ -13,7 +13,7 @@ public class AnyItemListAllnShowTest extends TestItem {
 	public void positiveComponentTest(final int recordIndex, final String itemType, final String name, final String code, final String technology, final String description, final String retailPrice, final String inventor, final String info) {
 		super.navigateHome();
 		super.clickOnMenu("Components and tools", "Components");
-
+		super.checkListAllItemsNShow(recordIndex, code, name, technology, retailPrice, description, info);
 	}
 
 	@ParameterizedTest
@@ -24,7 +24,7 @@ public class AnyItemListAllnShowTest extends TestItem {
 
 		super.clickOnMenu("Components and tools", "Tools");
 
-		this.checkListAllItemsNShow(recordIndex, code, name, technology, retailPrice, description, info);
+		super.checkListAllItemsNShow(recordIndex, code, name, technology, retailPrice, description, info);
 	}
 
 
