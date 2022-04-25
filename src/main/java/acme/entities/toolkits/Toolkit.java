@@ -1,3 +1,4 @@
+
 package acme.entities.toolkits;
 
 import javax.persistence.Column;
@@ -18,45 +19,40 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Toolkit extends AbstractEntity{
-	
+public class Toolkit extends AbstractEntity {
+
 	// Serialisation identifier -----------------------------------------------
 
-	protected static final long serialVersionUID = 1L;
-	
+	protected static final long	serialVersionUID	= 1L;
+
 	// Attributes -------------------------------------------------------------
-	
-	@Column(unique=true)
+
+	@Column(unique = true)
 	@NotNull
-	@Pattern(regexp="^[A-Z]{3}-[0-9]{3}(-[A-Z])?$")	
-	protected String 		code;
-	
-	
+	@Pattern(regexp = "^[A-Z]{3}-[0-9]{3}(-[A-Z])?$")
+	protected String			code;
+
 	@NotBlank
-	@Length(min=1,max=100)
-	protected String 		title;
-	
+	@Length(min = 1, max = 100)
+	protected String			title;
+
 	@NotBlank
-	@Length(min=1,max=255)
-	protected String 		description;
-	
+	@Length(min = 1, max = 255)
+	protected String			description;
+
 	@NotBlank
-	@Length(min=1,max=255)
-	protected String 		assemblyNotes;
-	
-	@ManyToOne(optional=false)
+	@Length(min = 1, max = 255)
+	protected String			assemblyNotes;
+
+	@ManyToOne(optional = false)
 	@NotNull
-	protected Inventor inventor;
-	
-	@URL	
-	protected String		info;
+	protected Inventor			inventor;
+
+	@URL
+	protected String			info;
 
 	// Derived attributes -----------------------------------------------------
-	
 
 	// Relationships ----------------------------------------------------------
 
-	
-	
-	
 }

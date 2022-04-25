@@ -1,3 +1,4 @@
+
 package acme.features.administrator.systemConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,11 @@ import acme.framework.roles.Administrator;
 import acme.framework.services.AbstractShowService;
 
 @Service
-public class AdministratorSystemConfigurationShowService implements AbstractShowService<Administrator, SystemConfiguration>{
-	
+public class AdministratorSystemConfigurationShowService implements AbstractShowService<Administrator, SystemConfiguration> {
+
 	@Autowired
 	protected AdministratorSystemConfigurationRepository repository;
+
 
 	@Override
 	public boolean authorise(final Request<SystemConfiguration> request) {
@@ -37,8 +39,7 @@ public class AdministratorSystemConfigurationShowService implements AbstractShow
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "systemCurrency", "acceptedCurrencies", "strongSpamTerms", "strongSpamThreshold",
-			"weakSpamTerms", "weakSpamThreshold");
+		request.unbind(entity, model, "systemCurrency", "acceptedCurrencies", "strongSpamTerms", "strongSpamThreshold", "weakSpamTerms", "weakSpamThreshold");
 	}
-	
+
 }

@@ -1,3 +1,4 @@
+
 package acme.features.administrator.systemConfiguration;
 
 import org.springframework.data.jpa.repository.Query;
@@ -7,9 +8,9 @@ import acme.components.configuration.SystemConfiguration;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
-public interface AdministratorSystemConfigurationRepository extends AbstractRepository{
+public interface AdministratorSystemConfigurationRepository extends AbstractRepository {
 
 	@Query("select sc from SystemConfiguration sc")
 	SystemConfiguration findSystemConfiguration();
-	
+
 }

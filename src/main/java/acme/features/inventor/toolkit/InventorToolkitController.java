@@ -1,3 +1,4 @@
+
 package acme.features.inventor.toolkit;
 
 import javax.annotation.PostConstruct;
@@ -10,20 +11,19 @@ import acme.framework.controllers.AbstractController;
 import acme.roles.Inventor;
 
 @Controller
-public class InventorToolkitController extends AbstractController<Inventor, Toolkit>{
-	
+public class InventorToolkitController extends AbstractController<Inventor, Toolkit> {
+
 	//Internal State --------------------------------------------------------------------------------------------------
-	
+
 	@Autowired
-	protected InventorToolkitListService listService;
-	
-	
-	
+	protected InventorToolkitListService	listService;
+
 	@Autowired
-	protected InventorToolkitShowService showService;
-	
+	protected InventorToolkitShowService	showService;
+
 	// Constructors ---------------------------------------------------------------------------------------------------
-	
+
+
 	@PostConstruct
 	protected void initialise() {
 		super.addCommand("show", this.showService);

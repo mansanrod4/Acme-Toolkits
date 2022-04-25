@@ -1,3 +1,4 @@
+
 package acme.forms;
 
 import java.util.ArrayList;
@@ -35,8 +36,8 @@ public class MoneyExchange {
 	public Money	target;
 
 	public Date		date;
-	
-	
+
+
 	public MoneyExchange computeMoneyExchange(final Money source, final String targetCurrency) {
 		assert source != null;
 		assert !StringHelper.isBlank(targetCurrency);
@@ -80,37 +81,37 @@ public class MoneyExchange {
 
 		return result;
 	}
-	
-	public List<Money> convertMoney(final List<Money> ls, final String targetCurrency){
-		final List<Money> resLs=new ArrayList<>();
-		for(Money price:ls) {
-			if(price.getAmount()==null) {
+
+	public List<Money> convertMoney(final List<Money> ls, final String targetCurrency) {
+		final List<Money> resLs = new ArrayList<>();
+		for (Money price : ls) {
+			if (price.getAmount() == null) {
 				price.setAmount(0.);
 				price.setCurrency(targetCurrency);
-			}else if(!price.getCurrency().equals(targetCurrency)){
-				price=(this.computeMoneyExchange(price,targetCurrency).target);
+			} else if (!price.getCurrency().equals(targetCurrency)) {
+				price = (this.computeMoneyExchange(price, targetCurrency).target);
 			}
 			resLs.add(price);
 		}
 		return resLs;
 	}
-	
-//	public StatData getPricesData(final List<Money> ls, final String targetCurrency){
-//		final StatData res= new StatData();
-//		final List<Money> newLs=this.convertMoney(ls, targetCurrency);
-//		final Double sum=newLs.stream().mapToDouble(x->x.getAmount()).sum();
-//		final Double avg=newLs.stream().mapToDouble(x->x.getAmount()).average().getAsDouble();
-//		//final Double desv=newLs.stream().mapToDouble(x->x.getAmount());
-//		final Double max=newLs.stream().mapToDouble(x->x.getAmount()).max().getAsDouble();
-//		final Double min=newLs.stream().mapToDouble(x->x.getAmount()).min().getAsDouble();
-//		final Money valor= new Money();
-//		valor.setCurrency(targetCurrency);
-//		valor.setAmount(avg); res.setAverage(valor);
-//		valor.setAmount(sum); res.setSum(valor);
-//	//	valor.setAmount(desv); res.setDesviation(valor);
-//		valor.setAmount(min); res.setMinimum(valor);
-//		valor.setAmount(max); res.setMaximum(valor);
-//		
-//	}
+
+	//	public StatData getPricesData(final List<Money> ls, final String targetCurrency){
+	//		final StatData res= new StatData();
+	//		final List<Money> newLs=this.convertMoney(ls, targetCurrency);
+	//		final Double sum=newLs.stream().mapToDouble(x->x.getAmount()).sum();
+	//		final Double avg=newLs.stream().mapToDouble(x->x.getAmount()).average().getAsDouble();
+	//		//final Double desv=newLs.stream().mapToDouble(x->x.getAmount());
+	//		final Double max=newLs.stream().mapToDouble(x->x.getAmount()).max().getAsDouble();
+	//		final Double min=newLs.stream().mapToDouble(x->x.getAmount()).min().getAsDouble();
+	//		final Money valor= new Money();
+	//		valor.setCurrency(targetCurrency);
+	//		valor.setAmount(avg); res.setAverage(valor);
+	//		valor.setAmount(sum); res.setSum(valor);
+	//	//	valor.setAmount(desv); res.setDesviation(valor);
+	//		valor.setAmount(min); res.setMinimum(valor);
+	//		valor.setAmount(max); res.setMaximum(valor);
+	//		
+	//	}
 
 }

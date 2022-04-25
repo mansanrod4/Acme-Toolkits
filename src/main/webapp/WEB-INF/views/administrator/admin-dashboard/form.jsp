@@ -109,7 +109,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		var color = ["#BD66D4", "#BD66D4","#BD66D4","#BD66D4","#BD66D4","#BD66D4"]
+		var color = ["#819EED", "#91DC60","#F0EF85","#819EED","#91DC60","#F0EF85"]
 		var data = {
 		
 			labels : [
@@ -170,7 +170,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		var color = ["#BD66D4", "#BD66D4","#BD66D4","#BD66D4", "#BD66D4","#BD66D4"]
+		var color = ["#819EED", "#819EED","#91DC60","#91DC60","#F0EF85","#F0EF85"]
 		var data = {
 		
 			labels : [
@@ -231,7 +231,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		var color = ["#BD66D4", "#BD66D4","#BD66D4","#BD66D4", "#BD66D4","#BD66D4"]
+		var color = ["#819EED", "#819EED","#91DC60","#91DC60","#F0EF85","#F0EF85"]
 		var data = {
 		
 			labels : [

@@ -59,6 +59,5 @@ public class InventorItemListAllnShowTest extends TestItem{
 		super.checkListAllItemsNShow(recordIndex, code, name, technology, retailPrice, description, info);
 		
 	}
-	
 
 }

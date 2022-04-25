@@ -22,20 +22,20 @@ public class PatronPatronageListService implements AbstractListService<Patron, P
 	@Override
 	public boolean authorise(final Request<Patronage> request) {
 		assert request != null;
-		
+
 		return true;
 	}
 
 	@Override
 	public Collection<Patronage> findMany(final Request<Patronage> request) {
 		assert request != null;
-		
+
 		Collection<Patronage> result;
 		int patronId;
-		
+
 		patronId = request.getPrincipal().getActiveRoleId();
 		result = this.repository.findManyPatronagesByPatronId(patronId);
-		
+
 		return result;
 	}
 
@@ -44,11 +44,10 @@ public class PatronPatronageListService implements AbstractListService<Patron, P
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		
+
 		request.unbind(entity, model, "code", "status");
 		model.setAttribute("inventor", entity.getInventor().getUserAccount().getUsername());
 
 	}
-
 
 }

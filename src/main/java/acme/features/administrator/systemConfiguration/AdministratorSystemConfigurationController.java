@@ -1,3 +1,4 @@
+
 package acme.features.administrator.systemConfiguration;
 
 import javax.annotation.PostConstruct;
@@ -10,16 +11,17 @@ import acme.framework.controllers.AbstractController;
 import acme.framework.roles.Administrator;
 
 @Controller
-public class AdministratorSystemConfigurationController extends AbstractController<Administrator, SystemConfiguration>{
+public class AdministratorSystemConfigurationController extends AbstractController<Administrator, SystemConfiguration> {
 
 	@Autowired
-	protected AdministratorSystemConfigurationShowService	showService;
+	protected AdministratorSystemConfigurationShowService showService;
 
 	// Constructors -----------------------------------------------------------
+
 
 	@PostConstruct
 	protected void initialise() {
 		super.addCommand("show", this.showService);
 	}
-	
+
 }

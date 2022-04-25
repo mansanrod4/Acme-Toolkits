@@ -38,6 +38,7 @@ public class PatronDashboardShowService implements AbstractShowService<Patron, P
 	@Autowired
 	protected PatronDashboardRepository repository;
 
+
 	@Override
 	public boolean authorise(final Request<PatronDashboard> request) {
 		assert request != null;
@@ -49,41 +50,31 @@ public class PatronDashboardShowService implements AbstractShowService<Patron, P
 		assert request != null;
 
 		final PatronDashboard result;
-		final Map<PatronageStatus, Integer> numPatronagesByStatus = 
-			new EnumMap<PatronageStatus, Integer>(PatronageStatus.class);
+		final Map<PatronageStatus, Integer> numPatronagesByStatus = new EnumMap<PatronageStatus, Integer>(PatronageStatus.class);
 		final Map<Pair<PatronageStatus, String>, Double> averageBudgetsByStatus = new HashMap<>();
 		final Map<Pair<PatronageStatus, String>, Double> deviationBudgetsByStatus = new HashMap<>();
 		final Map<Pair<PatronageStatus, String>, Double> minBudgetByStatus = new HashMap<>();
 		final Map<Pair<PatronageStatus, String>, Double> maxBudgetByStatus = new HashMap<>();
 
-		
-		for(final PatronageStatus ps: PatronageStatus.values()) {
+		for (final PatronageStatus ps : PatronageStatus.values()) {
 			//Num patronage 
 			final Integer numPatronages = this.repository.numPatronagesByStatus(ps);
 			numPatronagesByStatus.put(ps, numPatronages);
 			//Average
 			final Collection<Tuple> average = this.repository.averageBudgetsByStatus(ps);
-			average.stream().forEach(x-> averageBudgetsByStatus.put(
-				Pair.of(ps, x.get(0).toString()),
-				Double.parseDouble(x.get(1).toString())));
+			average.stream().forEach(x -> averageBudgetsByStatus.put(Pair.of(ps, x.get(0).toString()), Double.parseDouble(x.get(1).toString())));
 			//Desviation
 			final Collection<Tuple> desviation = this.repository.deviationBudgetsByStatus(ps);
-			desviation.stream().forEach(x-> deviationBudgetsByStatus.put(
-				Pair.of(ps, x.get(0).toString()),
-				Double.parseDouble(x.get(1).toString())));
+			desviation.stream().forEach(x -> deviationBudgetsByStatus.put(Pair.of(ps, x.get(0).toString()), Double.parseDouble(x.get(1).toString())));
 			//Minimum
 			final Collection<Tuple> minimum = this.repository.minBudgetByStatus(ps);
-			minimum.stream().forEach(x-> minBudgetByStatus.put(
-				Pair.of(ps, x.get(0).toString()),
-				Double.parseDouble(x.get(1).toString())));
+			minimum.stream().forEach(x -> minBudgetByStatus.put(Pair.of(ps, x.get(0).toString()), Double.parseDouble(x.get(1).toString())));
 			//Maximum
 			final Collection<Tuple> maximum = this.repository.maxBudgetByStatus(ps);
-			maximum.stream().forEach(x-> maxBudgetByStatus.put(
-				Pair.of(ps, x.get(0).toString()),
-				Double.parseDouble(x.get(1).toString())));
-			
+			maximum.stream().forEach(x -> maxBudgetByStatus.put(Pair.of(ps, x.get(0).toString()), Double.parseDouble(x.get(1).toString())));
+
 		}
-	
+
 		//Create Dashboard
 		result = new PatronDashboard();
 		result.setNumPatronagesByStatus(numPatronagesByStatus);
@@ -91,9 +82,9 @@ public class PatronDashboardShowService implements AbstractShowService<Patron, P
 		result.setDeviationBudgetsByStatus(deviationBudgetsByStatus);
 		result.setMinBudgetByStatus(minBudgetByStatus);
 		result.setMaxBudgetByStatus(maxBudgetByStatus);
-		
+
 		return result;
-		
+
 	}
 
 	@Override
@@ -102,11 +93,8 @@ public class PatronDashboardShowService implements AbstractShowService<Patron, P
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "numPatronagesByStatus", "averageBudgetsByStatus", "deviationBudgetsByStatus", 
-			"minBudgetByStatus", "maxBudgetByStatus");
-	
-	}
-	
+		request.unbind(entity, model, "numPatronagesByStatus", "averageBudgetsByStatus", "deviationBudgetsByStatus", "minBudgetByStatus", "maxBudgetByStatus");
 
-	
+	}
+
 }

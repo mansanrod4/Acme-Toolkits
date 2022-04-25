@@ -1,3 +1,4 @@
+
 package acme.features.authenticated.systemConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import acme.framework.roles.Authenticated;
 import acme.framework.services.AbstractShowService;
 
 @Service
-public class AuthenticatedSystemConfigurationShowService implements AbstractShowService<Authenticated, SystemConfiguration>{
+public class AuthenticatedSystemConfigurationShowService implements AbstractShowService<Authenticated, SystemConfiguration> {
 
 	@Autowired
 	protected AuthenticatedSystemConfigurationRepository repository;
@@ -47,9 +48,7 @@ public class AuthenticatedSystemConfigurationShowService implements AbstractShow
 		defaultMoney.setCurrency("EUR");
 		model.setAttribute("USDexchange", mE.computeMoneyExchange(defaultMoney, "USD").target);
 		model.setAttribute("GBPexchange", mE.computeMoneyExchange(defaultMoney, "GBP").target);
-		
-		
+
 	}
-	
 
 }
