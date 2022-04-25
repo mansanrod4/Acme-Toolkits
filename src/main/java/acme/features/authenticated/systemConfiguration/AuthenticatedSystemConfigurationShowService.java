@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.components.configuration.SystemConfiguration;
+import acme.forms.MoneyExchange;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
+import acme.framework.datatypes.Money;
 import acme.framework.roles.Authenticated;
 import acme.framework.services.AbstractShowService;
 
@@ -39,9 +41,13 @@ public class AuthenticatedSystemConfigurationShowService implements AbstractShow
 		assert model != null;
 
 		request.unbind(entity, model, "systemCurrency", "acceptedCurrencies");
-		model.setAttribute("USDexchange", 0.833171);
-		model.setAttribute("GBPexchange", 1.083546);
-		;
+		final MoneyExchange mE = new MoneyExchange();
+		final Money defaultMoney = new Money();
+		defaultMoney.setAmount(1.0);
+		defaultMoney.setCurrency("EUR");
+		model.setAttribute("USDexchange", mE.computeMoneyExchange(defaultMoney, "USD").target);
+		model.setAttribute("GBPexchange", mE.computeMoneyExchange(defaultMoney, "GBP").target);
+		
 		
 	}
 	

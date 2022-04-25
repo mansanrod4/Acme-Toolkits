@@ -78,6 +78,7 @@
      	
      	<acme:menu-option code="master.menu.sc" access="isAuthenticated()">
 		<acme:menu-suboption code="master.menu.sc.system-configuration.list" action="/authenticated/system-configuration/show"/>
+		<acme:menu-suboption code="master.menu.administrator.sc.system-configuration.list"  access="hasRole('Administrator')" action="/administrator/system-configuration/show"/>
 		</acme:menu-option>
      	
      	<acme:menu-option code="master.menu.user-account" access="isAuthenticated()">
