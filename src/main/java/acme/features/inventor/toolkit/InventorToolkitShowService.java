@@ -64,7 +64,7 @@ public class InventorToolkitShowService implements AbstractShowService<Inventor,
 		final List<Money> pricesFix=mE.convertMoney(prices, sc.getSystemCurrency());
 	
 		final Money money = new Money();
-		final Double amount=pricesFix.stream().mapToDouble(x->x.getAmount()).sum();
+		final Double amount=pricesFix.stream().mapToDouble(Money::getAmount).sum();
 		money.setAmount(amount);
 		money.setCurrency(sc.getSystemCurrency());
 

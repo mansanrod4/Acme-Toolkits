@@ -46,7 +46,7 @@ public class MoneyExchange {
 		ExchangeRate record;
 		String sourceCurrency;
 		Double sourceAmount, targetAmount, rate;
-		Money target;
+		Money targetMoney;
 
 		try {
 			api = new RestTemplate();
@@ -65,15 +65,15 @@ public class MoneyExchange {
 			rate = record.getRates().get(targetCurrency);
 			targetAmount = rate * sourceAmount;
 
-			target = new Money();
-			target.setAmount(targetAmount);
-			target.setCurrency(targetCurrency);
+			targetMoney = new Money();
+			targetMoney.setAmount(targetAmount);
+			targetMoney.setCurrency(targetCurrency);
 
 			result = new MoneyExchange();
 			result.setSource(source);
 			result.setTargetCurrency(targetCurrency);
 			result.setDate(record.getDate());
-			result.setTarget(target);
+			result.setTarget(targetMoney);
 		} catch (final Throwable oops) {
 			result = null;
 		}

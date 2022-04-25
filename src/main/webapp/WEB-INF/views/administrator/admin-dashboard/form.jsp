@@ -14,16 +14,17 @@
 </h3>
 
 <table class="table table-sm">
+	<caption> </caption>
 	<tr>
-		<th><acme:message code="administrator.dashboard.form.title.patronages-type"/></th>
-		<th><acme:message code="administrator.dashboard.form.label.num"/></th>
-		<th><acme:message code="administrator.dashboard.form.label.avg"/></th>
-		<th><acme:message code="administrator.dashboard.form.label.desv"/></th>
-		<th><acme:message code="administrator.dashboard.form.label.min"/></th>
-		<th><acme:message code="administrator.dashboard.form.label.max"/></th>
+		<th id="patronages"><acme:message code="administrator.dashboard.form.title.patronages-type"/></th>
+		<th id = "quantity"><acme:message code="administrator.dashboard.form.label.num"/></th>
+		<th id ="average"><acme:message code="administrator.dashboard.form.label.avg"/></th>
+		<th id = "desviation"><acme:message code="administrator.dashboard.form.label.desv"/></th>
+		<th id = "minimum"><acme:message code="administrator.dashboard.form.label.min"/></th>
+		<th id = "maximum"><acme:message code="administrator.dashboard.form.label.max"/></th>
 	</tr>
 	<tr>
-		<td style="color:#58D68D"><b><acme:message code="administrator.dashboard.form.title.accepted-patronages"/></b></td>
+		<td style="color:#58D68D"><strong><acme:message code="administrator.dashboard.form.title.accepted-patronages"/></strong></td>
 		<td><acme:print value="${numPatronageAccepted}"/></td>
 		<td><acme:print value="${dataAcceptedEUR.average}"/>/ <acme:print value="${dataAcceptedUSD.average}"/>/ <acme:print value="${dataAcceptedGBP.average}"/></td>
 		<td><acme:print value="${dataAcceptedEUR.desviation}"/>/ <acme:print value="${dataAcceptedUSD.desviation}"/>/ <acme:print value="${dataAcceptedGBP.desviation}"/></td>
@@ -31,7 +32,7 @@
 		<td><acme:print value="${dataAcceptedEUR.maximum}"/>/ <acme:print value="${dataAcceptedUSD.maximum}"/>/ <acme:print value="${dataAcceptedGBP.maximum}"/></td>
 	</tr>
 	<tr>
-		<td style="color:#C0392B"><b><acme:message code="administrator.dashboard.form.title.denied-patronages"/></b></td>
+		<td style="color:#C0392B"><strong><acme:message code="administrator.dashboard.form.title.denied-patronages"/></strong></td>
 		<td><acme:print value="${numPatronageDenied}"/></td>
 		<td><acme:print value="${dataDeniedEUR.average}"/>/ <acme:print value="${dataDeniedUSD.average}"/>/ <acme:print value="${dataDeniedGBP.average}"/></td>
 		<td><acme:print value="${dataDeniedEUR.desviation}"/>/ <acme:print value="${dataDeniedUSD.desviation}"/>/ <acme:print value="${dataDeniedGBP.desviation}"/></td>
@@ -39,7 +40,7 @@
 		<td><acme:print value="${dataDeniedEUR.maximum}"/>/ <acme:print value="${dataDeniedUSD.maximum}"/>/ <acme:print value="${dataDeniedGBP.maximum}"/></td>
 	</tr>
 	<tr>
-		<td style="color:#616A6B"><b><acme:message code="administrator.dashboard.form.title.pending-patronages"/></b></td>
+		<td style="color:#616A6B"><strong><acme:message code="administrator.dashboard.form.title.pending-patronages"/></strong></td>
 		<td><acme:print value="${numPatronageRequested}"/></td>
 		<td><acme:print value="${dataPendingEUR.average}"/>/ <acme:print value="${dataPendingUSD.average}"/>/ <acme:print value="${dataPendingGBP.average}"/></td>
 		<td><acme:print value="${dataPendingEUR.desviation}"/>/ <acme:print value="${dataPendingUSD.desviation}"/>/ <acme:print value="${dataPendingGBP.desviation}"/></td>
@@ -58,6 +59,7 @@
 </h2>
 
 <table class="table table-sm">
+	<caption> </caption>
 	<tr>
 		<th scope="row">
 			<acme:message code="administrator.dashboard.form.label.numComponents"/>
@@ -282,12 +284,13 @@
 </h3>
 
 <table class="table table-sm">
+	<caption> </caption>
 	<tr>
-		<th><acme:message code="administrator.dashboard.form.title.tech"/></th>
-		<th><acme:message code="administrator.dashboard.form.label.avg"/></th>
-		<th><acme:message code="administrator.dashboard.form.label.desv"/></th>
-		<th><acme:message code="administrator.dashboard.form.label.min"/></th>
-		<th><acme:message code="administrator.dashboard.form.label.max"/></th>
+		<th id="tech"><acme:message code="administrator.dashboard.form.title.tech"/></th>
+		<th id= "average"><acme:message code="administrator.dashboard.form.label.avg"/></th>
+		<th id="desviation"><acme:message code="administrator.dashboard.form.label.desv"/></th>
+		<th id="minimum"><acme:message code="administrator.dashboard.form.label.min"/></th>
+		<th id="maximum"><acme:message code="administrator.dashboard.form.label.max"/></th>
 	</tr>
 	
 	<jstl:forEach items="${componentsDataByTechnology}" var="data">
@@ -309,12 +312,13 @@
 </h3>
 
 <table class="table table-sm">
+	<caption> </caption>
 	<tr>
-		<th><acme:message code="administrator.dashboard.form.title.tech"/></th>
-		<th><acme:message code="administrator.dashboard.form.label.avg"/></th>
-		<th><acme:message code="administrator.dashboard.form.label.desv"/></th>
-		<th><acme:message code="administrator.dashboard.form.label.min"/></th>
-		<th><acme:message code="administrator.dashboard.form.label.max"/></th>
+		<th id="tech"><acme:message code="administrator.dashboard.form.title.tech"/></th>
+		<th id= "average"><acme:message code="administrator.dashboard.form.label.avg"/></th>
+		<th id="desviation"><acme:message code="administrator.dashboard.form.label.desv"/></th>
+		<th id="minimum"><acme:message code="administrator.dashboard.form.label.min"/></th>
+		<th id="maximum"><acme:message code="administrator.dashboard.form.label.max"/></th>
 	</tr>
 	
 	<jstl:forEach items="${toolsDataByTechnology}" var="data">
