@@ -13,22 +13,24 @@
 package acme.testing;
 
 import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class FavouriteLinkTest extends TestHarness {
-	
+
 	// Lifecycle management ---------------------------------------------------
 
 	// Test cases -------------------------------------------------------------
 
-	@Test
+	
+	@ParameterizedTest
+	@CsvFileSource(resources = "/favorite/links.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void favouriteLink() {
+	public void positive(final String menuSubOption, final String url) {
 		super.navigateHome();
-		super.clickOnMenu("Anonymous", "Favourite link");		
-		super.checkCurrentUrl("http://www.example.com");
+		super.clickOnMenu("Anonymous", menuSubOption);
+		super.checkCurrentUrl(url);
 	}
 	
 	// Ancillary methods ------------------------------------------------------ 
-	
 }
