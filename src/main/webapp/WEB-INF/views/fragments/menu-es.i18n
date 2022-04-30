@@ -58,8 +58,8 @@ master.menu.user-account.tool.list = Lista de Herramientas
 master.menu.user-account = Cuenta
 master.menu.user-account.list = Cuentas de usuario
 master.menu.user-account.general-data = Datos generales
-master.menu.user-account.patron = Datos de mecenas
-master.menu.user-account.become-patron = Hazte mecenas
+master.menu.user-account.patron = Datos de patrocinador
+master.menu.user-account.become-patron = Hazte patrocinador
 master.menu.user-account.inventor = Datos de inventor
 master.menu.user-account.become-inventor = Hazte inventor
 
