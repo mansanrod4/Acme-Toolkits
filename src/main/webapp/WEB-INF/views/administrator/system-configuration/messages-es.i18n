@@ -8,3 +8,5 @@ administrator.system-configuration.form.label.strongSpamTerms = Palabras de Spam
 administrator.system-configuration.form.label.strongSpamThreshold = Límite de Palabras de Spam Mayores
 administrator.system-configuration.form.label.weakSpamTerms = Palabras de Spam Menores
 administrator.system-configuration.form.label.weakSpamThreshold = Límite de Palabras de Spam Menores
+
+administrator.system-configuration.form.button.update = Editar
