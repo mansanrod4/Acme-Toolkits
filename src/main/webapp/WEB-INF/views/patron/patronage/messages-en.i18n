@@ -27,6 +27,7 @@ patron.patronage.label.inventorInfo = Inventor info
 
 patron.patronage.form.button.patronage-reports = Reports
 
+patron.patronage.form.button.delete = Delete
 
 patron.patronage.list.title = My patronages
 

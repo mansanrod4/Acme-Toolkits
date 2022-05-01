@@ -27,6 +27,7 @@ patron.patronage.label.patronInfo = Información
 
 patron.patronage.form.button.patronage-reports = Reportes
 
+patron.patronage.form.button.delete = Eliminar
 
 
 patron.patronage.list.title = Mis patrocinios
@@ -36,6 +37,6 @@ patron.patronage.list.label.status = Estado
 patron.patronage.list.label.patron = Patrón
 
 
-
-
 patron.patronage.form.error.spam = Parece que su solicitud contiene spam
+
+

@@ -29,6 +29,11 @@
 	
 	<acme:button code="patron.patronage.form.button.patronage-reports" action="/patron/patronage-report/list?patronageId=${id}"/>			
 	
+	<jstl:choose>
+		<jstl:when test="${acme:anyOf(command, 'show, update, delete')}">
+			<acme:submit code="patron.patronage.form.button.delete" action="/patron/patronage/delete"/>
+		</jstl:when>		
+	</jstl:choose>
 	
 </acme:form>
 
