@@ -21,23 +21,6 @@ public class AuthenticatedAnnouncementCreateService implements AbstractCreateSer
 	
 	@Override
 	public boolean authorise(final Request<Announcement> request) {
-//		assert request != null;
-//		boolean result;
-//		Calendar calendar;
-//		Date deadline;
-//		Announcement announcement;
-//		int id;
-//		
-//		
-//		calendar = Calendar.getInstance();
-//		calendar.add(Calendar.MONTH, -1);
-//		deadline = calendar.getTime();
-//		
-//		id = request.getModel().getInteger("id");
-//		announcement = this.repository.findOneAnnouncementById(id);
-//		result = announcement.getMoment().after(deadline);
-//
-//		return result;
 		assert request != null;
 		return true;
 	}
