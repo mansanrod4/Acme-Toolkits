@@ -10,5 +10,5 @@
 	<acme:input-textbox code="inventor.patronage-report.form.label.info" path="info"/>
 	<acme:input-textbox code="inventor.patronage-report.form.label.sequenceNumber" path="sequenceNumber"/>
 	
-
+<acme:submit test="${command == 'create'}" code="inventor.patronage-report.form.button.create" action="/inventor/patronage-report/create?patronageId=${patronageId}"/>
 </acme:form>

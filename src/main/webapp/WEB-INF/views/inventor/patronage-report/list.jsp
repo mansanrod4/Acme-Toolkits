@@ -9,5 +9,6 @@
  	<acme:list-column code="inventor.patronage-report.list.label.memorandum" path="memorandum" width="20%"/>
 	<acme:list-column code="inventor.patronage-report.list.label.info" path="info" width="20%"/>
 	
-			
 </acme:list>
+
+	<acme:submit  code="inventor.patronage-report.list.button.create" action="/inventor/patronage-report/list?patrongeId=${patronageId}"/>		
