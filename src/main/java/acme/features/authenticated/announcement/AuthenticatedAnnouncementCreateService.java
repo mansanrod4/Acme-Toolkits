@@ -10,6 +10,7 @@ import acme.entities.Announcement;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
+import acme.framework.roles.Administrator;
 import acme.framework.roles.Authenticated;
 import acme.framework.services.AbstractCreateService;
 
@@ -22,7 +23,12 @@ public class AuthenticatedAnnouncementCreateService implements AbstractCreateSer
 	@Override
 	public boolean authorise(final Request<Announcement> request) {
 		assert request != null;
-		return true;
+
+		boolean result;
+
+		result = request.getPrincipal().hasRole(Administrator.class);
+
+		return result;
 	}
 
 	@Override
@@ -31,7 +37,10 @@ public class AuthenticatedAnnouncementCreateService implements AbstractCreateSer
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "title", "moment", "body", "critical", "link");
+		Date moment;
+		moment = new Date(System.currentTimeMillis() - 1);
+		request.bind(entity, errors, "title", "body", "critical", "link");
+		entity.setMoment(moment);
 	}
 
 	@Override
@@ -40,7 +49,7 @@ public class AuthenticatedAnnouncementCreateService implements AbstractCreateSer
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model,  "title", "moment", "body", "critical", "link");
+		request.unbind(entity, model,  "title", "body", "critical", "link");
 		
 	}
 
@@ -53,7 +62,6 @@ public class AuthenticatedAnnouncementCreateService implements AbstractCreateSer
 		result = new Announcement();
 		result.setTitle("");
 		result.setBody("");
-		result.setMoment(this.convertToDateViaSqlTimestamp());
 		result.setCritical(false);
 		result.setLink("");
 

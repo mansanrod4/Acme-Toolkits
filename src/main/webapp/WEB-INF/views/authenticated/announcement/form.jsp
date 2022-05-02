@@ -5,7 +5,6 @@
 
 <acme:form>
 	<acme:input-textbox code="authenticated.announcement.form.label.title" path="title"/>
-	<acme:input-moment code="authenticated.announcement.form.label.moment" path="moment"/>
 	<acme:input-textarea code="authenticated.announcement.form.label.body" path="body"/>
 	<acme:input-select code="authenticated.announcement.form.label.critical" path="critical">
 		<acme:input-option code="authenticated.announcement.form.label.TRUE" value="TRUE"/>

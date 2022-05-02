@@ -4,7 +4,7 @@ authenticated.announcement.list.label.title = Título
 authenticated.announcement.list.label.moment = Fecha de creacion
 authenticated.announcement.list.label.body = Descripcion
 
-authenticated.announcement.list.button.create = Crear	
+authenticated.announcement.list.button.create = Crear anuncio	
 
 
 authenticated.announcement.form.label.title = Título:

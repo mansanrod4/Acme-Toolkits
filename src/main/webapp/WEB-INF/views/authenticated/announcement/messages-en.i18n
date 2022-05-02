@@ -5,7 +5,7 @@ authenticated.announcement.list.label.title = Title
 authenticated.announcement.list.label.moment = Moment
 authenticated.announcement.list.label.body = Body
 
-authenticated.announcement.list.button.create = Create
+authenticated.announcement.list.button.create = Create announcement
 
 authenticated.announcement.form.label.title = Title:
 authenticated.announcement.form.label.moment = Moment:
