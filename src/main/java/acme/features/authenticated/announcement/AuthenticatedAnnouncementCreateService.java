@@ -1,6 +1,5 @@
 package acme.features.authenticated.announcement;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +49,8 @@ public class AuthenticatedAnnouncementCreateService implements AbstractCreateSer
 		assert model != null;
 
 		request.unbind(entity, model,  "title", "body", "critical", "link");
+		model.setAttribute("confirmation", false);
+		model.setAttribute("readonly", false);
 		
 	}
 
@@ -67,17 +68,17 @@ public class AuthenticatedAnnouncementCreateService implements AbstractCreateSer
 
 		return result;
 	}
-	
-	public Date convertToDateViaSqlTimestamp() {
-		final LocalDateTime date = LocalDateTime.now();
-	    return java.sql.Timestamp.valueOf(date);
-	}
 
 	@Override
 	public void validate(final Request<Announcement> request, final Announcement entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		
+		boolean confirmation;
+
+		confirmation = request.getModel().getBoolean("confirmation");
+		errors.state(request, confirmation, "confirmation", "javax.validation.constraints.AssertTrue.message");
 	}
 
 	@Override

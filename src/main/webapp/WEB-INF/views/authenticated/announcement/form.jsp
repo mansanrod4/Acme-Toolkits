@@ -12,8 +12,9 @@
 	</acme:input-select>
 	<acme:input-url code="authenticated.announcement.form.label.link" path="link"/>	
 	
-	<jstl:choose>
+ 	<jstl:choose>
 		<jstl:when test="${command == 'create'}">
+			<acme:input-checkbox code="authenticated.announcement.form.label.confirmation" path="confirmation"/>
 			<acme:submit code="authenticated.announcement.form.button.create" 
 			action="/authenticated/announcement/create?masterId=${masterId}"/>
 		</jstl:when>		

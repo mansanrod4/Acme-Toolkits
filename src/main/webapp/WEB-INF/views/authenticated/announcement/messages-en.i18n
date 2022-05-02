@@ -15,6 +15,7 @@ authenticated.announcement.form.label.link = Link:
 
 authenticated.announcement.form.label.TRUE = Critical
 authenticated.announcement.form.label.FALSE = Not critical
+authenticated.announcement.form.label.confirmation = Confirm that the announcement is correct
 	
 authenticated.announcement.form.button.create = Create	
 
