@@ -11,4 +11,4 @@
 	
 </acme:list>
 
-	<acme:submit  code="inventor.patronage-report.list.button.create" action="/inventor/patronage-report/list?patrongeId=${patronageId}"/>		
+	<acme:button test="${showCreate}" code="inventor.patronage-report.list.button.create" action="/inventor/patronage-report/create?patronageId=${patronageId}"/>		
