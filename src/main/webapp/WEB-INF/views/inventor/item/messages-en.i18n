@@ -4,3 +4,4 @@ inventor.component.list.label.tech = Technology
 inventor.component.list.label.description = Description
 inventor.component.list.label.price = Price
 inventor.component.list.label.info = Further Information
+inventor.item.form.button.create = Create

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.toolkits.Item;
 import acme.features.inventor.item.InventorItemRepository;
+import acme.features.inventor.item.InventorItemUtils;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractListService;
@@ -20,8 +21,7 @@ public class InventorComponentListAllService implements AbstractListService<Inve
 	
 	@Override
 	public boolean authorise(final Request<Item> request) {
-		assert request != null;
-		return true;
+		return InventorItemUtils.authoriseInventor(request, this.repository);
 	}
 
 	@Override
