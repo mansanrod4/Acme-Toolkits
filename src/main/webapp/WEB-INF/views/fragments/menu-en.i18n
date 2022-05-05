@@ -29,6 +29,7 @@ master.menu.anonymous.olisanrod-favourite-link =  47538886W: Sánchez Rodríguez
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrator
+master.menu.administrator.system-configuration = System Details
 master.menu.administrator.dashboard = Dashboard
 master.menu.administrator.user-accounts = All User accounts
 master.menu.administrator.populate-initial = Populate DB (initial)
@@ -71,7 +72,6 @@ master.menu.announcements.chirp.list = Chirps
 
 master.menu.sc = System Configuration
 master.menu.sc.system-configuration.list = Currencies information
-master.menu.administrator.sc.system-configuration.list = System Details
 
 # master.menu.components-tools ##########################################
 
