@@ -1,4 +1,4 @@
-package acme.features.authenticated.announcement;
+package acme.features.administrator.announcement;
 
 import java.util.Date;
 
@@ -10,24 +10,18 @@ import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
 import acme.framework.roles.Administrator;
-import acme.framework.roles.Authenticated;
 import acme.framework.services.AbstractCreateService;
 
 @Service
-public class AuthenticatedAnnouncementCreateService implements AbstractCreateService<Authenticated, Announcement>{
+public class AdministratorAnnouncementCreateService implements AbstractCreateService<Administrator, Announcement>{
 
 	@Autowired
-	protected AuthenticatedAnnouncementRepository repository;
+	protected AdministratorAnnouncementRepository repository;
 	
 	@Override
 	public boolean authorise(final Request<Announcement> request) {
 		assert request != null;
-
-		boolean result;
-
-		result = request.getPrincipal().hasRole(Administrator.class);
-
-		return result;
+		return true;
 	}
 
 	@Override
@@ -47,10 +41,14 @@ public class AuthenticatedAnnouncementCreateService implements AbstractCreateSer
 		assert request != null;
 		assert entity != null;
 		assert model != null;
+		
+		boolean isAdmin;
+		isAdmin = request.getPrincipal().hasRole(Administrator.class);
 
 		request.unbind(entity, model,  "title", "body", "critical", "link");
 		model.setAttribute("confirmation", false);
 		model.setAttribute("readonly", false);
+		model.setAttribute("isAdmin", isAdmin);
 		
 	}
 

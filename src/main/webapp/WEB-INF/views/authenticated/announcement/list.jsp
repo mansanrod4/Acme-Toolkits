@@ -8,5 +8,3 @@
 	<acme:list-column code="authenticated.announcement.list.label.moment" path="moment" width="10%"/>
 	<acme:list-column code="authenticated.announcement.list.label.body" path="body" width="70%"/>
 </acme:list>
-
-<acme:button test="${showCreate}" code="authenticated.announcement.list.button.create" action="/authenticated/announcement/create?masterId=${masterId}"/>
