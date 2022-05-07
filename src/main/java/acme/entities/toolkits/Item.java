@@ -56,16 +56,16 @@ public class Item extends AbstractEntity {
 	@NotNull
 	protected Money				retailPrice;
 
-	@ManyToOne(optional = false)
-	@NotNull
-	protected Inventor			inventor;
-
 	@URL
 	@Column(name = "further_information")
 	protected String			info;
 
+	protected boolean			isDraftMode;
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
+	@ManyToOne(optional = false)
+	@NotNull
+	protected Inventor			inventor;
 
 }

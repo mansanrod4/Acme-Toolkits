@@ -1,7 +1,7 @@
-key,itemType,name,code,technology,description,retail-price,key:inventor,info
-item-01,TOOL,Martillo,AAA-000,Clasica,Muy confiable,EUR 22.3,inventor-01,https://ev.us.es/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_29_1
-item-02,TOOL,Martillo E.,AAA-000-A,Electico,Demasiado confiable,USD 50.3,inventor-02,null
-item-03,TOOL,Martillo de Agua,AAB-000-B,Presion,Extremadamente confiable,EUR 80.3,inventor-03,https://ev.us.es/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_29_1
-item-04,COMPONENT,Tuerca,BBB-000,Clasica,Increiblemente confiable,EUR 1.5,inventor-04,null
-item-05,COMPONENT,Tuerca D12,BBB-000-B,Clasica,Increiblemente confiable,USD 0.5,inventor-05,https://ev.us.es/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_29_1
-item-06,COMPONENT,Tuerca D20,BBB-000-C,Clasica,Increiblemente confiable,EUR 4.5,inventor-03,null
+key,itemType,name,code,technology,description,retail-price,key:inventor,info,draftMode
+item-01,TOOL,Martillo,AAA-000,Clasica,Muy confiable,EUR 22.3,inventor-01,https://ev.us.es/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_29_1,false
+item-02,TOOL,Martillo E.,AAA-000-A,Electico,Demasiado confiable,USD 50.3,inventor-02,null,true
+item-03,TOOL,Martillo de Agua,AAB-000-B,Presion,Extremadamente confiable,EUR 80.3,inventor-03,https://ev.us.es/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_29_1,false
+item-04,COMPONENT,Tuerca,BBB-000,Clasica,Increiblemente confiable,EUR 1.5,inventor-04,null,false
+item-05,COMPONENT,Tuerca D12,BBB-000-B,Clasica,Increiblemente confiable,USD 0.5,inventor-05,https://ev.us.es/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_29_1,false
+item-06,COMPONENT,Tuerca D20,BBB-000-C,Clasica,Increiblemente confiable,EUR 4.5,inventor-03,null,false

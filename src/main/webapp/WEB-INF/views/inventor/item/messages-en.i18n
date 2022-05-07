@@ -4,3 +4,12 @@ inventor.component.list.label.tech = Technology
 inventor.component.list.label.description = Description
 inventor.component.list.label.price = Price
 inventor.component.list.label.info = Further Information
+
+inventor.item.list.published = PUBLISHED
+inventor.item.list.not-published = NOT PUBLISHED
+
+inventor.item.form.button.delete = Delete item
+inventor.item.form.button.publish = Publish item
+
+inventor.item.form.error.duplicated = Code Can't Be Duplicated
+
