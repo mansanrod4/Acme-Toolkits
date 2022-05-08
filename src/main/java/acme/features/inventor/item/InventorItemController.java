@@ -1,3 +1,4 @@
+
 package acme.features.inventor.item;
 
 import javax.annotation.PostConstruct;
@@ -13,14 +14,14 @@ import acme.framework.controllers.AbstractController;
 import acme.roles.Inventor;
 
 @Controller
-public class InventorItemController extends AbstractController<Inventor, Item>{
+public class InventorItemController extends AbstractController<Inventor, Item> {
 
 	@Autowired
-	protected InventorComponentListAllService inventorComponentListAllService;
-	
+	protected InventorComponentListAllService	inventorComponentListAllService;
+
 	@Autowired
-	protected InventorToolListAllService inventorToolListAllService;
-	
+	protected InventorToolListAllService		inventorToolListAllService;
+
 	@Autowired
 	protected InventorItemShowService inventorItemShowService;
 	
@@ -35,5 +36,5 @@ public class InventorItemController extends AbstractController<Inventor, Item>{
 		super.addCommand("list-tool", "list", this.inventorToolListAllService);
 		super.addCommand("show", this.inventorItemShowService);
 	}
-	
+
 }

@@ -1,3 +1,4 @@
+
 package acme.features.patron.patronageReport;
 
 import java.util.Collection;
@@ -16,6 +17,5 @@ public interface PatronPatronageReportRepository extends AbstractRepository {
 
 	@Query("select pr from PatronageReport pr where pr.id = :id")
 	PatronageReport findOnePatronageReportById(int id);
-
 
 }

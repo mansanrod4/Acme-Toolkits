@@ -1,3 +1,4 @@
+
 package acme.features.any.item.component;
 
 import java.util.Collection;
@@ -13,12 +14,12 @@ import acme.framework.roles.Any;
 import acme.framework.services.AbstractListService;
 
 @Service
-public class AnyComponentListAllService implements AbstractListService<Any, Item>{
+public class AnyComponentListAllService implements AbstractListService<Any, Item> {
 
 	@Autowired
 	protected AnyItemRepository repository;
-	
-	
+
+
 	@Override
 	public boolean authorise(final Request<Item> request) {
 		assert request != null;
@@ -29,9 +30,9 @@ public class AnyComponentListAllService implements AbstractListService<Any, Item
 	public Collection<Item> findMany(final Request<Item> request) {
 		assert request != null;
 		Collection<Item> result;
-		
+
 		result = this.repository.findAllComponents();
-		
+
 		return result;
 	}
 
@@ -40,10 +41,9 @@ public class AnyComponentListAllService implements AbstractListService<Any, Item
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		
-		request.unbind(entity, model, "code","name","technology","retailPrice");
-		
+
+		request.unbind(entity, model, "code", "name", "technology", "retailPrice");
+
 	}
-	
-	
+
 }

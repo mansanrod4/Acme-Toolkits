@@ -1,3 +1,4 @@
+
 package acme.components.configuration;
 
 import javax.persistence.Entity;
@@ -13,37 +14,35 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class SystemConfiguration extends AbstractEntity{
-	
+public class SystemConfiguration extends AbstractEntity {
+
 	// Serialisation identifier -----------------------------------------------
 
-		protected static final long	serialVersionUID	= 1L;
+	protected static final long	serialVersionUID	= 1L;
 
-		// Attributes -------------------------------------------------------------
-		@NotBlank
-		protected String systemCurrency;
-		
-		@NotBlank
-		protected String acceptedCurrencies;
-		
-		@NotBlank
-		protected String strongSpamTerms;
-		
-		@Range(max = 100, min = 0)
-		@NotNull
-		protected Double strongSpamThreshold;
-		
-		@NotBlank
-		protected String weakSpamTerms;
-		
-		@Range(max = 100, min = 0)
-		@NotNull
-		protected Double weakSpamThreshold;
+	// Attributes -------------------------------------------------------------
+	@NotBlank
+	protected String			systemCurrency;
 
-		// Derived attributes -----------------------------------------------------
+	@NotBlank
+	protected String			acceptedCurrencies;
 
-		
-		// Relationships ----------------------------------------------------------
-	
-		
+	@NotBlank
+	protected String			strongSpamTerms;
+
+	@Range(max = 100, min = 0)
+	@NotNull
+	protected Double			strongSpamThreshold;
+
+	@NotBlank
+	protected String			weakSpamTerms;
+
+	@Range(max = 100, min = 0)
+	@NotNull
+	protected Double			weakSpamThreshold;
+
+	// Derived attributes -----------------------------------------------------
+
+	// Relationships ----------------------------------------------------------
+
 }

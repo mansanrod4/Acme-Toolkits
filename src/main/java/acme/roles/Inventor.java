@@ -40,10 +40,10 @@ public class Inventor extends UserRole {
 	@NotBlank
 	@Length(max = 255)
 	protected String			statement;
-	
+
 	@URL
-	protected String 			info;
-	
+	protected String			info;
+
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
