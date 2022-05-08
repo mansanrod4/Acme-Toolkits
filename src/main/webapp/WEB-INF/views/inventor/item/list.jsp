@@ -11,7 +11,7 @@
 		width="20%" />
 	<acme:list-column code="inventor.component.list.label.price" path="retailPrice"
 		width="20%" />
-	
-	<acme:button code="inventor.item.form.button.create" action="/inventor/item/create"/>
 </acme:list>
+
+<acme:button code="inventor.item.form.button.create" action="/inventor/item/create"/>
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import acme.entities.toolkits.Item;
+import acme.features.inventor.item.component.InventorComponentCreateService;
 import acme.features.inventor.item.component.InventorComponentListAllService;
 import acme.features.inventor.item.tool.InventorToolListAllService;
 import acme.framework.controllers.AbstractController;
@@ -23,8 +24,13 @@ public class InventorItemController extends AbstractController<Inventor, Item>{
 	@Autowired
 	protected InventorItemShowService inventorItemShowService;
 	
+	@Autowired
+	protected InventorComponentCreateService inventorComponentCreateService;
+	
 	@PostConstruct
 	protected void initialize() {
+		super.addCommand("create", this.inventorComponentCreateService);
+		
 		super.addCommand("list-component","list", this.inventorComponentListAllService);
 		super.addCommand("list-tool", "list", this.inventorToolListAllService);
 		super.addCommand("show", this.inventorItemShowService);

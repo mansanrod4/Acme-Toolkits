@@ -1,16 +1,19 @@
 package acme.features.inventor.item.component;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import acme.entities.toolkits.Item;
+import acme.entities.toolkits.ItemType;
 import acme.features.inventor.item.InventorItemRepository;
-import acme.features.inventor.item.InventorItemUtils;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractCreateService;
 import acme.roles.Inventor;
 
+
+@Controller
 public class InventorComponentCreateService implements AbstractCreateService<Inventor, Item>{
 
 	@Autowired
@@ -18,40 +21,54 @@ public class InventorComponentCreateService implements AbstractCreateService<Inv
 	
 	@Override
 	public boolean authorise(final Request<Item> request) {
-		return InventorItemUtils.authoriseInventor(request, null);
+		return true;
 	}
 
 	@Override
 	public void bind(final Request<Item> request, final Item entity, final Errors errors) {
-		entity.setCode(request.getModel().getAttribute("code").toString());
-		entity.setDescription(request.getModel().getString("description"));
-		entity.setInfo(request.getModel().getString("info"));
-		//TODO aun queda aqui el resto de attrs
+		assert request != null;
+		assert entity != null;
+		assert errors != null;
 		
+		request.bind(entity, errors, "code", "name", "technology", "description", "retailPrice", "info");
 	}
 
 	@Override
 	public void unbind(final Request<Item> request, final Item entity, final Model model) {
-		// TODO Auto-generated method stub
-		
+		request.unbind(entity, model, "code", "name", "technology", "description", "retailPrice", "info");
+		model.setAttribute("readonly", false);
 	}
 
 	@Override
 	public Item instantiate(final Request<Item> request) {
-		// TODO Auto-generated method stub
-		return null;
+		assert request != null;
+		final Item entity = new Item();
+		//TODO Created in draftmode, not published.
+		
+		entity.setDescription("");
+		entity.setName("");
+		entity.setTechnology("");
+		entity.setItemType(ItemType.COMPONENT);
+		return entity;
 	}
 
 	@Override
 	public void validate(final Request<Item> request, final Item entity, final Errors errors) {
-		// TODO Auto-generated method stub
+		assert request != null;
+		assert entity != null;
+		assert errors != null;
+		
+		
 		
 	}
 
 	@Override
 	public void create(final Request<Item> request, final Item entity) {
-		// TODO Auto-generated method stub
-		
+		assert request != null;
+		assert entity != null;
+		entity.setItemType(ItemType.COMPONENT);
+		entity.setInventor(this.repository.findOneInventorById(request.getPrincipal().getActiveRoleId()));
+		this.repository.save(entity);
 	}
 
 }
