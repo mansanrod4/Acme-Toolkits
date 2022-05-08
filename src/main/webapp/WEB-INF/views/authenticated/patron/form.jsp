@@ -10,7 +10,7 @@
 	<acme:input-textarea
 		code="authenticated.patron.form.label.statement" path="statement" />
 	<acme:input-textarea
-		code="authenticated.patron.form.label.info" path="info" />
+		code="authenticated.patron.form.label.info" path="info" placeholder="http://info.com"/>
 
 	<acme:submit test="${command == 'create'}"
 		code="authenticated.patron.form.button.create"

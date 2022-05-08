@@ -10,7 +10,7 @@
 	<acme:input-textarea
 		code="authenticated.inventor.form.label.statement" path="statement" />
 	<acme:input-textarea
-		code="authenticated.inventor.form.label.info" path="info" />
+		code="authenticated.inventor.form.label.info" path="info" placeholder="http://info.com"/>
 
 	<acme:submit test="${command == 'create'}"
 		code="authenticated.inventor.form.button.create"
