@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.Item;
+import acme.entities.toolkits.ItemToolkit;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
@@ -31,4 +32,10 @@ public interface InventorItemRepository extends AbstractRepository {
 	
 	@Query("select t from Item t where t.code=:code")
 	Item getItemByCode(String code);
+
+	@Query("select it from ItemToolkit it where it.item.id=:id")
+    Collection<ItemToolkit> findItemToolkitByItemId(int id);
+	
+	
+
 }

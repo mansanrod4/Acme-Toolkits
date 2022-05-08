@@ -60,7 +60,7 @@ public class Item extends AbstractEntity {
 	@Column(name = "further_information")
 	protected String			info;
 
-	protected boolean			isDraftMode;
+	protected boolean			draftMode;
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------
