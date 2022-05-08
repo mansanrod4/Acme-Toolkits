@@ -35,7 +35,7 @@ public class InventorComponentCreateService implements AbstractCreateService<Inv
 
 	@Override
 	public void unbind(final Request<Item> request, final Item entity, final Model model) {
-		request.unbind(entity, model, "code", "name", "technology", "description", "retailPrice", "info");
+		request.unbind(entity, model, "code", "name", "technology", "description", "retailPrice", "info", "published");
 		model.setAttribute("readonly", false);
 	}
 
@@ -43,12 +43,13 @@ public class InventorComponentCreateService implements AbstractCreateService<Inv
 	public Item instantiate(final Request<Item> request) {
 		assert request != null;
 		final Item entity = new Item();
-		//TODO Created in draftmode, not published.
 		
 		entity.setDescription("");
 		entity.setName("");
 		entity.setTechnology("");
 		entity.setItemType(ItemType.COMPONENT);
+		entity.setPublished(false);
+		entity.setInventor(this.repository.findOneInventorById(request.getPrincipal().getActiveRoleId()));
 		return entity;
 	}
 
@@ -58,16 +59,13 @@ public class InventorComponentCreateService implements AbstractCreateService<Inv
 		assert entity != null;
 		assert errors != null;
 		
-		
-		
 	}
 
 	@Override
 	public void create(final Request<Item> request, final Item entity) {
 		assert request != null;
 		assert entity != null;
-		entity.setItemType(ItemType.COMPONENT);
-		entity.setInventor(this.repository.findOneInventorById(request.getPrincipal().getActiveRoleId()));
+		
 		this.repository.save(entity);
 	}
 

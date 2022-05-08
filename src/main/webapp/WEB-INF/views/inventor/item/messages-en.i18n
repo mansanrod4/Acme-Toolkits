@@ -5,3 +5,6 @@ inventor.component.list.label.description = Description
 inventor.component.list.label.price = Price
 inventor.component.list.label.info = Further Information
 inventor.item.form.button.create = Create
+inventor.component.published = Published
+inventor.component.notpublished = Not published
+inventor.component.list.label.published = Visibility

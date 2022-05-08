@@ -11,6 +11,17 @@
 	<acme:input-textarea code="inventor.component.list.label.info" path="info" placeholder="URL"/>
 	
 	<jstl:choose>
+		<jstl:when test="${published}">
+			<acme:input-textbox code="inventor.component.list.label.published" path="" placeholder="inventor.component.published" readonly="true"/>
+		</jstl:when>
+		<jstl:otherwise>
+			<acme:input-textbox code="inventor.component.list.label.published" path="" placeholder="inventor.component.notpublished" readonly="true"/>
+		</jstl:otherwise>
+	</jstl:choose>
+	
+	
+	
+	<jstl:choose>
 	<jstl:when test="${acme:anyOf(command, 'create')}">
 		<acme:submit code="inventor.item.form.button.create" action="/inventor/item/create"/>
 	</jstl:when>
