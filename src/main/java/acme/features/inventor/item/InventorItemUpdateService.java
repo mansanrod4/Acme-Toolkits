@@ -1,28 +1,24 @@
-package acme.features.inventor.item.component;
+package acme.features.inventor.item;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.toolkits.Item;
-import acme.entities.toolkits.ItemType;
-import acme.features.inventor.item.InventorItemRepository;
-import acme.features.inventor.item.InventorItemUtils;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
-import acme.framework.services.AbstractCreateService;
+import acme.framework.services.AbstractUpdateService;
 import acme.roles.Inventor;
 
-
 @Service
-public class InventorComponentCreateService implements AbstractCreateService<Inventor, Item>{
+public class InventorItemUpdateService implements AbstractUpdateService<Inventor, Item>{
 
 	@Autowired
-	protected InventorItemRepository repository;
+	protected InventorItemRepository inventorItemRepository;
 	
 	@Override
 	public boolean authorise(final Request<Item> request) {
-		return true;
+		return InventorItemUtils.authoriseInventor(request, this.inventorItemRepository);
 	}
 
 	@Override
@@ -32,22 +28,21 @@ public class InventorComponentCreateService implements AbstractCreateService<Inv
 		assert errors != null;
 		
 		InventorItemUtils.bindItem(request, entity, errors);
+		
 	}
 
 	@Override
 	public void unbind(final Request<Item> request, final Item entity, final Model model) {
-		assert request != null;
-		assert entity != null;
-		assert model != null;
-		
 		model.setAttribute("readonly", false);
 		InventorItemUtils.unbindItem(request, entity, model);
 	}
 
 	@Override
-	public Item instantiate(final Request<Item> request) {
+	public Item findOne(final Request<Item> request) {
 		assert request != null;
-		return InventorItemUtils.instantiateItem(request, this.repository, ItemType.COMPONENT);
+		
+		final Integer id = request.getModel().getInteger("id");
+		return this.inventorItemRepository.findOneItemById(id);
 	}
 
 	@Override
@@ -59,11 +54,11 @@ public class InventorComponentCreateService implements AbstractCreateService<Inv
 	}
 
 	@Override
-	public void create(final Request<Item> request, final Item entity) {
+	public void update(final Request<Item> request, final Item entity) {
 		assert request != null;
 		assert entity != null;
 		
-		this.repository.save(entity);
+		this.inventorItemRepository.save(entity);
 	}
 
 }

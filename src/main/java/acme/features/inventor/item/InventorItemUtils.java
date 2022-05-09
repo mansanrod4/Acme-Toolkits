@@ -16,7 +16,7 @@ public class InventorItemUtils {
 		assert request!=null;
 		final int inventorId = request.getPrincipal().getActiveRoleId(); 	
 		final int id = request.getModel().getInteger("id");
-		final Item item = repository.findOneItemByIdFromInventor(id, inventorId);
+		final Item item = repository.findOneItemById(id);
 		return (inventorId == item.getInventor().getId());
 	}
 	

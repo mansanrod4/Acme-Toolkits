@@ -28,6 +28,13 @@
 	<jstl:when test="${acme:anyOf(command, 'create-tool')}">
 		<acme:submit code="inventor.item.form.button.create" action="/inventor/item/create-tool"/>
 	</jstl:when>
+	<jstl:when test="${!acme:anyOf(command, 'update')}">
+		<acme:button code="inventor.item.form.button.edit" action="/inventor/item/update?id=${id}"/>
+	</jstl:when>
+	<jstl:when test="${acme:anyOf(command, 'update')}">
+		<acme:submit code="inventor.item.form.button.update" action="/inventor/item/update"/>
+	</jstl:when>
+	
 	</jstl:choose>
 	
 </acme:form>

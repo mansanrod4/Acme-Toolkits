@@ -8,3 +8,5 @@ inventor.item.form.button.create = Crear
 inventor.component.published = Publicado
 inventor.component.notpublished = No publicado
 inventor.component.list.label.published = Visibilidad
+inventor.item.form.button.update = Actualizar
+inventor.item.form.button.edit = Editar
