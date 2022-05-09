@@ -1,4 +1,4 @@
-package acme.features.inventor.item.component;
+package acme.features.inventor.item.tool;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,9 +13,8 @@ import acme.framework.controllers.Request;
 import acme.framework.services.AbstractCreateService;
 import acme.roles.Inventor;
 
-
 @Service
-public class InventorComponentCreateService implements AbstractCreateService<Inventor, Item>{
+public class InventorToolCreateService implements AbstractCreateService<Inventor, Item>{
 
 	@Autowired
 	protected InventorItemRepository repository;
@@ -32,6 +31,7 @@ public class InventorComponentCreateService implements AbstractCreateService<Inv
 		assert errors != null;
 		
 		InventorItemUtils.bindItem(request, entity, errors);
+		
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class InventorComponentCreateService implements AbstractCreateService<Inv
 	@Override
 	public Item instantiate(final Request<Item> request) {
 		assert request != null;
-		return InventorItemUtils.instantiateItem(request, this.repository, ItemType.COMPONENT);
+		return InventorItemUtils.instantiateItem(request, this.repository, ItemType.TOOL);
 	}
 
 	@Override
@@ -60,6 +60,8 @@ public class InventorComponentCreateService implements AbstractCreateService<Inv
 		assert entity != null;
 		
 		this.repository.save(entity);
+		
 	}
+	
 
 }

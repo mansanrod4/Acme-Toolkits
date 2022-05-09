@@ -22,8 +22,11 @@
 	
 	
 	<jstl:choose>
-	<jstl:when test="${acme:anyOf(command, 'create')}">
-		<acme:submit code="inventor.item.form.button.create" action="/inventor/item/create"/>
+	<jstl:when test="${acme:anyOf(command, 'create-component')}">
+		<acme:submit code="inventor.item.form.button.create" action="/inventor/item/create-component"/>
+	</jstl:when>
+	<jstl:when test="${acme:anyOf(command, 'create-tool')}">
+		<acme:submit code="inventor.item.form.button.create" action="/inventor/item/create-tool"/>
 	</jstl:when>
 	</jstl:choose>
 	
