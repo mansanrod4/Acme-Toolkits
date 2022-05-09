@@ -63,7 +63,7 @@ public class Item extends AbstractEntity {
 	protected boolean			published;
 
 	// Derived attributes -----------------------------------------------------
-
+	
 	// Relationships ----------------------------------------------------------
 
 

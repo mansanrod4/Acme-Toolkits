@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import acme.entities.toolkits.Item;
 import acme.entities.toolkits.ItemType;
 import acme.features.inventor.item.InventorItemRepository;
+import acme.features.inventor.item.InventorItemUtils;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
@@ -35,7 +36,7 @@ public class InventorComponentCreateService implements AbstractCreateService<Inv
 
 	@Override
 	public void unbind(final Request<Item> request, final Item entity, final Model model) {
-		request.unbind(entity, model, "code", "name", "technology", "description", "retailPrice", "info", "published");
+		InventorItemUtils.unbindItem(request, entity, model);
 		model.setAttribute("readonly", false);
 	}
 
