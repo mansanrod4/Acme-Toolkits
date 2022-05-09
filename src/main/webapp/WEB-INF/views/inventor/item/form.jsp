@@ -41,6 +41,7 @@
 		<jstl:when test="${!acme:anyOf(command, 'update') && published == false}">
 			<acme:button code="inventor.item.form.button.edit" action="/inventor/item/update?id=${id}"/>
 			<acme:button code="inventor.item.form.button.publish" action="/inventor/item/publish?id=${id}"/>
+			<acme:submit code="inventor.item.form.button.delete" action="/inventor/item/delete"/>
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(command, 'update')}">
 			<acme:submit code="inventor.item.form.button.update" action="/inventor/item/update"/>

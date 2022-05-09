@@ -38,12 +38,17 @@ public class InventorItemController extends AbstractController<Inventor, Item> {
 	@Autowired
 	protected InventorItemPublishService inventorItemPublishService;
 	
+	@Autowired
+	protected InventorItemDeleteService inventorItemDeleteService;
+	
 	@PostConstruct
 	protected void initialize() {
 		super.addCommand("create-component","create", this.inventorComponentCreateService);
 		super.addCommand("create-tool","create", this.inventorToolCreateService);
 		super.addCommand("update", this.inventorItemUpdateService);
 		super.addCommand("publish","update", this.inventorItemPublishService);
+		super.addCommand("delete", this.inventorItemDeleteService);
+		
 		
 		super.addCommand("list-component","list", this.inventorComponentListAllService);
 		super.addCommand("list-tool", "list", this.inventorToolListAllService);

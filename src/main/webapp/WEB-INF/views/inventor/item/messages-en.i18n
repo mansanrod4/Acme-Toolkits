@@ -13,3 +13,4 @@ inventor.item.form.button.edit = Edit
 inventor.item.form.button.publish = Publish
 inventor.item.form.button.publishOK = Accept and publish
 inventor.component.form.publish.header = Revise your item before publishing it
+inventor.item.form.button.delete = Delete
