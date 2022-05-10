@@ -32,7 +32,6 @@ public class InventorComponentListAllService implements AbstractListService<Inve
 		Collection<Item> result;
 		final int inventorId = request.getPrincipal().getActiveRoleId();
 		result = this.repository.findAllComponentsFromInventor(inventorId);
-
 		return result;
 	}
 
@@ -42,9 +41,8 @@ public class InventorComponentListAllService implements AbstractListService<Inve
 		assert entity != null;
 		assert model != null;
 
+		
 		InventorItemUtils.unbindItem(request, entity, model);
-		model.setAttribute("isComponent", true);
-
 	}
 
 }
