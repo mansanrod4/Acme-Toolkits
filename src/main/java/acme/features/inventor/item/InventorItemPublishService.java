@@ -19,13 +19,15 @@ public class InventorItemPublishService implements AbstractUpdateService<Invento
 	@Override
 	public boolean authorise(final Request<Item> request) {
 		assert request != null;
-		final boolean res;
+		boolean res;
 		int id;
 		Item item;
 
 		id = request.getModel().getInteger("id");
+
 		item = this.repository.findOneItemById(id);
 		res = item!=null && request.isPrincipal(item.getInventor()) && !item.isPublished();
+
 		return res;
 	}
 
@@ -35,19 +37,16 @@ public class InventorItemPublishService implements AbstractUpdateService<Invento
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "code", "name", "technology", "description", "info");
+		InventorItemUtils.bindItem(request, entity, errors);
 
 	}
 
 	@Override
 	public void unbind(final Request<Item> request, final Item entity, final Model model) {
-		assert request != null;
-		assert entity != null;
-		assert model != null;
-
 		request.unbind(entity, model, "code", "name", "technology", "description", "retailPrice", "info", "published");
-	}
+//		model.setAttribute("readonly", false);
 
+	}
 	@Override
 	public Item findOne(final Request<Item> request) {
 		assert request != null;
@@ -65,11 +64,11 @@ public class InventorItemPublishService implements AbstractUpdateService<Invento
 		assert entity != null;
 		assert errors != null;
 		
-		if(!errors.hasErrors("code")) {
-			final Item existing=this.repository.getItemByCode(entity.getCode());
-			errors.state(request, existing == null ||  entity.getId() == existing.getId(), "code", "inventor.item.form.error.duplicated");
-			
-		}
+//		if(!errors.hasErrors("code")) {
+//			final Item existing=this.repository.getItemByCode(entity.getCode());
+//			errors.state(request, existing == null ||  entity.getId() == existing.getId(), "code", "inventor.item.form.error.duplicated");
+//			
+//		}
 		
 	}
 
