@@ -35,12 +35,9 @@
 		<jstl:when test="${acme:anyOf(command, 'create-tool')}">
 			<acme:submit code="inventor.item.form.button.create" action="/inventor/item/create-tool"/>
 		</jstl:when>
-		<jstl:when test="${acme:anyOf(command, 'publish')}">
-			<acme:submit code="inventor.item.form.button.publishOK" action="/inventor/item/publish"/>
-		</jstl:when>
 		<jstl:when test="${!acme:anyOf(command, 'update') && published == false}">
 			<acme:button code="inventor.item.form.button.edit" action="/inventor/item/update?id=${id}"/>
-			<acme:button code="inventor.item.form.button.publish" action="/inventor/item/publish?id=${id}"/>
+			<acme:submit code="inventor.item.form.button.publish" action="/inventor/item/publish"/>
 			<acme:submit code="inventor.item.form.button.delete" action="/inventor/item/delete"/>
 		</jstl:when>
 		<jstl:when test="${acme:anyOf(command, 'update')}">
@@ -50,3 +47,5 @@
 	</jstl:choose>
 		
 </acme:form>
+
+<br><br><br>

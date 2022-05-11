@@ -18,8 +18,22 @@ public class InventorItemDeleteService implements AbstractDeleteService<Inventor
 	
 	@Override
 	public boolean authorise(final Request<Item> request) {
-		return InventorItemUtils.authoriseInventor(request, this.inventorItemRepository);
-		
+
+		assert request != null;
+		boolean res;
+		int inventorId;
+		int id;
+		Item item;
+		Inventor inventor;
+
+		inventorId = request.getPrincipal().getActiveRoleId();
+		id = request.getModel().getInteger("id");
+		item = this.inventorItemRepository.findOneItemById(id);
+		inventor = item.getInventor();
+
+		res = item.isDraftMode() && request.isPrincipal(inventor);
+
+		return res;
 	}
 
 	@Override
@@ -65,3 +79,4 @@ public class InventorItemDeleteService implements AbstractDeleteService<Inventor
 	}
 
 }
+

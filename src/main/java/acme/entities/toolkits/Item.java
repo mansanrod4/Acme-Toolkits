@@ -62,9 +62,13 @@ public class Item extends AbstractEntity {
 	
 	protected boolean			published;
 
+	protected boolean			draftMode;
 	// Derived attributes -----------------------------------------------------
 	
 	// Relationships ----------------------------------------------------------
+	@ManyToOne(optional = false)
+	@NotNull
+	protected Inventor			inventor;
 
 
 	@ManyToOne(optional = false)
