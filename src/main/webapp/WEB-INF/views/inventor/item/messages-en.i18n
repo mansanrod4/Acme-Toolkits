@@ -1,6 +1,16 @@
-inventor.component.list.label.code = Component code
+inventor.component.list.label.code = Code
 inventor.component.list.label.name = Name
 inventor.component.list.label.tech = Technology 
 inventor.component.list.label.description = Description
 inventor.component.list.label.price = Price
 inventor.component.list.label.info = Further Information
+inventor.item.form.button.create = Create
+inventor.component.published = Published
+inventor.component.notpublished = Not published
+inventor.component.list.label.published = Visibility
+inventor.item.form.button.update = Update
+inventor.item.form.button.edit = Edit
+inventor.item.form.button.publish = Publish
+inventor.item.form.button.publishOK = Accept and publish
+inventor.component.form.publish.header = Revise your item before publishing it
+inventor.item.form.button.delete = Delete
