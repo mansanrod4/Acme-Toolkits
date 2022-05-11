@@ -28,7 +28,7 @@ public class InventorItemPublishService implements AbstractUpdateService<Invento
 		id = request.getModel().getInteger("id");
 
 		item = this.repository.findOneItemByIdFromInventor(id, inventorId);
-		res = item!=null && inventorId == item.getInventor().getId() && item.isDraftMode();
+		res = item!=null && request.isPrincipal(item.getInventor()) && item.isDraftMode();
 
 		return res;
 	}
@@ -39,7 +39,7 @@ public class InventorItemPublishService implements AbstractUpdateService<Invento
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "code", "itemType", "name", "technology", "description", "info");
+		request.bind(entity, errors, "code", "name", "technology", "description", "info");
 
 	}
 
@@ -49,9 +49,9 @@ public class InventorItemPublishService implements AbstractUpdateService<Invento
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "code", "itemType", "name", "technology", "description", "retailPrice", "info");
-		model.setAttribute("confirmation", false);
-		model.setAttribute("readonly", true);
+		request.unbind(entity, model, "code", "name", "technology", "description", "retailPrice", "info", "draftMode");
+//		model.setAttribute("confirmation", false);
+//		model.setAttribute("readonly", true);
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class InventorItemPublishService implements AbstractUpdateService<Invento
 		assert request != null;
 		assert entity != null;
 
-		entity.setDraftMode(true);
+		entity.setDraftMode(false);
 		this.repository.save(entity);
 		
 	}
