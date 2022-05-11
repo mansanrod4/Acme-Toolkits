@@ -19,16 +19,13 @@ public class InventorItemPublishService implements AbstractUpdateService<Invento
 	@Override
 	public boolean authorise(final Request<Item> request) {
 		assert request != null;
-		boolean res;
-		int inventorId;
+		final boolean res;
 		int id;
 		Item item;
 
-		inventorId = request.getPrincipal().getActiveRoleId();
 		id = request.getModel().getInteger("id");
-
 		item = this.repository.findOneItemById(id);
-
+		res = item!=null && request.isPrincipal(item.getInventor()) && !item.isPublished();
 		return res;
 	}
 
@@ -57,8 +54,7 @@ public class InventorItemPublishService implements AbstractUpdateService<Invento
 		int id;
 		Item result;
 		id = request.getModel().getInteger("id");
-		final int inventorId = request.getPrincipal().getActiveRoleId();
-		result = this.repository.findOneItemById(id);
+		result = this.repository.findOneItemById(id); 
 
 		return result;
 	}

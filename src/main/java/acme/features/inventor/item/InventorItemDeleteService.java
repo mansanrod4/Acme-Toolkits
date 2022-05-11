@@ -21,18 +21,15 @@ public class InventorItemDeleteService implements AbstractDeleteService<Inventor
 
 		assert request != null;
 		boolean res;
-		int inventorId;
 		int id;
 		Item item;
 		Inventor inventor;
 
-		inventorId = request.getPrincipal().getActiveRoleId();
 		id = request.getModel().getInteger("id");
 		item = this.inventorItemRepository.findOneItemById(id);
 		inventor = item.getInventor();
 
-		res = item.isDraftMode() && request.isPrincipal(inventor);
-
+		res = !item.isPublished() && request.isPrincipal(inventor);
 		return res;
 	}
 

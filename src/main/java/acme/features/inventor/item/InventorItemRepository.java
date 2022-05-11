@@ -6,9 +6,7 @@ import java.util.Collection;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.Item;
-import acme.entities.toolkits.ItemToolkit;
 import acme.framework.repositories.AbstractRepository;
 import acme.roles.Inventor;
 

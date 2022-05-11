@@ -17,7 +17,7 @@ public class InventorItemUtils {
 		final int inventorId = request.getPrincipal().getActiveRoleId(); 	
 		final int id = request.getModel().getInteger("id");
 		final Item item = repository.findOneItemById(id);
-		return (inventorId == item.getInventor().getId());
+		return (inventorId == item.getInventor().getId()); 
 	}
 	
 	public static void unbindItem(final Request<Item> request, final Item entity, final Model model) {

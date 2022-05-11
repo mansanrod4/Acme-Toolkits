@@ -2,12 +2,6 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="urn:jsptagdir:/WEB-INF/tags"%>
 
-<jstl:if test="${acme:anyOf(command, 'publish')}">
-	<h2>
-		<acme:message code="inventor.component.form.publish.header"/>
-	</h2>
-</jstl:if>
-
 
 <acme:form readonly="${readonly}">
 	<acme:input-textbox code="inventor.component.list.label.code" path="code" placeholder="XXX-123, XXX-235-X"/>
@@ -46,6 +40,6 @@
 	
 	</jstl:choose>
 		
-</acme:form>
+</acme:form> 	
 
 <br><br><br>
