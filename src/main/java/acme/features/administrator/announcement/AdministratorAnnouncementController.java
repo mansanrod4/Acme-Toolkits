@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.announcement;
+package acme.features.administrator.announcement;
 
 import javax.annotation.PostConstruct;
 
@@ -8,16 +8,19 @@ import org.springframework.stereotype.Controller;
 
 import acme.entities.Announcement;
 import acme.framework.controllers.AbstractController;
-import acme.framework.roles.Authenticated;
+import acme.framework.roles.Administrator;
 
 @Controller
-public class AuthenticatedAnnouncementController extends AbstractController<Authenticated, Announcement> {
+public class AdministratorAnnouncementController extends AbstractController<Administrator, Announcement> {
 
 	@Autowired
-	protected AuthenticatedAnnouncementListService	listService;
+	protected AdministratorAnnouncementListService	listService;
 
 	@Autowired
-	protected AuthenticatedAnnouncementShowService	showService;
+	protected AdministratorAnnouncementShowService	showService;
+	
+	@Autowired
+	protected AdministratorAnnouncementCreateService createService;
 
 
 	// Constructors -----------------------------------------------------------
@@ -27,5 +30,6 @@ public class AuthenticatedAnnouncementController extends AbstractController<Auth
 	protected void initialise() {
 		super.addCommand("list", this.listService);
 		super.addCommand("show", this.showService);
+		super.addCommand("create", this.createService);
 	}
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.toolkits.Item;
 import acme.features.inventor.item.InventorItemRepository;
+import acme.features.inventor.item.InventorItemUtils;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractListService;
@@ -22,7 +23,6 @@ public class InventorComponentListAllService implements AbstractListService<Inve
 
 	@Override
 	public boolean authorise(final Request<Item> request) {
-		assert request != null;
 		return true;
 	}
 
@@ -32,7 +32,6 @@ public class InventorComponentListAllService implements AbstractListService<Inve
 		Collection<Item> result;
 		final int inventorId = request.getPrincipal().getActiveRoleId();
 		result = this.repository.findAllComponentsFromInventor(inventorId);
-
 		return result;
 	}
 
@@ -42,8 +41,8 @@ public class InventorComponentListAllService implements AbstractListService<Inve
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "code", "name", "technology", "retailPrice");
-
+		
+		InventorItemUtils.unbindItem(request, entity, model);
 	}
 
 }

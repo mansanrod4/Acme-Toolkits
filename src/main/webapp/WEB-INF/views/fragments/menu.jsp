@@ -38,6 +38,7 @@
 			<acme:menu-suboption code="master.menu.user-account.list"	action="/any/user-account/list" />
 			<acme:menu-suboption code="master.menu.administrator.system-configuration" action="/administrator/system-configuration/show"/>
 			<acme:menu-suboption code="master.menu.administrator.dashboard" action="/administrator/admin-dashboard/show"/>
+			<acme:menu-suboption code="master.menu.administrator.announcement.list" action="/administrator/announcement/list"/>
 			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.administrator.populate-initial" action="/administrator/populate-initial" />
 			<acme:menu-suboption code="master.menu.administrator.populate-sample" action="/administrator/populate-sample" />
@@ -65,9 +66,9 @@
 	</acme:menu-left>
 
 	<acme:menu-right>
-		<acme:menu-option code="master.menu.announcements">
-		<acme:menu-suboption code="master.menu.announcements.chirp.list" action="/any/chirp/list"/>
-      	<acme:menu-suboption code="master.menu.announcements.announcement.list" action="/authenticated/announcement/list" access="isAuthenticated()"/>
+		<acme:menu-option code="master.menu.posts">
+		<acme:menu-suboption code="master.menu.posts.chirp.list" action="/any/chirp/list"/>
+      	<acme:menu-suboption code="master.menu.posts.announcement.list" action="/authenticated/announcement/list" access="isAuthenticated()"/>
      	</acme:menu-option>
      	
      	<acme:menu-option code="master.menu.components-tools">
@@ -81,10 +82,10 @@
      	
      	<acme:menu-option code="master.menu.user-account" access="isAuthenticated()">
 		<acme:menu-suboption code="master.menu.user-account.general-data" action="/authenticated/user-account/update"/>
-		<%-- <acme:menu-suboption code="master.menu.user-account.become-patron" action="/authenticated/patron/create" access="!hasRole('Patron')"/> --%>
-		<%-- <acme:menu-suboption code="master.menu.user-account.patron" action="/authenticated/patron/update" access="hasRole('Patron')"/> --%>
-		<%-- <acme:menu-suboption code="master.menu.user-account.become-inventor" action="/authenticated/inventor/create" access="!hasRole('Inventor')"/> --%>
-		<%-- <acme:menu-suboption code="master.menu.user-account.inventor" action="/authenticated/inventor/update" access="hasRole('Inventor')"/> --%>
+		<acme:menu-suboption code="master.menu.user-account.become-patron" action="/authenticated/patron/create" access="!hasRole('Patron')"/>
+		<acme:menu-suboption code="master.menu.user-account.patron" action="/authenticated/patron/update" access="hasRole('Patron')"/>
+		<acme:menu-suboption code="master.menu.user-account.become-inventor" action="/authenticated/inventor/create" access="!hasRole('Inventor')"/> 
+		<acme:menu-suboption code="master.menu.user-account.inventor" action="/authenticated/inventor/update" access="hasRole('Inventor')"/>
 		</acme:menu-option>
      	
      	<acme:menu-option code="master.menu.sign-up" action="/anonymous/user-account/create" access="isAnonymous()" />
