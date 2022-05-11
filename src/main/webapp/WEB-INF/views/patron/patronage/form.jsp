@@ -5,18 +5,16 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="urn:jsptagdir:/WEB-INF/tags"%>
 
-<acme:form>
+<acme:form readonly="true">
 	<acme:hidden-data path="patronageId"/>
 
-	<acme:input-textbox code="patron.patronage.label.code" path="code" readonly="true"/>
-	<jstl:if test="${command == 'show'}">
-		<acme:input-textbox code="patron.patronage.label.creationDate" path="creationDate"/>
-		<acme:input-textbox code="patron.patronage.label.startDate" path="startDate"/>
-		<acme:input-textbox code="patron.patronage.label.endDate" path="endDate"/>
-		<acme:input-textbox code="patron.patronage.label.status" path="status"/>
-		
-		
-	</jstl:if>	
+	<acme:input-textbox code="patron.patronage.label.code" path="code"/>
+
+	<acme:input-textbox code="patron.patronage.label.creationDate" path="creationDate"/>
+	<acme:input-textbox code="patron.patronage.label.startDate" path="startDate"/>
+	<acme:input-textbox code="patron.patronage.label.endDate" path="endDate"/>
+	<acme:input-textbox code="patron.patronage.label.status" path="status"/>
+	
 	<acme:input-textarea code="patron.patronage.label.legalStuff" path="legalStuff"/>
 	<acme:input-textarea code="patron.patronage.label.budget" path="budget"/>
 	<acme:input-textarea code="patron.patronage.label.info" path="info"/>			
@@ -30,7 +28,7 @@
 	<acme:button code="patron.patronage.form.button.patronage-reports" action="/patron/patronage-report/list?patronageId=${id}"/>			
 	
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(command, 'show, update, delete')}">
+		<jstl:when test="${acme:anyOf(command, 'show, update, delete, publish') && published == false}">
 			<acme:submit code="patron.patronage.form.button.delete" action="/patron/patronage/delete"/>
 		</jstl:when>		
 	</jstl:choose>

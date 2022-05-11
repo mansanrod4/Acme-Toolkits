@@ -1,9 +1,12 @@
 package acme.features.patron.patronage;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.patronages.Patronage;
+import acme.entities.patronages.PatronageReport;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
@@ -23,12 +26,16 @@ public class PatronPatronageDeleteService implements AbstractDeleteService<Patro
 		boolean result;
 		int patronageId;
 		Patronage patronage;
+		Patron patron;
 
 		patronageId = request.getModel().getInteger("id");
 		patronage = this.repository.findOnePatronageById(patronageId);
-		result = patronage != null && patronage.getPatron().getId() == request.getPrincipal().getActiveRoleId();
+		patron = patronage.getPatron();
+		
+		result = !patronage.isPublished() && request.isPrincipal(patron); 
 
 		return result;
+		
 	}
 
 	@Override
@@ -37,8 +44,7 @@ public class PatronPatronageDeleteService implements AbstractDeleteService<Patro
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "code", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info", "status");
-		
+		request.bind(entity, errors, "code", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info", "status");	
 	}
 
 	@Override
@@ -48,14 +54,6 @@ public class PatronPatronageDeleteService implements AbstractDeleteService<Patro
 		assert model != null;
 
 		request.unbind(entity, model, "code", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info", "status");
-		model.setAttribute("patronId", entity.getPatron().getId());
-		model.setAttribute("inventorId", entity.getInventor().getId());
-		model.setAttribute("inventorCompany", entity.getInventor().getCompany());
-		model.setAttribute("inventorStatement", entity.getInventor().getStatement());
-		model.setAttribute("inventorFullName", entity.getInventor().getIdentity().getFullName());
-		model.setAttribute("inventorEmail", entity.getInventor().getIdentity().getEmail());
-		model.setAttribute("inventorInfo", entity.getInventor().getInfo());
-		
 	}
 
 	@Override
@@ -82,6 +80,13 @@ public class PatronPatronageDeleteService implements AbstractDeleteService<Patro
 	public void delete(final Request<Patronage> request, final Patronage entity) {
 		assert request != null;
 		assert entity != null;
+		
+		Collection<PatronageReport> pr;
+		
+		pr = this.repository.findPatronageReportById(entity.getId());
+		for (final PatronageReport patronageReport: pr) {
+			this.repository.delete(patronageReport);
+		}
 
 		this.repository.delete(entity);
 	}
