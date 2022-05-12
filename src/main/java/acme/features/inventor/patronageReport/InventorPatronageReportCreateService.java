@@ -29,15 +29,15 @@ public class InventorPatronageReportCreateService implements AbstractCreateServi
 		assert request != null;
 
 		boolean result;
-		int patronageId;
+		int patronageReportId;
 		Patronage p;
 
-		patronageId =  request.getModel().getInteger("id");
-		p = this.repository.findOnePatronageById(patronageId);
-		result = p!= null;
-		
+		patronageReportId = request.getModel().getInteger("id");
+		p = this.repository.findOnePatronageById(patronageReportId);
+		result = p != null && request.isPrincipal(p.getInventor());
+
 		return result;
-		
+
 	}
 
 	@Override
@@ -60,10 +60,10 @@ public class InventorPatronageReportCreateService implements AbstractCreateServi
 
 		request.unbind(entity, model, "moment", "memorandum", "info", "sequenceNumber");
 		model.setAttribute("patronageId", entity.getPatronage().getId());
-		
-//		model.setAttribute("confirmation", false);
-//		model.setAttribute("readonly", false);	
-		}
+
+		model.setAttribute("confirmation", false);
+		//		model.setAttribute("readonly", false);	
+	}
 
 	@Override
 	public PatronageReport instantiate(final Request<PatronageReport> request) {
@@ -72,28 +72,28 @@ public class InventorPatronageReportCreateService implements AbstractCreateServi
 		final PatronageReport result;
 		Patronage patronage;
 		String reference;
-		Date moment; 
+		Date moment;
 		final Calendar calendar;
-		
-//		inventor = this.repository.findOneInventorById(request.getPrincipal().getActiveRoleId());
-		int pr;
-		pr = request.getModel().getInteger("id");
-		patronage = this.repository.findOnePatronageById(pr);
+
+		//		inventor = this.repository.findOneInventorById(request.getPrincipal().getActiveRoleId());
+		int patronageReportId;
+		patronageReportId = request.getModel().getInteger("id");
+		patronage = this.repository.findOnePatronageById(patronageReportId);
 		reference = UUID.randomUUID().toString();
-		
+
 		moment = new Date();
 		calendar = Calendar.getInstance();
 		calendar.setTime(moment);
 		calendar.add(Calendar.SECOND, -1);
 		moment = calendar.getTime();
-		
+
 		result = new PatronageReport();
 		result.setInfo("");
 		result.setMemorandum("");
 		result.setPatronage(patronage);
 		result.setSequenceNumber(reference);
 		result.setMoment(moment);
-	
+
 		return result;
 	}
 
@@ -111,20 +111,20 @@ public class InventorPatronageReportCreateService implements AbstractCreateServi
 	public void create(final Request<PatronageReport> request, final PatronageReport entity) {
 		assert request != null;
 		assert entity != null;
-		
-		Date moment;
-		Calendar calendar;
 
-		moment = new Date();
-		calendar = Calendar.getInstance();
-		calendar.setTime(moment);
-		calendar.add(Calendar.SECOND, -1);
-		moment = calendar.getTime();
-
-		entity.setMoment(moment);
+		//		Date moment;
+		//		Calendar calendar;
+		//
+		//		moment = new Date();
+		//		calendar = Calendar.getInstance();
+		//		calendar.setTime(moment);
+		//		calendar.add(Calendar.SECOND, -1);
+		//		moment = calendar.getTime();
+		//
+		//		entity.setMoment(moment);
 
 		this.repository.save(entity);
-		
+
 	}
 
 }
