@@ -70,6 +70,11 @@ public class InventorToolkitListService implements AbstractListService<Inventor,
 		money.setCurrency(sc.getSystemCurrency());
 
 		model.setAttribute("price", money);
+		if(entity.isPublished()) {
+			model.setAttribute("state","PUBLISHED");
+		}else {
+			model.setAttribute("state", "NOT PUBLISHED");
+		}
 	}
 
 }

@@ -6,3 +6,9 @@ inventor.toolkit.form.label.assemblyNotes = Notas de Montaje:
 inventor.toolkit.form.label.price = Precio
 inventor.toolkit.form.label.info = Info:
 inventor.toolkit.form.label.inventor = Inventor
+inventor.toolkit.form.label.published = Estado
+
+inventor.tooolkit.form.button.delete = Eliminar Toolkit
+inventor.tooolkit.form.button.publish = Publicar Toolkit
+
+inventor.toolkit.no-tool-in-toolkit = Tu Toolkit no contiene ninguna herramienta. Tienes que añadir una herramienta antes de publicarlo.
