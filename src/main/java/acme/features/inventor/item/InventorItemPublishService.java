@@ -44,7 +44,6 @@ public class InventorItemPublishService implements AbstractUpdateService<Invento
 	@Override
 	public void unbind(final Request<Item> request, final Item entity, final Model model) {
 		request.unbind(entity, model, "code", "name", "technology", "description", "retailPrice", "info", "published");
-//		model.setAttribute("readonly", false);
 
 	}
 	@Override
