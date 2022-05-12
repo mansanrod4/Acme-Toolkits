@@ -1,20 +1,17 @@
 package acme.features.patron.patronage;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.patronages.Patronage;
-import acme.entities.patronages.PatronageReport;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
-import acme.framework.services.AbstractDeleteService;
+import acme.framework.services.AbstractUpdateService;
 import acme.roles.Patron;
 
 @Service
-public class PatronPatronageDeleteService implements AbstractDeleteService<Patron, Patronage> {
+public class PatronPatronagePublishedService implements AbstractUpdateService<Patron, Patronage>{
 
 	@Autowired
 	protected PatronPatronageRepository repository;
@@ -35,7 +32,6 @@ public class PatronPatronageDeleteService implements AbstractDeleteService<Patro
 		result = !patronage.isPublished() && request.isPrincipal(patron); 
 
 		return result;
-		
 	}
 
 	@Override
@@ -44,7 +40,7 @@ public class PatronPatronageDeleteService implements AbstractDeleteService<Patro
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "code", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info", "status");	
+		request.bind(entity, errors, "code", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info", "status");
 	}
 
 	@Override
@@ -77,18 +73,12 @@ public class PatronPatronageDeleteService implements AbstractDeleteService<Patro
 	}
 
 	@Override
-	public void delete(final Request<Patronage> request, final Patronage entity) {
+	public void update(final Request<Patronage> request, final Patronage entity) {
 		assert request != null;
 		assert entity != null;
-		
-		Collection<PatronageReport> pr;
-		
-		pr = this.repository.findPatronageReportById(entity.getId());
-		for (final PatronageReport patronageReport: pr) {
-			this.repository.delete(patronageReport);
-		}
 
-		this.repository.delete(entity);
+		entity.setPublished(true);
+		this.repository.save(entity);
 	}
 
 }
