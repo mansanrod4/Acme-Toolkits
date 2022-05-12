@@ -25,56 +25,9 @@
 				action="/inventor/item/delete" />
 			<acme:submit code="inventor.item.form.button.publish"
 				action="/inventor/item/publish" />
-
-			<acme:submit code="inventor.item.form.button.update"
-				action="/inventor/item/update" />
-
 		</jstl:when>
 
 	</jstl:choose>
-
-	<jstl:choose>
-		<jstl:when test="${acme:anyOf(command, 'create-component')}">
-			<acme:submit code="inventor.item.form.button.create"
-				action="/inventor/item/create-component" />
-		</jstl:when>
-		<jstl:when test="${acme:anyOf(command, 'create-tool')}">
-			<acme:submit code="inventor.item.form.button.create"
-				action="/inventor/item/create-tool" />
-		</jstl:when>
-	</jstl:choose>
-
-	<%-- <jstl:choose>
-		<jstl:when test="${published}">
-			<acme:input-textbox code="inventor.component.list.label.published" path="" placeholder="inventor.component.published" readonly="true"/>
-		</jstl:when>
-		<jstl:otherwise>
-			<acme:input-textbox code="inventor.component.list.label.published" path="" placeholder="inventor.component.notpublished" readonly="true"/>
-		</jstl:otherwise>
-	</jstl:choose>
-	
-	
-	
-	<jstl:choose>
-		<jstl:when test="${acme:anyOf(command, 'create-component')}">
-			<acme:submit code="inventor.item.form.button.create" action="/inventor/item/create-component"/>
-		</jstl:when>
-		<jstl:when test="${acme:anyOf(command, 'create-tool')}">
-			<acme:submit code="inventor.item.form.button.create" action="/inventor/item/create-tool"/>
-		</jstl:when>
-		<jstl:when test="${!acme:anyOf(command, 'update') && published == false}">
-			<acme:button code="inventor.item.form.button.edit" action="/inventor/item/update?id=${id}"/>
-			<acme:submit code="inventor.item.form.button.publish" action="/inventor/item/publish"/>
-			<acme:submit code="inventor.item.form.button.delete" action="/inventor/item/delete"/>
-		</jstl:when>
-		<jstl:when test="${acme:anyOf(command, 'update')}">
-			<acme:submit code="inventor.item.form.button.update" action="/inventor/item/update"/>
-		</jstl:when>
-	
-	</jstl:choose> --%>
 
 </acme:form>
 
-<br>
-<br>
-<br>
