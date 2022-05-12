@@ -28,6 +28,7 @@ patron.patronage.label.patronInfo = Información
 patron.patronage.form.button.patronage-reports = Reportes
 
 patron.patronage.form.button.delete = Eliminar
+patron.patronage.form.button.publish = Publicar
 
 
 patron.patronage.list.title = Mis patrocinios
