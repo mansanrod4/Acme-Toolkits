@@ -1,10 +1,10 @@
-
 package acme.features.inventor.item;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import acme.entities.toolkits.Item;
 import acme.entities.toolkits.ItemToolkit;
@@ -15,12 +15,11 @@ import acme.framework.services.AbstractDeleteService;
 import acme.roles.Inventor;
 
 @Service
-public class InventorItemDeleteService implements AbstractDeleteService<Inventor, Item> {
+public class InventorItemDeleteService implements AbstractDeleteService<Inventor, Item>{
 
 	@Autowired
 	protected InventorItemRepository inventorItemRepository;
-
-
+	
 	@Override
 	public boolean authorise(final Request<Item> request) {
 
@@ -43,22 +42,19 @@ public class InventorItemDeleteService implements AbstractDeleteService<Inventor
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-
+		
 		request.bind(entity, errors, "code", "name", "technology", "description", "retailPrice", "info");
-
 	}
 
 	@Override
 	public void unbind(final Request<Item> request, final Item entity, final Model model) {
 		request.unbind(entity, model, "code", "name", "technology", "description", "retailPrice", "info", "published");
-		model.setAttribute("readonly", false);
-
 	}
 
 	@Override
 	public Item findOne(final Request<Item> request) {
 		assert request != null;
-
+		
 		final Integer id = request.getModel().getInteger("id");
 		return this.inventorItemRepository.findOneItemById(id);
 	}
@@ -68,7 +64,7 @@ public class InventorItemDeleteService implements AbstractDeleteService<Inventor
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-
+		
 	}
 
 	@Override
@@ -82,7 +78,8 @@ public class InventorItemDeleteService implements AbstractDeleteService<Inventor
 		}
 
 		this.inventorItemRepository.delete(entity);
-
+		
 	}
 
 }
+

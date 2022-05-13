@@ -1,32 +1,27 @@
-package acme.features.inventor.item;
+package acme.features.inventor.item.component;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.toolkits.Item;
+import acme.entities.toolkits.ItemType;
+import acme.features.inventor.item.InventorItemRepository;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
-import acme.framework.services.AbstractUpdateService;
+import acme.framework.services.AbstractCreateService;
 import acme.roles.Inventor;
 
+
 @Service
-public class InventorItemPublishService implements AbstractUpdateService<Inventor, Item> {
+public class InventorComponentCreateService implements AbstractCreateService<Inventor, Item>{
 
-	@Autowired 
+	@Autowired
 	protected InventorItemRepository repository;
-
+	
 	@Override
 	public boolean authorise(final Request<Item> request) {
-		assert request != null;
-		final boolean res;
-		int id;
-		Item item;
-
-		id = request.getModel().getInteger("id");
-		item = this.repository.findOneItemById(id);
-		res = item!=null && request.isPrincipal(item.getInventor()) && !item.isPublished();
-		return res;
+		return true;
 	}
 
 	@Override
@@ -34,9 +29,8 @@ public class InventorItemPublishService implements AbstractUpdateService<Invento
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-
-		request.bind(entity, errors, "code", "name", "technology", "description", "info");
-
+		
+		request.bind(entity, errors, "code", "name", "technology", "description", "retailPrice", "info");
 	}
 
 	@Override
@@ -44,19 +38,23 @@ public class InventorItemPublishService implements AbstractUpdateService<Invento
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-
+		
 		request.unbind(entity, model, "code", "name", "technology", "description", "retailPrice", "info", "published");
 	}
 
 	@Override
-	public Item findOne(final Request<Item> request) {
+	public Item instantiate(final Request<Item> request) {
 		assert request != null;
-		int id;
-		Item result;
-		id = request.getModel().getInteger("id");
-		result = this.repository.findOneItemById(id); 
-
-		return result;
+		final Item entity = new Item();
+		
+		entity.setDescription("");
+		entity.setName("");
+		entity.setTechnology("");
+		entity.setItemType(ItemType.COMPONENT);
+		entity.setPublished(false);
+		entity.setInventor(this.repository.findOneInventorById(request.getPrincipal().getActiveRoleId()));
+		
+		return entity;
 	}
 
 	@Override
@@ -77,14 +75,11 @@ public class InventorItemPublishService implements AbstractUpdateService<Invento
 	}
 
 	@Override
-	public void update(final Request<Item> request, final Item entity) {
+	public void create(final Request<Item> request, final Item entity) {
 		assert request != null;
 		assert entity != null;
-
-		entity.setPublished(true);
-		this.repository.save(entity);
 		
+		this.repository.save(entity);
 	}
-	
 
 }
