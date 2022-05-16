@@ -11,5 +11,5 @@
 	
 </acme:list>
 
-	<acme:button test="${showCreate}" code="inventor.patronage-report.list.button.create" action="/inventor/patronage-report/create"/>	
+	
 		

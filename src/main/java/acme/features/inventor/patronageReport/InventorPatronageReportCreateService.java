@@ -32,7 +32,7 @@ public class InventorPatronageReportCreateService implements AbstractCreateServi
 		int patronageReportId;
 		Patronage p;
 
-		patronageReportId = request.getModel().getInteger("id");
+		patronageReportId = request.getModel().getInteger("patronageId");
 		p = this.repository.findOnePatronageById(patronageReportId);
 		result = p != null && request.isPrincipal(p.getInventor());
 
@@ -77,7 +77,7 @@ public class InventorPatronageReportCreateService implements AbstractCreateServi
 
 		//		inventor = this.repository.findOneInventorById(request.getPrincipal().getActiveRoleId());
 		int patronageReportId;
-		patronageReportId = request.getModel().getInteger("id");
+		patronageReportId = request.getModel().getInteger("patronageId");
 		patronage = this.repository.findOnePatronageById(patronageReportId);
 		reference = UUID.randomUUID().toString();
 

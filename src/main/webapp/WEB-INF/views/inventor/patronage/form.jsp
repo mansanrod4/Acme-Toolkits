@@ -27,8 +27,8 @@
 	<acme:input-textbox code="inventor.patronage.label.patronStatement" path="patronStatement"/>
 	<acme:input-textbox code="inventor.patronage.label.patronInfo" path="patronInfo"/>
 	
-	<acme:button code="inventor.patronage.form.button.patronage-reports" action="/inventor/patronage-report/list?patronageId=${id}"/>			
+	<acme:button code="inventor.patronage.form.button.patronage-reports" action="/inventor/patronage-report/list?masterId=${id}"/>			
 	
-	
+	<acme:button test="${showCreate}" code="inventor.patronage-report.list.button.create" action="/inventor/patronage-report/create?patronageId=${id}"/>	
 </acme:form>
 

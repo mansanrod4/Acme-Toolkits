@@ -22,7 +22,7 @@
 	<jstl:choose>
 		<jstl:when test="${command == 'create'}">
 			<acme:submit code="inventor.patronage-report.form.button.create"
-				action="/inventor/patronage-report/create?patronageReportId=${id}" />
+				action="/inventor/patronage-report/create" />
 		</jstl:when>
 	</jstl:choose>
 
