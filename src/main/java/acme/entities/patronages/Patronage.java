@@ -83,5 +83,10 @@ public class Patronage extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	protected Inventor			inventor;
+	
+	
+	
+	
+
 
 }

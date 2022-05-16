@@ -29,7 +29,9 @@ master.menu.anonymous.olisanrod-favourite-link =  47538886W: Sánchez Rodríguez
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrator
+master.menu.administrator.system-configuration = System Details
 master.menu.administrator.dashboard = Dashboard
+master.menu.administrator.announcement.list = Announcements
 master.menu.administrator.user-accounts = All User accounts
 master.menu.administrator.populate-initial = Populate DB (initial)
 master.menu.administrator.populate-sample = Populate DB (samples)
@@ -61,17 +63,16 @@ master.menu.user-account.become-patron = Become a patron
 master.menu.user-account.inventor = Inventor data
 master.menu.user-account.become-inventor = Become a inventor
 
-# master.menu.announcements ##########################################
+# master.menu.posts ##########################################
 
-master.menu.announcements = Posts
-master.menu.announcements.announcement.list = Announcements
-master.menu.announcements.chirp.list = Chirps
+master.menu.posts = Posts
+master.menu.posts.announcement.list = Announcements
+master.menu.posts.chirp.list = Chirps
 
 # master.menu.sc ##########################################
 
 master.menu.sc = System Configuration
 master.menu.sc.system-configuration.list = Currencies information
-master.menu.administrator.sc.system-configuration.list = System Details
 
 # master.menu.components-tools ##########################################
 
