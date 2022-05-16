@@ -53,6 +53,9 @@ public class InventorItemController extends AbstractController<Inventor, Item> {
 		super.addCommand("list-component","list", this.inventorComponentListAllService);
 		super.addCommand("list-tool", "list", this.inventorToolListAllService);
 		super.addCommand("show", this.inventorItemShowService);
+
+		
+
 	}
 
 }

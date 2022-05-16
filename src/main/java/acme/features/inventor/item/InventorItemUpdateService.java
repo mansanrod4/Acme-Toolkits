@@ -14,11 +14,15 @@ import acme.roles.Inventor;
 public class InventorItemUpdateService implements AbstractUpdateService<Inventor, Item>{
 
 	@Autowired
-	protected InventorItemRepository inventorItemRepository;
+	protected InventorItemRepository repository;
 	
 	@Override
 	public boolean authorise(final Request<Item> request) {
-		return InventorItemUtils.authoriseInventor(request, this.inventorItemRepository);
+		assert request!=null;
+		final int inventorId = request.getPrincipal().getActiveRoleId(); 	
+		final int id = request.getModel().getInteger("id");
+		final Item item = this.repository.findOneItemById(id);
+		return (inventorId == item.getInventor().getId()); 
 	}
 
 	@Override
@@ -27,14 +31,14 @@ public class InventorItemUpdateService implements AbstractUpdateService<Inventor
 		assert entity != null;
 		assert errors != null;
 		
-		InventorItemUtils.bindItem(request, entity, errors);
+		request.bind(entity, errors, "code", "name", "technology", "description", "retailPrice", "info");	
 		
 	}
 
 	@Override
 	public void unbind(final Request<Item> request, final Item entity, final Model model) {
 		model.setAttribute("readonly", false);
-		InventorItemUtils.unbindItem(request, entity, model);
+		request.unbind(entity, model, "code", "name", "technology", "description", "retailPrice", "info", "published");
 	}
 
 	@Override
@@ -42,7 +46,7 @@ public class InventorItemUpdateService implements AbstractUpdateService<Inventor
 		assert request != null;
 		
 		final Integer id = request.getModel().getInteger("id");
-		return this.inventorItemRepository.findOneItemById(id);
+		return this.repository.findOneItemById(id);
 	}
 
 	@Override
@@ -51,6 +55,14 @@ public class InventorItemUpdateService implements AbstractUpdateService<Inventor
 		assert entity != null;
 		assert errors != null;
 		
+		if(!errors.hasErrors("code")) {
+			final Item existing=this.repository.getItemByCode(entity.getCode());
+			errors.state(request, existing == null ||  entity.getId() == existing.getId(), "code", "inventor.item.form.error.duplicated");
+		}
+		
+		if (!errors.hasErrors("retailPrice")) {
+			errors.state(request, entity.getRetailPrice().getAmount()>0, "retailPrice", "inventor.item.form.error.retailPrice.negativeOrZero");
+		}
 	}
 
 	@Override
@@ -58,7 +70,7 @@ public class InventorItemUpdateService implements AbstractUpdateService<Inventor
 		assert request != null;
 		assert entity != null;
 		
-		this.inventorItemRepository.save(entity);
+		this.repository.save(entity);
 	}
 
 }
