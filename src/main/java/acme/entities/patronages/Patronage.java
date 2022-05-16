@@ -67,8 +67,6 @@ public class Patronage extends AbstractEntity {
 	@URL
 	@Column(name = "information")
 	protected String			info;
-	
-	protected boolean published;
 
 	// Derived attributes -----------------------------------------------------
 
@@ -83,10 +81,5 @@ public class Patronage extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	protected Inventor			inventor;
-	
-	
-	
-	
-
 
 }

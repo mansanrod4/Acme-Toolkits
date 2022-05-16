@@ -22,11 +22,11 @@ public class PatronPatronageShowService implements AbstractShowService<Patron, P
 		assert request != null;
 
 		boolean result;
-		int masterId;
+		int patronageId;
 		Patronage patronage;
 
-		masterId = request.getModel().getInteger("id");
-		patronage = this.repository.findOnePatronageById(masterId);
+		patronageId = request.getModel().getInteger("id");
+		patronage = this.repository.findOnePatronageById(patronageId);
 		result = patronage != null && patronage.getPatron().getId() == request.getPrincipal().getActiveRoleId();
 
 		return result;
@@ -51,7 +51,7 @@ public class PatronPatronageShowService implements AbstractShowService<Patron, P
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "code", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info", "status", "published");
+		request.unbind(entity, model, "code", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info", "status");
 		model.setAttribute("patronId", entity.getPatron().getId());
 		model.setAttribute("inventorId", entity.getInventor().getId());
 		model.setAttribute("inventorCompany", entity.getInventor().getCompany());
@@ -59,6 +59,7 @@ public class PatronPatronageShowService implements AbstractShowService<Patron, P
 		model.setAttribute("inventorFullName", entity.getInventor().getIdentity().getFullName());
 		model.setAttribute("inventorEmail", entity.getInventor().getIdentity().getEmail());
 		model.setAttribute("inventorInfo", entity.getInventor().getInfo());
+
 	}
 
 }

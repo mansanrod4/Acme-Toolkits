@@ -44,8 +44,10 @@ public class Toolkit extends AbstractEntity {
 	@Length(min = 1, max = 255)
 	protected String			assemblyNotes;
 
-	protected boolean			published=false;
-	
+	@ManyToOne(optional = false)
+	@NotNull
+	protected Inventor			inventor;
+
 	@URL
 	protected String			info;
 
@@ -53,7 +55,4 @@ public class Toolkit extends AbstractEntity {
 
 	// Relationships ----------------------------------------------------------
 
-	@ManyToOne(optional = false)
-	@NotNull
-	protected Inventor			inventor;
 }

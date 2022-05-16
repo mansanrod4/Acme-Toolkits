@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import acme.entities.toolkits.Item;
 import acme.entities.toolkits.ItemType;
 import acme.features.inventor.item.InventorItemRepository;
+import acme.features.inventor.item.InventorItemUtils;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
@@ -30,7 +31,7 @@ public class InventorComponentCreateService implements AbstractCreateService<Inv
 		assert entity != null;
 		assert errors != null;
 		
-		request.bind(entity, errors, "code", "name", "technology", "description", "retailPrice", "info");
+		InventorItemUtils.bindItem(request, entity, errors);
 	}
 
 	@Override
@@ -39,22 +40,14 @@ public class InventorComponentCreateService implements AbstractCreateService<Inv
 		assert entity != null;
 		assert model != null;
 		
-		request.unbind(entity, model, "code", "name", "technology", "description", "retailPrice", "info", "published");
+		model.setAttribute("readonly", false);
+		InventorItemUtils.unbindItem(request, entity, model);
 	}
 
 	@Override
 	public Item instantiate(final Request<Item> request) {
 		assert request != null;
-		final Item entity = new Item();
-		
-		entity.setDescription("");
-		entity.setName("");
-		entity.setTechnology("");
-		entity.setItemType(ItemType.COMPONENT);
-		entity.setPublished(false);
-		entity.setInventor(this.repository.findOneInventorById(request.getPrincipal().getActiveRoleId()));
-		
-		return entity;
+		return InventorItemUtils.instantiateItem(request, this.repository, ItemType.COMPONENT);
 	}
 
 	@Override
@@ -62,15 +55,6 @@ public class InventorComponentCreateService implements AbstractCreateService<Inv
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		
-		if(!errors.hasErrors("code")) {
-			final Item existing=this.repository.getItemByCode(entity.getCode());
-			errors.state(request, existing == null ||  entity.getId() == existing.getId(), "code", "inventor.item.form.error.duplicated");
-		}
-		
-		if (!errors.hasErrors("retailPrice")) {
-			errors.state(request, entity.getRetailPrice().getAmount()>0, "retailPrice", "inventor.item.form.error.retailPrice.negativeOrZero");
-		}
 		
 	}
 

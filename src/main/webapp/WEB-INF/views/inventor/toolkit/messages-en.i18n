@@ -7,9 +7,3 @@ inventor.toolkit.form.label.price = Price
 inventor.toolkit.form.label.components = Components
 inventor.toolkit.form.label.inventor = Inventor
 inventor.toolkit.form.label.info = Info
-inventor.toolkit.form.label.published = State
-
-inventor.tooolkit.form.button.delete = Delete Toolkit
-inventor.tooolkit.form.button.publish = Publish Toolkit
-
-inventor.toolkit.no-tool-in-toolkit = Your toolkit do not have any tool. You must add a tool before you publish it
