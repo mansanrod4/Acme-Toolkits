@@ -1,9 +1,9 @@
 
 package acme.features.inventor.patronageReport;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,7 +62,7 @@ public class InventorPatronageReportCreateService implements AbstractCreateServi
 		model.setAttribute("patronageId", entity.getPatronage().getId());
 
 		model.setAttribute("confirmation", false);
-		//		model.setAttribute("readonly", false);	
+		model.setAttribute("readonly", false);	
 	}
 
 	@Override
@@ -71,15 +71,17 @@ public class InventorPatronageReportCreateService implements AbstractCreateServi
 		assert request != null;
 		final PatronageReport result;
 		Patronage patronage;
-		String reference;
 		Date moment;
 		final Calendar calendar;
-
-		//		inventor = this.repository.findOneInventorById(request.getPrincipal().getActiveRoleId());
+		
 		int patronageReportId;
 		patronageReportId = request.getModel().getInteger("patronageId");
 		patronage = this.repository.findOnePatronageById(patronageReportId);
-		reference = UUID.randomUUID().toString();
+
+		String code;
+				
+		code = patronage.getCode();
+				
 
 		moment = new Date();
 		calendar = Calendar.getInstance();
@@ -91,7 +93,13 @@ public class InventorPatronageReportCreateService implements AbstractCreateServi
 		result.setInfo("");
 		result.setMemorandum("");
 		result.setPatronage(patronage);
-		result.setSequenceNumber(reference);
+		
+		
+		final DecimalFormat decimalFormat = new DecimalFormat("0000");
+		final Integer serial = this.repository.countPatronageReport()+1;
+		final String serialString = decimalFormat.format(serial);
+		
+		result.setSequenceNumber(code+":"+serialString);
 		result.setMoment(moment);
 
 		return result;
@@ -102,7 +110,7 @@ public class InventorPatronageReportCreateService implements AbstractCreateServi
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		boolean confirmation;
+		final boolean confirmation;
 		confirmation = request.getModel().getBoolean("confirmation");
 		errors.state(request, confirmation, "confirmation", "javax.validation.constraints.AssertTrue.message");
 	}
@@ -111,17 +119,6 @@ public class InventorPatronageReportCreateService implements AbstractCreateServi
 	public void create(final Request<PatronageReport> request, final PatronageReport entity) {
 		assert request != null;
 		assert entity != null;
-
-		//		Date moment;
-		//		Calendar calendar;
-		//
-		//		moment = new Date();
-		//		calendar = Calendar.getInstance();
-		//		calendar.setTime(moment);
-		//		calendar.add(Calendar.SECOND, -1);
-		//		moment = calendar.getTime();
-		//
-		//		entity.setMoment(moment);
 
 		this.repository.save(entity);
 
