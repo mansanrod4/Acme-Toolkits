@@ -25,34 +25,33 @@ public class AdministratorAnnouncementCreateTest extends TestHarness {
 	@ParameterizedTest
 	@CsvFileSource(resources = "/administrator/announcement/create-announcement-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void positiveTest(final int jobRecordIndex, final int dutyRecordIndex, final String title, final String description, final String workLoad, final String moreInfo) {
+	public void positiveTest(final int recordIndex, final String title, final String body, 
+		final String critical, final String link) {
 
+		super.signIn("administrator", "administrator");
 		super.navigateHome();
-		super.clickOnMenu("administrator", "Chirps");
+		super.clickOnMenu("Administrator", "Announcement");
 		
 		super.checkListingExists();
-		super.clickOnButton("Create Chirp");
-	//	super.fillInputBoxIn("moment", moment);
+		super.clickOnButton("Create");
 		super.fillInputBoxIn("title", title);
-//		super.fillInputBoxIn("author", author);
-//		super.fillInputBoxIn("body", body);
-//		super.fillInputBoxIn("email", email);
+		super.fillInputBoxIn("body", body);
+		super.fillInputBoxIn("critical", critical);
+		super.fillInputBoxIn("link", link);
 		
 		super.fillInputBoxIn("confirmation", "true");
-	
-		super.clickOnSubmit("Create");
-	
-	
+
+		super.clickOnSubmit("Create announcement");
+
+
 		super.navigateHome();
-		super.clickOnMenu("Posts", "Chirps");
-		super.sortListing(2, "asc");
-//		
-//		super.checkColumnHasValue(recordIndex, 0, moment);
-//		super.checkColumnHasValue(recordIndex, 1, title);
-//		super.checkColumnHasValue(recordIndex, 2, author);
-//		super.checkColumnHasValue(recordIndex, 3, body);
-//		super.checkColumnHasValue(recordIndex, 4, email);
-	
+		super.clickOnMenu("Posts", "Announcement");
+		super.sortListing(1, "asc");
+		
+		super.checkColumnHasValue(recordIndex, 1, title);
+		super.checkColumnHasValue(recordIndex, 2, body);
+		super.checkColumnHasValue(recordIndex, 3, critical);
+		super.checkColumnHasValue(recordIndex, 4, link);
 			
 	}
 
