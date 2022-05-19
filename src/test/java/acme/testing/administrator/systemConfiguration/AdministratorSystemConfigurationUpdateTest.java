@@ -15,8 +15,6 @@ public class AdministratorSystemConfigurationUpdateTest extends TestHarness{
 		super.signIn("administrator", "administrator");
 
 		super.clickOnMenu("Administrator", "System Details");
-		super.checkListingExists();
-		super.sortListing(0, "asc");
 
 		super.checkColumnHasValue(recordIndex, 0, systemCurrency);
 		super.clickOnListingRecord(recordIndex);
@@ -29,8 +27,6 @@ public class AdministratorSystemConfigurationUpdateTest extends TestHarness{
 		super.fillInputBoxIn("moreInfo", weakSpamThreshold);
 		super.clickOnSubmit("Update");
 
-		super.checkListingExists();
-		super.sortListing(0, "asc");
 		super.checkColumnHasValue(recordIndex, 0, systemCurrency);
 		super.checkColumnHasValue(recordIndex, 1, acceptedCurrencies);
 		super.checkColumnHasValue(recordIndex, 2, strongSpamTerms);
