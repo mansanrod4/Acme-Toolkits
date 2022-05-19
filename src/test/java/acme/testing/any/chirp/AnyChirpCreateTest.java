@@ -12,7 +12,7 @@ public class AnyChirpCreateTest extends TestHarness {
 	@CsvFileSource(resources = "/any/chirp/create-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 
-	public void positiveChirpTest(final int recordIndex, final String moment,
+	public void positiveChirpTest(final int recordIndex, 
 		final String title, final String author, final String body, final String email) {
 
 		super.navigateHome();
@@ -20,7 +20,6 @@ public class AnyChirpCreateTest extends TestHarness {
 		
 		super.checkListingExists();
 		super.clickOnButton("Create Chirp");
-//		super.fillInputBoxIn("moment", moment);
 		super.fillInputBoxIn("title", title);
 		super.fillInputBoxIn("author", author);
 		super.fillInputBoxIn("body", body);
@@ -35,11 +34,37 @@ public class AnyChirpCreateTest extends TestHarness {
 		super.clickOnMenu("Posts", "Chirps");
 		super.sortListing(2, "asc");
 		
-		super.checkColumnHasValue(recordIndex, 0, moment);
 		super.checkColumnHasValue(recordIndex, 1, title);
 		super.checkColumnHasValue(recordIndex, 2, author);
 		super.checkColumnHasValue(recordIndex, 3, body);
 		super.checkColumnHasValue(recordIndex, 4, email);
+
+			
+	}
+	
+
+	@ParameterizedTest
+	@CsvFileSource(resources = "/any/chirp/create-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@Order(10)
+
+	public void negativeChirpTest(final int recordIndex, final String moment,
+		final String title, final String author, final String body, final String email) {
+
+		super.navigateHome();
+		super.clickOnMenu("Posts", "Chirps");
+		
+		super.checkListingExists();
+		super.clickOnButton("Create Chirp");
+		super.fillInputBoxIn("title", title);
+		super.fillInputBoxIn("author", author);
+		super.fillInputBoxIn("body", body);
+		super.fillInputBoxIn("email", email);
+		
+		super.fillInputBoxIn("confirmation", "true");
+
+		super.clickOnSubmit("Create");
+
+		super.checkErrorsExist();
 
 			
 	}
