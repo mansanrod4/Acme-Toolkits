@@ -32,6 +32,7 @@ public class InventorPatronageReportListService implements AbstractListService<I
 		Collection<PatronageReport> result;
 		int patronageId;
 
+
 		patronageId = request.getModel().getInteger("masterId");
 		result = this.repository.findPatronageReportByPatronage(patronageId);
 
