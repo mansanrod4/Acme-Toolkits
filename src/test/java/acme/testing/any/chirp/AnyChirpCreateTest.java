@@ -26,7 +26,7 @@ public class AnyChirpCreateTest extends TestHarness {
 		super.fillInputBoxIn("body", body);
 		super.fillInputBoxIn("email", email);
 		
-		super.checkInputBoxHasValue("Confirmation", "true");
+		super.fillInputBoxIn("confirmation", "true");
 
 		super.clickOnSubmit("Create");
 
