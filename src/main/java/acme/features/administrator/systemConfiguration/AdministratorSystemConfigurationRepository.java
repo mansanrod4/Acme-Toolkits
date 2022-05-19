@@ -1,8 +1,6 @@
 
 package acme.features.administrator.systemConfiguration;
 
-import java.util.Collection;
-
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +14,7 @@ public interface AdministratorSystemConfigurationRepository extends AbstractRepo
 	SystemConfiguration findSystemConfiguration();
 
 	@Query("select sc.acceptedCurrencies from SystemConfiguration sc")
-	Collection<String> findAcceptedCurrncies();
+	String findAcceptedCurrncies();
 	
 	@Query("select sc.acceptedCurrencies from SystemConfiguration sc where sc.acceptedCurrencies=:currency")
 	String findAcceptedCurrnciesByName(String currency);
