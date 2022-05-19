@@ -75,8 +75,5 @@ public class AdministratorAnnouncementCreateTest extends TestHarness {
 		
 		super.checkErrorsExist();
 		super.signOut();
-			
 	}
-
-	
 }
