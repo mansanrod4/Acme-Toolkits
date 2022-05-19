@@ -34,4 +34,26 @@ public class AdministratorSystemConfigurationUpdateTest extends TestHarness{
 		super.signOut();
 	}
 	
+	@ParameterizedTest
+	@CsvFileSource(resources = "/administrator/systemConfiguration/update-system-configuration-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@Order(10)
+	public void negativeTest(final int recordIndex, final String systemCurrency, final String acceptedCurrencies, final String strongSpamTerms, final String strongSpamThreshold, final String weakSpamTerms, final String weakSpamThreshold) {
+		super.signIn("administrator", "administrator");
+
+		super.clickOnMenu("Administrator", "System Details");
+
+		super.checkFormExists();
+		super.fillInputBoxIn("systemCurrency", systemCurrency);
+		super.fillInputBoxIn("acceptedCurrencies", acceptedCurrencies);
+		super.fillInputBoxIn("strongSpamTerms", strongSpamTerms);
+		super.fillInputBoxIn("strongSpamThreshold", strongSpamThreshold);
+		super.fillInputBoxIn("weakSpamTerms", weakSpamTerms);
+		super.fillInputBoxIn("weakSpamThreshold", weakSpamThreshold);
+		super.clickOnSubmit("Update");
+
+		super.checkErrorsExist();
+
+		super.signOut();
+	}
+	
 }
