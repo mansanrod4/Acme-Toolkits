@@ -1,4 +1,3 @@
-
 package acme.features.inventor.toolkit;
 
 import java.util.ArrayList;
@@ -11,40 +10,42 @@ import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.Toolkit;
 import acme.forms.MoneyExchange;
 import acme.framework.components.models.Model;
+import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
-import acme.framework.services.AbstractShowService;
+import acme.framework.services.AbstractUpdateService;
 import acme.roles.Inventor;
 
 @Service
-public class InventorToolkitShowService implements AbstractShowService<Inventor, Toolkit> {
+public class InventorToolkitUpdateService implements AbstractUpdateService<Inventor, Toolkit>{
 
-	// Internal State -------------------------------------------------------------------
+	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	protected InventorToolkitRepository repository;
 
-
+	
+	// AbstractUpdateService<Inventor, Toolkit> interface -------------------------
+	
 	@Override
 	public boolean authorise(final Request<Toolkit> request) {
 		assert request != null;
 		
-		final int inventorId = request.getPrincipal().getActiveRoleId();
 		final int id = request.getModel().getInteger("id");
-		final Toolkit toolkit = this.repository.findOneToolkitByIdFromInventor(id, inventorId);
-		return (inventorId == toolkit.getInventor().getId());
+		final int inventorId = request.getPrincipal().getActiveRoleId();
+		final Toolkit toolkit = this.repository.findOneToolkitById(id);
+		
+		return (toolkit.getInventor().getId()==inventorId && !toolkit.isPublished());
 	}
 
 	@Override
-	public Toolkit findOne(final Request<Toolkit> request) {
+	public void bind(final Request<Toolkit> request, final Toolkit entity, final Errors errors) {
 		assert request != null;
+		assert entity != null;
+		assert errors != null;
 		
-		int id;
-		Toolkit toolkit;
-		final int inventorId = request.getPrincipal().getActiveRoleId();
-		id = request.getModel().getInteger("id");
-		toolkit = this.repository.findOneToolkitByIdFromInventor(id, inventorId);
-		return toolkit;
+		request.bind(entity, errors, "code", "title", "description", "assemblyNotes", "info");
+		
 	}
 
 	@Override
@@ -72,7 +73,37 @@ public class InventorToolkitShowService implements AbstractShowService<Inventor,
 		money.setCurrency(sc.getSystemCurrency());
 
 		model.setAttribute("price", money);
-		model.setAttribute("inventor", entity.getInventor().getIdentity().getFullName());
+		model.setAttribute("inventor", entity.getInventor().getIdentity().getFullName());}
+
+	@Override
+	public Toolkit findOne(final Request<Toolkit> request) {
+		int id;
+		Toolkit toolkit;
+		id = request.getModel().getInteger("id");
+		toolkit = this.repository.findOneToolkitById(id);
+		return toolkit;
 	}
 
+	@Override
+	public void validate(final Request<Toolkit> request, final Toolkit entity, final Errors errors) {
+		assert request != null;
+		assert entity != null;
+		assert errors != null;
+		
+		if(!errors.hasErrors("code")) {
+			final Toolkit existing=this.repository.findOneToolkitByCode(entity.getCode());
+			
+			errors.state(request, existing==null  || existing.getId()==entity.getId(), "code", "inventor.toolkit.form.error.duplicated-code");
+		}
+		
+	}
+
+	@Override
+	public void update(final Request<Toolkit> request, final Toolkit entity) {
+		assert request != null;
+		assert entity != null;
+
+		this.repository.save(entity);
+		
+	}
 }
