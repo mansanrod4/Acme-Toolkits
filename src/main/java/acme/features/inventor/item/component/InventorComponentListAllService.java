@@ -22,7 +22,6 @@ public class InventorComponentListAllService implements AbstractListService<Inve
 
 	@Override
 	public boolean authorise(final Request<Item> request) {
-		assert request != null;
 		return true;
 	}
 
@@ -32,7 +31,6 @@ public class InventorComponentListAllService implements AbstractListService<Inve
 		Collection<Item> result;
 		final int inventorId = request.getPrincipal().getActiveRoleId();
 		result = this.repository.findAllComponentsFromInventor(inventorId);
-
 		return result;
 	}
 
@@ -42,8 +40,7 @@ public class InventorComponentListAllService implements AbstractListService<Inve
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "code", "name", "technology", "retailPrice");
-
+		request.unbind(entity, model, "code","name","technology","retailPrice");
 	}
 
 }

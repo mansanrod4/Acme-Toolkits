@@ -20,7 +20,6 @@ public class InventorToolListAllService implements AbstractListService<Inventor,
 	
 	@Override
 	public boolean authorise(final Request<Item> request) {
-		assert request != null;
 		return true;
 	}
 
@@ -41,7 +40,6 @@ public class InventorToolListAllService implements AbstractListService<Inventor,
 		assert model != null;
 		
 		request.unbind(entity, model, "code","name","technology","retailPrice");
-		
 	}
 	
 	

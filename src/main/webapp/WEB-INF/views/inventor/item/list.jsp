@@ -13,3 +13,12 @@
 		width="20%" />
 </acme:list>
 
+<jstl:choose>
+	<jstl:when test="${acme:anyOf(command, 'list-component')}">
+		<acme:button code="inventor.item.form.button.create" action="/inventor/item/create-component"/>
+	</jstl:when>
+	<jstl:otherwise>
+		<acme:button code="inventor.item.form.button.create" action="/inventor/item/create-tool"/>
+	</jstl:otherwise>
+</jstl:choose>
+
