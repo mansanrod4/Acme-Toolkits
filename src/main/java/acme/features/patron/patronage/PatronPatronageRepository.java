@@ -32,4 +32,7 @@ public interface PatronPatronageRepository extends AbstractRepository {
 
 	@Query("select p from Patronage p where p.code = :code")
 	Patronage findOnePatronageByCode(String code);
+	
+	@Query("select i from Inventor i")
+	Collection<Inventor> findAllInventors();
 }

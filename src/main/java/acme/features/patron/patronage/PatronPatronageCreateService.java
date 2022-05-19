@@ -14,7 +14,6 @@ import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractCreateService;
-import acme.roles.Inventor;
 import acme.roles.Patron;
 
 @Service
@@ -30,12 +29,12 @@ public class PatronPatronageCreateService implements AbstractCreateService<Patro
 		assert request != null;
 
 		boolean result;
-		int inventorId;
-		Inventor inventor;
+		int patronId;
+		Patron patron;
 
-		inventorId = request.getModel().getInteger("inventorId");
-		inventor = this.repository.findOneInventorById(inventorId);
-		result = inventor != null;
+		patronId = request.getModel().getInteger("patronId");
+		patron = this.repository.findOnePatronById(patronId);
+		result = patron != null;
 
 		return result;
 	}
@@ -47,7 +46,7 @@ public class PatronPatronageCreateService implements AbstractCreateService<Patro
 		assert request != null;
 		
 		final Patronage result;
-		Patron patron;
+		final Patron patron;
 		
 		patron = this.repository.findOnePatronById(request.getPrincipal().getActiveRoleId());
 		
@@ -67,8 +66,12 @@ public class PatronPatronageCreateService implements AbstractCreateService<Patro
 		assert entity != null;
 		assert errors != null;
 		
+		final int inventorId=request.getModel().getInteger("inventorId");
+		entity.setInventor(this.repository.findOneInventorById(inventorId));
+		
 		request.bind(entity, errors, "code","status","legalStuff","budget","creationDate","startDate","endDate","info");
-	}
+		
+}
 
 	@Override
 	public void unbind(final Request<Patronage> request, final Patronage entity, final Model model) {
@@ -77,6 +80,10 @@ public class PatronPatronageCreateService implements AbstractCreateService<Patro
 		assert model != null;
 		
 		request.unbind(entity, model, "code","status","legalStuff","budget","creationDate","startDate","endDate","info");
+		model.setAttribute("inventors", this.repository.findAllInventors());
+		model.setAttribute("patron", this.repository.findOnePatronById(request.getModel().getInteger("patronId")));
+		
+
 
 	}
 
