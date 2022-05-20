@@ -12,11 +12,11 @@ import acme.entities.patronages.PatronageStatus;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
-import acme.framework.services.AbstractCreateService;
+import acme.framework.services.AbstractUpdateService;
 import acme.roles.Patron;
 
 @Service
-public class PatronPatronageCreateService implements AbstractCreateService<Patron, Patronage> {
+public class PatronPatronageUpdateService implements AbstractUpdateService<Patron, Patronage> {
 
 	@Autowired
 	protected PatronPatronageRepository repository;
@@ -26,26 +26,18 @@ public class PatronPatronageCreateService implements AbstractCreateService<Patro
 	public boolean authorise(final Request<Patronage> request) {
 		assert request != null;
 
-		return true;
-	}
+		boolean result;
+		int masterId;
+		Patronage patronage;
+		Patron patron;
 
-	@Override
-	public Patronage instantiate(final Request<Patronage> request) {
-
-		assert request != null;
-
-		final Patronage result;
-		final Patron patron;
-
-		patron = this.repository.findOnePatronById(request.getPrincipal().getActiveRoleId());
-
-		result = new Patronage();
-		result.setStatus(PatronageStatus.PROPOSED);
-		result.setPublished(false);
-		result.setCode("");
-		result.setPatron(patron);
+		masterId = request.getModel().getInteger("id");
+		patronage = this.repository.findOnePatronageById(masterId);
+		patron = patronage.getPatron();
+		result = !patronage.isPublished() && request.isPrincipal(patron);
 
 		return result;
+
 	}
 
 	@Override
@@ -60,7 +52,8 @@ public class PatronPatronageCreateService implements AbstractCreateService<Patro
 		entity.setCreationDate(moment);
 
 		entity.setStatus(PatronageStatus.PROPOSED);
-		entity.setInventor(this.repository.findOneInventorById(Integer.valueOf(request.getModel().getAttribute("inventorId").toString())));
+		final int inventorId = request.getModel().getInteger("inventorId");
+		entity.setInventor(this.repository.findOneInventorById(inventorId));
 
 	}
 
@@ -77,17 +70,24 @@ public class PatronPatronageCreateService implements AbstractCreateService<Patro
 	}
 
 	@Override
+	public Patronage findOne(final Request<Patronage> request) {
+		assert request != null;
+
+		Patronage result;
+		int id;
+
+		id = request.getModel().getInteger("id");
+		result = this.repository.findOnePatronageById(id);
+
+		return result;
+	}
+
+	@Override
 	public void validate(final Request<Patronage> request, final Patronage entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-
-		if (!errors.hasErrors("code")) {
-			Patronage existing;
-
-			existing = this.repository.findOnePatronageByCode(entity.getCode());
-			errors.state(request, existing == null, "code", "patron.patronage.form.error.duplicated");
-		}
+		
 
 		if (!errors.hasErrors("startDate")) {
 			final Calendar calendar = Calendar.getInstance();
@@ -113,12 +113,11 @@ public class PatronPatronageCreateService implements AbstractCreateService<Patro
 	}
 
 	@Override
-	public void create(final Request<Patronage> request, final Patronage entity) {
+	public void update(final Request<Patronage> request, final Patronage entity) {
 		assert request != null;
 		assert entity != null;
 
 		this.repository.save(entity);
-
 	}
 
 }
