@@ -30,29 +30,5 @@ public class InventorItemPublishTest extends TestHarness {
 		super.signOut();
 
 	}
-	
-//	@ParameterizedTest
-//	@CsvFileSource(resources = "/inventor/item/publish-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
-//	@Order(10)
-//	public void negativeToolTest(final int recordIndex, final String itemType, final String published) {
-//		super.navigateHome();
-//
-//		super.signIn("inventor1", "inventor1");
-//		super.clickOnMenu("Inventor", "My Tools");
-//
-//		super.checkListingExists();
-//		super.sortListing(0, "asc");
-//
-//		super.clickOnListingRecord(recordIndex);
-//		super.checkFormExists();
-//		super.clickOnSubmit("Publish");
-//		super.checkAlertExists(false);
-//
-//		super.signOut();	
-//		
-//	}
-
-	
-	
 
 }

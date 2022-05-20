@@ -25,9 +25,7 @@ public class InventorItemDeleteTest extends TestHarness{
 		super.checkFormExists();
 		super.clickOnSubmit("Delete");
 		super.checkNotErrorsExist();
-		super.checkListingEmpty();
-		
-		
+
 	}
 
 }

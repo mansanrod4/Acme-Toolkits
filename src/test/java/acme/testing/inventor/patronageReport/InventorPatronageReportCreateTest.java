@@ -7,14 +7,13 @@ import org.springframework.core.annotation.Order;
 
 import acme.testing.TestHarness;
 
-public class InventorPatronageReportCreateTest extends TestHarness{
+public class InventorPatronageReportCreateTest extends TestHarness {
 
 	@ParameterizedTest
 	@CsvFileSource(resources = "/inventor/patronage-report/create-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void positiveTest(final int reportIndex, final int recordIndex, final String reference,  final String memorandum, final String info) {
+	public void positiveTest(final int reportIndex, final int recordIndex, final String reference, final String memorandum, final String info) {
 
-		
 		super.signIn("inventor1", "inventor1");
 
 		super.navigateHome();
@@ -31,7 +30,7 @@ public class InventorPatronageReportCreateTest extends TestHarness{
 		super.clickOnSubmit("Create");
 
 		super.clickOnButton("Reports");
-		
+
 		//reports
 		super.checkListingExists();
 		super.sortListing(0, "asc");
@@ -41,22 +40,20 @@ public class InventorPatronageReportCreateTest extends TestHarness{
 
 		super.checkInputBoxHasValue("memorandum", memorandum);
 		super.checkInputBoxHasValue("info", info);
-		
+
 		super.signOut();
 
 	}
-	
+
 	@ParameterizedTest
 	@CsvFileSource(resources = "/inventor/patronage-report/create-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void negativeTest(final int reportIndex, final int recordIndex, final String reference,  final String memorandum, final String info) {
+	public void negativeTest(final int reportIndex, final int recordIndex, final String reference, final String memorandum, final String info) {
 
-		
 		super.signIn("inventor1", "inventor1");
 
 		super.navigateHome();
 
-		//patronages
 		super.clickOnMenu("Inventor", "My Patronages");
 		this.clickOnListingRecord(reportIndex);
 		super.clickOnButton("Create Report");
