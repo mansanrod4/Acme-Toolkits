@@ -3,6 +3,7 @@ package acme.features.inventor.item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.Item;
 import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
 import acme.framework.components.models.Model;
@@ -10,6 +11,7 @@ import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractUpdateService;
 import acme.roles.Inventor;
+import notenoughspam.SpamDetector;
 
 @Service
 public class InventorItemUpdateService implements AbstractUpdateService<Inventor, Item>{
@@ -63,6 +65,30 @@ public class InventorItemUpdateService implements AbstractUpdateService<Inventor
 		if(!errors.hasErrors("code")) {
 			final Item existing=this.repository.getItemByCode(entity.getCode());
 			errors.state(request, existing == null ||  entity.getId() == existing.getId(), "code", "inventor.item.form.error.duplicated");
+		}
+		
+final SystemConfiguration sysConfig = this.systemConfigRepository.findSystemConfiguration();
+		
+		final Double strongSpamThreshold = sysConfig.getStrongSpamThreshold();
+		final String[] strongSpamWords = sysConfig.getStrongSpamTerms().split(",");
+		
+		final Double weakSpamThreshold = sysConfig.getWeakSpamThreshold();
+		final String[] weakSpamWords = sysConfig.getWeakSpamTerms().split(",");
+		
+		final SpamDetector spamDetector = new SpamDetector(strongSpamThreshold, weakSpamThreshold, strongSpamWords, weakSpamWords);
+		
+		
+		if (!errors.hasErrors("name")) {
+			final String name = entity.getName();
+			errors.state(request, spamDetector.stringHasSpam(name), "name", "inventor.item.form.error.spam");
+		}
+		
+		if (!errors.hasErrors("technology")) {
+			errors.state(request, spamDetector.stringHasSpam(entity.getDescription()), "technology", "inventor.item.form.error.spam");
+		}
+		
+		if (!errors.hasErrors("description")) {
+			errors.state(request, spamDetector.stringHasSpam(entity.getDescription()), "description", "inventor.item.form.error.spam");
 		}
 		
 		if (!errors.hasErrors("retailPrice")) {
