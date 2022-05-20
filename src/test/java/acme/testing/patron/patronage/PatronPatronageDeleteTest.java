@@ -21,11 +21,8 @@ public class PatronPatronageDeleteTest extends TestHarness {
 		super.clickOnMenu("Patron", "My Patronages");
 		super.checkListingExists();
 		super.sortListing(0, "asc");
-
-		super.checkColumnHasValue(recordIndex, 0, code);
-		super.checkColumnHasValue(recordIndex, 1, inventor);
-		super.checkColumnHasValue(recordIndex, 2, status);
-
+		super.checkNotListingEmpty();
+		
 		super.clickOnListingRecord(recordIndex);
 		super.checkFormExists();
 		super.clickOnButton("delete");
