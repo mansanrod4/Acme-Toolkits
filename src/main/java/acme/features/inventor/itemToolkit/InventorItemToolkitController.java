@@ -1,38 +1,34 @@
-
-package acme.features.inventor.toolkit;
+package acme.features.inventor.itemToolkit;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import acme.entities.toolkits.Toolkit;
+import acme.entities.toolkits.ItemToolkit;
 import acme.framework.controllers.AbstractController;
 import acme.roles.Inventor;
 
 @Controller
-public class InventorToolkitController extends AbstractController<Inventor, Toolkit> {
-
+public class InventorItemToolkitController extends AbstractController<Inventor, ItemToolkit>{
+	
 	//Internal State --------------------------------------------------------------------------------------------------
-
-	@Autowired
-	protected InventorToolkitListService	listService;
-
-	@Autowired
-	protected InventorToolkitShowService	showService;
 	
 	@Autowired
-	protected InventorToolkitDeleteService deleteService;
+	protected InventorItemToolkitCreateService createService;
 	
 	@Autowired 
-	protected InventorToolkitPublishService publishService;
+	protected InventorItemToolkitListService listService;
 	
 	@Autowired
-	protected InventorToolkitCreateService createService;
+	protected InventorItemToolkitShowService showService;
 	
 	@Autowired
-	protected InventorToolkitUpdateService updateService;
-
+	protected InventorItemToolkitDeleteService deleteService;
+	
+	@Autowired
+	protected InventorItemToolkitUpdateService updateService;
+	
 	// Constructors ---------------------------------------------------------------------------------------------------
 
 
@@ -40,10 +36,8 @@ public class InventorToolkitController extends AbstractController<Inventor, Tool
 	protected void initialise() {
 		super.addCommand("show", this.showService);
 		super.addCommand("list", this.listService);
-		super.addCommand("delete", this.deleteService);
 		super.addCommand("create", this.createService);
+		super.addCommand("delete", this.deleteService);
 		super.addCommand("update", this.updateService);
-		
-		super.addCommand("publish", "update", this.publishService);
 	}
 }

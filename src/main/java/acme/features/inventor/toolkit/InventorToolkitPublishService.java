@@ -65,7 +65,7 @@ public class InventorToolkitPublishService implements AbstractUpdateService<Inve
 			prices.add(price);
 		}
 
-		request.unbind(entity, model, "title", "description", "assemblyNotes", "info", "published");
+		request.unbind(entity, model,"code",  "title", "description", "assemblyNotes", "info", "published");
 
 		final MoneyExchange mE = new MoneyExchange();
 		final List<Money> pricesFix = mE.convertMoney(prices, sc.getSystemCurrency());
@@ -97,6 +97,12 @@ public class InventorToolkitPublishService implements AbstractUpdateService<Inve
 			
 			final Collection<Item> tool=this.repository.findItemByTypeFromToolkit(entity.getId(), ItemType.TOOL);
 			errors.state(request, tool.size()==1,"*", "inventor.toolkit.no-tool-in-toolkit");
+		}
+		
+		if(!errors.hasErrors("code")) {
+			final Toolkit existing=this.repository.findOneToolkitByCode(entity.getCode());
+			
+			errors.state(request, existing==null  || existing.getId()==entity.getId(), "code", "inventor.toolkit.form.error.duplicated-code");
 		}
 		
 	}
