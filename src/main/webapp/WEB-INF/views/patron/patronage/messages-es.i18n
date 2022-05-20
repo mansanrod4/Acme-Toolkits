@@ -25,7 +25,13 @@ patron.patronage.label.patronCompany = Compañía
 patron.patronage.label.patronStatement = Declaración
 patron.patronage.label.patronInfo = Información
 
+patron.patronage.form.error.duplicated = El código debe ser único
+patron.patronage.form.error.start-date = La fecha de inicio, al menos, debe ser un mes más tarde de la actual
+patron.patronage.form.error.end-date = La fecha final, al menos, debe ser un mes más tarde de la fecha de inicio
+
+
 patron.patronage.form.button.patronage-reports = Reportes
+patron.patronage.form.button.create = Crear
 
 patron.patronage.form.button.delete = Eliminar
 patron.patronage.form.button.publish = Publicar
@@ -36,6 +42,8 @@ patron.patronage.list.title = Mis patrocinios
 patron.patronage.list.label.code = Código
 patron.patronage.list.label.status = Estado
 patron.patronage.list.label.patron = Patrón
+
+patron.patronage.list.button.create = Crear
 
 
 patron.patronage.form.error.spam = Parece que su solicitud contiene spam
