@@ -1,5 +1,8 @@
 package acme.features.administrator.systemConfiguration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +32,8 @@ public class AdministratorSystemConfigurationUpdateService implements AbstractUp
 		assert errors != null;
 
 		request.bind(entity, errors, "systemCurrency", "acceptedCurrencies", "strongSpamTerms", "strongSpamThreshold", "weakSpamTerms", "weakSpamThreshold");
-		
 	}
+	
 
 	@Override
 	public void unbind(final Request<SystemConfiguration> request, final SystemConfiguration entity, final Model model) {
@@ -38,8 +41,15 @@ public class AdministratorSystemConfigurationUpdateService implements AbstractUp
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "systemCurrency", "acceptedCurrencies", "strongSpamTerms", "strongSpamThreshold", "weakSpamTerms", "weakSpamThreshold");
+		final String[] acepCurrencies = this.repository.findAcceptedCurrncies().split(",");
+		final List<String> accepted = new ArrayList<String>();
 		
+		for(int i = 0; i<acepCurrencies.length; i++) {
+			final String money = acepCurrencies[i];
+			accepted.add(money);
+		}
+		request.unbind(entity, model, "systemCurrency", "acceptedCurrencies", "strongSpamTerms", "strongSpamThreshold", "weakSpamTerms", "weakSpamThreshold");
+		model.setAttribute("accepted", accepted);
 	}
 
 	@Override

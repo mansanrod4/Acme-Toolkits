@@ -4,7 +4,16 @@
 <%@taglib prefix="acme" uri="urn:jsptagdir:/WEB-INF/tags"%>
 
 <acme:form>
-	<acme:input-textbox code="administrator.system-configuration.form.label.systemCurrency" path="systemCurrency"/>
+	<%-- <acme:input-select code="administrator.system-configuration.form.label.systemCurrency" path="systemCurrency">
+		<acme:input-option code="${accepted}" value="${accepted}" selected="${accepted==systemCurrency}"/>
+	</acme:input-select> --%>
+	
+	<acme:input-select code="administrator.system-configuration.form.label.systemCurrency" path="systemCurrency">
+                <jstl:forEach items="${accepted}" var="acceptedCurr">
+                    <acme:input-option code="${acceptedCurr}" value="${acceptedCurr}"/>
+                </jstl:forEach>
+</acme:input-select>
+	
 	<acme:input-textbox code="administrator.system-configuration.form.label.acceptedCurrencies" path="acceptedCurrencies"/>
 	
 	<br><br>
