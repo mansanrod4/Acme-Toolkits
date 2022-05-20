@@ -30,10 +30,10 @@ public class AdministratorAnnouncementCreateTest extends TestHarness {
 
 		super.signIn("administrator", "administrator");
 		super.navigateHome();
-		super.clickOnMenu("Administrator", "Announcement");
+		super.clickOnMenu("Administrator", "Announcements");
 		
 		super.checkListingExists();
-		super.clickOnButton("Create");
+		super.clickOnButton("Create announcement");
 		super.fillInputBoxIn("title", title);
 		super.fillInputBoxIn("body", body);
 		super.fillInputBoxIn("critical", critical);
@@ -43,7 +43,7 @@ public class AdministratorAnnouncementCreateTest extends TestHarness {
 		super.clickOnSubmit("Create announcement");
 
 		super.navigateHome();
-		super.clickOnMenu("Posts", "Announcement");
+		super.clickOnMenu("Posts", "Announcements");
 		super.sortListing(1, "asc");
 		
 		super.checkColumnHasValue(recordIndex, 1, title);
@@ -61,17 +61,17 @@ public class AdministratorAnnouncementCreateTest extends TestHarness {
 
 		super.signIn("administrator", "administrator");
 		super.navigateHome();
-		super.clickOnMenu("Administrator", "Announcement");
+		super.clickOnMenu("Administrator", "Announcements");
 		
 		super.checkListingExists();
-		super.clickOnButton("Create");
+		super.clickOnButton("Create announcements");
 		super.fillInputBoxIn("title", title);
 		super.fillInputBoxIn("body", body);
 		super.fillInputBoxIn("critical", critical);
 		super.fillInputBoxIn("link", link);
 		super.fillInputBoxIn("confirmation", "true");
 
-		super.clickOnSubmit("Create announcement");
+		super.clickOnSubmit("Create");
 		
 		super.checkErrorsExist();
 		super.signOut();
