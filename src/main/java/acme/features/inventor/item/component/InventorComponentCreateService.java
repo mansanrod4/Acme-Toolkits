@@ -1,8 +1,12 @@
 package acme.features.inventor.item.component;
 
+import java.util.Arrays;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.Item;
 import acme.entities.toolkits.ItemType;
 import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
@@ -71,6 +75,25 @@ public class InventorComponentCreateService implements AbstractCreateService<Inv
 		if(!errors.hasErrors("code")) {
 			final Item existing=this.repository.getItemByCode(entity.getCode());
 			errors.state(request, existing == null ||  entity.getId() == existing.getId(), "code", "inventor.item.form.error.duplicated");
+		}
+		
+		final SystemConfiguration sysConfig = this.systemConfigRepository.findSystemConfiguration();
+		
+		final Double strongSpamThreshold = sysConfig.getStrongSpamThreshold();
+		final String[] strongSpamWords = sysConfig.getStrongSpamTerms().split(",");
+		
+		final Double weakSpamThreshold = sysConfig.getWeakSpamThreshold();
+		final String[] weakSpamWords = sysConfig.getWeakSpamTerms().split(",");
+		
+		
+		if (!errors.hasErrors("name")) {
+			final String name = entity.getName();
+			final int countStrongSpam = Arrays.stream(strongSpamWords).mapToInt(w-> StringUtils.countMatches(name, w)).sum();
+			final int countWeakSpam = Arrays.stream(weakSpamWords).mapToInt(w-> StringUtils.countMatches(name, w)).sum();
+			final Double selectedThreshold = (countStrongSpam >=1)?strongSpamThreshold:weakSpamThreshold;
+			
+			errors.state(request, countStrongSpam + countWeakSpam > selectedThreshold, "name", "inventor.item.form.error.spam");
+			
 		}
 		
 		if (!errors.hasErrors("retailPrice")) {

@@ -15,3 +15,5 @@ inventor.component.form.publish.header = Revise su objeto u pulse en "Aceptar y 
 inventor.item.form.button.delete = Eliminar
 inventor.item.form.error.retailPrice.negativeOrZero = El precio debe de ser mayor a cero
 inventor.item.form.error.retailPrice.currency-not-supported = La moneda introducida no está disponible
+inventor.component.list.label.price-system: Precio convertido
+inventor.item.form.error.spam = Spam detectado
