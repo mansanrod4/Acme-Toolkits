@@ -1,9 +1,11 @@
 
-package acme.testing.item;
+package acme.testing.any.item;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+
+import acme.testing.inventor.item.TestItem;
 
 public class AnyItemListAllnShowTest extends TestItem {
 
