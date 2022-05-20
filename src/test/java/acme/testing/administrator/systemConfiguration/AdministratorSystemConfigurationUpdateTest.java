@@ -14,7 +14,7 @@ public class AdministratorSystemConfigurationUpdateTest extends TestHarness{
 	public void positiveTest(final int recordIndex, final String systemCurrency, final String acceptedCurrencies, final String strongSpamTerms, final String strongSpamThreshold, final String weakSpamTerms, final String weakSpamThreshold) {
 		super.signIn("administrator", "administrator");
 
-		super.clickOnMenu("Administrator", "System Details");
+		super.clickOnMenu("Administrator", "Update System Details");
 
 		super.checkFormExists();
 		super.fillInputBoxIn("systemCurrency", systemCurrency);
@@ -40,7 +40,7 @@ public class AdministratorSystemConfigurationUpdateTest extends TestHarness{
 	public void negativeTest(final int recordIndex, final String systemCurrency, final String acceptedCurrencies, final String strongSpamTerms, final String strongSpamThreshold, final String weakSpamTerms, final String weakSpamThreshold) {
 		super.signIn("administrator", "administrator");
 
-		super.clickOnMenu("Administrator", "System Details");
+		super.clickOnMenu("Administrator", "Update System Details");
 
 		super.checkFormExists();
 		super.fillInputBoxIn("systemCurrency", systemCurrency);
