@@ -7,13 +7,13 @@ import org.springframework.core.annotation.Order;
 
 import acme.testing.TestHarness;
 
-public class PatronPatronageListAndShowTest extends TestHarness {
+public class PatronPatronageDeleteTest extends TestHarness {
 
 	@ParameterizedTest
 	@CsvFileSource(resources = "/patron/patronage/list-patronage.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void positivePatronageTest(final int recordIndex, final String status, final String code, final String legal_stuff, final String budget, final String creation_date, final String start_date, final String end_date, final String info,
-		final String patron, final String inventor, final String inventor_name, final String inventor_surname, final String inventor_email, final String inventor_company, final String inventor_statement, final String inventor_info, final String published) {
+		final String patron, final String inventor, final String inventor_name, final String inventor_surname, final String inventor_email, final String inventor_company, final String inventor_statement, final String inventor_info) {
 
 		super.signIn("patron1", "patron1");
 		super.navigateHome();
@@ -41,7 +41,6 @@ public class PatronPatronageListAndShowTest extends TestHarness {
 		super.checkInputBoxHasValue("inventorCompany", inventor_company);
 		super.checkInputBoxHasValue("inventorStatement", inventor_statement);
 		super.checkInputBoxHasValue("inventorInfo", inventor_info);
-		super.checkInputBoxHasValue("published", published);
 
 		super.signOut();
 	}
