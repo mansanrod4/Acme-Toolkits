@@ -24,6 +24,8 @@ public class InventorItemPublishTest extends TestHarness {
 		super.checkFormExists();
 		super.clickOnSubmit("Publish");
 		super.checkNotErrorsExist();
+		super.clickOnListingRecord(recordIndex);
+		super.checkNotSubmitExists("Publish");
 
 		super.signOut();
 
