@@ -52,7 +52,6 @@ public class AdministratorSystemConfigurationUpdateTest extends TestHarness{
 		super.clickOnSubmit("Update");
 
 		super.checkErrorsExist();
-
 		super.signOut();
 	}
 	
