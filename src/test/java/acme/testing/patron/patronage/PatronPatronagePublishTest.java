@@ -26,6 +26,10 @@ public class PatronPatronagePublishTest extends TestHarness {
         super.checkFormExists();
         super.clickOnSubmit("Publish");
         super.checkNotErrorsExist();
+        
+        super.clickOnListingRecord(recordIndex);
+        super.checkNotButtonExists("Publish");
+        
 
         super.signOut();
 	}

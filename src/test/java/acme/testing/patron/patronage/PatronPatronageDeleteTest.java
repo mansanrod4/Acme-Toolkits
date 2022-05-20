@@ -31,6 +31,10 @@ public class PatronPatronageDeleteTest extends TestHarness {
 		super.clickOnButton("delete");
 		super.checkNotErrorsExist();
 		
+		super.clickOnMenu("Patron", "My Patronages");
+		super.clickOnListingRecord(recordIndex);
+		super.checkErrorsExist();
+		
 		super.signOut();
 	}
 
