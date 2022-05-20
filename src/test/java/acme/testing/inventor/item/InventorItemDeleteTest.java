@@ -6,10 +6,10 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import acme.testing.TestHarness;
 
-public class InventorItemPublishTest extends TestHarness {
+public class InventorItemDeleteTest extends TestHarness{
 	
 	@ParameterizedTest
-	@CsvFileSource(resources = "/inventor/item/publish-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/inventor/item/delete-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void positiveToolTest(final int recordIndex) {
 		super.navigateHome();
@@ -18,16 +18,13 @@ public class InventorItemPublishTest extends TestHarness {
 		super.clickOnMenu("Inventor", "My Tools");
 
 		super.checkListingExists();
+		super.checkNotListingEmpty();
 		super.sortListing(0, "asc");
 
 		super.clickOnListingRecord(recordIndex);
 		super.checkFormExists();
-		super.clickOnSubmit("Publish");
+		super.clickOnSubmit("Delete");
 		super.checkNotErrorsExist();
-		super.clickOnListingRecord(recordIndex);
-		super.checkNotSubmitExists("Publish");
-
-		super.signOut();
 
 	}
 
