@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.toolkits.Item;
 import acme.entities.toolkits.ItemType;
+import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
 import acme.features.inventor.item.InventorItemRepository;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
@@ -17,6 +18,9 @@ public class InventorToolCreateService implements AbstractCreateService<Inventor
 
 	@Autowired
 	protected InventorItemRepository repository;
+	
+	@Autowired
+	protected AdministratorSystemConfigurationRepository systemConfigRepository;
 	
 	@Override
 	public boolean authorise(final Request<Item> request) {
@@ -66,8 +70,12 @@ public class InventorToolCreateService implements AbstractCreateService<Inventor
 		}
 		
 		if (!errors.hasErrors("retailPrice")) {
+			final String currency = entity.getRetailPrice().getCurrency();
+			final boolean currencyIsSuported = this.systemConfigRepository.findSystemConfiguration().getAcceptedCurrencies().contains(currency);
+			errors.state(request, currencyIsSuported, "retailPrice", "inventor.item.form.error.retailPrice.currency-not-supported");
 			errors.state(request, entity.getRetailPrice().getAmount()>0, "retailPrice", "inventor.item.form.error.retailPrice.negativeOrZero");
 		}
+
 	}
 
 	@Override
