@@ -1,0 +1,54 @@
+
+package acme.testing.patron.patronage;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+import org.springframework.core.annotation.Order;
+
+import acme.testing.TestHarness;
+
+public class PatronPatronagePublishTest extends TestHarness {
+
+	@ParameterizedTest
+	@CsvFileSource(resources = "/patron/patronage/publish-patronage-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@Order(10)
+	public void positivePatronageTest(final int recordIndex) {
+
+		super.navigateHome();
+
+        super.signIn("patron1", "patron1");
+        super.clickOnMenu("Patron", "My Patronage");
+
+        super.checkListingExists();
+        super.sortListing(0, "asc");
+
+        super.clickOnListingRecord(recordIndex);
+        super.checkFormExists();
+        super.clickOnSubmit("Publish");
+        super.checkNotErrorsExist();
+
+        super.signOut();
+	}
+
+	@ParameterizedTest
+	@CsvFileSource(resources = "/patron/patronage/publish-patronage-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@Order(10)
+	public void negativePatronageTest(final int recordIndex) {
+
+		super.navigateHome();
+
+        super.signIn("patron1", "patron1");
+        super.clickOnMenu("Patron", "My Patronage");
+
+        super.checkListingExists();
+        super.sortListing(0, "asc");
+
+        super.clickOnListingRecord(recordIndex);
+        super.checkFormExists();
+        super.clickOnSubmit("Publish");
+        super.checkErrorsExist();
+
+        super.signOut();
+	}
+
+}
