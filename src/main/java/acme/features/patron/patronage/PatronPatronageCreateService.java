@@ -12,6 +12,7 @@ import acme.entities.patronages.PatronageStatus;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
+import acme.framework.datatypes.Money;
 import acme.framework.services.AbstractCreateService;
 import acme.roles.Patron;
 
@@ -70,7 +71,7 @@ public class PatronPatronageCreateService implements AbstractCreateService<Patro
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "code", "status", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info");
+		request.unbind(entity, model, "code", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info");
 		model.setAttribute("inventors", this.repository.findAllInventors());
 		model.setAttribute("patron", this.repository.findOnePatronById(request.getPrincipal().getActiveRoleId()));
 
@@ -109,7 +110,15 @@ public class PatronPatronageCreateService implements AbstractCreateService<Patro
 			minimunEndDate = calendar.getTime();
 			errors.state(request, entity.getEndDate().after(minimunEndDate), "endDate", "patron.patronage.form.error.end-date");
 		}
-
+		
+		if (!errors.hasErrors("budget")) {
+			final Money b = entity.getBudget();
+			
+			errors.state(request,b.getAmount()>0.0, "budget", "patron.patronage.form.error.budget-negative");
+			
+			final String c = b.getCurrency();
+			errors.state(request, this.repository.findAcceptedCurrencies().contains(c), "budget", "patron.patronage.form.error.budget-acceptedcurrencies");
+		}
 	}
 
 	@Override

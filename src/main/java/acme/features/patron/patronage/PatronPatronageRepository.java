@@ -35,4 +35,9 @@ public interface PatronPatronageRepository extends AbstractRepository {
 	
 	@Query("select i from Inventor i")
 	Collection<Inventor> findAllInventors();
+	
+	@Query("select s.acceptedCurrencies from SystemConfiguration s")
+	String findAcceptedCurrencies();
+	
+	
 }

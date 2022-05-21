@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.patronages.Patronage;
-import acme.entities.patronages.PatronageStatus;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
+import acme.framework.datatypes.Money;
 import acme.framework.services.AbstractUpdateService;
 import acme.roles.Patron;
 
@@ -51,9 +51,9 @@ public class PatronPatronageUpdateService implements AbstractUpdateService<Patro
 		moment = new Date(System.currentTimeMillis() - 1);
 		entity.setCreationDate(moment);
 
-		entity.setStatus(PatronageStatus.PROPOSED);
-		final int inventorId = request.getModel().getInteger("inventorId");
-		entity.setInventor(this.repository.findOneInventorById(inventorId));
+		//entity.setStatus(PatronageStatus.PROPOSED);
+		//final int inventorId = request.getModel().getInteger("inventorId");
+		//entity.setInventor(this.repository.findOneInventorById(inventorId));
 
 	}
 
@@ -63,8 +63,16 @@ public class PatronPatronageUpdateService implements AbstractUpdateService<Patro
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "code", "status", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info");
-		model.setAttribute("inventors", this.repository.findAllInventors());
+		request.unbind(entity, model, "code", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info", "published");
+		model.setAttribute("patronId", entity.getPatron().getId());
+		model.setAttribute("inventorId", entity.getInventor().getId());
+		
+		//model.setAttribute("status", entity.getStatus());
+		model.setAttribute("inventorCompany", entity.getInventor().getCompany());
+		model.setAttribute("inventorStatement", entity.getInventor().getStatement());
+		model.setAttribute("inventorFullName", entity.getInventor().getIdentity().getFullName());
+		model.setAttribute("inventorEmail", entity.getInventor().getIdentity().getEmail());
+		model.setAttribute("inventorInfo", entity.getInventor().getInfo());
 		model.setAttribute("patron", this.repository.findOnePatronById(request.getPrincipal().getActiveRoleId()));
 
 	}
@@ -108,6 +116,15 @@ public class PatronPatronageUpdateService implements AbstractUpdateService<Patro
 
 			minimunEndDate = calendar.getTime();
 			errors.state(request, entity.getEndDate().after(minimunEndDate), "endDate", "patron.patronage.form.error.end-date");
+		}
+		
+		if (!errors.hasErrors("budget")) {
+			final Money b = entity.getBudget();
+			
+			errors.state(request,b.getAmount()>0.0, "budget", "patron.patronage.form.error.budget-negative");
+			
+			final String c = b.getCurrency();
+			errors.state(request, this.repository.findAcceptedCurrencies().contains(c), "budget", "patron.patronage.form.error.budget-acceptedcurrencies");
 		}
 
 	}

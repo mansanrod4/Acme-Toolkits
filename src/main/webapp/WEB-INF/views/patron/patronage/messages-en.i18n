@@ -26,6 +26,8 @@ patron.patronage.label.inventorStatement = Inventor statement
 patron.patronage.label.inventorInfo = Inventor info
 
 patron.patronage.form.button.create = Create
+patron.patronage.form.button.update = Update
+
 patron.patronage.form.button.patronage-reports = Reports
 
 
