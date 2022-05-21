@@ -1,4 +1,3 @@
-
 package acme.features.inventor.toolkit;
 
 import java.util.ArrayList;
@@ -11,40 +10,54 @@ import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.Toolkit;
 import acme.forms.MoneyExchange;
 import acme.framework.components.models.Model;
+import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
-import acme.framework.services.AbstractShowService;
+import acme.framework.services.AbstractCreateService;
 import acme.roles.Inventor;
 
 @Service
-public class InventorToolkitShowService implements AbstractShowService<Inventor, Toolkit> {
+public class InventorToolkitCreateService implements AbstractCreateService<Inventor, Toolkit>{
 
-	// Internal State -------------------------------------------------------------------
+	// Internal state --------------------------------------------------------------------
 
 	@Autowired
 	protected InventorToolkitRepository repository;
 
+	
+	// AbstractCreateService<Inventor, Toolkit> interface --------------------------------
 
 	@Override
 	public boolean authorise(final Request<Toolkit> request) {
 		assert request != null;
+
+		return true;
+	}
+	
+	@Override
+	public Toolkit instantiate(final Request<Toolkit> request) {
+		assert request != null;
 		
-		final int inventorId = request.getPrincipal().getActiveRoleId();
-		final int id = request.getModel().getInteger("id");
-		final Toolkit toolkit = this.repository.findOneToolkitByIdFromInventor(id, inventorId);
-		return (inventorId == toolkit.getInventor().getId());
+		final Toolkit toolkit= new Toolkit();
+		final Inventor inventor = this.repository.findInventorById(request.getPrincipal().getActiveRoleId());
+		
+		toolkit.setCode("");
+		toolkit.setTitle("");
+		toolkit.setAssemblyNotes("");
+		
+		toolkit.setPublished(false);
+		toolkit.setInventor(inventor);
+		return toolkit;
 	}
 
 	@Override
-	public Toolkit findOne(final Request<Toolkit> request) {
+	public void bind(final Request<Toolkit> request, final Toolkit entity, final Errors errors) {
 		assert request != null;
+		assert entity != null;
+		assert errors != null;
+
+		request.bind(entity, errors, "code", "title", "assemblyNotes","description", "info");
 		
-		int id;
-		Toolkit toolkit;
-		final int inventorId = request.getPrincipal().getActiveRoleId();
-		id = request.getModel().getInteger("id");
-		toolkit = this.repository.findOneToolkitByIdFromInventor(id, inventorId);
-		return toolkit;
 	}
 
 	@Override
@@ -75,4 +88,22 @@ public class InventorToolkitShowService implements AbstractShowService<Inventor,
 		model.setAttribute("inventor", entity.getInventor().getIdentity().getFullName());
 	}
 
+
+	@Override
+	public void validate(final Request<Toolkit> request, final Toolkit entity, final Errors errors) {
+		if(!errors.hasErrors("code")) {
+			final Toolkit existing=this.repository.findOneToolkitByCode(entity.getCode());
+			errors.state(request, existing==null, "code", "inventor.toolkit.form.error.duplicated-code");
+		}
+		
+	}
+
+	@Override
+	public void create(final Request<Toolkit> request, final Toolkit entity) {
+		assert request != null;
+		assert entity != null;
+
+		this.repository.save(entity);
+	}
+	
 }

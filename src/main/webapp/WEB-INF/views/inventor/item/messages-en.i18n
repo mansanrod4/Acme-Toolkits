@@ -15,3 +15,4 @@ inventor.component.form.publish.header = Revise your item before publishing it
 inventor.item.form.button.delete = Delete
 inventor.item.form.error.duplicated = Code Can't Be Duplicated
 inventor.item.form.error.retailPrice.negativeOrZero = The price must be greater than zero
+inventor.item.form.error.retailPrice.currency-not-supported = The introduced currency is not supported by our system
