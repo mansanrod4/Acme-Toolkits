@@ -48,7 +48,7 @@ public class AnyToolkitShowService implements AbstractShowService<Any, Toolkit> 
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "description", "assemblyNotes");
+		request.unbind(entity, model,"code", "title", "description", "assemblyNotes");
 
 		final List<Money> prices = new ArrayList<>();
 		final SystemConfiguration sc = this.repository.findSystemConfiguration();

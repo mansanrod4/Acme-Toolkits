@@ -2,7 +2,6 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="urn:jsptagdir:/WEB-INF/tags"%>
 
-
 <acme:list>
 	<acme:list-column code="any.component.list.label.quantity" path="quantity"
 		width="20%" />
@@ -17,4 +16,3 @@
 	<acme:list-column code="any.component.list.label.price" path="item.retailPrice"
 		width="20%" />
 </acme:list>
-
