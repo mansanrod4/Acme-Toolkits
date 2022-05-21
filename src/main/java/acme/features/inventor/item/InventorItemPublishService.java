@@ -11,16 +11,22 @@ import acme.framework.services.AbstractUpdateService;
 import acme.roles.Inventor;
 
 @Service
-public class InventorItemPublishService implements AbstractUpdateService<Inventor, Item>{
+public class InventorItemPublishService implements AbstractUpdateService<Inventor, Item> {
 
-	@Autowired
-	protected InventorItemRepository inventorItemRepository;
-	
-	
+	@Autowired 
+	protected InventorItemRepository repository;
+
 	@Override
 	public boolean authorise(final Request<Item> request) {
-		return InventorItemUtils.authoriseInventor(request, this.inventorItemRepository);
-		
+		assert request != null;
+		final boolean res;
+		int id;
+		Item item;
+
+		id = request.getModel().getInteger("id");
+		item = this.repository.findOneItemById(id);
+		res = item!=null && request.isPrincipal(item.getInventor()) && !item.isPublished();
+		return res;
 	}
 
 	@Override
@@ -28,24 +34,29 @@ public class InventorItemPublishService implements AbstractUpdateService<Invento
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		
-		InventorItemUtils.bindItem(request, entity, errors);
-		
+
+		request.bind(entity, errors, "code", "name", "technology", "description", "info");
+
 	}
 
 	@Override
 	public void unbind(final Request<Item> request, final Item entity, final Model model) {
-		model.setAttribute("readonly", false);
-		InventorItemUtils.unbindItem(request, entity, model);
-		
+		assert request != null;
+		assert entity != null;
+		assert model != null;
+
+		request.unbind(entity, model, "code", "name", "technology", "description", "retailPrice", "info", "published");
 	}
 
 	@Override
 	public Item findOne(final Request<Item> request) {
 		assert request != null;
-		
-		final Integer id = request.getModel().getInteger("id");
-		return this.inventorItemRepository.findOneItemById(id);
+		int id;
+		Item result;
+		id = request.getModel().getInteger("id");
+		result = this.repository.findOneItemById(id); 
+
+		return result;
 	}
 
 	@Override
@@ -53,16 +64,27 @@ public class InventorItemPublishService implements AbstractUpdateService<Invento
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		
+		if(!errors.hasErrors("code")) {
+			final Item existing=this.repository.getItemByCode(entity.getCode());
+			errors.state(request, existing == null ||  entity.getId() == existing.getId(), "code", "inventor.item.form.error.duplicated");
+		}
+		
+		if (!errors.hasErrors("retailPrice")) {
+			errors.state(request, entity.getRetailPrice().getAmount()>0, "retailPrice", "inventor.item.form.error.retailPrice.negativeOrZero");
+		}
+		
 	}
 
 	@Override
 	public void update(final Request<Item> request, final Item entity) {
 		assert request != null;
 		assert entity != null;
-		
+
 		entity.setPublished(true);
-		this.inventorItemRepository.save(entity);
+		this.repository.save(entity);
 		
 	}
+	
 
 }

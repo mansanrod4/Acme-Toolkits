@@ -65,10 +65,10 @@ public class Item extends AbstractEntity {
 	// Derived attributes -----------------------------------------------------
 	
 	// Relationships ----------------------------------------------------------
-
-
+	
 	@ManyToOne(optional = false)
 	@NotNull
 	protected Inventor			inventor;
-	
+
+
 }

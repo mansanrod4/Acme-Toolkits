@@ -2,14 +2,8 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="urn:jsptagdir:/WEB-INF/tags"%>
 
-<jstl:if test="${acme:anyOf(command, 'publish')}">
-	<h2>
-		<acme:message code="inventor.component.form.publish.header"/>
-	</h2>
-</jstl:if>
 
-
-<acme:form readonly="${readonly}">
+<acme:form>
 	<acme:input-textbox code="inventor.component.list.label.code" path="code" placeholder="XXX-123, XXX-235-X"/>
 	<acme:input-textbox code="inventor.component.list.label.name" path="name"/>
 	<acme:input-textbox code="inventor.component.list.label.tech" path="technology"/>
@@ -35,18 +29,13 @@
 		<jstl:when test="${acme:anyOf(command, 'create-tool')}">
 			<acme:submit code="inventor.item.form.button.create" action="/inventor/item/create-tool"/>
 		</jstl:when>
-		<jstl:when test="${acme:anyOf(command, 'publish')}">
-			<acme:submit code="inventor.item.form.button.publishOK" action="/inventor/item/publish"/>
-		</jstl:when>
-		<jstl:when test="${!acme:anyOf(command, 'update') && published == false}">
-			<acme:button code="inventor.item.form.button.edit" action="/inventor/item/update?id=${id}"/>
-			<acme:button code="inventor.item.form.button.publish" action="/inventor/item/publish?id=${id}"/>
+		<jstl:when test="${published == false}">
+			<acme:submit code="inventor.item.form.button.update" action="/inventor/item/update"/>
+			<acme:submit code="inventor.item.form.button.publish" action="/inventor/item/publish"/>
 			<acme:submit code="inventor.item.form.button.delete" action="/inventor/item/delete"/>
 		</jstl:when>
-		<jstl:when test="${acme:anyOf(command, 'update')}">
-			<acme:submit code="inventor.item.form.button.update" action="/inventor/item/update"/>
-		</jstl:when>
-	
 	</jstl:choose>
 		
-</acme:form>
+</acme:form> 	
+
+<br><br><br>

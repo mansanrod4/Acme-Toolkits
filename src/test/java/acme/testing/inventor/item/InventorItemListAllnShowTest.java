@@ -1,4 +1,4 @@
-package acme.testing.item;
+package acme.testing.inventor.item;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;

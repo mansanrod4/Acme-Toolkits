@@ -3,8 +3,13 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" uri="urn:jsptagdir:/WEB-INF/tags"%>
 
-<acme:form>
-	<acme:input-textbox code="administrator.system-configuration.form.label.systemCurrency" path="systemCurrency"/>
+<acme:form>	
+	<acme:input-select code="administrator.system-configuration.form.label.systemCurrency" path="systemCurrency">
+                <jstl:forEach items="${accepted}" var="acceptedCurr">
+                    <acme:input-option code="${acceptedCurr}" value="${acceptedCurr}"/>
+                </jstl:forEach>
+</acme:input-select>
+	
 	<acme:input-textbox code="administrator.system-configuration.form.label.acceptedCurrencies" path="acceptedCurrencies"/>
 	
 	<br><br>

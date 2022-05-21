@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.toolkits.Item;
 import acme.entities.toolkits.ItemType;
+import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
 import acme.features.inventor.item.InventorItemRepository;
-import acme.features.inventor.item.InventorItemUtils;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
@@ -19,6 +19,9 @@ public class InventorToolCreateService implements AbstractCreateService<Inventor
 	@Autowired
 	protected InventorItemRepository repository;
 	
+	@Autowired
+	protected AdministratorSystemConfigurationRepository systemConfigRepository;
+	
 	@Override
 	public boolean authorise(final Request<Item> request) {
 		return true;
@@ -30,20 +33,28 @@ public class InventorToolCreateService implements AbstractCreateService<Inventor
 		assert entity != null;
 		assert errors != null;
 		
-		InventorItemUtils.bindItem(request, entity, errors);
-		
+		request.bind(entity, errors, "code", "name", "technology", "description", "retailPrice", "info");		
 	}
 
 	@Override
 	public void unbind(final Request<Item> request, final Item entity, final Model model) {
 		model.setAttribute("readonly", false);
-		InventorItemUtils.unbindItem(request, entity, model);
+		request.unbind(entity, model, "code", "name", "technology", "description", "retailPrice", "info", "published");
 	}
 
 	@Override
 	public Item instantiate(final Request<Item> request) {
 		assert request != null;
-		return InventorItemUtils.instantiateItem(request, this.repository, ItemType.TOOL);
+		final Item entity = new Item();
+		
+		entity.setDescription("");
+		entity.setName("");
+		entity.setTechnology("");
+		entity.setItemType(ItemType.TOOL);
+		entity.setPublished(false);
+		entity.setInventor(this.repository.findOneInventorById(request.getPrincipal().getActiveRoleId()));
+		
+		return entity;
 	}
 
 	@Override
@@ -52,6 +63,19 @@ public class InventorToolCreateService implements AbstractCreateService<Inventor
 		assert entity != null;
 		assert errors != null;
 		
+		
+		if(!errors.hasErrors("code")) {
+			final Item existing=this.repository.getItemByCode(entity.getCode());
+			errors.state(request, existing == null ||  entity.getId() == existing.getId(), "code", "inventor.item.form.error.duplicated");
+		}
+		
+		if (!errors.hasErrors("retailPrice")) {
+			final String currency = entity.getRetailPrice().getCurrency();
+			final boolean currencyIsSuported = this.systemConfigRepository.findSystemConfiguration().getAcceptedCurrencies().contains(currency);
+			errors.state(request, currencyIsSuported, "retailPrice", "inventor.item.form.error.retailPrice.currency-not-supported");
+			errors.state(request, entity.getRetailPrice().getAmount()>0, "retailPrice", "inventor.item.form.error.retailPrice.negativeOrZero");
+		}
+
 	}
 
 	@Override
