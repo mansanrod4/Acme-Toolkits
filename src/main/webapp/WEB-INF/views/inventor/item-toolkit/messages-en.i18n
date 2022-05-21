@@ -1,7 +1,7 @@
 
 
 inventor.item-toolkit.form.label.quantity = Quantity
-any.component.list.label.code = Component code
+any.component.list.label.code = Artifact code
 any.component.list.label.name = Name
 any.component.list.label.tech = Technology 
 any.component.list.label.description = Description
@@ -17,4 +17,4 @@ inventor.item-toolkit.form.button.update-item = Update Quantity
 
 inventor.item-toolkit.form.error.item-already-added = This Item is already in your Toolkit
 inventor.item-toolkit.form.error.toolkit-already-has-a-tool = This Toolkit already has a Tool
-inventor.toolkit.form.error.wrong-tool-quantity = You can only have one Tool in your Toolkit
+inventor.item-toolkit.form.error.wrong-tool-quantity = You can only have one Tool in your Toolkit

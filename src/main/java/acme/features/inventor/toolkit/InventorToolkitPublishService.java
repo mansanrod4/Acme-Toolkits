@@ -76,7 +76,10 @@ public class InventorToolkitPublishService implements AbstractUpdateService<Inve
 		money.setCurrency(sc.getSystemCurrency());
 
 		model.setAttribute("price", money);
-		model.setAttribute("inventor", entity.getInventor().getIdentity().getFullName());}
+		model.setAttribute("inventor", entity.getInventor().getIdentity().getFullName());
+		
+		model.setAttribute("ableToPublish", this.repository.getToolsFromToolkit(entity.getId()).stream().anyMatch(e->e.getItemType().equals(ItemType.TOOL)));
+		}
 
 	@Override
 	public Toolkit findOne(final Request<Toolkit> request) {

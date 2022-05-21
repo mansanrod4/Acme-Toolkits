@@ -1,7 +1,7 @@
 
 
 inventor.item-toolkit.form.label.quantity = Cantidad
-any.component.list.label.code = Código del componente
+any.component.list.label.code = Código del Elemento
 any.component.list.label.name = Nombre
 any.component.list.label.tech = Tecnología 
 any.component.list.label.description = Descripción

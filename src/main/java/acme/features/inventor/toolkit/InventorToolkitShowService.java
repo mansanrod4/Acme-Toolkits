@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.components.configuration.SystemConfiguration;
+import acme.entities.toolkits.ItemType;
 import acme.entities.toolkits.Toolkit;
 import acme.forms.MoneyExchange;
 import acme.framework.components.models.Model;
@@ -62,7 +63,7 @@ public class InventorToolkitShowService implements AbstractShowService<Inventor,
 		}
 
 		request.unbind(entity, model, "code", "title", "description", "assemblyNotes", "info", "published");
-
+		
 		final MoneyExchange mE = new MoneyExchange();
 		final List<Money> pricesFix = mE.convertMoney(prices, sc.getSystemCurrency());
 
@@ -73,6 +74,8 @@ public class InventorToolkitShowService implements AbstractShowService<Inventor,
 
 		model.setAttribute("price", money);
 		model.setAttribute("inventor", entity.getInventor().getIdentity().getFullName());
+		
+		model.setAttribute("ableToPublish", this.repository.getToolsFromToolkit(entity.getId()).stream().anyMatch(e->e.getItemType().equals(ItemType.TOOL)));
 	}
 
 }
