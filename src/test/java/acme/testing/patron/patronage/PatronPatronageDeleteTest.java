@@ -26,7 +26,6 @@ public class PatronPatronageDeleteTest extends TestHarness {
 		super.checkFormExists();
 		super.clickOnSubmit("Delete");
 		super.checkNotErrorsExist();
-
 		
 		super.signOut();
 	}

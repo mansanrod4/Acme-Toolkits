@@ -15,7 +15,9 @@ package acme.testing.administrator.announcement;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.openqa.selenium.By;
 
+import acme.framework.testing.BrowserDriver;
 import acme.testing.TestHarness;
 
 public class AdministratorAnnouncementCreateTest extends TestHarness {
@@ -25,55 +27,55 @@ public class AdministratorAnnouncementCreateTest extends TestHarness {
 	@ParameterizedTest
 	@CsvFileSource(resources = "/administrator/announcement/create-announcement-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void positiveTest(final int recordIndex, final String title, final String body, 
-		final String critical, final String link) {
+	public void positiveTest(final int recordIndex, final String title, final String body, final String critical, final String link) {
 
 		super.signIn("administrator", "administrator");
 		super.navigateHome();
 		super.clickOnMenu("Administrator", "Announcements");
-		
+
 		super.checkListingExists();
 		super.clickOnButton("Create announcement");
 		super.fillInputBoxIn("title", title);
 		super.fillInputBoxIn("body", body);
-		super.fillInputBoxIn("critical", critical);
-		super.fillInputBoxIn("link", link);
-		super.fillInputBoxIn("confirmation", "true");
-
-		super.clickOnSubmit("Create announcement");
-
-		super.navigateHome();
-		super.clickOnMenu("Posts", "Announcements");
-		super.sortListing(1, "asc");
-		
-		super.checkColumnHasValue(recordIndex, 1, title);
-		super.checkColumnHasValue(recordIndex, 2, body);
-		super.checkColumnHasValue(recordIndex, 3, critical);
-		super.checkColumnHasValue(recordIndex, 4, link);
-			
-	}
-	
-	@ParameterizedTest
-	@CsvFileSource(resources = "/administrator/announcement/create-announcement-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
-	@Order(10)
-	public void negativeTest(final int recordIndex, final String title, final String body, 
-		final String critical, final String link) {
-
-		super.signIn("administrator", "administrator");
-		super.navigateHome();
-		super.clickOnMenu("Administrator", "Announcements");
-		
-		super.checkListingExists();
-		super.clickOnButton("Create announcements");
-		super.fillInputBoxIn("title", title);
-		super.fillInputBoxIn("body", body);
-		super.fillInputBoxIn("critical", critical);
+		final BrowserDriver driver = super.getDriver();
+		driver.locateOne(By.id("critical")).click();
 		super.fillInputBoxIn("link", link);
 		super.fillInputBoxIn("confirmation", "true");
 
 		super.clickOnSubmit("Create");
+
+		super.navigateHome();
+		super.clickOnMenu("Posts", "Announcements");
+		super.sortListing(0, "asc");
+
+		super.checkColumnHasValue(recordIndex, 0, title);
+		super.checkColumnHasValue(recordIndex, 2, body);
 		
-		super.checkErrorsExist();
 		super.signOut();
+
+
+	}
+
+	@ParameterizedTest
+	@CsvFileSource(resources = "/administrator/announcement/create-announcement-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@Order(10)
+	public void negativeTest(final int recordIndex, final String title, final String body, final String critical, final String link) {
+
+		super.signIn("administrator", "administrator");
+		super.navigateHome();
+		super.clickOnMenu("Administrator", "Announcements");
+
+		super.checkListingExists();
+		super.clickOnButton("Create announcement");
+		super.fillInputBoxIn("title", title);
+		super.fillInputBoxIn("body", body);
+		final BrowserDriver driver = super.getDriver();
+		driver.locateOne(By.id("critical")).click();
+		super.fillInputBoxIn("link", link);
+		super.fillInputBoxIn("confirmation", "true");
+
+		super.clickOnSubmit("Create");
+
+		super.checkErrorsExist();
 	}
 }
