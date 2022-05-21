@@ -96,7 +96,7 @@ public class InventorToolkitPublishService implements AbstractUpdateService<Inve
 		if (!errors.hasErrors("*")) {
 			
 			final Collection<Item> tool=this.repository.findItemByTypeFromToolkit(entity.getId(), ItemType.TOOL);
-			errors.state(request, tool.size()==1,"*", "inventor.toolkit.no-tool-in-toolkit");
+			errors.state(request, !tool.isEmpty(),"*", "inventor.toolkit.no-tool-in-toolkit");
 		}
 		
 		if(!errors.hasErrors("code")) {
@@ -105,6 +105,11 @@ public class InventorToolkitPublishService implements AbstractUpdateService<Inve
 			errors.state(request, existing==null  || existing.getId()==entity.getId(), "code", "inventor.toolkit.form.error.duplicated-code");
 		}
 		
+		if(!errors.hasErrors("code")) {
+			final Item existing=this.repository.findOneItemByCode(entity.getCode());
+			
+			errors.state(request, existing==null, "code", "inventor.toolkit.form.error.duplicated-code");
+		}
 	}
 
 	@Override

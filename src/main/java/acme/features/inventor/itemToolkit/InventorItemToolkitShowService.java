@@ -23,7 +23,7 @@ public class InventorItemToolkitShowService implements AbstractShowService<Inven
 		
 		final int id = request.getModel().getInteger("id");
 		final ItemToolkit it=this.repository.findItemToolkitById(id);
-		return it.getToolkit().getInventor().getId()==request.getPrincipal().getActiveRoleId();
+		return it.getToolkit().getInventor().getId()==request.getPrincipal().getActiveRoleId() && !it.getToolkit().isPublished();
 
 	}
 

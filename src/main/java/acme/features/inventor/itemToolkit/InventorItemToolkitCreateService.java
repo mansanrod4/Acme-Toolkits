@@ -63,11 +63,6 @@ public class InventorItemToolkitCreateService implements AbstractCreateService<I
 
 	@Override
 	public void validate(final Request<ItemToolkit> request, final ItemToolkit entity, final Errors errors) {
-		if(!errors.hasErrors("*")) {
-			final Item existing=this.repository.findToolInToolkit(entity.getToolkit().getId());
-			errors.state(request, existing==null || entity.getItem().getItemType()==ItemType.COMPONENT
-				,"*", "inventor.item-toolkit.form.error.toolkit-already-has-a-tool");
-		}
 		
 		if(!errors.hasErrors("quantity")) {
 			errors.state(request, entity.getItem().getItemType()!=ItemType.TOOL||entity.getQuantity()==1

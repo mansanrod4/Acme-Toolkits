@@ -9,7 +9,7 @@ any.component.list.label.price = Precio
 any.component.list.label.info = Información Adicional
 any.component.list.label.itemType = Tipo
 
-inventor.item-toolkit.form.label.item = Componente
+inventor.item-toolkit.form.label.item = Elemento
 
 inventor.item-toolkit.form.button.add-item = Añadir a Toolkit
 inventor.item-toolkit.form.button.delete-item = Eliminar Elemento
