@@ -47,6 +47,7 @@ public class AnyItemListAllnShowTest extends TestHarness {
 		super.checkInputBoxHasValue("description", description);
 		super.checkInputBoxHasValue("retailPrice", retailPrice);
 		super.checkInputBoxHasValue("info", info);
+		
 	}
 
 
