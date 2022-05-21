@@ -4,7 +4,7 @@
 <acme:form>
 
 	<jstl:choose>
-		<jstl:when  test="${toolkit.published==true}">
+		<jstl:when  test="${toolkit.published}">
 			<acme:input-integer readonly="true" code="inventor.item-toolkit.form.label.quantity" path="quantity"/>
 		</jstl:when>
 		<jstl:otherwise>
@@ -27,7 +27,7 @@
 			<acme:input-textbox readonly="true" code="inventor.item-toolkit.form.label.item" path="item.name"/>
 			<br>
 			<br>
-			<jstl:if test="${toolkit.published==false}">
+			<jstl:if test="${!toolkit.published}">
 				<acme:submit code="inventor.item-toolkit.form.button.update-item" action="/inventor/item-toolkit/update"/>
 				<acme:submit code="inventor.item-toolkit.form.button.delete-item" action="/inventor/item-toolkit/delete"/>
 			</jstl:if>
