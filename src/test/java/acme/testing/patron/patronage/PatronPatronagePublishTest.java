@@ -16,7 +16,7 @@ public class PatronPatronagePublishTest extends TestHarness {
 
 		super.navigateHome();
 
-        super.signIn("patron1", "patron1");
+        super.signIn("patron4", "patron4");
         super.clickOnMenu("Patron", "My Patronages");
 
         super.checkListingExists();
@@ -29,8 +29,7 @@ public class PatronPatronagePublishTest extends TestHarness {
         
         super.clickOnListingRecord(recordIndex);
         super.checkNotSubmitExists("Publish");
-        
-
+    
         super.signOut();
 	}
 

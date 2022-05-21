@@ -3,7 +3,9 @@ package acme.testing.administrator.systemConfiguration;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.openqa.selenium.By;
 
+import acme.framework.testing.BrowserDriver;
 import acme.testing.TestHarness;
 
 public class AdministratorSystemConfigurationUpdateTest extends TestHarness{
@@ -17,7 +19,8 @@ public class AdministratorSystemConfigurationUpdateTest extends TestHarness{
 		super.clickOnMenu("Administrator", "Update System Details");
 
 		super.checkFormExists();
-		super.fillInputBoxIn("systemCurrency", systemCurrency);
+		final BrowserDriver driver = super.getDriver();
+		driver.locateOne(By.id("systemCurrency")).click();
 		super.fillInputBoxIn("acceptedCurrencies", acceptedCurrencies);
 		super.fillInputBoxIn("strongSpamTerms", strongSpamTerms);
 		super.fillInputBoxIn("strongSpamThreshold", strongSpamThreshold);
@@ -25,11 +28,16 @@ public class AdministratorSystemConfigurationUpdateTest extends TestHarness{
 		super.fillInputBoxIn("weakSpamThreshold", weakSpamThreshold);
 		super.clickOnSubmit("Update");
 
-		super.clickOnMenu("System Configuration", "Currencies information");
- 
+		super.clickOnMenu("Administrator", "Update System Details");
 		super.checkFormExists();
 		super.checkInputBoxHasValue("systemCurrency", systemCurrency);
 		super.checkInputBoxHasValue("acceptedCurrencies", acceptedCurrencies);
+		super.checkInputBoxHasValue("strongSpamTerms", strongSpamTerms);
+		super.checkInputBoxHasValue("strongSpamThreshold", strongSpamThreshold);
+		super.checkInputBoxHasValue("weakSpamTerms", weakSpamTerms);
+		super.checkInputBoxHasValue("weakSpamThreshold", weakSpamThreshold);
+		
+		super.checkNotErrorsExist();
 
 		super.signOut();
 	}
