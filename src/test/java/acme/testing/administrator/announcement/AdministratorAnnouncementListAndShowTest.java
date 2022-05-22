@@ -38,16 +38,16 @@ public class AdministratorAnnouncementListAndShowTest extends TestHarness{
 	@Order(30)
 	public void hackingTest() {
 		
-		super.navigate("/authenticated/announcement/");
+		super.navigate("administrator/announcement/list");
 		super.checkPanicExists();
 		
 		super.signIn("patron1", "patron1");
-		super.navigate("/authenticated/announcement/");
+		super.navigate("administrator/announcement/list");
 		super.checkPanicExists();
 		super.signOut();
 
 		super.signIn("inventor1", "inventor1");
-		super.navigate("/authenticated/announcement/");
+		super.navigate("administrator/announcement/list");
 		super.checkPanicExists();
 		super.signOut();
 	}
