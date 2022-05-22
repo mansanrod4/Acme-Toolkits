@@ -9,4 +9,12 @@
 	<acme:input-textbox code="authenticated.announcement.form.label.critical" path="critical"/>
 	<acme:input-textbox code="authenticated.announcement.form.label.link" path="link"/>		
 	
+	<jstl:choose>
+		<jstl:when test="${command == 'create'}">
+			<acme:input-checkbox code="administrator.announcement.form.label.confirmation" path="confirmation"/>
+			<acme:submit code="administrator.announcement.form.button.create" 
+			action="/administrator/announcement/create"/>
+		</jstl:when>		
+	</jstl:choose>
+	
 </acme:form>

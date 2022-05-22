@@ -29,7 +29,7 @@ master.menu.anonymous.olisanrod-favourite-link =  47538886W: Sánchez Rodríguez
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrator
-master.menu.administrator.system-configuration = System Details
+master.menu.administrator.system-configuration = Update System Details
 master.menu.administrator.dashboard = Dashboard
 master.menu.administrator.announcement.list = Announcements
 master.menu.administrator.user-accounts = All User accounts
