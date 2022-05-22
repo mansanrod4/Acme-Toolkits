@@ -2,6 +2,6 @@ key,status,code,legal_stuff,budget,creation_date,start_date,end_date,info,key:pa
 patronage-01,ACCEPTED,AAA-000,legalStuff1,"EUR 36.3",2022/03/08 10:00,2022/05/08 10:00,2022/10/08 10:00,https://ev.us.es/,patron-01,inventor-01
 patronage-02,DENIED,AAA-000-B,legalStuff2,"EUR 56.3",2021/03/08 10:00,2021/05/08 10:00,2022/11/08 10:00,https://ev.us.es/,patron-02,inventor-02
 patronage-03,DENIED,AAD-003-B,legalStuff2,"EUR 56.3",2021/03/08 10:00,2021/05/08 10:00,2022/11/08 10:00,https://ev.us.es/,patron-03,inventor-03
-patronage-04,PROPOSED,AAF-000-A,legalStuff2,"EUR 56.3",2021/03/08 10:00,2021/05/08 10:00,2022/11/08 10:00,https://ev.us.es/,patron-03,inventor-04
+patronage-04,PROPOSED,AAF-000-A,legalStuff2,"EUR 56.3",2022/08/08 10:00,2024/05/08 10:00,2022/11/08 10:00,https://ev.us.es/,patron-03,inventor-04
 patronage-05,PROPOSED,AEE-000,legalStuffAlgo,"EUR 36.3",2022/03/08 10:00,2022/05/08 10:00,2022/10/08 10:00,https://ev.us.es/,patron-01,inventor-01
 patronage-06,PROPOSED,FEO-069,legalStuffAlgo2,"EUR 36.3",2022/03/08 10:00,2022/05/08 10:00,2022/10/08 10:00,https://ev.us.es/,patron-01,inventor-01
