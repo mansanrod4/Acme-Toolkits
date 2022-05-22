@@ -51,9 +51,15 @@ public class PatronPatronagePublishTest extends TestHarness {
 		super.checkPanicExists();
 		super.signOut();
 		
+		super.signIn("patron3", "patron3");
+		super.navigateHome();
+		super.clickOnMenu("Patron", "My Patronages");
+		super.clickOnListingRecord(0);
+		final String url = super.getCurrentUrl();
+		super.signOut();
+		
 		super.signIn("patron1", "patron1");
-		//Patronage para patron3
-		super.navigate("/patron/patronage/show?id=47");
+		super.navigate(url);
 		super.checkPanicExists();
 		super.signOut();
 
