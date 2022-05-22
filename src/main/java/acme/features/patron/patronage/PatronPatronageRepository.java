@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import acme.components.configuration.SystemConfiguration;
 import acme.entities.patronages.Patronage;
 import acme.entities.patronages.PatronageReport;
 import acme.framework.repositories.AbstractRepository;
@@ -38,6 +39,9 @@ public interface PatronPatronageRepository extends AbstractRepository {
 	
 	@Query("select s.acceptedCurrencies from SystemConfiguration s")
 	String findAcceptedCurrencies();
+	
+	@Query("select sc from SystemConfiguration sc")
+	SystemConfiguration findSystemConfiguration();
 	
 	
 }
