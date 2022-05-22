@@ -1,5 +1,6 @@
 package acme.testing.inventor.toolkit;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.core.annotation.Order;
@@ -14,18 +15,20 @@ public class InventorToolkitListAndShowTest extends TestHarness {
 	public void positiveToolkitTest(final int recordIndex, final String code, final String title, final String description, final String assemblyNotes,
 		final String referenceInventor, final String info) {
 		
-		super.signIn("inventor1", "inventor1");
+		super.signIn("inventor2", "inventor2");
 		super.navigateHome();
 		
 		super.clickOnMenu("Inventor", "My Toolkits");
 		super.checkListingExists();
 		super.sortListing(0, "asc");
 		
+		
 		super.checkColumnHasValue(recordIndex, 0, title);
 		super.checkColumnHasValue(recordIndex, 1, description);
 		
 		super.clickOnListingRecord(recordIndex);
 		super.checkFormExists();
+		super.checkInputBoxHasValue("code", code);
 		super.checkInputBoxHasValue("title", title);
 		super.checkInputBoxHasValue("description", description);
 		super.checkInputBoxHasValue("assemblyNotes", assemblyNotes);
@@ -35,4 +38,23 @@ public class InventorToolkitListAndShowTest extends TestHarness {
 		super.signOut();
 	}
 	
+	@Test
+	@Order(20)
+	public void hackingTest() {
+
+		super.signIn("administrator", "administrator");
+		super.navigate("/inventor/toolkit/show?id=38");
+		super.checkPanicExists();
+		super.signOut();
+
+		super.signIn("patron1", "patron1");
+		super.navigate("/inventor/toolkit/show?id=38");
+		super.checkPanicExists();
+		super.signOut();
+		
+		super.signIn("inventor1", "inventor1");
+		super.navigate("/inventor/toolkit/show?id=38");
+		super.checkPanicExists();
+		super.signOut();
+	}
 }

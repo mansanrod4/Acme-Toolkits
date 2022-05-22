@@ -1,7 +1,7 @@
 
 
 inventor.item-toolkit.form.label.quantity = Quantity
-any.component.list.label.code = Artifact code
+any.component.list.label.code = Item code
 any.component.list.label.name = Name
 any.component.list.label.tech = Technology 
 any.component.list.label.description = Description
@@ -9,7 +9,7 @@ any.component.list.label.price = Price
 any.component.list.label.info = Further Information
 any.component.list.label.itemType = Type
 
-inventor.item-toolkit.form.label.item = Artifact
+inventor.item-toolkit.form.label.item = Item
 
 inventor.item-toolkit.form.button.add-item = Add to Toolkit
 inventor.item-toolkit.form.button.delete-item = Delete Item

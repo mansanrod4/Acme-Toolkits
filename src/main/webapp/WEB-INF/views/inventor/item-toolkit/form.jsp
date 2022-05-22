@@ -4,7 +4,7 @@
 <acme:form>
 
 	<jstl:choose>
-		<jstl:when  test="${toolkit.published}">
+		<jstl:when test="${toolkit.published}">
 			<acme:input-integer readonly="true" code="inventor.item-toolkit.form.label.quantity" path="quantity"/>
 		</jstl:when>
 		<jstl:otherwise>
