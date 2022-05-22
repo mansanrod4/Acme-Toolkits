@@ -1,6 +1,7 @@
 
 package acme.testing.patron.patronage;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.core.annotation.Order;
@@ -75,5 +76,25 @@ public class PatronPatronageCreateTest extends TestHarness {
 		super.clickOnSubmit("Create");
 		super.checkErrorsExist();
 	}
+	
+	
+	@Test
+	@Order(30)
+	public void hackingTest() {
+
+		super.navigate("/patron/patronage/create");
+		super.checkPanicExists();
+
+		super.signIn("administrator", "administrator");
+		super.navigate("/patron/patronage/create");
+		super.checkPanicExists();
+		super.signOut();
+
+		super.signIn("inventor1", "inventor1");
+		super.navigate("/patron/patronage/create");
+		super.checkPanicExists();
+		super.signOut();
+	}
+	
 
 }
