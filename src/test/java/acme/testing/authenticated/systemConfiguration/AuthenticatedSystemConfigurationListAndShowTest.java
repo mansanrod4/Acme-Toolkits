@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import acme.testing.TestHarness;
 
-public class AuthenticatedSystemConfigurationShowTest extends TestHarness {
+public class AuthenticatedSystemConfigurationListAndShowTest extends TestHarness {
 
 	@ParameterizedTest
 	@CsvFileSource(resources = "/authenticated/systemConfiguration/show-system-configuration.csv", encoding = "utf-8", numLinesToSkip = 1)

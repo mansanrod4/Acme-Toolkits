@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import acme.testing.TestHarness;
 
-public class AdministratorAnnouncementShowTest extends TestHarness{
+public class AdministratorAnnouncementListAndShowTest extends TestHarness{
 
 	@ParameterizedTest
 	@CsvFileSource(resources = "/authenticated/announcement/list-all.csv", encoding = "utf-8", numLinesToSkip = 1)

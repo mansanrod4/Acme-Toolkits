@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import acme.testing.TestHarness;
 
-public class AuthenticatedAnnouncementShowTest extends TestHarness{
+public class AuthenticatedAnnouncementListAndShowTest extends TestHarness{
 		
 		
 	@ParameterizedTest
