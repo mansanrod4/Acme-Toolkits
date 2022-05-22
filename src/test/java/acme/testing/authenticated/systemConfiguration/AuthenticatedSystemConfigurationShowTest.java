@@ -1,7 +1,8 @@
 
-package acme.testing.patron.systemConfiguration;
+package acme.testing.authenticated.systemConfiguration;
 
 import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
@@ -25,5 +26,14 @@ public class AuthenticatedSystemConfigurationShowTest extends TestHarness {
 
 		super.signOut();
 	}
+	
+	@Test
+	@Order(30)
+	public void hackingTest() {
+		
+		super.navigate("/authenticated/systemConfiguration/");
+		super.checkPanicExists();
+	}
+	
 
 }
