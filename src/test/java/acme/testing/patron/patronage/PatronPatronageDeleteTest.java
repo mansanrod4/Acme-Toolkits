@@ -1,7 +1,6 @@
 
 package acme.testing.patron.patronage;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.core.annotation.Order;
@@ -29,37 +28,6 @@ public class PatronPatronageDeleteTest extends TestHarness {
 		super.checkNotErrorsExist();
 		
 		super.signOut();
-	}
-	
-	@Test
-	@Order(30)
-	public void hackingTest() {
-		
-		super.navigate("/patron/patronage/delete");
-		super.checkPanicExists();
-		
-		super.signIn("administrator", "administrator");
-		super.navigate("/patron/patronage/delete");
-		super.checkPanicExists();
-		super.signOut();
-
-		super.signIn("inventor1", "inventor1");
-		super.navigate("/patron/patronage/delete");
-		super.checkPanicExists();
-		super.signOut();
-		
-		super.signIn("patron3", "patron3");
-		super.navigateHome();
-		super.clickOnMenu("Patron", "My Patronages");
-		super.clickOnListingRecord(1);
-		final String url = super.getCurrentUrl();
-		super.signOut();
-		
-		super.signIn("patron1", "patron1");
-		super.navigate(url);
-		super.checkPanicExists();
-		super.signOut();
-
 	}
 
 }
