@@ -31,7 +31,6 @@ public class AuthenticatedAnnouncementListAndShowTest extends TestHarness{
 		super.clickOnListingRecord(recordIndex);
 		super.checkFormExists();
 		super.checkInputBoxHasValue("title", title);
-		super.checkInputBoxHasValue("moment", moment);
 		super.checkInputBoxHasValue("body", body);
 		super.checkInputBoxHasValue("critical", critical);
 		super.checkInputBoxHasValue("link", link);
@@ -43,7 +42,7 @@ public class AuthenticatedAnnouncementListAndShowTest extends TestHarness{
 	@Order(30)
 	public void hackingTest() {
 		
-		super.navigate("/authenticated/announcement/");
+		super.navigate("/authenticated/announcement/list");
 		super.checkPanicExists();
 		
 	}

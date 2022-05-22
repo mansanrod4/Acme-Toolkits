@@ -28,7 +28,9 @@ public class AdministratorAnnouncementListAndShowTest extends TestHarness{
 		super.clickOnListingRecord(recordIndex);
 		super.checkFormExists();
 		super.checkInputBoxHasValue("title", title);
+
 		super.checkInputBoxHasValue("body", body);	
+
 		super.checkInputBoxHasValue("link", link);
 		super.signOut();
 		
@@ -39,14 +41,19 @@ public class AdministratorAnnouncementListAndShowTest extends TestHarness{
 	public void hackingTest() {
 		
 		super.navigate("/administrator/announcement/list");
+
+
 		super.checkPanicExists();
 		
 		super.signIn("patron1", "patron1");
 		super.navigate("/administrator/announcement/list");
+
+
 		super.checkPanicExists();
 		super.signOut();
 
 		super.signIn("inventor1", "inventor1");
+
 		super.navigate("/administrator/announcement/list");
 		super.checkPanicExists();
 		super.signOut();
