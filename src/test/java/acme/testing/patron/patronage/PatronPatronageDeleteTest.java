@@ -51,7 +51,7 @@ public class PatronPatronageDeleteTest extends TestHarness {
 		super.signIn("patron3", "patron3");
 		super.navigateHome();
 		super.clickOnMenu("Patron", "My Patronages");
-		super.clickOnListingRecord(0);
+		super.clickOnListingRecord(1);
 		final String url = super.getCurrentUrl();
 		super.signOut();
 		
