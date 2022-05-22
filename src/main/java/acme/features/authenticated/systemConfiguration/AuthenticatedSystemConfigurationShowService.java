@@ -46,6 +46,9 @@ public class AuthenticatedSystemConfigurationShowService implements AbstractShow
 		final Money defaultMoney = new Money();
 		defaultMoney.setAmount(1.0);
 		defaultMoney.setCurrency("EUR");
+		
+//		final String[] acceptedCurrencies = this.repository.findSystemConfiguration().getAcceptedCurrencies().split(",");
+		
 		model.setAttribute("USDexchange", mE.computeMoneyExchange(defaultMoney, "USD").target);
 		model.setAttribute("GBPexchange", mE.computeMoneyExchange(defaultMoney, "GBP").target);
 

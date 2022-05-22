@@ -11,4 +11,6 @@
 	</h2>
 	<acme:input-textbox code="authenticated.system-configuration.form.label.USDexchange" path="USDexchange"/>
 	<acme:input-textbox code="authenticated.system-configuration.form.label.GBPexchange" path="GBPexchange"/>
+	
+	<acme:button code="master.menu.authenticated.money-exchage" action="/authenticated/money-exchange/perform"/>
 </acme:form>
