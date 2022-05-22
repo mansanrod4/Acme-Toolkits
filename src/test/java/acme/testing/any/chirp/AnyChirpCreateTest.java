@@ -44,7 +44,7 @@ public class AnyChirpCreateTest extends TestHarness {
 	@CsvFileSource(resources = "/any/chirp/create-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 
-	public void negativeChirpTest(final int recordIndex, final String moment, final String title, final String author, final String body, final String email) {
+	public void negativeChirpTest(final int recordIndex,final String title, final String author, final String body, final String email) {
 
 		super.navigateHome();
 		super.clickOnMenu("Posts", "Chirps");
@@ -56,7 +56,7 @@ public class AnyChirpCreateTest extends TestHarness {
 		super.fillInputBoxIn("body", body);
 		super.fillInputBoxIn("email", email);
 
-		super.fillInputBoxIn("confirmation", "true");
+		super.fillInputBoxIn("confirmation", "false");
 
 		super.clickOnSubmit("Create");
 
