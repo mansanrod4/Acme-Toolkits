@@ -45,7 +45,7 @@ master.menu.authenticated.system-configuration.show = Información sobre monedas
 
 master.menu.administrator = Administrador
 
-master.menu.administrator.system-configuration = Detalles del sistema
+master.menu.administrator.system-configuration = Editar detalles del sistema
 master.menu.administrator.dashboard = Panel de indicadores
 master.menu.administrator.announcement.list = Anuncios 
 master.menu.administrator.user-accounts = Todas las cuentas de usuario

@@ -9,6 +9,6 @@
 	<acme:list-column code="administrator.announcement.list.label.body" path="body" width="70%"/>
 </acme:list>
 
-
 <acme:button test="${showCreate}" code="administrator.announcement.list.button.create" action="/administrator/announcement/create"/>
+
 
