@@ -12,7 +12,7 @@ public class AdministratorSystemConfigurationListAndShowTest extends TestHarness
 	@ParameterizedTest
 	@CsvFileSource(resources = "/administrator/systemConfiguration/show-system-configuration.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void positiveSystemConfigurationTest(final int recordIndex, final String systemCurrency, final String acceptedCurrencies, 
+	public void positiveTest(final int recordIndex, final String systemCurrency, final String acceptedCurrencies, 
 		final String strongSpamTerms,final String strongSpamThreshold, final String weakSpamTerms, final String weakSpamThreshold) {
 		
 		super.signIn("administrator", "administrator");

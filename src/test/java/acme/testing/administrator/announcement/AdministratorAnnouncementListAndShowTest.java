@@ -12,7 +12,7 @@ public class AdministratorAnnouncementListAndShowTest extends TestHarness{
 	@ParameterizedTest
 	@CsvFileSource(resources = "/authenticated/announcement/list-all.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void positiveSystemConfigurationTest(final int recordIndex, final String title, final String moment, 
+	public void positiveAnnouncementTest(final int recordIndex, final String title, final String moment, 
 		final String body, final String critical, final String link) {
 		super.signIn("administrator", "administrator");
 		super.navigateHome();

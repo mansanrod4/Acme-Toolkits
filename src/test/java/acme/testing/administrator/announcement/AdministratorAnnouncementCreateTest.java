@@ -72,7 +72,7 @@ public class AdministratorAnnouncementCreateTest extends TestHarness {
 		final BrowserDriver driver = super.getDriver();
 		driver.locateOne(By.id("critical")).click();
 		super.fillInputBoxIn("link", link);
-		super.fillInputBoxIn("confirmation", "true");
+		super.fillInputBoxIn("confirmation", "false");
 
 		super.clickOnSubmit("Create");
 
