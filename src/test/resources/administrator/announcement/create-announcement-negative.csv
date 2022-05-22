@@ -1,4 +1,4 @@
 recordIndex,title,body,critical,link,confirmation
 2,"",cuerpo5,true,https://www.google.com,true
 2,titulo2,"",true,https://www.google.com,true
-2,titulo2,cuerpo5,true,https://www.google.com,false
+2,titulo2,cuerpo5,true,https://www.google.com,null

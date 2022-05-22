@@ -30,7 +30,7 @@ public class AdministratorSystemConfigurationUpdateTest extends TestHarness{
 
 		super.clickOnMenu("Administrator", "Update System Details");
 		super.checkFormExists();
-		super.checkInputBoxHasValue("systemCurrency", systemCurrency);
+
 		super.checkInputBoxHasValue("acceptedCurrencies", acceptedCurrencies);
 		super.checkInputBoxHasValue("strongSpamTerms", strongSpamTerms);
 		super.checkInputBoxHasValue("strongSpamThreshold", strongSpamThreshold);
@@ -51,7 +51,8 @@ public class AdministratorSystemConfigurationUpdateTest extends TestHarness{
 		super.clickOnMenu("Administrator", "Update System Details");
 
 		super.checkFormExists();
-		super.fillInputBoxIn("systemCurrency", systemCurrency);
+		final BrowserDriver driver = super.getDriver();
+		driver.locateOne(By.id("systemCurrency")).click();
 		super.fillInputBoxIn("acceptedCurrencies", acceptedCurrencies);
 		super.fillInputBoxIn("strongSpamTerms", strongSpamTerms);
 		super.fillInputBoxIn("strongSpamThreshold", strongSpamThreshold);
