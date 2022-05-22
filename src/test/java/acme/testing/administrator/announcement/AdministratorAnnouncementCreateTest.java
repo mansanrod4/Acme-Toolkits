@@ -42,7 +42,6 @@ public class AdministratorAnnouncementCreateTest extends TestHarness {
 		driver.locateOne(By.id("critical")).click();
 		super.fillInputBoxIn("link", link);
 		super.fillInputBoxIn("confirmation", "true");
-
 		super.clickOnSubmit("Create");
 
 		super.navigateHome();
