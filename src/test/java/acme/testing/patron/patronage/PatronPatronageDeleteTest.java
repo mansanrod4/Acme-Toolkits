@@ -13,7 +13,7 @@ public class PatronPatronageDeleteTest extends TestHarness {
 	@ParameterizedTest
 	@CsvFileSource(resources = "/patron/patronage/delete-patronage-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void positivePatronageTest(final int recordIndex ) {
+	public void positivePatronageTest(final int recordIndex) {
 
 		super.signIn("patron4", "patron4");
 		super.navigateHome();
@@ -48,8 +48,15 @@ public class PatronPatronageDeleteTest extends TestHarness {
 		super.checkPanicExists();
 		super.signOut();
 		
+		super.signIn("patron3", "patron3");
+		super.navigateHome();
+		super.clickOnMenu("Patron", "My Patronages");
+		super.clickOnListingRecord(0);
+		final String url = super.getCurrentUrl();
+		super.signOut();
+		
 		super.signIn("patron1", "patron1");
-		super.navigate("/patron/patronage/show?id=47");
+		super.navigate(url);
 		super.checkPanicExists();
 		super.signOut();
 
