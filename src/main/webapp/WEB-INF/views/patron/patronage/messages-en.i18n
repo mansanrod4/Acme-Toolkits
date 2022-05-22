@@ -1,12 +1,4 @@
 # i18n-en.i18n
-#
-# Copyright (C) 2012-2022 Rafael Corchuelo.
-#
-# In keeping with the traditional purpose of furthering education and research, it is
-# the policy of the copyright owner to permit non-commercial use and redistribution of
-# this software. It has been tested carefully, but it is not guaranteed for any particular
-# purposes.  The copyright owner does not offer any warranties or representations, nor do
-# they accept any liabilities with respect to them.
 
 patron.patronage.label.code = Code:
 patron.patronage.label.creationDate = Creation date:
@@ -17,24 +9,37 @@ patron.patronage.label.patron = Patron:
 patron.patronage.label.inventor = Inventor:
 patron.patronage.label.legalStuff = Legal stuff:
 patron.patronage.label.budget = Budget:
+
+patron.patronage.label.budgetChanged = Budget in system currency:
+
 patron.patronage.label.info = Info:
 
-patron.patronage.label.inventorFullName = Inventor
-patron.patronage.label.inventorEmail = Inventor email
-patron.patronage.label.inventorCompany = Inventor company
-patron.patronage.label.inventorStatement = Inventor statement
-patron.patronage.label.inventorInfo = Inventor info
+patron.patronage.label.inventorFullName = Inventor:
+patron.patronage.label.inventorEmail = Inventor email:
+patron.patronage.label.inventorCompany = Inventor company:
+patron.patronage.label.inventorStatement = Inventor statement:
+patron.patronage.label.inventorInfo = Inventor info:
+
+patron.patronage.form.button.create = Create
+patron.patronage.form.button.update = Update
 
 patron.patronage.form.button.patronage-reports = Reports
 
+
 patron.patronage.form.button.delete = Delete
 patron.patronage.form.button.publish = Publish
+
+patron.patronage.form.error.duplicated = The code must be unique
+patron.patronage.form.error.start-date = The start date must be at least one month later than the current date
+patron.patronage.form.error.end-date = The end date must be at least one month later than the start date
 
 patron.patronage.list.title = My patronages
 
 patron.patronage.list.label.code = Code
 patron.patronage.list.label.status = Status
 patron.patronage.list.label.inventor = Inventor
+
+patron.patronage.list.button.create = Create
 
 
 patron.patronage.form.error.spam = Your application seems to contain spam 

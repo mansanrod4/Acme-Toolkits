@@ -26,7 +26,6 @@ import acme.framework.helpers.PrincipalHelper;
 import acme.framework.roles.Authenticated;
 import acme.framework.services.AbstractCreateService;
 import acme.roles.Inventor;
-import acme.roles.Patron;
 
 @Service
 public class AuthenticatedInventorCreateService implements AbstractCreateService<Authenticated, Inventor> {
@@ -45,7 +44,7 @@ public class AuthenticatedInventorCreateService implements AbstractCreateService
 
 		boolean result;
 
-		result = !request.getPrincipal().hasRole(Patron.class);
+		result = !request.getPrincipal().hasRole(Inventor.class);
 
 		return result;
 	}

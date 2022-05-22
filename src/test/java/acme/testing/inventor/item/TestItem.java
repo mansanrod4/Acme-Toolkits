@@ -1,4 +1,4 @@
-package acme.testing.item;
+package acme.testing.inventor.item;
 
 import acme.testing.TestHarness;
 

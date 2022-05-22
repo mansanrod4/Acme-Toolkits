@@ -65,7 +65,7 @@ public class InventorToolkitPublishService implements AbstractUpdateService<Inve
 			prices.add(price);
 		}
 
-		request.unbind(entity, model, "title", "description", "assemblyNotes", "info", "published");
+		request.unbind(entity, model,"code",  "title", "description", "assemblyNotes", "info", "published");
 
 		final MoneyExchange mE = new MoneyExchange();
 		final List<Money> pricesFix = mE.convertMoney(prices, sc.getSystemCurrency());
@@ -76,7 +76,10 @@ public class InventorToolkitPublishService implements AbstractUpdateService<Inve
 		money.setCurrency(sc.getSystemCurrency());
 
 		model.setAttribute("price", money);
-		model.setAttribute("inventor", entity.getInventor().getIdentity().getFullName());}
+		model.setAttribute("inventor", entity.getInventor().getIdentity().getFullName());
+		
+		model.setAttribute("ableToPublish", this.repository.getToolsFromToolkit(entity.getId()).stream().anyMatch(e->e.getItemType().equals(ItemType.TOOL)));
+		}
 
 	@Override
 	public Toolkit findOne(final Request<Toolkit> request) {
@@ -96,9 +99,20 @@ public class InventorToolkitPublishService implements AbstractUpdateService<Inve
 		if (!errors.hasErrors("*")) {
 			
 			final Collection<Item> tool=this.repository.findItemByTypeFromToolkit(entity.getId(), ItemType.TOOL);
-			errors.state(request, tool.size()==1,"*", "inventor.toolkit.no-tool-in-toolkit");
+			errors.state(request, !tool.isEmpty(),"*", "inventor.toolkit.no-tool-in-toolkit");
 		}
 		
+		if(!errors.hasErrors("code")) {
+			final Toolkit existing=this.repository.findOneToolkitByCode(entity.getCode());
+			
+			errors.state(request, existing==null  || existing.getId()==entity.getId(), "code", "inventor.toolkit.form.error.duplicated-code");
+		}
+		
+		if(!errors.hasErrors("code")) {
+			final Item existing=this.repository.findOneItemByCode(entity.getCode());
+			
+			errors.state(request, existing==null, "code", "inventor.toolkit.form.error.duplicated-code");
+		}
 	}
 
 	@Override

@@ -40,7 +40,7 @@ public class PatronPatronagePublishedService implements AbstractUpdateService<Pa
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "code", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info", "status");
+		request.bind(entity, errors, "code", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info");
 	}
 
 	@Override
@@ -49,7 +49,8 @@ public class PatronPatronagePublishedService implements AbstractUpdateService<Pa
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "code", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info", "status", "published");
+		request.unbind(entity, model, "code", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info", "published");
+		model.setAttribute("status", entity.getStatus());
 	}
 
 	@Override
