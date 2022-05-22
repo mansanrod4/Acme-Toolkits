@@ -4,8 +4,6 @@
 <%@taglib prefix="acme" uri="urn:jsptagdir:/WEB-INF/tags"%>
 
 <acme:form readonly="${readonly}">
-	<%-- 	<acme:hidden-data path="patronageId"/>
- --%>
 	<acme:input-textbox
 		code="inventor.patronage-report.form.label.patronageId"
 		path="patronageId" readonly="true" />

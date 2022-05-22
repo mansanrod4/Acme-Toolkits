@@ -1,6 +1,7 @@
 
 package acme.testing.inventor.patronageReport;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.core.annotation.Order;
@@ -67,4 +68,24 @@ public class InventorPatronageReportCreateTest extends TestHarness {
 		super.signOut();
 
 	}
+	
+	@Test
+	@Order(30)
+	public void hackingTest() {
+
+		super.navigate("/inventor/patronage-report/create");
+		super.checkPanicExists();
+
+		super.signIn("administrator", "administrator");
+		super.navigate("/inventor/patronage-report/create");
+		super.checkPanicExists();
+		super.signOut();
+
+		super.signIn("patron1", "patron1");
+		super.navigate("/inventor/patronage-report/create");
+		super.checkPanicExists();
+		super.signOut();
+	}
 }
+	
+
