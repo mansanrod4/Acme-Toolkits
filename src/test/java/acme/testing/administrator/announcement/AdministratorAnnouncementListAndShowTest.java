@@ -29,7 +29,6 @@ public class AdministratorAnnouncementListAndShowTest extends TestHarness{
 		super.checkFormExists();
 		super.checkInputBoxHasValue("title", title);
 		super.checkInputBoxHasValue("body", body);
-		super.checkInputBoxHasValue("critical", critical);
 		super.checkInputBoxHasValue("link", link);
 		super.signOut();
 		
