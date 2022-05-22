@@ -31,7 +31,7 @@ public class AuthenticatedSystemConfigurationListAndShowTest extends TestHarness
 	@Order(30)
 	public void hackingTest() {
 		
-		super.navigate("/authenticated/systemConfiguration/");
+		super.navigate("/authenticated/system-configuration/show");
 		super.checkPanicExists();
 	}
 	

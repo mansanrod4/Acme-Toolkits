@@ -43,7 +43,7 @@ public class AuthenticatedAnnouncementListAndShowTest extends TestHarness{
 	@Order(30)
 	public void hackingTest() {
 		
-		super.navigate("/authenticated/announcement/");
+		super.navigate("/authenticated/announcement/list");
 		super.checkPanicExists();
 		
 	}
