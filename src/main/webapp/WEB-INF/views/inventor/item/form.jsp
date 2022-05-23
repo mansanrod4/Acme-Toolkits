@@ -9,6 +9,7 @@
 	<acme:input-textbox code="inventor.component.list.label.tech" path="technology"/>
 	<acme:input-textbox code="inventor.component.list.label.description" path="description"/>
 	<acme:input-money code="inventor.component.list.label.price" path="retailPrice"/>
+	<acme:input-money code="inventor.component.list.label.price-system" path="systemMoney" readonly="true"/>
 	<acme:input-textarea code="inventor.component.list.label.info" path="info" placeholder="URL"/>
 	
 	<jstl:choose>
