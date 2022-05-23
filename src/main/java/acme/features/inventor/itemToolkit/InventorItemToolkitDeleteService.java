@@ -28,7 +28,7 @@ public class InventorItemToolkitDeleteService implements AbstractDeleteService<I
 		
 		final int id = request.getModel().getInteger("id");
 		final ItemToolkit it=this.repository.findItemToolkitById(id);
-		return it.getToolkit().getInventor().getId()==request.getPrincipal().getActiveRoleId() && it.getToolkit().isPublished();
+		return it.getToolkit().getInventor().getId()==request.getPrincipal().getActiveRoleId() && !it.getToolkit().isPublished();
 
 	}
 
@@ -47,8 +47,8 @@ public class InventorItemToolkitDeleteService implements AbstractDeleteService<I
 		assert entity != null;
 		assert model != null;
 		
-		request.unbind(entity, model, "quantity");
-		model.setAttribute("itemName", entity.getItem().getName());
+		request.unbind(entity, model, "quantity", "item.name");
+		model.setAttribute("published", entity.getToolkit().isPublished());
 		
 	}
 

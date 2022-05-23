@@ -1,6 +1,5 @@
 package acme.testing.inventor.toolkit;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.core.annotation.Order;
@@ -13,7 +12,7 @@ public class InventorToolkitListAndShowTest extends TestHarness {
 	@CsvFileSource(resources = "/inventor/toolkit/list-my-toolkit.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void positiveToolkitTest(final int recordIndex, final String code, final String title, final String description, final String assemblyNotes,
-		final String referenceInventor, final String info) {
+		final String price, final String info, final String state) {
 		
 		super.signIn("inventor2", "inventor2");
 		super.navigateHome();
@@ -23,8 +22,11 @@ public class InventorToolkitListAndShowTest extends TestHarness {
 		super.sortListing(0, "asc");
 		
 		
-		super.checkColumnHasValue(recordIndex, 0, title);
-		super.checkColumnHasValue(recordIndex, 1, description);
+		super.checkColumnHasValue(recordIndex, 0, code);
+		super.checkColumnHasValue(recordIndex, 1, title);
+		super.checkColumnHasValue(recordIndex, 2, description);
+		super.checkColumnHasValue(recordIndex, 3, price);
+		super.checkColumnHasValue(recordIndex, 4, state);
 		
 		super.clickOnListingRecord(recordIndex);
 		super.checkFormExists();
@@ -32,29 +34,10 @@ public class InventorToolkitListAndShowTest extends TestHarness {
 		super.checkInputBoxHasValue("title", title);
 		super.checkInputBoxHasValue("description", description);
 		super.checkInputBoxHasValue("assemblyNotes", assemblyNotes);
+		super.checkInputBoxHasValue("price", price);
 		super.checkInputBoxHasValue("info", info);
 		
 		
-		super.signOut();
-	}
-	
-	@Test
-	@Order(20)
-	public void hackingTest() {
-
-		super.signIn("administrator", "administrator");
-		super.navigate("/inventor/toolkit/show?id=38");
-		super.checkPanicExists();
-		super.signOut();
-
-		super.signIn("patron1", "patron1");
-		super.navigate("/inventor/toolkit/show?id=38");
-		super.checkPanicExists();
-		super.signOut();
-		
-		super.signIn("inventor1", "inventor1");
-		super.navigate("/inventor/toolkit/show?id=38");
-		super.checkPanicExists();
 		super.signOut();
 	}
 }

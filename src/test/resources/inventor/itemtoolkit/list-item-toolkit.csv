@@ -1,4 +1,4 @@
-toolkitIndex, recordIndex,quantity,name,itemType,code,technology,retail-price
-0,0,1,Martillo, TOOL, AAA-000, Clasica, EUR 22.30
-0,1,1,Martillo E., TOOL, AAA-000-A,Electico, USD 50.30
-1,0,4,Tuerca D12,COMPONENT,BBB-000-B,Clasica,USD 0.50
+toolkitIndex,recordIndex,quantity,name,itemType,code,technology,retail-price
+0,0,1,Destornillador de Pala,TOOL,CCC-000-A, Clasica, EUR 7.00
+0,1,2,Arandela D12,COMPONENT,DDD-000-A,Clasica,EUR 0.50
+1,0,6,Arandela D20,COMPONENT,DDD-000-B,Clasica,GBP 0.25
