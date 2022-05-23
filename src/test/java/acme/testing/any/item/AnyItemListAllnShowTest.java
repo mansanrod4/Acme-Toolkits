@@ -15,7 +15,7 @@ public class AnyItemListAllnShowTest extends TestHarness {
 	@Order(10)
 	public void positiveComponentTest(final int recordIndex, final String itemType, final String name, final String code, final String technology, final String description, final String retailPrice, final String inventor, final String info) {
 		super.navigateHome();
-		super.clickOnMenu("Components and tools", "Components");
+		super.clickOnMenu("Anonymous", "Components");
 		this.checkListAllItemsNShow(recordIndex, code, name, technology, retailPrice, description, info);
 	}
 
@@ -25,7 +25,7 @@ public class AnyItemListAllnShowTest extends TestHarness {
 	public void positiveToolTest(final int recordIndex, final String itemType, final String name, final String code, final String technology, final String description, final String retailPrice, final String inventor, final String info) {
 		super.navigateHome();
 
-		super.clickOnMenu("Components and tools", "Tools");
+		super.clickOnMenu("Anonymous", "Tools");
 
 		this.checkListAllItemsNShow(recordIndex, code, name, technology, retailPrice, description, info);
 	}
