@@ -19,7 +19,7 @@ public class AuthenticatedAnnouncementListAndShowTest extends TestHarness{
 		super.signIn("patron1", "patron1");
 		super.navigateHome();
 		
-		super.clickOnMenu("Posts", "Announcements");
+		super.clickOnMenu("Authenticated", "Announcements");
 		super.checkListingExists();
 		super.sortListing(0, "asc");
 		

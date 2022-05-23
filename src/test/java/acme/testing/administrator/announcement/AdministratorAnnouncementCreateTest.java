@@ -32,10 +32,8 @@ public class AdministratorAnnouncementCreateTest extends TestHarness {
 
 		super.signIn("administrator", "administrator");
 		super.navigateHome();
-		super.clickOnMenu("Administrator", "Announcements");
+		super.clickOnMenu("Administrator", "Create Announcements");
 
-		super.checkListingExists();
-		super.clickOnButton("Create announcement");
 		super.fillInputBoxIn("title", title);
 		super.fillInputBoxIn("body", body);
 		final BrowserDriver driver = super.getDriver();
@@ -45,7 +43,7 @@ public class AdministratorAnnouncementCreateTest extends TestHarness {
 		super.clickOnSubmit("Create");
 
 		super.navigateHome();
-		super.clickOnMenu("Posts", "Announcements");
+		super.clickOnMenu("Authenticated", "Announcements");
 		super.sortListing(0, "asc");
 
 		super.checkColumnHasValue(recordIndex, 0, title);
@@ -63,10 +61,8 @@ public class AdministratorAnnouncementCreateTest extends TestHarness {
 
 		super.signIn("administrator", "administrator");
 		super.navigateHome();
-		super.clickOnMenu("Administrator", "Announcements");
+		super.clickOnMenu("Administrator", "Create Announcements");
 
-		super.checkListingExists();
-		super.clickOnButton("Create announcement");
 		super.fillInputBoxIn("title", title);
 		super.fillInputBoxIn("body", body);
 		final BrowserDriver driver = super.getDriver();

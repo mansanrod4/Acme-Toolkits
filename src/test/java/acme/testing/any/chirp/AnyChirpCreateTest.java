@@ -16,7 +16,7 @@ public class AnyChirpCreateTest extends TestHarness {
 	public void positiveChirpTest(final int recordIndex, final String title, final String author, final String body, final String email) {
 
 		super.navigateHome();
-		super.clickOnMenu("Posts", "Chirps");
+		super.clickOnMenu("Anonymous", "Chirps");
 
 		super.checkListingExists();
 		super.clickOnButton("Create Chirp");
@@ -30,7 +30,7 @@ public class AnyChirpCreateTest extends TestHarness {
 		super.clickOnSubmit("Create");
 
 		super.navigateHome();
-		super.clickOnMenu("Posts", "Chirps");
+		super.clickOnMenu("Anonymous", "Chirps");
 		super.sortListing(2, "asc");
 
 		super.checkColumnHasValue(recordIndex, 1, title);
@@ -47,7 +47,7 @@ public class AnyChirpCreateTest extends TestHarness {
 	public void negativeChirpTest(final int recordIndex,final String title, final String author, final String body, final String email) {
 
 		super.navigateHome();
-		super.clickOnMenu("Posts", "Chirps");
+		super.clickOnMenu("Anonymous", "Chirps");
 
 		super.checkListingExists();
 		super.clickOnButton("Create Chirp");
