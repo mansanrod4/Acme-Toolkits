@@ -71,9 +71,8 @@ public class InventorItemListAllnShowTest extends TestHarness{
 		super.checkListingExists();
 		super.checkNotListingEmpty();
 		super.clickOnListingRecord(1);
-		final String pathShowedComponents = super.getCurrentPath();
-//		final String queryComponent = super.getCurrentQuery();
-//		final String urlShowedComponent = pathShowedComponents+queryComponent;
+		final String pathShowedComponent = super.getCurrentPath();
+		final String queryComponent = super.getCurrentQuery();
 		
 		
 		super.clickOnMenu("Inventor", "My Tools");
@@ -81,31 +80,30 @@ public class InventorItemListAllnShowTest extends TestHarness{
 		super.checkNotListingEmpty();
 		super.clickOnListingRecord(1);
 		final String pathShowedTool = super.getCurrentPath();
-//		final String queryShowedTool = super.getCurrentQuery();
-//		final String urlShowedTool = pathShowedTool + queryShowedTool;
+		final String queryShowedTool = super.getCurrentQuery();
 		
 		
 		super.signOut();
 		super.checkNotLinkExists("Inventor");
-		this.checkPanicWhenNavigatingToPaths(pathShowedComponents, pathShowedTool);
+		this.checkPanicWhenNavigatingToPaths(pathShowedComponent, pathShowedTool);
 		
 		super.signIn("administrator", "administrator");
 		super.checkNotLinkExists("Inventor");
-		this.checkPanicWhenNavigatingToPaths(pathShowedComponents, pathShowedTool);
+		this.checkPanicWhenNavigatingToPaths(pathShowedComponent, pathShowedTool);
 		super.signOut();
 		
 		super.signIn("patron1", "patron1");
 		super.checkNotLinkExists("Inventor");
-		this.checkPanicWhenNavigatingToPaths(pathShowedComponents, pathShowedTool);
+		this.checkPanicWhenNavigatingToPaths(pathShowedComponent, pathShowedTool);
 		super.signOut();
 		
-//		super.signIn("inventor1", "inventor1");
-//		super.checkLinkExists("Inventor");
-//		super.navigate(urlShowedComponent);
-//		super.checkPanicExists();
-//		super.navigate(urlShowedTool);
-//		super.checkPanicExists();
-//		super.signOut();
+		super.signIn("inventor1", "inventor1");
+		super.checkLinkExists("Inventor");
+		super.navigate(pathShowedComponent, queryComponent);
+		super.checkPanicExists();
+		super.navigate(pathShowedTool, queryShowedTool);
+		super.checkPanicExists();
+		super.signOut();
 		
 	}
 	
