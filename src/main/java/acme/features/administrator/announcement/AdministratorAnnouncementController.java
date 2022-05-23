@@ -13,12 +13,7 @@ import acme.framework.roles.Administrator;
 @Controller
 public class AdministratorAnnouncementController extends AbstractController<Administrator, Announcement> {
 
-	@Autowired
-	protected AdministratorAnnouncementListService	listService;
 
-	@Autowired
-	protected AdministratorAnnouncementShowService	showService;
-	
 	@Autowired
 	protected AdministratorAnnouncementCreateService createService;
 
@@ -28,8 +23,7 @@ public class AdministratorAnnouncementController extends AbstractController<Admi
 
 	@PostConstruct
 	protected void initialise() {
-		super.addCommand("list", this.listService);
-		super.addCommand("show", this.showService);
+
 		super.addCommand("create", this.createService);
 	}
 }
