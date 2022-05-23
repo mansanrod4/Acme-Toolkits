@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.toolkits.Item;
+import acme.features.authenticated.systemConfiguration.AuthenticatedSystemConfigurationRepository;
+import acme.forms.MoneyExchange;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.features.authenticated.userAccount.AuthenticatedUserAccountRepository;
@@ -19,7 +21,10 @@ public class InventorItemShowService implements AbstractShowService<Inventor, It
 
 	@Autowired
 	protected AuthenticatedUserAccountRepository	userRepository;
-
+	
+	@Autowired
+	protected AuthenticatedSystemConfigurationRepository authenticatedSystemConfigurationRepository;
+	
 
 	@Override
 	public boolean authorise(final Request<Item> request) {
@@ -47,7 +52,12 @@ public class InventorItemShowService implements AbstractShowService<Inventor, It
 		assert entity != null;
 		assert model != null;
 
+		MoneyExchange moneyExchange = new MoneyExchange();
+		moneyExchange = moneyExchange.computeMoneyExchange(entity.getRetailPrice(), this.authenticatedSystemConfigurationRepository.findSystemConfiguration().getSystemCurrency());
+		
+		
 		request.unbind(entity, model, "code", "name", "technology", "description", "retailPrice", "info", "published");
+		model.setAttribute("systemMoney", moneyExchange.target);
 
 
 	}

@@ -73,6 +73,7 @@ public class InventorComponentCreateService implements AbstractCreateService<Inv
 			errors.state(request, existing == null ||  entity.getId() == existing.getId(), "code", "inventor.item.form.error.duplicated");
 		}
 		
+		
 		if (!errors.hasErrors("retailPrice")) {
 			
 			final String currency = entity.getRetailPrice().getCurrency();

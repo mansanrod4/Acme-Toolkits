@@ -1,15 +1,3 @@
-<%--
-- menu.jsp
--
-- Copyright (C) 2012-2022 Rafael Corchuelo.
--
-- In keeping with the traditional purpose of furthering education and research, it is
-- the policy of the copyright owner to permit non-commercial use and redistribution of
-- this software. It has been tested carefully, but it is not guaranteed for any particular
-- purposes.  The copyright owner does not offer any warranties or representations, nor do
-- they accept any liabilities with respect to them.
---%>
-
 <%@page language="java"
 	import="acme.framework.helpers.PrincipalHelper,acme.roles.Patron,acme.roles.Inventor"%>
 
@@ -21,8 +9,12 @@
 	<acme:menu-left>
 	
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
-      		<acme:menu-suboption code="master.menu.user-account.toolkit.list" action="/any/toolkit/list"/>
-			<acme:menu-suboption code="master.menu.user-account.list" action="/any/user-account/list" />
+      		<acme:menu-suboption code="master.menu.anonymous.toolkit.list" action="/any/toolkit/list"/>
+			<acme:menu-suboption code="master.menu.anonymous.user-account.list" action="/any/user-account/list" />
+			<acme:menu-suboption code="master.menu.anonymous.chirp.list" action="/any/chirp/list"/>
+			<acme:menu-suboption code="master.menu.anonymous.component.list" action="/any/item/list-component"/>
+			<acme:menu-suboption code="master.menu.anonymous.tool.list" action="/any/item/list-tool"/>
+			
       		<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.anonymous.manferrod6-favourite-link" action="http://www.gol.gg"/>
 			<acme:menu-suboption code="master.menu.anonymous.diedialop-favourite-link" action="https://www.sanfransentinel.com/youtube998.html"/>
@@ -30,15 +22,23 @@
 			<acme:menu-suboption code="master.menu.anonymous.aisqazcev-favourite-link" action="https://www.netflix.com/watch/70151933?trackId=14277283&tctx=-97%2C-97%2C%2C%2C%2C%2C%2C"/>
 			<acme:menu-suboption code="master.menu.anonymous.olisanrod-favourite-link" action="https://google.com"/>
 		</acme:menu-option>
-
-		<acme:menu-option code="master.menu.administrator"
-			access="hasRole('Administrator')">
+		
+		<acme:menu-option code="master.menu.authenticated" access="isAuthenticated()">
+		    <acme:menu-suboption code="master.menu.authenticated.toolkit.list" action="/any/toolkit/list"/>
+			<acme:menu-suboption code="master.menu.authenticated.user-account.list" action="/any/user-account/list" />
+			<acme:menu-suboption code="master.menu.authenticated.chirp.list" action="/any/chirp/list"/>
+      		<acme:menu-suboption code="master.menu.authenticated.announcement.list" action="/authenticated/announcement/list" access="isAuthenticated()"/>
+      		<acme:menu-suboption code="master.menu.authenticated.component.list" action="/any/item/list-component"/>
+			<acme:menu-suboption code="master.menu.authenticated.tool.list" action="/any/item/list-tool"/>
+			<acme:menu-suboption code="master.menu.authenticated.system-configuration.show" action="/authenticated/system-configuration/show"/>	
+		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">
 
 			<acme:menu-suboption code="master.menu.administrator.user-accounts"	action="/administrator/user-account/list" />
-			<acme:menu-suboption code="master.menu.user-account.list"	action="/any/user-account/list" />
 			<acme:menu-suboption code="master.menu.administrator.system-configuration" action="/administrator/system-configuration/show"/>
 			<acme:menu-suboption code="master.menu.administrator.dashboard" action="/administrator/admin-dashboard/show"/>
-			<acme:menu-suboption code="master.menu.administrator.announcement.list" action="/administrator/announcement/list"/>
+			<acme:menu-suboption code="master.menu.administrator.announcement.create" action="/administrator/announcement/create"/>
 			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.administrator.populate-initial" action="/administrator/populate-initial" />
 			<acme:menu-suboption code="master.menu.administrator.populate-sample" action="/administrator/populate-sample" />
@@ -50,8 +50,6 @@
 		<acme:menu-option code="master.menu.patron" access="hasRole('Patron')">
 			<acme:menu-suboption code="master.menu.patron.patronage.list" action="/patron/patronage/list"/>
 			<acme:menu-suboption code="master.menu.patron.dashboard" action="/patron/patron-dashboard/show"/>
-			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.user-account.list"	action="/any/user-account/list" />
 		</acme:menu-option>
 
 
@@ -60,25 +58,11 @@
 			<acme:menu-suboption code="master.menu.inventor.component.list" action="/inventor/item/list-component"/>
 			<acme:menu-suboption code="master.menu.inventor.tool.list" action="/inventor/item/list-tool"/>
 			<acme:menu-suboption code="master.menu.inventor.patronage.list" action="/inventor/patronage/list"/>
-			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.user-account.list" action="/any/user-account/list" />
 		</acme:menu-option>
 	</acme:menu-left>
 
 	<acme:menu-right>
-		<acme:menu-option code="master.menu.posts">
-		<acme:menu-suboption code="master.menu.posts.chirp.list" action="/any/chirp/list"/>
-      	<acme:menu-suboption code="master.menu.posts.announcement.list" action="/authenticated/announcement/list" access="isAuthenticated()"/>
-     	</acme:menu-option>
      	
-     	<acme:menu-option code="master.menu.components-tools">
-     	<acme:menu-suboption code="master.menu.components-tools.component.list" action="/any/item/list-component"/>
-		<acme:menu-suboption code="master.menu.components-tools.tool.list" action="/any/item/list-tool"/>
-		</acme:menu-option>
-     	
-     	<acme:menu-option code="master.menu.sc" access="isAuthenticated()">
-		<acme:menu-suboption code="master.menu.sc.system-configuration.list" action="/authenticated/system-configuration/show"/>
-		</acme:menu-option>
      	
      	<acme:menu-option code="master.menu.user-account" access="isAuthenticated()">
 		<acme:menu-suboption code="master.menu.user-account.general-data" action="/authenticated/user-account/update"/>

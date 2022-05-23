@@ -1,13 +1,14 @@
 
-package acme.testing.patron.systemConfiguration;
+package acme.testing.authenticated.systemConfiguration;
 
 import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 import acme.testing.TestHarness;
 
-public class AuthenticatedSystemConfigurationShowTest extends TestHarness {
+public class AuthenticatedSystemConfigurationListAndShowTest extends TestHarness {
 
 	@ParameterizedTest
 	@CsvFileSource(resources = "/authenticated/systemConfiguration/show-system-configuration.csv", encoding = "utf-8", numLinesToSkip = 1)
@@ -17,7 +18,7 @@ public class AuthenticatedSystemConfigurationShowTest extends TestHarness {
 		super.signIn("patron1", "patron1");
 
 		super.navigateHome();
-		super.clickOnMenu("System Configuration", "Currencies information");
+		super.clickOnMenu("Authenticated", "Currencies information");
 
 		super.checkFormExists();
 		super.checkInputBoxHasValue("systemCurrency", systemCurrency);
@@ -25,5 +26,14 @@ public class AuthenticatedSystemConfigurationShowTest extends TestHarness {
 
 		super.signOut();
 	}
+	
+	@Test
+	@Order(30)
+	public void hackingTest() {
+		
+		super.navigate("/authenticated/system-configuration/show");
+		super.checkPanicExists();
+	}
+	
 
 }
