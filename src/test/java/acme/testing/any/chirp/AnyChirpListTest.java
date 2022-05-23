@@ -17,7 +17,7 @@ public class AnyChirpListTest extends TestHarness {
 		final String title, final String author, final String body, final String email) {
 
 		super.navigateHome();
-		super.clickOnMenu("Posts", "Chirps");
+		super.clickOnMenu("Anonymous", "Chirps");
 		
 		super.checkListingExists();
 		super.sortListing(2, "asc");
