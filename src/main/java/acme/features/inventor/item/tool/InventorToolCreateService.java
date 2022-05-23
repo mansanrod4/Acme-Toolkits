@@ -69,6 +69,8 @@ public class InventorToolCreateService implements AbstractCreateService<Inventor
 			errors.state(request, existing == null ||  entity.getId() == existing.getId(), "code", "inventor.item.form.error.duplicated");
 		}
 		
+
+		
 		if (!errors.hasErrors("retailPrice")) {
 			final String currency = entity.getRetailPrice().getCurrency();
 			final boolean currencyIsSuported = this.systemConfigRepository.findSystemConfiguration().getAcceptedCurrencies().contains(currency);
