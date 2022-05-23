@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.ItemToolkit;
+import acme.entities.toolkits.ItemType;
 import acme.entities.toolkits.Toolkit;
 import acme.forms.MoneyExchange;
 import acme.framework.components.models.Model;
@@ -75,7 +76,10 @@ public class InventorToolkitDeleteService implements AbstractDeleteService<Inven
 		money.setCurrency(sc.getSystemCurrency());
 
 		model.setAttribute("price", money);
-		model.setAttribute("inventor", entity.getInventor().getIdentity().getFullName());}
+		model.setAttribute("inventor", entity.getInventor().getIdentity().getFullName());
+		
+		model.setAttribute("ableToPublish", this.repository.getToolsFromToolkit(entity.getId()).stream().anyMatch(e->e.getItemType().equals(ItemType.TOOL)));
+	}
 
 	@Override
 	public Toolkit findOne(final Request<Toolkit> request) {

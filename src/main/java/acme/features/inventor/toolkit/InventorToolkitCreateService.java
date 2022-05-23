@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.components.configuration.SystemConfiguration;
+import acme.entities.toolkits.Item;
 import acme.entities.toolkits.Toolkit;
 import acme.forms.MoneyExchange;
 import acme.framework.components.models.Model;
@@ -93,6 +94,11 @@ public class InventorToolkitCreateService implements AbstractCreateService<Inven
 	public void validate(final Request<Toolkit> request, final Toolkit entity, final Errors errors) {
 		if(!errors.hasErrors("code")) {
 			final Toolkit existing=this.repository.findOneToolkitByCode(entity.getCode());
+			errors.state(request, existing==null, "code", "inventor.toolkit.form.error.duplicated-code");
+		}
+		
+		if(!errors.hasErrors("code")) {
+			final Item existing=this.repository.findOneItemByCode(entity.getCode());
 			errors.state(request, existing==null, "code", "inventor.toolkit.form.error.duplicated-code");
 		}
 		

@@ -1,7 +1,7 @@
 
 
 inventor.item-toolkit.form.label.quantity = Cantidad
-any.component.list.label.code = Código del componente
+any.component.list.label.code = Código del Elemento
 any.component.list.label.name = Nombre
 any.component.list.label.tech = Tecnología 
 any.component.list.label.description = Descripción
@@ -9,7 +9,7 @@ any.component.list.label.price = Precio
 any.component.list.label.info = Información Adicional
 any.component.list.label.itemType = Tipo
 
-inventor.item-toolkit.form.label.item = Componente
+inventor.item-toolkit.form.label.item = Elemento
 
 inventor.item-toolkit.form.button.add-item = Añadir a Toolkit
 inventor.item-toolkit.form.button.delete-item = Eliminar Elemento

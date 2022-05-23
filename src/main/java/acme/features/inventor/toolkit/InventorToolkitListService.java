@@ -59,7 +59,7 @@ public class InventorToolkitListService implements AbstractListService<Inventor,
 			prices.add(price);
 		}
 
-		request.unbind(entity, model, "title", "description");
+		request.unbind(entity, model,"code", "title", "description");
 
 		final MoneyExchange mE = new MoneyExchange();
 		final List<Money> pricesFix = mE.convertMoney(prices, sc.getSystemCurrency());

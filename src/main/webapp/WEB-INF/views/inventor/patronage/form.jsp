@@ -27,8 +27,6 @@
 	<acme:input-textbox code="inventor.patronage.label.patronStatement" path="patronStatement" readonly="true"/>
 	<acme:input-textbox code="inventor.patronage.label.patronInfo" path="patronInfo" readonly="true"/>
 	
-	<acme:button code="inventor.patronage.form.button.patronage-reports" action="/inventor/patronage-report/list?patronageId=${id}"/>	
-	
 	<jstl:if test="${status.name() == 'PROPOSED'}">
 		<acme:submit code="inventor.patronage.form.button.accept" action="/inventor/patronage/change-status?operation=accept"/>		
 		<acme:submit code="inventor.patronage.form.button.deny" action="/inventor/patronage/change-status?operation=deny"/>		
