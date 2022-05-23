@@ -48,8 +48,8 @@ public class InventorItemToolkitUpdateService implements AbstractUpdateService<I
 		assert entity != null;
 		assert model != null;
 		
-		request.unbind(entity, model, "quantity");
-		model.setAttribute("itemName", entity.getItem().getName());
+		request.unbind(entity, model, "quantity", "item.name");
+		model.setAttribute("published", entity.getToolkit().isPublished());
 		
 	}
 
@@ -70,7 +70,7 @@ public class InventorItemToolkitUpdateService implements AbstractUpdateService<I
 		assert errors != null;
 		
 		if(!errors.hasErrors("quantity")) {
-			errors.state(request, entity.getItem().getItemType()!=ItemType.TOOL||entity.getQuantity()==1, "quantity", "inventor.toolkit.form.error.wrong-tool-quantity");
+			errors.state(request, entity.getItem().getItemType()!=ItemType.TOOL||entity.getQuantity()==1, "quantity", "inventor.item-toolkit.form.error.wrong-tool-quantity");
 		}
 	}
 

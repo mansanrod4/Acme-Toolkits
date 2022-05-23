@@ -9,7 +9,7 @@
 	<acme:input-textarea code="inventor.toolkit.form.label.description" path="description"/>
 	<acme:input-textarea code="inventor.toolkit.form.label.assemblyNotes" path="assemblyNotes"/>
 		<jstl:choose>	 
-		<jstl:when test="${acme:anyOf(command, 'show, delete, publish')}">
+		<jstl:when test="${acme:anyOf(command, 'show, delete, update, publish')}">
 			<acme:input-textbox readonly="true" code="inventor.toolkit.form.label.inventor" path="inventor"/>
 			<acme:input-money readonly="true" code="inventor.toolkit.form.label.price" path="price"/>
 		</jstl:when>

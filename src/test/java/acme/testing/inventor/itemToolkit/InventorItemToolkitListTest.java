@@ -14,7 +14,7 @@ public class InventorItemToolkitListTest extends TestHarness{
 	public void checkListItemToolkit(final int toolkitIndex, final int recordIndex, final String quantity, final String name, final String itemType,
 		final String code,final String technology,final String retailPrice) {
 		
-		super.signIn("inventor1", "inventor1");
+		super.signIn("inventor2", "inventor2");
 		super.navigateHome();
 		
 		super.clickOnMenu("Inventor", "My Toolkits");
@@ -30,7 +30,13 @@ public class InventorItemToolkitListTest extends TestHarness{
 		super.checkColumnHasValue(recordIndex, 3, code);
 		super.checkColumnHasValue(recordIndex, 4, technology);
 		super.checkColumnHasValue(recordIndex, 5, retailPrice);
+		super.clickOnListingRecord(recordIndex);
 		
+		super.checkFormExists();
+		super.checkInputBoxHasValue("quantity", quantity);
+		super.checkInputBoxHasValue("item.name", name);
+		
+		super.signOut();
 	}
 
 }
