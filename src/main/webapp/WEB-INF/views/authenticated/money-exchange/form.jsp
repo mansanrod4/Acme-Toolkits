@@ -16,13 +16,10 @@
 <%@taglib prefix="acme" uri="urn:jsptagdir:/WEB-INF/tags"%>
 
 <acme:form>
-	<acme:input-money code="authenticated.money-exchange.form.label.source" path="source"/>
+	<acme:input-money code="authenticated.money-exchange.form.label.source" path="source" placeholder=""/>
 	
-	<acme:input-select code="authenticated.money-exchange.form.label.target-currency" path="targetCurrency">
-    	<jstl:forEach items="${accepted}" var="target">
-        	<acme:input-option code="${target}" value="${target}"/>
-		</jstl:forEach>
-	</acme:input-select>
+	<acme:input-textbox code="authenticated.money-exchange.form.label.target-currency" path="targetCurrency" placeholder=""/>
+
 	
 	<acme:input-money code="authenticated.money-exchange.form.label.date" path="date" readonly="true" placeholder=""/>
 	<acme:input-money code="authenticated.money-exchange.form.label.target" path="target" readonly="true" placeholder=""/>

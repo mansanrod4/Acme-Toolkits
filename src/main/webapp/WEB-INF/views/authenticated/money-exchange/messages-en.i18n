@@ -16,3 +16,6 @@ authenticated.money-exchange.form.label.target = Target money:
 authenticated.money-exchange.form.button.perform = Perform exchange
 
 authenticated.money-exchange.form.label.api-error = Sorry, couldn't perform the exchange
+
+authenticated.money-exchange.form.error.source.currency-not-supported = Currency not supported. Please, do check previous page
+authenticated.money-exchange.form.error.source.negative = Negative amount is not accepted

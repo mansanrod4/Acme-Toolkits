@@ -16,3 +16,5 @@ authenticated.money-exchange.form.label.target = Cantidad destino:
 authenticated.money-exchange.form.button.perform = Realizar cambio
 
 authenticated.money-exchange.form.label.api-error = Lo sentimos, no se pudo hacer este cambio
+authenticated.money-exchange.form.error.source.currency-not-supported = Moneda no registrada en el sistema. Por favor, revise la página anterior
+authenticated.money-exchange.form.error.source.negative = No se aceptan cantidades negativas

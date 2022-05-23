@@ -12,9 +12,7 @@
 
 package acme.features.authenticated.moneyExchange;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,17 +60,7 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 		assert entity != null;
 		assert model != null;
 
-		final String[] acepCurrencies = this.repository.findAcceptedCurrncies().split(",");
-		final List<String> accepted = new ArrayList<String>();
-		
-		for(int i = 0; i<acepCurrencies.length; i++) {
-			final String money = acepCurrencies[i];
-			accepted.add(money);
-		}
-
 		request.unbind(entity, model, "source", "targetCurrency", "date", "target");
-
-		model.setAttribute("accepted", accepted);
 
 	}
 
@@ -97,8 +85,8 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 			final String currency = entity.source.getCurrency();
 			final boolean currencyIsSuported = this.repository.findAcceptedCurrncies().contains(currency);
 			
-			errors.state(request, currencyIsSuported, "source", "authenticated.system-configuration.form.error.source.currency-not-supported");
-			errors.state(request, entity.getSource().getAmount()>=0, "source", "authenticated.system-configuration.form.error.source.negative");
+			errors.state(request, currencyIsSuported, "source", "authenticated.money-exchange.form.error.source.currency-not-supported");
+			errors.state(request, entity.getSource().getAmount()>=0, "source", "authenticated.money-exchange.form.error.source.negative");
 		}
 		
 	}
