@@ -13,7 +13,7 @@ public class PatronPatronageListAndShowTest extends TestHarness {
 	@CsvFileSource(resources = "/patron/patronage/list-patronage.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void positivePatronageTest(final int recordIndex, final String status, final String code, final String legal_stuff, final String budget, final String creation_date, final String start_date, final String end_date, final String info,
-		final String patron, final String inventor, final String inventor_name, final String inventor_surname, final String inventor_email, final String inventor_company, final String inventor_statement, final String inventor_info, final String published) {
+		final String patron, final String inventor, final String inventor_name, final String inventor_surname, final String inventor_email, final String inventor_company, final String inventor_statement, final String inventor_info) {
 
 		super.signIn("patron1", "patron1");
 		super.navigateHome();
@@ -30,18 +30,20 @@ public class PatronPatronageListAndShowTest extends TestHarness {
 		super.clickOnListingRecord(recordIndex);
 		super.checkFormExists();
 		super.checkInputBoxHasValue("code", code);
-		super.checkInputBoxHasValue("legalStuff", legal_stuff);
-		super.checkInputBoxHasValue("budget", budget);
 		super.checkInputBoxHasValue("creationDate", creation_date);
 		super.checkInputBoxHasValue("startDate", start_date);
 		super.checkInputBoxHasValue("endDate", end_date);
-		super.checkInputBoxHasValue("status", status);
+	
+		super.checkInputBoxHasValue("legalStuff", legal_stuff);
+		super.checkInputBoxHasValue("budget", budget);
+		super.checkInputBoxHasValue("info", info);
+		
 		super.checkInputBoxHasValue("inventorFullName", inventor_surname+", "+inventor_name);
 		super.checkInputBoxHasValue("inventorEmail", inventor_email);
 		super.checkInputBoxHasValue("inventorCompany", inventor_company);
 		super.checkInputBoxHasValue("inventorStatement", inventor_statement);
 		super.checkInputBoxHasValue("inventorInfo", inventor_info);
-		super.checkInputBoxHasValue("published", published);
+		super.checkInputBoxHasValue("status", status);
 
 		super.signOut();
 	}

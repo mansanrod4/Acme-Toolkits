@@ -29,7 +29,7 @@ public class MoneyExchange {
 
 	@NotBlank
 	public String	targetCurrency;
-
+	
 	// Response attributes ----------------------------------------------------
 
 	@Valid
@@ -96,22 +96,5 @@ public class MoneyExchange {
 		return resLs;
 	}
 
-	//	public StatData getPricesData(final List<Money> ls, final String targetCurrency){
-	//		final StatData res= new StatData();
-	//		final List<Money> newLs=this.convertMoney(ls, targetCurrency);
-	//		final Double sum=newLs.stream().mapToDouble(x->x.getAmount()).sum();
-	//		final Double avg=newLs.stream().mapToDouble(x->x.getAmount()).average().getAsDouble();
-	//		//final Double desv=newLs.stream().mapToDouble(x->x.getAmount());
-	//		final Double max=newLs.stream().mapToDouble(x->x.getAmount()).max().getAsDouble();
-	//		final Double min=newLs.stream().mapToDouble(x->x.getAmount()).min().getAsDouble();
-	//		final Money valor= new Money();
-	//		valor.setCurrency(targetCurrency);
-	//		valor.setAmount(avg); res.setAverage(valor);
-	//		valor.setAmount(sum); res.setSum(valor);
-	//	//	valor.setAmount(desv); res.setDesviation(valor);
-	//		valor.setAmount(min); res.setMinimum(valor);
-	//		valor.setAmount(max); res.setMaximum(valor);
-	//		
-	//	}
 
 }
