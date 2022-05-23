@@ -30,18 +30,20 @@ public class PatronPatronageListAndShowTest extends TestHarness {
 		super.clickOnListingRecord(recordIndex);
 		super.checkFormExists();
 		super.checkInputBoxHasValue("code", code);
-		super.checkInputBoxHasValue("legalStuff", legal_stuff);
-		super.checkInputBoxHasValue("budget", budget);
 		super.checkInputBoxHasValue("creationDate", creation_date);
 		super.checkInputBoxHasValue("startDate", start_date);
 		super.checkInputBoxHasValue("endDate", end_date);
-		super.checkInputBoxHasValue("status", status);
+	
+		super.checkInputBoxHasValue("legalStuff", legal_stuff);
+		super.checkInputBoxHasValue("budget", budget);
+		super.checkInputBoxHasValue("info", info);
+		
 		super.checkInputBoxHasValue("inventorFullName", inventor_surname+", "+inventor_name);
 		super.checkInputBoxHasValue("inventorEmail", inventor_email);
 		super.checkInputBoxHasValue("inventorCompany", inventor_company);
 		super.checkInputBoxHasValue("inventorStatement", inventor_statement);
 		super.checkInputBoxHasValue("inventorInfo", inventor_info);
-		super.checkInputBoxHasValue("published", published);
+		super.checkInputBoxHasValue("status", status);
 
 		super.signOut();
 	}
