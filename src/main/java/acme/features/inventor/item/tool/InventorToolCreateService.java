@@ -3,6 +3,7 @@ package acme.features.inventor.item.tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.components.SpamDetector;
 import acme.entities.toolkits.Item;
 import acme.entities.toolkits.ItemType;
 import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
@@ -76,6 +77,19 @@ public class InventorToolCreateService implements AbstractCreateService<Inventor
 			final boolean currencyIsSuported = this.systemConfigRepository.findSystemConfiguration().getAcceptedCurrencies().contains(currency);
 			errors.state(request, currencyIsSuported, "retailPrice", "inventor.item.form.error.retailPrice.currency-not-supported");
 			errors.state(request, entity.getRetailPrice().getAmount()>0, "retailPrice", "inventor.item.form.error.retailPrice.negativeOrZero");
+		}
+		
+		final SpamDetector spamDetector = SpamDetector.fromRepository(this.systemConfigRepository);
+		if (!errors.hasErrors("name")) {
+			errors.state(request, spamDetector.stringHasNoSpam(entity.getName()), "name", "spam.detector.error.message");
+		}
+		
+		if (!errors.hasErrors("technology")) {
+			errors.state(request, spamDetector.stringHasNoSpam(entity.getTechnology()), "technology", "spam.detector.error.message");
+		}
+		
+		if (!errors.hasErrors("description")) {
+			errors.state(request, spamDetector.stringHasNoSpam(entity.getDescription()), "description", "spam.detector.error.message");
 		}
 
 	}

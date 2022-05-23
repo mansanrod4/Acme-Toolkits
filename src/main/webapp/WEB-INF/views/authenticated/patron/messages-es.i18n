@@ -5,3 +5,4 @@ authenticated.patron.form.label.info = Información
 
 authenticated.patron.form.button.create = Registrar
 authenticated.patron.form.button.update = Actualizar
+spam.detector.error.message = Spam Detectado

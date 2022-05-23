@@ -43,5 +43,6 @@ patron.patronage.list.button.create = Crear
 
 
 patron.patronage.form.error.spam = Parece que su solicitud contiene spam
+spam.detector.error.message = Spam Detectado
 
 

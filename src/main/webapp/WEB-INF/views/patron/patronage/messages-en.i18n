@@ -42,4 +42,4 @@ patron.patronage.list.label.inventor = Inventor
 patron.patronage.list.button.create = Create
 
 
-patron.patronage.form.error.spam = Your application seems to contain spam 
+spam.detector.error.message = Spam Detected

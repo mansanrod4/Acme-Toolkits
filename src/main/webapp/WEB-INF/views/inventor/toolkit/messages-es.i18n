@@ -17,3 +17,4 @@ inventor.toolkit.form.button.publish = Publicar Toolkit
 
 inventor.toolkit.no-tool-in-toolkit = Tu Toolkit no contiene ninguna herramienta. Tienes que añadir una herramienta antes de publicarlo
 inventor.toolkit.form.error.duplicated-code = Este código pertenece a otro elemento. El codigo de tu Toolkit debe ser único
+spam.detector.error.message = Spam Detectado

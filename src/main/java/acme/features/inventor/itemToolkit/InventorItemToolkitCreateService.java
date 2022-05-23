@@ -75,7 +75,6 @@ public class InventorItemToolkitCreateService implements AbstractCreateService<I
 			errors.state(request, existing==null, "*", "inventor.item-toolkit.form.error.item-already-added");
 		}
 		
-		 
 	}
 
 	@Override

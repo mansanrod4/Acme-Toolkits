@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import acme.entities.patronages.Patronage;
 import acme.entities.patronages.PatronageStatus;
+import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
@@ -21,6 +22,8 @@ public class PatronPatronageCreateService implements AbstractCreateService<Patro
 
 	@Autowired
 	protected PatronPatronageRepository repository;
+	@Autowired
+	protected AdministratorSystemConfigurationRepository administratorSystemConfigurationRepository;
 
 
 	@Override
@@ -119,6 +122,8 @@ public class PatronPatronageCreateService implements AbstractCreateService<Patro
 			final String c = b.getCurrency();
 			errors.state(request, this.repository.findAcceptedCurrencies().contains(c), "budget", "patron.patronage.form.error.budget-acceptedcurrencies");
 		}
+		
+		
 	}
 
 	@Override

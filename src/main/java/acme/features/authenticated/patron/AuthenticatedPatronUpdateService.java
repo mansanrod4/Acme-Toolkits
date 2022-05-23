@@ -15,6 +15,8 @@ package acme.features.authenticated.patron;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.components.SpamDetector;
+import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.HttpMethod;
@@ -33,6 +35,8 @@ public class AuthenticatedPatronUpdateService implements AbstractUpdateService<A
 
 	@Autowired
 	protected AuthenticatedPatronRepository repository;
+	@Autowired
+	protected AdministratorSystemConfigurationRepository administratorSystemConfigurationRepository;
 
 	// AbstractUpdateService<Authenticated, Worker> interface -----------------
 
@@ -49,6 +53,15 @@ public class AuthenticatedPatronUpdateService implements AbstractUpdateService<A
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		
+		final SpamDetector spamDetector = SpamDetector.fromRepository(this.administratorSystemConfigurationRepository);
+		if (!errors.hasErrors("company")) {
+			errors.state(request, spamDetector.stringHasNoSpam(entity.getCompany()), "company", "spam.detector.error.message");
+		}
+		
+		if(!errors.hasErrors("statement")) {
+			errors.state(request, spamDetector.stringHasNoSpam(entity.getStatement()), "statement", "spam.detector.error.message");
+		}
 	}
 
 	@Override

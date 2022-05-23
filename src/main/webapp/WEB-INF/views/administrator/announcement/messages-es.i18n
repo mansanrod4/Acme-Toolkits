@@ -17,5 +17,6 @@ administrator.announcement.form.label.TRUE = Es crítico
 administrator.announcement.form.label.FALSE = No es crítico
 administrator.announcement.form.label.confirmation = Confirme que el anuncio es correcto
 
-administrator.announcement.form.button.create = Crear	
+administrator.announcement.form.button.create = Crear
+spam.detector.error.message = Spam Detectado
 

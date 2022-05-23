@@ -27,3 +27,4 @@ any.chirp.list.label.email = Email
 
 
 any.chirp.list.button.create = Crear mensaje
+spam.detector.error.message = Spam Detectado

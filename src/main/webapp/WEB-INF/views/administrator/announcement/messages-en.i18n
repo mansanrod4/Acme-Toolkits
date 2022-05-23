@@ -17,5 +17,6 @@ administrator.announcement.form.label.FALSE = Not critical
 administrator.announcement.form.label.confirmation = Confirm that the announcement is correct
 	
 administrator.announcement.form.button.create = Create	
+spam.detector.error.message = Spam Detected
 
 
