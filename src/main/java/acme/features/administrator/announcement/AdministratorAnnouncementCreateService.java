@@ -5,7 +5,9 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.components.SpamDetector;
 import acme.entities.Announcement;
+import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
@@ -17,6 +19,9 @@ public class AdministratorAnnouncementCreateService implements AbstractCreateSer
 
 	@Autowired
 	protected AdministratorAnnouncementRepository repository;
+	
+	@Autowired
+	protected AdministratorSystemConfigurationRepository administratorSystemConfigurationRepository;
 	
 	@Override
 	public boolean authorise(final Request<Announcement> request) {
@@ -76,7 +81,21 @@ public class AdministratorAnnouncementCreateService implements AbstractCreateSer
 		boolean confirmation;
 
 		confirmation = request.getModel().getBoolean("confirmation");
-		errors.state(request, confirmation, "confirmation", "javax.validation.constraints.AssertTrue.message");
+		errors.state(request, confirmation, "c"
+			+ "onfirmation", "javax.validation.constraints.AssertTrue.message");
+		
+		
+		
+		
+		final SpamDetector spamDetector = SpamDetector.fromRepository(this.administratorSystemConfigurationRepository);
+		
+		if (!errors.hasErrors("title")) {
+			errors.state(request, spamDetector.stringHasNoSpam(entity.getTitle()), "title", "spam.detector.error.message");
+		}
+		
+		if(!errors.hasErrors("body")) {
+			errors.state(request, spamDetector.stringHasNoSpam(entity.getBody()), "body", "spam.detector.error.message");
+		}
 	}
 
 	@Override

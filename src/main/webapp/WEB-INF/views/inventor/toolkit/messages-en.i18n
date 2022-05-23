@@ -18,3 +18,4 @@ inventor.toolkit.form.button.publish = Publish Toolkit
 
 inventor.toolkit.no-tool-in-toolkit = Your toolkit do not have any tool. You must add a tool before you publish it
 inventor.toolkit.form.error.duplicated-code = This code belongs to another artifact. Your Toolkit code has to be unique
+spam.detector.error.message = Spam Detected

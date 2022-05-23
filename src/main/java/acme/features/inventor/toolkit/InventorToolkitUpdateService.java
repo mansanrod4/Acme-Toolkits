@@ -6,10 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.components.SpamDetector;
 import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.Item;
 import acme.entities.toolkits.ItemType;
 import acme.entities.toolkits.Toolkit;
+import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
 import acme.forms.MoneyExchange;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
@@ -25,6 +27,8 @@ public class InventorToolkitUpdateService implements AbstractUpdateService<Inven
 
 	@Autowired
 	protected InventorToolkitRepository repository;
+	@Autowired
+	protected AdministratorSystemConfigurationRepository administratorSystemConfigurationRepository;
 
 	
 	// AbstractUpdateService<Inventor, Toolkit> interface -------------------------
@@ -104,6 +108,17 @@ public class InventorToolkitUpdateService implements AbstractUpdateService<Inven
 		if(!errors.hasErrors("code")) {
 			final Item existing=this.repository.findOneItemByCode(entity.getCode());
 			errors.state(request, existing==null, "code", "inventor.toolkit.form.error.duplicated-code");
+		}
+		
+		final SpamDetector spamDetector = SpamDetector.fromRepository(this.administratorSystemConfigurationRepository);
+		if (!errors.hasErrors("title")) {
+			errors.state(request, spamDetector.stringHasNoSpam(entity.getTitle()), "title", "spam.detector.error.message");
+		}
+		if (!errors.hasErrors("description")) {
+			errors.state(request, spamDetector.stringHasNoSpam(entity.getDescription()), "description", "spam.detector.error.message");
+		}
+		if (!errors.hasErrors("assemblyNotes")) {
+			errors.state(request, spamDetector.stringHasNoSpam(entity.getAssemblyNotes()), "assemblyNotes", "spam.detector.error.message");
 		}
 		
 	}

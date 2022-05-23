@@ -25,3 +25,4 @@ any.chirp.list.label.body = Body
 any.chirp.list.label.email = Email
 
 any.chirp.list.button.create = Create Chirp
+spam.detector.error.message = Spam Detected

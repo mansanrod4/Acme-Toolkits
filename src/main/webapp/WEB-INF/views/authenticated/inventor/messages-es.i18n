@@ -5,3 +5,4 @@ authenticated.inventor.form.label.info = Información
 
 authenticated.inventor.form.button.create = Registrar
 authenticated.inventor.form.button.update = Actualizar
+spam.detector.error.message = Spam Detectado

@@ -18,3 +18,4 @@ inventor.item-toolkit.form.button.update-item = Update Quantity
 inventor.item-toolkit.form.error.item-already-added = This Item is already in your Toolkit
 inventor.item-toolkit.form.error.toolkit-already-has-a-tool = This Toolkit already has a Tool
 inventor.item-toolkit.form.error.wrong-tool-quantity = You can only have one Tool in your Toolkit
+spam.detector.error.message = Spam Detected

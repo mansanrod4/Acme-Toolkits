@@ -8,8 +8,10 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.components.SpamDetector;
 import acme.entities.patronages.Patronage;
 import acme.entities.patronages.PatronageReport;
+import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
@@ -21,6 +23,9 @@ public class InventorPatronageReportCreateService implements AbstractCreateServi
 
 	@Autowired
 	public InventorPatronageReportRepository repository;
+	
+	@Autowired
+	protected AdministratorSystemConfigurationRepository administratorSystemConfigurationRepository;
 
 
 	@Override
@@ -113,6 +118,16 @@ public class InventorPatronageReportCreateService implements AbstractCreateServi
 		final boolean confirmation;
 		confirmation = request.getModel().getBoolean("confirmation");
 		errors.state(request, confirmation, "confirmation", "javax.validation.constraints.AssertTrue.message");
+		
+		final SpamDetector spamDetector = SpamDetector.fromRepository(this.administratorSystemConfigurationRepository);
+		if(!errors.hasErrors("memorandum")) {
+			errors.state(request, spamDetector.stringHasNoSpam(entity.getMemorandum()), "memorandum", "spam.detector.error.message");
+		}
+		
+		if (!errors.hasErrors("info")) {
+			errors.state(request, spamDetector.stringHasNoSpam(entity.getInfo()), "info", "spam.detector.error.message");
+		}
+		
 	}
 
 	@Override
