@@ -22,14 +22,16 @@ public class AnyItemFromToolkitListService implements AbstractListService<Any, I
 	@Override
 	public boolean authorise(final Request<ItemToolkit> request) {
 		assert request != null;
-		return true;
+		final int toolkitId = request.getModel().getInteger("toolkitId");
+
+		return this.repository.findToolkitById(toolkitId).isPublished();
 	}
 
 	@Override
 	public Collection<ItemToolkit> findMany(final Request<ItemToolkit> request) {
 		assert request != null;
 		Collection<ItemToolkit> result;
-		final int toolkitId = request.getModel().getInteger("masterId");
+		final int toolkitId = request.getModel().getInteger("toolkitId");
 
 		result = this.repository.findAllItemToolkitsByToolkitId(toolkitId);
 

@@ -14,13 +14,16 @@ inventor.patronage-report.form.label.memorandum = Memorandum:
 inventor.patronage-report.form.label.info = Info:
 inventor.patronage-report.form.label.sequenceNumber = Numero de secuencia:
 
+inventor.patronage-report.form.label.confirmation = Confirmar que el report es correcto 
+inventor.patronage-report.form.button.create = Crear
 
-inventor.patronage.button.create = Solicitar
 
 inventor.patronage-report.list.title = Mis informes de patronazgos
 
-inventor.patronage-report.list.label.patronageId = Id de Patronazgos
+inventor.patronage-report.list.label.patronageCode = Codigo de Patronazgos
 inventor.patronage-report.list.label.memorandum = Memorandum
 inventor.patronage-report.list.label.info = Info
 
+inventor.patronage-report.list.button.create = Crear reporte
+spam.detector.error.message = Spam Detected
 

@@ -34,6 +34,10 @@ inventor.patronage.list.label.code = Code
 inventor.patronage.list.label.status = Status
 inventor.patronage.list.label.patron = Patron
 
+inventor.patronage.errors.already-stated = This patronage has already been stated, and thus must not be changed its state.
+inventor.patronage.form.button.accept = Accept Patronage
+inventor.patronage.form.button.deny = Deny Patronage
+
 
 
 

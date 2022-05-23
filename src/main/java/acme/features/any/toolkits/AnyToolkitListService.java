@@ -38,7 +38,7 @@ public class AnyToolkitListService implements AbstractListService<Any, Toolkit> 
 
 		final Collection<Toolkit> result;
 
-		result = this.repository.findAllToolkits();
+		result = this.repository.findAllPublishedToolkits();
 
 		return result;
 	}
@@ -57,7 +57,7 @@ public class AnyToolkitListService implements AbstractListService<Any, Toolkit> 
 			prices.add(price);
 		}
 
-		request.unbind(entity, model, "title", "description");
+		request.unbind(entity, model, "code", "title", "description");
 
 		final MoneyExchange mE = new MoneyExchange();
 		final List<Money> pricesFix = mE.convertMoney(prices, sc.getSystemCurrency());

@@ -49,21 +49,6 @@ public class PatronageReport extends AbstractEntity {
 	@Column(unique = true)
 	protected String			sequenceNumber;
 
-	//	@NotNull
-	//	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	//	protected Integer serialNumber;
-
-	// Derived attributes -----------------------------------------------------
-
-	//	//pattern “〈patronage-code〉:〈serial-number〉
-	//	@NotBlank
-	//	@Transient
-	//	public String getSequenceNumber(){
-	//		final String formatString = String.format("%0"+(5-this.serialNumber.toString().length())+"s",this.serialNumber.toString());
-	//		final DecimalFormat decimalFormat = new DecimalFormat("0000");
-	//		return this.patronage.getCode() +":"+decimalFormat.format(this.serialNumber);
-	//	}
-
 	// Relationships ----------------------------------------------------------
 
 	@NotNull

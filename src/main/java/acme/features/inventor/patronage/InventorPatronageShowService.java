@@ -28,7 +28,8 @@ public class InventorPatronageShowService implements AbstractShowService<Invento
 		patronageId = request.getModel().getInteger("id");
 		patronage = this.repository.findOnePatronageById(patronageId);
 		result = patronage != null && patronage.getInventor().getId() == request.getPrincipal().getActiveRoleId();
-
+		result = result && patronage.isPublished();
+		
 		return result;
 	}
 
@@ -50,7 +51,6 @@ public class InventorPatronageShowService implements AbstractShowService<Invento
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-
 		request.unbind(entity, model, "code", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info", "status");
 		model.setAttribute("inventorId", entity.getInventor().getId());
 		model.setAttribute("patronId", entity.getPatron().getId());

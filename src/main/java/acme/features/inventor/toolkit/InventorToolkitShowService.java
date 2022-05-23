@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.components.configuration.SystemConfiguration;
+import acme.entities.toolkits.ItemType;
 import acme.entities.toolkits.Toolkit;
 import acme.forms.MoneyExchange;
 import acme.framework.components.models.Model;
@@ -28,6 +29,7 @@ public class InventorToolkitShowService implements AbstractShowService<Inventor,
 	@Override
 	public boolean authorise(final Request<Toolkit> request) {
 		assert request != null;
+		
 		final int inventorId = request.getPrincipal().getActiveRoleId();
 		final int id = request.getModel().getInteger("id");
 		final Toolkit toolkit = this.repository.findOneToolkitByIdFromInventor(id, inventorId);
@@ -36,6 +38,8 @@ public class InventorToolkitShowService implements AbstractShowService<Inventor,
 
 	@Override
 	public Toolkit findOne(final Request<Toolkit> request) {
+		assert request != null;
+		
 		int id;
 		Toolkit toolkit;
 		final int inventorId = request.getPrincipal().getActiveRoleId();
@@ -58,8 +62,8 @@ public class InventorToolkitShowService implements AbstractShowService<Inventor,
 			prices.add(price);
 		}
 
-		request.unbind(entity, model, "title", "description", "assemblyNotes", "info");
-
+		request.unbind(entity, model, "code", "title", "description", "assemblyNotes", "info", "published");
+		
 		final MoneyExchange mE = new MoneyExchange();
 		final List<Money> pricesFix = mE.convertMoney(prices, sc.getSystemCurrency());
 
@@ -70,6 +74,8 @@ public class InventorToolkitShowService implements AbstractShowService<Inventor,
 
 		model.setAttribute("price", money);
 		model.setAttribute("inventor", entity.getInventor().getIdentity().getFullName());
+		
+		model.setAttribute("ableToPublish", this.repository.getToolsFromToolkit(entity.getId()).stream().anyMatch(e->e.getItemType().equals(ItemType.TOOL)));
 	}
 
 }

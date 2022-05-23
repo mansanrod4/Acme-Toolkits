@@ -19,6 +19,7 @@ public class AuthenticatedAnnouncementController extends AbstractController<Auth
 	@Autowired
 	protected AuthenticatedAnnouncementShowService	showService;
 
+
 	// Constructors -----------------------------------------------------------
 
 

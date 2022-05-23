@@ -8,3 +8,4 @@
 	<acme:list-column code="authenticated.announcement.list.label.moment" path="moment" width="10%"/>
 	<acme:list-column code="authenticated.announcement.list.label.body" path="body" width="70%"/>
 </acme:list>
+
