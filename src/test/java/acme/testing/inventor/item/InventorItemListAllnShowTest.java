@@ -66,55 +66,26 @@ public class InventorItemListAllnShowTest extends TestHarness{
 	@Test
 	@Order(20)
 	public void hackingTest() {
-		super.signIn("inventor3", "inventor3");
-		super.clickOnMenu("Inventor", "My Components");
-		super.checkListingExists();
-		super.checkNotListingEmpty();
-		super.clickOnListingRecord(1);
-		final String pathShowedComponent = super.getCurrentPath();
-		final String queryComponent = super.getCurrentQuery();
+		final String pathShowItem = "/inventor/item/show";
 		
 		
-		super.clickOnMenu("Inventor", "My Tools");
-		super.checkListingExists();
-		super.checkNotListingEmpty();
-		super.clickOnListingRecord(1);
-		final String pathShowedTool = super.getCurrentPath();
-		final String queryShowedTool = super.getCurrentQuery();
-		
-		
-		super.signOut();
 		super.checkNotLinkExists("Inventor");
-		this.checkPanicWhenNavigatingToPaths(pathShowedComponent, pathShowedTool);
+		super.navigate(pathShowItem);
+		super.checkPanicExists();
 		
 		super.signIn("administrator", "administrator");
 		super.checkNotLinkExists("Inventor");
-		this.checkPanicWhenNavigatingToPaths(pathShowedComponent, pathShowedTool);
+		super.navigate(pathShowItem);
+		super.checkPanicExists();
 		super.signOut();
 		
 		super.signIn("patron1", "patron1");
 		super.checkNotLinkExists("Inventor");
-		this.checkPanicWhenNavigatingToPaths(pathShowedComponent, pathShowedTool);
-		super.signOut();
-		
-		super.signIn("inventor1", "inventor1");
-		super.checkLinkExists("Inventor");
-		super.navigate(pathShowedComponent, queryComponent);
-		super.checkPanicExists();
-		super.navigate(pathShowedTool, queryShowedTool);
+		super.navigate(pathShowItem);
 		super.checkPanicExists();
 		super.signOut();
 		
 	}
-	
-	protected void checkPanicWhenNavigatingToPaths(final String pathShowedComponent, final String pathShowedTool) {
-		super.navigate(pathShowedComponent);
-		super.checkPanicExists();
-		
-		super.navigate(pathShowedTool);
-		super.checkPanicExists();
-	}
-	
 	
 	
 	protected void checkListAllItemsNShow(final int recordIndex, final String code, final String name, final String technology, final String retailPrice, final String description, final String info) {
