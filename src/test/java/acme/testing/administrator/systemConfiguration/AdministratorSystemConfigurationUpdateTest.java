@@ -21,7 +21,7 @@ public class AdministratorSystemConfigurationUpdateTest extends TestHarness{
 
 		super.checkFormExists();
 		final BrowserDriver driver = super.getDriver();
-		driver.locateOne(By.id("systemCurrency")).click();
+		driver.locateOne(By.xpath("//*[@name=\"systemCurrency_proxy\"]/option[\""+ systemCurrency +"\"]")).click();
 		super.fillInputBoxIn("acceptedCurrencies", acceptedCurrencies);
 		super.fillInputBoxIn("strongSpamTerms", strongSpamTerms);
 		super.fillInputBoxIn("strongSpamThreshold", strongSpamThreshold);
@@ -53,7 +53,7 @@ public class AdministratorSystemConfigurationUpdateTest extends TestHarness{
 
 		super.checkFormExists();
 		final BrowserDriver driver = super.getDriver();
-		driver.locateOne(By.id("systemCurrency")).click();
+		driver.locateOne(By.xpath("//*[@name=\"systemCurrency_proxy\"]/option[\""+ systemCurrency +"\"]")).click();
 		super.fillInputBoxIn("acceptedCurrencies", acceptedCurrencies);
 		super.fillInputBoxIn("strongSpamTerms", strongSpamTerms);
 		super.fillInputBoxIn("strongSpamThreshold", strongSpamThreshold);
