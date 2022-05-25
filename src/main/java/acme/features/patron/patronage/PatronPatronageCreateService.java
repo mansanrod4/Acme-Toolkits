@@ -7,7 +7,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.components.SpamDetector;
+import acme.components.configuration.SystemConfiguration;
 import acme.entities.patronages.Patronage;
 import acme.entities.patronages.PatronageStatus;
 import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
@@ -17,6 +17,9 @@ import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
 import acme.framework.services.AbstractCreateService;
 import acme.roles.Patron;
+import notenoughspam.detector.SpamDetector;
+
+
 
 @Service
 public class PatronPatronageCreateService implements AbstractCreateService<Patron, Patronage> {
@@ -87,6 +90,8 @@ public class PatronPatronageCreateService implements AbstractCreateService<Patro
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		
+		
 
 		if (!errors.hasErrors("code")) {
 			Patronage existing;
@@ -125,9 +130,11 @@ public class PatronPatronageCreateService implements AbstractCreateService<Patro
 			errors.state(request, this.repository.findAcceptedCurrencies().contains(c), "budget", "patron.patronage.form.error.budget-acceptedcurrencies");
 		}
 		
-		final SpamDetector spamDetector = SpamDetector.fromRepository(this.administratorSystemConfigurationRepository);
-		if (!errors.hasErrors("title")) {
-			errors.state(request, spamDetector.stringHasNoSpam(entity.getLegalStuff()), "legalStuff", "spam.detector.error.message");
+		final SystemConfiguration sc = this.administratorSystemConfigurationRepository.findSystemConfiguration();
+		final SpamDetector spamDetector = new SpamDetector(sc.getStrongSpamThreshold(), sc.getWeakSpamThreshold(), sc.getStrongSpamTerms().split(","), sc.getWeakSpamTerms().split(","));
+		if (!errors.hasErrors("legalStuff")) {
+			final boolean noSpam = spamDetector.stringHasNoSpam(entity.getLegalStuff());
+			errors.state(request, noSpam, "legalStuff", "spam.detector.error.message");
 		}
 	}
 
