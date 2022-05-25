@@ -17,4 +17,5 @@ inventor.item.form.error.duplicated = Code Can't Be Duplicated
 inventor.item.form.error.retailPrice.negativeOrZero = The price must be greater than zero
 inventor.item.form.error.retailPrice.currency-not-supported = The introduced currency is not supported by our system
 inventor.component.list.label.price-system = Converted price
+inventor.patronage.label.budgetChanged = Price in system currency:
 spam.detector.error.message = Spam detected

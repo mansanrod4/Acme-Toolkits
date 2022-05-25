@@ -17,22 +17,22 @@ import acme.roles.Inventor;
 public class InventorItemShowService implements AbstractShowService<Inventor, Item> {
 
 	@Autowired
-	protected InventorItemRepository				repository;
+	protected InventorItemRepository						repository;
 
 	@Autowired
-	protected AuthenticatedUserAccountRepository	userRepository;
-	
+	protected AuthenticatedUserAccountRepository			userRepository;
+
 	@Autowired
-	protected AuthenticatedSystemConfigurationRepository authenticatedSystemConfigurationRepository;
-	
+	protected AuthenticatedSystemConfigurationRepository	authenticatedSystemConfigurationRepository;
+
 
 	@Override
 	public boolean authorise(final Request<Item> request) {
-		assert request!=null;
-		final int inventorId = request.getPrincipal().getActiveRoleId(); 	
+		assert request != null;
+		final int inventorId = request.getPrincipal().getActiveRoleId();
 		final int id = request.getModel().getInteger("id");
 		final Item item = this.repository.findOneItemById(id);
-		return (inventorId == item.getInventor().getId()); 
+		return (inventorId == item.getInventor().getId());
 	}
 
 	@Override
@@ -52,13 +52,17 @@ public class InventorItemShowService implements AbstractShowService<Inventor, It
 		assert entity != null;
 		assert model != null;
 
-		MoneyExchange moneyExchange = new MoneyExchange();
-		moneyExchange = moneyExchange.computeMoneyExchange(entity.getRetailPrice(), this.authenticatedSystemConfigurationRepository.findSystemConfiguration().getSystemCurrency());
-		
-		
-		request.unbind(entity, model, "code", "name", "technology", "description", "retailPrice", "info", "published");
-		model.setAttribute("systemMoney", moneyExchange.target);
+		final boolean retailPriceIsInSystemCurrency = this.authenticatedSystemConfigurationRepository.findSystemCurrency().equals(entity.getRetailPrice().getCurrency());
+		model.setAttribute("retailPriceIsInSystemCurrency", retailPriceIsInSystemCurrency);
+		if (!retailPriceIsInSystemCurrency) {
+			MoneyExchange moneyExchange = new MoneyExchange();
+			moneyExchange = moneyExchange.computeMoneyExchange(entity.getRetailPrice(), this.authenticatedSystemConfigurationRepository.findSystemConfiguration().getSystemCurrency());
 
+			model.setAttribute("systemMoney", moneyExchange.target);
+
+		}
+
+		request.unbind(entity, model, "code", "name", "technology", "description", "retailPrice", "info", "published");
 
 	}
 

@@ -4,9 +4,13 @@ package acme.features.inventor.patronage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.components.configuration.SystemConfiguration;
 import acme.entities.patronages.Patronage;
+import acme.features.authenticated.systemConfiguration.AuthenticatedSystemConfigurationRepository;
+import acme.forms.MoneyExchange;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
+import acme.framework.datatypes.Money;
 import acme.framework.services.AbstractShowService;
 import acme.roles.Inventor;
 
@@ -14,7 +18,10 @@ import acme.roles.Inventor;
 public class InventorPatronageShowService implements AbstractShowService<Inventor, Patronage> {
 
 	@Autowired
-	protected InventorPatronageRepository repository;
+	protected InventorPatronageRepository					repository;
+
+	@Autowired
+	protected AuthenticatedSystemConfigurationRepository	systemConfigurationRepository;
 
 
 	@Override
@@ -29,7 +36,7 @@ public class InventorPatronageShowService implements AbstractShowService<Invento
 		patronage = this.repository.findOnePatronageById(patronageId);
 		result = patronage != null && patronage.getInventor().getId() == request.getPrincipal().getActiveRoleId();
 		result = result && patronage.isPublished();
-		
+
 		return result;
 	}
 
@@ -52,6 +59,22 @@ public class InventorPatronageShowService implements AbstractShowService<Invento
 		assert entity != null;
 		assert model != null;
 		request.unbind(entity, model, "code", "legalStuff", "budget", "creationDate", "startDate", "endDate", "info", "status");
+
+		final SystemConfiguration sc = this.systemConfigurationRepository.findSystemConfiguration();
+		final String systemCurrency = sc.getSystemCurrency();
+		final Money budget = entity.getBudget();
+		final boolean budgetIsInSystemCurrency = systemCurrency.equals(budget.getCurrency());
+		model.setAttribute("budgetIsInSystemCurrency", budgetIsInSystemCurrency);
+		if (!budgetIsInSystemCurrency) {
+			final Money budgetChanged;
+
+			final MoneyExchange mE = new MoneyExchange();
+			budgetChanged = mE.computeMoneyExchange(budget, systemCurrency).target;
+
+			model.setAttribute("budgetChanged", budgetChanged);
+
+		}
+
 		model.setAttribute("inventorId", entity.getInventor().getId());
 		model.setAttribute("patronId", entity.getPatron().getId());
 		model.setAttribute("patronCompany", entity.getPatron().getCompany());
