@@ -2,9 +2,11 @@
 package acme.forms;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -17,6 +19,7 @@ import acme.framework.helpers.StringHelper;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
 @Getter
 @Setter
 public class MoneyExchange {
@@ -48,6 +51,11 @@ public class MoneyExchange {
 		String sourceCurrency;
 		Double sourceAmount, targetAmount, rate;
 		Money targetMoney;
+		
+		final Date d = Calendar.getInstance().getTime();
+		
+		
+		
 
 		try {
 			api = new RestTemplate();
@@ -71,7 +79,7 @@ public class MoneyExchange {
 			targetMoney.setCurrency(targetCurrency);
 
 			result = new MoneyExchange();
-			result.setSource(source);
+			result.setSourceCurrency(sourceCurrency);
 			result.setTargetCurrency(targetCurrency);
 			result.setDate(record.getDate());
 			result.setTarget(targetMoney);

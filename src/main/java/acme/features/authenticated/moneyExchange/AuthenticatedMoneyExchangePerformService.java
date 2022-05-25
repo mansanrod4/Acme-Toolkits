@@ -12,6 +12,7 @@
 
 package acme.features.authenticated.moneyExchange;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,8 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 	@Autowired
 	protected AuthenticatedMoneyExchangeRepository repository;
 
-	
 	// AbstractPerformService<Authenticated, ExchangeRecord> interface ---------
+
 
 	@Override
 	public boolean authorise(final Request<MoneyExchange> request) {
@@ -51,7 +52,7 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 		assert errors != null;
 
 		request.bind(entity, errors, "source", "targetCurrency", "date", "target");
-		
+
 	}
 
 	@Override
@@ -80,15 +81,15 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-				
+
 		if (!errors.hasErrors("source")) {
 			final String currency = entity.source.getCurrency();
 			final boolean currencyIsSuported = this.repository.findAcceptedCurrncies().contains(currency);
-			
+
 			errors.state(request, currencyIsSuported, "source", "authenticated.money-exchange.form.error.source.currency-not-supported");
-			errors.state(request, entity.getSource().getAmount()>=0, "source", "authenticated.money-exchange.form.error.source.negative");
+			errors.state(request, entity.getSource().getAmount() >= 0, "source", "authenticated.money-exchange.form.error.source.negative");
 		}
-		
+
 	}
 
 	@Override
@@ -128,12 +129,22 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 		String sourceCurrency;
 		Double sourceAmount, targetAmount, rate;
 		Money target;
+		final MoneyExchange me = this.repository.findMoneyExchangeFromCurrencies(sourceCurrency, targetCurrency);
 
 		try {
-			api = new RestTemplate();
-
+			final Calendar c = Calendar.getInstance();
+			c.add(Calendar.DAY_OF_MONTH, -1);
+			final Date yesterday = c.getTime();
+			
 			sourceCurrency = source.getCurrency();
 			sourceAmount = source.getAmount();
+
+			
+			
+			if(me.date.before(yesterday)) {
+			//
+			api = new RestTemplate();
+
 
 			record = api.getForObject( //
 				"https://api.exchangerate.host/latest?base={0}&symbols={1}", //
@@ -142,8 +153,14 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 				targetCurrency //
 			);
 
+
 			assert record != null;
 			rate = record.getRates().get(targetCurrency);
+			}else {
+				rate = me.getTarget().getAmount();
+			}
+			
+			
 			targetAmount = rate * sourceAmount;
 
 			target = new Money();
@@ -158,8 +175,15 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 		} catch (final Throwable oops) {
 			result = null;
 		}
+		final Money saveTarget;
+		saveTarget.setAmount(rate);
+		saveTarget.setCurrency(targetCurrency);
+		me.setTarget(saveTarget);
+
+		this.repository.save(me);
 
 		return result;
 	}
+
 
 }
