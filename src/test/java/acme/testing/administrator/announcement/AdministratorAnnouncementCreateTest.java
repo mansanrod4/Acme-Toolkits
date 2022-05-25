@@ -37,7 +37,7 @@ public class AdministratorAnnouncementCreateTest extends TestHarness {
 		super.fillInputBoxIn("title", title);
 		super.fillInputBoxIn("body", body);
 		final BrowserDriver driver = super.getDriver();
-		driver.locateOne(By.id("critical")).click();
+		driver.locateOne(By.xpath("//*[@name=\"critical_proxy\"]/option[\""+ critical +"\"]")).click();
 		super.fillInputBoxIn("link", link);
 		super.fillInputBoxIn("confirmation", "true");
 		super.clickOnSubmit("Create");
@@ -66,7 +66,7 @@ public class AdministratorAnnouncementCreateTest extends TestHarness {
 		super.fillInputBoxIn("title", title);
 		super.fillInputBoxIn("body", body);
 		final BrowserDriver driver = super.getDriver();
-		driver.locateOne(By.id("critical")).click();
+		driver.locateOne(By.xpath("//*[@name=\"critical_proxy\"]/option[\""+ critical +"\"]")).click();
 		super.fillInputBoxIn("link", link);
 		super.fillInputBoxIn("confirmation", "false");
 
