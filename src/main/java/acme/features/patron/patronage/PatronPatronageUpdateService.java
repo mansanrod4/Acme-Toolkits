@@ -7,7 +7,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.components.SpamDetector;
+import acme.components.configuration.SystemConfiguration;
 import acme.entities.patronages.Patronage;
 import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
 import acme.framework.components.models.Model;
@@ -16,6 +16,7 @@ import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
 import acme.framework.services.AbstractUpdateService;
 import acme.roles.Patron;
+import notenoughspam.detector.SpamDetector;
 
 @Service
 public class PatronPatronageUpdateService implements AbstractUpdateService<Patron, Patronage> {
@@ -128,8 +129,8 @@ public class PatronPatronageUpdateService implements AbstractUpdateService<Patro
 			errors.state(request, this.repository.findAcceptedCurrencies().contains(c), "budget", "patron.patronage.form.error.budget-acceptedcurrencies");
 		}
 		
-		final SpamDetector spamDetector = SpamDetector.fromRepository(this.administratorSystemConfigurationRepository);
-		
+		final SystemConfiguration sc = this.administratorSystemConfigurationRepository.findSystemConfiguration();
+		final SpamDetector spamDetector = new SpamDetector(sc.getStrongSpamThreshold(), sc.getWeakSpamThreshold(), sc.getStrongSpamTerms().split(","), sc.getWeakSpamTerms().split(","));
 		if (!errors.hasErrors("title")) {
 			errors.state(request, spamDetector.stringHasNoSpam(entity.getLegalStuff()), "legalStuff", "spam.detector.error.message");
 		}
