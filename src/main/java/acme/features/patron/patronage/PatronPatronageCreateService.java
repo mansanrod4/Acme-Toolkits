@@ -7,6 +7,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.components.SpamDetector;
 import acme.entities.patronages.Patronage;
 import acme.entities.patronages.PatronageStatus;
 import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
@@ -22,6 +23,7 @@ public class PatronPatronageCreateService implements AbstractCreateService<Patro
 
 	@Autowired
 	protected PatronPatronageRepository repository;
+	
 	@Autowired
 	protected AdministratorSystemConfigurationRepository administratorSystemConfigurationRepository;
 
@@ -123,7 +125,10 @@ public class PatronPatronageCreateService implements AbstractCreateService<Patro
 			errors.state(request, this.repository.findAcceptedCurrencies().contains(c), "budget", "patron.patronage.form.error.budget-acceptedcurrencies");
 		}
 		
-		
+		final SpamDetector spamDetector = SpamDetector.fromRepository(this.administratorSystemConfigurationRepository);
+		if (!errors.hasErrors("title")) {
+			errors.state(request, spamDetector.stringHasNoSpam(entity.getLegalStuff()), "legalStuff", "spam.detector.error.message");
+		}
 	}
 
 	@Override
