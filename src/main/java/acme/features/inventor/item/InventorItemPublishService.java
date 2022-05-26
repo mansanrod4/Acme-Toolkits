@@ -3,7 +3,7 @@ package acme.features.inventor.item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.components.SpamDetector;
+import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.Item;
 import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
 import acme.framework.components.models.Model;
@@ -11,6 +11,7 @@ import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractUpdateService;
 import acme.roles.Inventor;
+import notenoughspam.detector.SpamDetector;
 
 @Service
 public class InventorItemPublishService implements AbstractUpdateService<Inventor, Item> {
@@ -18,7 +19,7 @@ public class InventorItemPublishService implements AbstractUpdateService<Invento
 	@Autowired 
 	protected InventorItemRepository repository;
 	@Autowired
-	protected AdministratorSystemConfigurationRepository systemConfigRepository;
+	protected AdministratorSystemConfigurationRepository administratorSystemConfigurationRepository;
 
 	@Override
 	public boolean authorise(final Request<Item> request) {
@@ -77,8 +78,8 @@ public class InventorItemPublishService implements AbstractUpdateService<Invento
 		if (!errors.hasErrors("retailPrice")) {
 			errors.state(request, entity.getRetailPrice().getAmount()>0, "retailPrice", "inventor.item.form.error.retailPrice.negativeOrZero");
 		}
-		
-		final SpamDetector spamDetector = SpamDetector.fromRepository(this.systemConfigRepository);
+		final SystemConfiguration sc = this.administratorSystemConfigurationRepository.findSystemConfiguration();
+		final SpamDetector spamDetector = new SpamDetector(sc.getStrongSpamThreshold(), sc.getWeakSpamThreshold(), sc.getStrongSpamTerms().split(","), sc.getWeakSpamTerms().split(","));
 		if (!errors.hasErrors("name")) {
 			errors.state(request, spamDetector.stringHasNoSpam(entity.getName()), "name", "spam.detector.error.message");
 		}
