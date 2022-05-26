@@ -56,9 +56,9 @@ public class InventorItemShowService implements AbstractShowService<Inventor, It
 		model.setAttribute("retailPriceIsInSystemCurrency", retailPriceIsInSystemCurrency);
 		if (!retailPriceIsInSystemCurrency) {
 			MoneyExchange moneyExchange = new MoneyExchange();
-			moneyExchange = moneyExchange.computeMoneyExchange(entity.getRetailPrice(), this.authenticatedSystemConfigurationRepository.findSystemConfiguration().getSystemCurrency());
+		//	moneyExchange = moneyExchange.computeMoneyExchange(entity.getRetailPrice(), this.authenticatedSystemConfigurationRepository.findSystemConfiguration().getSystemCurrency());
 
-			model.setAttribute("systemMoney", moneyExchange.target);
+		//	model.setAttribute("systemMoney", moneyExchange.target);
 
 		}
 

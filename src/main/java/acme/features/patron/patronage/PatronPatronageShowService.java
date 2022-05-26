@@ -64,9 +64,9 @@ public class PatronPatronageShowService implements AbstractShowService<Patron, P
 			final Money budgetChanged;
 
 			final MoneyExchange mE = new MoneyExchange();
-			budgetChanged = mE.computeMoneyExchange(budget, systemCurrency).target;
+			//budgetChanged = mE.computeMoneyExchange(budget, systemCurrency).target;
 
-			model.setAttribute("budgetChanged", budgetChanged);
+		//	model.setAttribute("budgetChanged", budgetChanged);
 
 		}
 

@@ -12,8 +12,8 @@
 
 package acme.features.authenticated.moneyExchange;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,7 +51,9 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 		assert entity != null;
 		assert errors != null;
 
-		request.bind(entity, errors, "source", "targetCurrency", "date", "target");
+		request.bind(entity, errors, "targetCurrency");
+		final Money source = request.getModel().getAttribute("source", Money.class);
+		entity.setSourceCurrency(source.getCurrency());
 
 	}
 
@@ -61,8 +63,8 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "source", "targetCurrency", "date", "target");
-
+		
+		request.unbind(entity, model, "sourceCurrency", "targetCurrency", "date");
 	}
 
 	@Override
@@ -83,11 +85,11 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 		assert errors != null;
 
 		if (!errors.hasErrors("source")) {
-			final String currency = entity.source.getCurrency();
+			final String currency = entity.getSourceCurrency();
 			final boolean currencyIsSuported = this.repository.findAcceptedCurrncies().contains(currency);
 
 			errors.state(request, currencyIsSuported, "source", "authenticated.money-exchange.form.error.source.currency-not-supported");
-			errors.state(request, entity.getSource().getAmount() >= 0, "source", "authenticated.money-exchange.form.error.source.negative");
+			errors.state(request, request.getModel().getAttribute("source", Money.class).getAmount()>= 0, "source", "authenticated.money-exchange.form.error.source.negative");
 		}
 
 	}
@@ -97,92 +99,64 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 		assert request != null;
 		assert entity != null;
 
-		Money source, target;
+		Money source;
 		String targetCurrency;
-		Date date;
-		MoneyExchange exchange;
+		Money exchange;
 
 		source = request.getModel().getAttribute("source", Money.class);
 		targetCurrency = request.getModel().getAttribute("targetCurrency", String.class);
 		exchange = this.computeMoneyExchange(source, targetCurrency);
 		errors.state(request, exchange != null, "*", "authenticated.money-exchange.form.label.api-error");
-		if (exchange == null) {
-			entity.setTarget(null);
-			entity.setDate(null);
-		} else {
-			target = exchange.getTarget();
-			entity.setTarget(target);
-			date = exchange.getDate();
-			entity.setDate(date);
-		}
+		
 	}
 
 	// Ancillary methods ------------------------------------------------------
 
-	public MoneyExchange computeMoneyExchange(final Money source, final String targetCurrency) {
-		assert source != null;
+	public Money computeMoneyExchange(final Money moneyToCompute, final String targetCurrency) {
+		assert moneyToCompute != null;
 		assert !StringHelper.isBlank(targetCurrency);
 
-		MoneyExchange result;
+		MoneyExchange change;
 		RestTemplate api;
 		ExchangeRate record;
-		String sourceCurrency;
-		Double sourceAmount, targetAmount, rate;
-		Money target;
-		final MoneyExchange me = this.repository.findMoneyExchangeFromCurrencies(sourceCurrency, targetCurrency);
-
-		try {
-			final Calendar c = Calendar.getInstance();
-			c.add(Calendar.DAY_OF_MONTH, -1);
-			final Date yesterday = c.getTime();
-			
-			sourceCurrency = source.getCurrency();
-			sourceAmount = source.getAmount();
-
-			
-			
-			if(me.date.before(yesterday)) {
-			//
-			api = new RestTemplate();
-
-
-			record = api.getForObject( //
-				"https://api.exchangerate.host/latest?base={0}&symbols={1}", //
-				ExchangeRate.class, //
-				sourceCurrency, //
-				targetCurrency //
-			);
-
-
-			assert record != null;
-			rate = record.getRates().get(targetCurrency);
-			}else {
-				rate = me.getTarget().getAmount();
+		Money result= new Money();
+		Double rate;
+		change = this.repository.findMoneyExchangeFromCurrencies(moneyToCompute.getCurrency(), targetCurrency);
+		
+		if(change==null || change.date.isBefore(LocalDateTime.now().minusDays(1L))) {
+			try {			
+				
+				api = new RestTemplate();
+	
+				record = api.getForObject( //
+					"https://api.exchangerate.host/latest?base={0}&symbols={1}", //
+					ExchangeRate.class, //
+					moneyToCompute.getCurrency(), //
+					targetCurrency //
+				);
+				
+				assert record != null;
+				rate = record.getRates().get(targetCurrency);
+				
+				change=new MoneyExchange();
+				change.setDate(record.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+				change.setRate(rate);
+				change.setSourceCurrency(moneyToCompute.getCurrency());
+				change.setTargetCurrency(targetCurrency);
+				
+				result.setAmount(change.getRate()*moneyToCompute.getAmount());
+				result.setCurrency(targetCurrency);	
+				this.repository.save(change);
+			} catch (final Throwable oops) {
+				result = null;
 			}
-			
-			
-			targetAmount = rate * sourceAmount;
-
-			target = new Money();
-			target.setAmount(targetAmount);
-			target.setCurrency(targetCurrency);
-
-			result = new MoneyExchange();
-			result.setSource(source);
-			result.setTargetCurrency(targetCurrency);
-			result.setDate(record.getDate());
-			result.setTarget(target);
-		} catch (final Throwable oops) {
-			result = null;
+		}else {
+			result.setAmount(change.getRate()*moneyToCompute.getAmount());
+			result.setCurrency(targetCurrency);	
 		}
-		final Money saveTarget;
-		saveTarget.setAmount(rate);
-		saveTarget.setCurrency(targetCurrency);
-		me.setTarget(saveTarget);
-
-		this.repository.save(me);
-
+		
 		return result;
+		
 	}
 
 

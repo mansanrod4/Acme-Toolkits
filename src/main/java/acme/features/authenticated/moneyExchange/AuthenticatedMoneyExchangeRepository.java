@@ -12,7 +12,7 @@ public interface AuthenticatedMoneyExchangeRepository extends AbstractRepository
 	@Query("select sc.acceptedCurrencies from SystemConfiguration sc")
 	String findAcceptedCurrncies();
 	
-	@Query("select me from MoneyExchange me where me.source.currency =: source and me.targetCurrency =: targetCurrency")
+	@Query("select me from MoneyExchange me where me.sourceCurrency =: source and me.targetCurrency =: targetCurrency")
 	MoneyExchange findMoneyExchangeFromCurrencies(String source, String targetCurrency);
 	
 }
