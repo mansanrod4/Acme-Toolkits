@@ -1,13 +1,17 @@
 
 package acme.forms;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import acme.framework.datatypes.Money;
 import acme.framework.entities.AbstractEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,28 +19,31 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class MoneyExchange extends AbstractEntity{
+public class MoneyExchange extends AbstractEntity {
 
 	// Query attributes -------------------------------------------------------
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	protected static final long	serialVersionUID	= 1L;
 
 	@NotNull
 	@Valid
-	public String	sourceCurrency;
+	protected Money				source;
 
 	@NotBlank
-	public String	targetCurrency;
-	
+	protected String			targetCurrency;
+
 	// Response attributes ----------------------------------------------------
 
 	@Valid
-	public Double	rate;
+	protected Double			rate;
 
-	public LocalDateTime		date;
+	@Temporal(TemporalType.TIMESTAMP)
+	protected Date				date;
 
+	@Transient
+	protected Money				change;
 
 }
