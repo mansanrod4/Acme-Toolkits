@@ -16,6 +16,4 @@ patron.dashboard.form.label.deviation-budgets-by-status = Desviation of budget
 patron.dashboard.form.label.min-budget-by-status = Minimum budget
 patron.dashboard.form.label.max-budget-by-status = Maximum budget
 
-
-
-
+administrator.dashboard.form.no-data = No data
