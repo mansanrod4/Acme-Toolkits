@@ -5,10 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.toolkits.Item;
+import acme.features.authenticated.moneyExchange.AuthenticatedMoneyExchangePerformService;
 import acme.features.authenticated.systemConfiguration.AuthenticatedSystemConfigurationRepository;
-import acme.forms.MoneyExchange;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
+import acme.framework.datatypes.Money;
 import acme.framework.features.authenticated.userAccount.AuthenticatedUserAccountRepository;
 import acme.framework.services.AbstractShowService;
 import acme.roles.Inventor;
@@ -24,6 +25,9 @@ public class InventorItemShowService implements AbstractShowService<Inventor, It
 
 	@Autowired
 	protected AuthenticatedSystemConfigurationRepository	authenticatedSystemConfigurationRepository;
+
+	@Autowired
+	protected AuthenticatedMoneyExchangePerformService		moneyExchangePerformService;
 
 
 	@Override
@@ -55,10 +59,10 @@ public class InventorItemShowService implements AbstractShowService<Inventor, It
 		final boolean retailPriceIsInSystemCurrency = this.authenticatedSystemConfigurationRepository.findSystemCurrency().equals(entity.getRetailPrice().getCurrency());
 		model.setAttribute("retailPriceIsInSystemCurrency", retailPriceIsInSystemCurrency);
 		if (!retailPriceIsInSystemCurrency) {
-			MoneyExchange moneyExchange = new MoneyExchange();
-		//	moneyExchange = moneyExchange.computeMoneyExchange(entity.getRetailPrice(), this.authenticatedSystemConfigurationRepository.findSystemConfiguration().getSystemCurrency());
 
-		//	model.setAttribute("systemMoney", moneyExchange.target);
+			final Money systemMoney = this.moneyExchangePerformService.computeMoneyExchange(entity.getRetailPrice(), this.authenticatedSystemConfigurationRepository.findSystemConfiguration().getSystemCurrency()).getChange();
+
+			model.setAttribute("systemMoney", systemMoney);
 
 		}
 

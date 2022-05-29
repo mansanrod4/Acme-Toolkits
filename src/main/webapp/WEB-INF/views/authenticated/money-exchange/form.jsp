@@ -16,7 +16,7 @@
 <%@taglib prefix="acme" uri="urn:jsptagdir:/WEB-INF/tags"%>
 
 <acme:form>
-	<acme:input-money code="authenticated.money-exchange.form.label.source" path="source" placeholder=""/>
+	<acme:input-textbox code="authenticated.money-exchange.form.label.source" path="source" placeholder=""/>
 	
 	<acme:input-textbox code="authenticated.money-exchange.form.label.target-currency" path="targetCurrency" placeholder=""/>
 	
