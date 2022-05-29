@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import acme.components.configuration.SystemConfiguration;
 import acme.entities.patronages.Patronage;
-import acme.forms.MoneyExchange;
+import acme.features.authenticated.moneyExchange.AuthenticatedMoneyExchangePerformService;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
@@ -18,6 +18,9 @@ public class PatronPatronageShowService implements AbstractShowService<Patron, P
 
 	@Autowired
 	protected PatronPatronageRepository repository;
+	
+	@Autowired
+	protected AuthenticatedMoneyExchangePerformService moneyExchangePerformService;
 
 	@Override
 	public boolean authorise(final Request<Patronage> request) {
@@ -63,8 +66,7 @@ public class PatronPatronageShowService implements AbstractShowService<Patron, P
 		if (!budgetIsInSystemCurrency) {
 			final Money budgetChanged;
 
-			final MoneyExchange mE = new MoneyExchange();
-			budgetChanged = mE.computeMoneyExchange(budget, systemCurrency).target;
+			budgetChanged = this.moneyExchangePerformService.computeMoneyExchange(budget, systemCurrency).getChange();
 
 			model.setAttribute("budgetChanged", budgetChanged);
 

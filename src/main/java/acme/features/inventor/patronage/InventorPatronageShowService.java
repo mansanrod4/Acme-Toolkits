@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 import acme.components.configuration.SystemConfiguration;
 import acme.entities.patronages.Patronage;
+import acme.features.authenticated.moneyExchange.AuthenticatedMoneyExchangePerformService;
 import acme.features.authenticated.systemConfiguration.AuthenticatedSystemConfigurationRepository;
-import acme.forms.MoneyExchange;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
@@ -22,6 +22,9 @@ public class InventorPatronageShowService implements AbstractShowService<Invento
 
 	@Autowired
 	protected AuthenticatedSystemConfigurationRepository	systemConfigurationRepository;
+	
+	@Autowired
+	protected AuthenticatedMoneyExchangePerformService		moneyExchangeService;
 
 
 	@Override
@@ -66,10 +69,11 @@ public class InventorPatronageShowService implements AbstractShowService<Invento
 		final boolean budgetIsInSystemCurrency = systemCurrency.equals(budget.getCurrency());
 		model.setAttribute("budgetIsInSystemCurrency", budgetIsInSystemCurrency);
 		if (!budgetIsInSystemCurrency) {
-			final Money budgetChanged;
-
-			final MoneyExchange mE = new MoneyExchange();
-			budgetChanged = mE.computeMoneyExchange(budget, systemCurrency).target;
+			final Money budgetChanged = new Money();
+			
+			budgetChanged.setCurrency(systemCurrency);
+			
+			budgetChanged.setAmount(this.moneyExchangeService.computeMoneyExchange(budget, systemCurrency).getRate()*budget.getAmount());
 
 			model.setAttribute("budgetChanged", budgetChanged);
 
