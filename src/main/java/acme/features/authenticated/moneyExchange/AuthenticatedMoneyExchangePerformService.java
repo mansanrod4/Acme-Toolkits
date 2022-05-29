@@ -35,8 +35,6 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 	@Autowired
 	protected AuthenticatedMoneyExchangeRepository repository;
 
-	// AbstractPerformService<Authenticated, ExchangeRecord> interface ---------
-
 
 	@Override
 	public boolean authorise(final Request<MoneyExchange> request) {
@@ -50,7 +48,24 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		Money source = new Money();
+		final String acceptedCurrencies = this.repository.findAcceptedCurrencies();
 
+		try {
+			final String currency = entity.getSource().getCurrency();
+
+			final boolean currencyIsSuportedS = acceptedCurrencies.contains(currency);
+
+			source = request.getModel().getAttribute("source", Money.class);
+			if (!currencyIsSuportedS) {
+				throw new Exception();
+			}
+		} catch (final Exception e) {
+			source.setAmount(1.);
+			source.setCurrency(this.repository.findSystemCurrency());
+		}
+
+		request.getModel().setAttribute("source", source);
 		request.bind(entity, errors, "source", "targetCurrency", "date", "change");
 
 	}
@@ -77,7 +92,12 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 		source.setAmount(1.);
 		source.setCurrency(this.repository.findSystemCurrency());
 		result.setSource(source);
-		result.setTargetCurrency("USD");
+		result.setTargetCurrency(this.repository.findSystemCurrency());
+		result.setChange(source);
+
+		final Calendar c = Calendar.getInstance();
+		final Date d = c.getTime();
+		result.setDate(d);
 
 		return result;
 	}
@@ -87,25 +107,6 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-//		final String acceptedCurrencies = this.repository.findAcceptedCurrencies();
-//
-//		if (!errors.hasErrors("source")) {
-//			final String currency = entity.getSource().getCurrency();
-//
-//			final boolean currencyIsSuportedS = acceptedCurrencies.contains(currency);
-//			errors.state(request, currencyIsSuportedS, "source", "authenticated.money-exchange.form.error.source.currency-not-supported");
-//			errors.state(request, entity.getSource().getAmount() >= 0, "source", "authenticated.money-exchange.form.error.source.negative");
-//		}
-//
-//		if (!errors.hasErrors("targetCurrency")) {
-//
-//			final boolean currencyIsSuportedT = acceptedCurrencies.contains(entity.getTargetCurrency());
-//			errors.state(request, currencyIsSuportedT, "targetCurrency", "authenticated.money-exchange.form.error.source.currency-not-supported");
-//		}
-//		
-//		
-//		
-//		this.perform(request, entity, errors);
 
 	}
 
@@ -114,55 +115,39 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 		assert request != null;
 		assert entity != null;
 
-		Money source = new Money();
 		final String targetCurrency;
 		MoneyExchange exchange = null;
 
-		final String accepted = this.repository.findAcceptedCurrencies();
-		
-
-		source = request.getModel().getAttribute("source", Money.class);
-		
-		if(source == null) {
-			source.setAmount(1.0);
-			source.setCurrency("EUR");
-		}
-		
 		targetCurrency = request.getModel().getAttribute("targetCurrency", String.class);
-		final boolean currencyIsSuportedT = accepted.contains(targetCurrency);
-		final boolean currencyIsSuportedS = accepted.contains(source.getCurrency());
 
-		if (currencyIsSuportedT && currencyIsSuportedS) {
+		final String acceptedCurrencies = this.repository.findAcceptedCurrencies();
+		final Money source = new Money();
 
-			exchange = this.computeMoneyExchange(source, targetCurrency);
+		if (!errors.hasErrors("source")) {
+			final String currency = entity.getSource().getCurrency();
 
-//			errors.state(request, exchange != null, "*", "authenticated.money-exchange.form.label.api-error");
+			final boolean currencyIsSuportedS = acceptedCurrencies.contains(currency);
+
+			if (!currencyIsSuportedS) {
+				source.setAmount(1.);
+				source.setCurrency(this.repository.findSystemCurrency());
+				entity.setSource(source);
+			}
+
+			errors.state(request, currencyIsSuportedS, "source", "authenticated.money-exchange.form.error.source.currency-not-supported");
+			errors.state(request, entity.getSource().getAmount() >= 0, "source", "authenticated.money-exchange.form.error.source.negative");
+
 		}
 
-		if (exchange == null) {
-			
+		if (!errors.hasErrors("targetCurrency")) {
+
+			final boolean currencyIsSuportedT = acceptedCurrencies.contains(entity.getTargetCurrency());
 			errors.state(request, currencyIsSuportedT, "targetCurrency", "authenticated.money-exchange.form.error.source.currency-not-supported");
-			errors.state(request, currencyIsSuportedS, "source", "authenticated.money-exchange.form.error.source.currency-not-supported");
+		}
 
-			
-			final Date d = new Date();
-			entity.setDate(d);
-			entity.setRate(1.);
-			final String systemCurrency = this.repository.findSystemCurrency();
-			final Money defaultChange = new Money();
-			defaultChange.setAmount(1.);
-			defaultChange.setCurrency(systemCurrency);
-			
-			exchange = this.computeMoneyExchange(defaultChange, systemCurrency);
+		if (!errors.hasErrors()) {
+			exchange = this.computeMoneyExchange(entity.getSource(), targetCurrency);
 
-			entity.setRate(exchange.getRate());
-			entity.setChange(exchange.getChange());
-			entity.setSource(defaultChange);
-			entity.setTargetCurrency(systemCurrency);
-			entity.setChange(defaultChange);
-			
-			this.computeMoneyExchange(defaultChange, this.repository.findSystemCurrency());
-		} else {
 			entity.setRate(exchange.getRate());
 			entity.setDate(exchange.getDate());
 			final Money target = new Money();
@@ -171,6 +156,8 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 			entity.setChange(target);
 
 		}
+
+		errors.state(request, exchange != null, "*", "authenticated.money-exchange.form.label.api-error");
 
 	}
 
@@ -193,26 +180,25 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 
 		if (change == null || change.getDate().before(yesterday)) {
 
-				api = new RestTemplate();
+			api = new RestTemplate();
 
-				record = api.getForObject( //
-					"https://api.exchangerate.host/latest?base={0}&symbols={1}", //
-					ExchangeRate.class, //
-					moneyToCompute.getCurrency(), //
-					targetCurrency //
-				);
+			record = api.getForObject( //
+				"https://api.exchangerate.host/latest?base={0}&symbols={1}", //
+				ExchangeRate.class, //
+				moneyToCompute.getCurrency(), //
+				targetCurrency //
+			);
 
-				assert record != null;
-				rate = record.getRates().get(targetCurrency);
+			assert record != null;
+			rate = record.getRates().get(targetCurrency);
 
-				change = new MoneyExchange();
-				change.setSource(moneyToCompute);
-				change.setTargetCurrency(targetCurrency);
-				change.setRate(rate);
-				change.setDate(record.getDate());
-				
+			change = new MoneyExchange();
+			change.setSource(moneyToCompute);
+			change.setTargetCurrency(targetCurrency);
+			change.setRate(rate);
+			change.setDate(record.getDate());
 
-				this.repository.save(change);
+			this.repository.save(change);
 
 		}
 
