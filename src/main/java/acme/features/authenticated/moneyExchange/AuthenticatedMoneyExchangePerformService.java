@@ -12,8 +12,10 @@
 
 package acme.features.authenticated.moneyExchange;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -204,6 +206,21 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 
 		return change;
 
+	}
+	
+	
+	public List<Money> convertMoney(final List<Money> ls, final String targetCurrency) {
+		final List<Money> resLs = new ArrayList<>();
+		for (Money price : ls) {
+			if (price.getAmount() == null) {
+				price.setAmount(0.);
+				price.setCurrency(targetCurrency);
+			} else if (!price.getCurrency().equals(targetCurrency)) {
+				price = (this.computeMoneyExchange(price, targetCurrency).getChange());
+			}
+			resLs.add(price);
+		}
+		return resLs;
 	}
 
 }
