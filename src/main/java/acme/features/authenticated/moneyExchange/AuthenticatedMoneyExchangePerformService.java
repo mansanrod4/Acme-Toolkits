@@ -173,6 +173,7 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 		RestTemplate api;
 		ExchangeRate record;
 		Double rate;
+		final Money changeMoney = new Money();
 
 		final Calendar c = Calendar.getInstance();
 		c.add(Calendar.DAY_OF_MONTH, -1);
@@ -201,22 +202,31 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 			change.setDate(record.getDate());
 
 			this.repository.save(change);
-
+			
 		}
+		final double scale = Math.pow(10, 2); 
+		final double d =	moneyToCompute.getAmount() * change.getRate();
+		final double amount = Math.round(d*scale)/scale;
+		changeMoney.setAmount(amount);
+		changeMoney.setCurrency(targetCurrency);
+		change.setChange(changeMoney);
 
 		return change;
 
 	}
 	
-	
+	//TODO
 	public List<Money> convertMoney(final List<Money> ls, final String targetCurrency) {
 		final List<Money> resLs = new ArrayList<>();
-		for (Money price : ls) {
+		for (final Money price : ls) {
 			if (price.getAmount() == null) {
 				price.setAmount(0.);
 				price.setCurrency(targetCurrency);
 			} else if (!price.getCurrency().equals(targetCurrency)) {
-				price = (this.computeMoneyExchange(price, targetCurrency).getChange());
+				Money aux;
+				aux = (this.computeMoneyExchange(price, targetCurrency).getChange());
+				price.setAmount(aux.getAmount());
+				price.setCurrency(aux.getCurrency());				
 			}
 			resLs.add(price);
 		}
