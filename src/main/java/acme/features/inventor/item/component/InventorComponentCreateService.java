@@ -3,7 +3,7 @@ package acme.features.inventor.item.component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.components.SpamDetector;
+import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.Item;
 import acme.entities.toolkits.ItemType;
 import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
@@ -13,6 +13,7 @@ import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractCreateService;
 import acme.roles.Inventor;
+import notenoughspam.detector.SpamDetector;
 
 
 @Service
@@ -22,7 +23,7 @@ public class InventorComponentCreateService implements AbstractCreateService<Inv
 	protected InventorItemRepository repository;
 	
 	@Autowired
-	protected AdministratorSystemConfigurationRepository systemConfigRepository;
+	protected AdministratorSystemConfigurationRepository administratorSystemConfigurationRepository;
 	
 	@Override
 	public boolean authorise(final Request<Item> request) {
@@ -78,13 +79,14 @@ public class InventorComponentCreateService implements AbstractCreateService<Inv
 		if (!errors.hasErrors("retailPrice")) {
 			
 			final String currency = entity.getRetailPrice().getCurrency();
-			final boolean currencyIsSuported = this.systemConfigRepository.findSystemConfiguration().getAcceptedCurrencies().contains(currency);
+			final boolean currencyIsSuported = this.administratorSystemConfigurationRepository.findSystemConfiguration().getAcceptedCurrencies().contains(currency);
 			errors.state(request, currencyIsSuported, "retailPrice", "inventor.item.form.error.retailPrice.currency-not-supported");
 			
 			errors.state(request, entity.getRetailPrice().getAmount()>0, "retailPrice", "inventor.item.form.error.retailPrice.negativeOrZero");
 		}
 		
-		final SpamDetector spamDetector = SpamDetector.fromRepository(this.systemConfigRepository);
+		final SystemConfiguration sc = this.administratorSystemConfigurationRepository.findSystemConfiguration();
+		final SpamDetector spamDetector = new SpamDetector(sc.getStrongSpamThreshold(), sc.getWeakSpamThreshold(), sc.getStrongSpamTerms().split(","), sc.getWeakSpamTerms().split(","));
 		if (!errors.hasErrors("name")) {
 			errors.state(request, spamDetector.stringHasNoSpam(entity.getName()), "name", "spam.detector.error.message");
 		}

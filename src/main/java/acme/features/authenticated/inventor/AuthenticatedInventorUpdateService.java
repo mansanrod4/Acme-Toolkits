@@ -15,7 +15,7 @@ package acme.features.authenticated.inventor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.components.SpamDetector;
+import acme.components.configuration.SystemConfiguration;
 import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
@@ -27,6 +27,7 @@ import acme.framework.helpers.PrincipalHelper;
 import acme.framework.roles.Authenticated;
 import acme.framework.services.AbstractUpdateService;
 import acme.roles.Inventor;
+import notenoughspam.detector.SpamDetector;
 
 @Service
 public class AuthenticatedInventorUpdateService implements AbstractUpdateService<Authenticated, Inventor> {
@@ -57,7 +58,8 @@ public class AuthenticatedInventorUpdateService implements AbstractUpdateService
 		assert entity != null;
 		assert errors != null;
 		
-		final SpamDetector spamDetector = SpamDetector.fromRepository(this.administratorSystemConfigurationRepository);
+		final SystemConfiguration sc = this.administratorSystemConfigurationRepository.findSystemConfiguration();
+		final SpamDetector spamDetector = new SpamDetector(sc.getStrongSpamThreshold(), sc.getWeakSpamThreshold(), sc.getStrongSpamTerms().split(","), sc.getWeakSpamTerms().split(","));
 		if (!errors.hasErrors("company")) {
 			errors.state(request, spamDetector.stringHasNoSpam(entity.getCompany()), "company", "spam.detector.error.message");
 		}

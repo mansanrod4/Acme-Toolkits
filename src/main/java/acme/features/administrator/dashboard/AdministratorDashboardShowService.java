@@ -105,23 +105,28 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		assert model != null;
 
 		request.unbind(entity, model, "numComponents", "numTools", "numPatronageRequested", "numPatronageAccepted", "numPatronageDenied", "componentsDataByTechnology", "toolsDataByTechnology");
-		model.setAttribute("dataCompEUR", entity.getComponentsDataByCurrency().get("EUR"));
-		model.setAttribute("dataCompUSD", entity.getComponentsDataByCurrency().get("USD"));
-		model.setAttribute("dataCompGBP", entity.getComponentsDataByCurrency().get("GBP"));
+		final Map<String, StatData> accepteds=new HashMap<String, StatData>();
+		final Map<String, StatData> denieds=new HashMap<String, StatData>();
+		final Map<String, StatData> pendings=new HashMap<String, StatData>();
+		final Map<String, StatData> tools=new HashMap<String, StatData>();
+		final Map<String, StatData> comps=new HashMap<String, StatData>();
+		
+		for(final String curr:this.repository.findSystemConfiguration().getAcceptedCurrencies().split(",")) {
+			model.setAttribute("dataComp"+curr,  entity.getComponentsDataByCurrency().get(curr));
+			model.setAttribute("dataTool"+curr, entity.getToolsDataByCurrency().get(curr));
 
-		model.setAttribute("dataToolEUR", entity.getToolsDataByCurrency().get("EUR"));
-		model.setAttribute("dataToolUSD", entity.getToolsDataByCurrency().get("USD"));
-		model.setAttribute("dataToolGBP", entity.getToolsDataByCurrency().get("GBP"));
-
-		model.setAttribute("dataAcceptedEUR", entity.getPatronageBudgetData().get(Pair.of(PatronageStatus.ACCEPTED, "EUR")));
-		model.setAttribute("dataAcceptedUSD", entity.getPatronageBudgetData().get(Pair.of(PatronageStatus.ACCEPTED, "USD")));
-		model.setAttribute("dataAcceptedGBP", entity.getPatronageBudgetData().get(Pair.of(PatronageStatus.ACCEPTED, "GBP")));
-		model.setAttribute("dataPendingEUR", entity.getPatronageBudgetData().get(Pair.of(PatronageStatus.PROPOSED, "EUR")));
-		model.setAttribute("dataPendingUSD", entity.getPatronageBudgetData().get(Pair.of(PatronageStatus.PROPOSED, "USD")));
-		model.setAttribute("dataPendingGBP", entity.getPatronageBudgetData().get(Pair.of(PatronageStatus.PROPOSED, "GBP")));
-		model.setAttribute("dataDeniedEUR", entity.getPatronageBudgetData().get(Pair.of(PatronageStatus.DENIED, "EUR")));
-		model.setAttribute("dataDeniedUSD", entity.getPatronageBudgetData().get(Pair.of(PatronageStatus.DENIED, "USD")));
-		model.setAttribute("dataDeniedGBP", entity.getPatronageBudgetData().get(Pair.of(PatronageStatus.DENIED, "GBP")));
-	}
+			accepteds.put(curr, entity.getPatronageBudgetData().get(Pair.of(PatronageStatus.ACCEPTED, curr)));
+			model.setAttribute("accepteds", accepteds);
+			denieds.put(curr, entity.getPatronageBudgetData().get(Pair.of(PatronageStatus.DENIED, curr)));
+			model.setAttribute("denieds", denieds);
+			pendings.put(curr, entity.getPatronageBudgetData().get(Pair.of(PatronageStatus.PROPOSED, curr)));
+			model.setAttribute("pendings", pendings);
+			
+			tools.put(curr, entity.getToolsDataByCurrency().get(curr));
+			model.setAttribute("tools", tools);
+			comps.put(curr, entity.getComponentsDataByCurrency().get(curr));
+			model.setAttribute("comps",comps);
+		};
+}
 
 }

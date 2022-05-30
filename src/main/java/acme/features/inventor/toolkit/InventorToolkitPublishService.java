@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.components.SpamDetector;
 import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.Item;
 import acme.entities.toolkits.ItemType;
@@ -20,6 +19,7 @@ import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
 import acme.framework.services.AbstractUpdateService;
 import acme.roles.Inventor;
+import notenoughspam.detector.SpamDetector;
 
 @Service
 public class InventorToolkitPublishService implements AbstractUpdateService<Inventor, Toolkit>{
@@ -118,7 +118,8 @@ public class InventorToolkitPublishService implements AbstractUpdateService<Inve
 			errors.state(request, existing==null, "code", "inventor.toolkit.form.error.duplicated-code");
 		}
 		
-		final SpamDetector spamDetector = SpamDetector.fromRepository(this.administratorSystemConfigurationRepository);
+		final SystemConfiguration sc = this.administratorSystemConfigurationRepository.findSystemConfiguration();
+		final SpamDetector spamDetector = new SpamDetector(sc.getStrongSpamThreshold(), sc.getWeakSpamThreshold(), sc.getStrongSpamTerms().split(","), sc.getWeakSpamTerms().split(","));
 		if (!errors.hasErrors("title")) {
 			errors.state(request, spamDetector.stringHasNoSpam(entity.getTitle()), "title", "spam.detector.error.message");
 		}

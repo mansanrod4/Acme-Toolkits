@@ -3,7 +3,7 @@ package acme.features.inventor.item.tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.components.SpamDetector;
+import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.Item;
 import acme.entities.toolkits.ItemType;
 import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
@@ -13,6 +13,7 @@ import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
 import acme.framework.services.AbstractCreateService;
 import acme.roles.Inventor;
+import notenoughspam.detector.SpamDetector;
 
 @Service
 public class InventorToolCreateService implements AbstractCreateService<Inventor, Item>{
@@ -79,7 +80,8 @@ public class InventorToolCreateService implements AbstractCreateService<Inventor
 			errors.state(request, entity.getRetailPrice().getAmount()>0, "retailPrice", "inventor.item.form.error.retailPrice.negativeOrZero");
 		}
 		
-		final SpamDetector spamDetector = SpamDetector.fromRepository(this.systemConfigRepository);
+		final SystemConfiguration sc = this.systemConfigRepository.findSystemConfiguration();
+		final SpamDetector spamDetector = new SpamDetector(sc.getStrongSpamThreshold(), sc.getWeakSpamThreshold(), sc.getStrongSpamTerms().split(","), sc.getWeakSpamTerms().split(","));
 		if (!errors.hasErrors("name")) {
 			errors.state(request, spamDetector.stringHasNoSpam(entity.getName()), "name", "spam.detector.error.message");
 		}
