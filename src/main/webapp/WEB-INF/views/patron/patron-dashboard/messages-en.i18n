@@ -8,7 +8,8 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-patron.dashboard.form.title.dashboard = Dashboard
+patron.dashboard.form.title.indicators = General indicators
+patron.dashboard.form.title.patronages-type = Patronages Type
 
 patron.dashboard.form.label.num-patronages-by-status = Number of patronage
 patron.dashboard.form.label.average-budgets-by-status = Average of budget
