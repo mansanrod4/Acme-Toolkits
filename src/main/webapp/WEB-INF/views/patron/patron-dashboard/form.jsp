@@ -18,7 +18,7 @@
 		<th id = "maximum"><acme:message code="patron.dashboard.form.label.max"/></th>
 	</tr>
 	<tr>
-		<td style="color:#58D68D"><strong><acme:message code="administrator.dashboard.form.title.accepted-patronages"/></strong></td>
+		<td style="color:#58D68D"><strong><acme:message code="patron.dashboard.form.title.accepted-patronages"/></strong></td>
 		<td><acme:print value="${numPatronageAccepted}"/></td>
 		
 		<td>
@@ -26,7 +26,7 @@
 		<jstl:forEach items="${accepteds}" var="accepted">
 			<jstl:choose>
 				<jstl:when test="${accepted.value.maximum.amount==0}">
-					<em><acme:message code="administrator.dashboard.form.no-data"/>${accepted.key}</em>/
+					<em><acme:message code="patron.dashboard.form.no-data"/>${accepted.key}</em>/
 				</jstl:when>
 				<jstl:otherwise>
 					<acme:print value="${accepted.value.average}"/>/ 
@@ -40,7 +40,7 @@
 		<jstl:forEach items="${accepteds}" var="accepted">
 			<jstl:choose>
 				<jstl:when test="${accepted.value.maximum.amount==0}">
-					<em><acme:message code="administrator.dashboard.form.no-data"/>${accepted.key}</em>/
+					<em><acme:message code="patron.dashboard.form.no-data"/>${accepted.key}</em>/
 				</jstl:when>
 				<jstl:otherwise>
 					<acme:print value="${accepted.value.desviation}"/>/ 
@@ -54,7 +54,7 @@
 		<jstl:forEach items="${accepteds}" var="accepted">
 			<jstl:choose>
 				<jstl:when test="${accepted.value.maximum.amount==0}">
-					<em><acme:message code="administrator.dashboard.form.no-data"/>${accepted.key}</em>/
+					<em><acme:message code="patron.dashboard.form.no-data"/>${accepted.key}</em>/
 				</jstl:when>
 				<jstl:otherwise>
 					<acme:print value="${accepted.value.minimum}"/>/ 
@@ -68,7 +68,7 @@
 		<jstl:forEach items="${accepteds}" var="accepted">
 			<jstl:choose>
 				<jstl:when test="${accepted.value.maximum.amount==0}">
-					<em><acme:message code="administrator.dashboard.form.no-data"/>${accepted.key}</em>/
+					<em><acme:message code="patron.dashboard.form.no-data"/>${accepted.key}</em>/
 				</jstl:when>
 				<jstl:otherwise>
 					<acme:print value="${accepted.value.maximum}"/>/ 
@@ -80,14 +80,14 @@
 	</tr>
 	
 		<tr>
-		<td style="color:#C0392B"><strong><acme:message code="administrator.dashboard.form.title.denied-patronages"/></strong></td>
+		<td style="color:#C0392B"><strong><acme:message code="patron.dashboard.form.title.denied-patronages"/></strong></td>
 		<td><acme:print value="${numPatronageDenied}"/></td>
 		
 		<td>
 		<jstl:forEach items="${denieds}" var="denied">
 			<jstl:choose>
 				<jstl:when test="${denied.value.maximum.amount==0}">
-					<em><acme:message code="administrator.dashboard.form.no-data"/>${denied.key}</em>/
+					<em><acme:message code="patron.dashboard.form.no-data"/>${denied.key}</em>/
 				</jstl:when>
 				<jstl:otherwise>
 					<acme:print value="${denied.value.average}"/>/ 
@@ -100,7 +100,7 @@
 			<jstl:forEach items="${denieds}" var="denied">
 				<jstl:choose>
 					<jstl:when test="${denied.value.maximum.amount==0}">
-						<em><acme:message code="administrator.dashboard.form.no-data"/>${denied.key}</em>/
+						<em><acme:message code="patron.dashboard.form.no-data"/>${denied.key}</em>/
 					</jstl:when>
 					<jstl:otherwise>
 						<acme:print value="${denied.value.desviation}"/>/ 
@@ -113,7 +113,7 @@
 			<jstl:forEach items="${denieds}" var="denied">
 				<jstl:choose>
 					<jstl:when test="${denied.value.maximum.amount==0}">
-						<em><acme:message code="administrator.dashboard.form.no-data"/>${denied.key}</em>/
+						<em><acme:message code="patron.dashboard.form.no-data"/>${denied.key}</em>/
 					</jstl:when>
 					<jstl:otherwise>
 						<acme:print value="${denied.value.minimum}"/>/ 
@@ -126,7 +126,7 @@
 			<jstl:forEach items="${denieds}" var="denied">
 				<jstl:choose>
 					<jstl:when test="${denied.value.maximum.amount==0}">
-						<em><acme:message code="administrator.dashboard.form.no-data"/>${denied.key}</em>/
+						<em><acme:message code="patron.dashboard.form.no-data"/>${denied.key}</em>/
 					</jstl:when>
 					<jstl:otherwise>
 						<acme:print value="${denied.value.maximum}"/>/ 
@@ -137,14 +137,14 @@
 	</tr>
 	
 		<tr>
-		<td style="color:#616A6B"><strong><acme:message code="administrator.dashboard.form.title.pending-patronages"/></strong></td>
+		<td style="color:#616A6B"><strong><acme:message code="patron.dashboard.form.title.pending-patronages"/></strong></td>
 		<td><acme:print value="${numPatronageProposed}"/></td>
 		
 		<td>
 			<jstl:forEach items="${proposeds}" var="proposed">
 				<jstl:choose>
 					<jstl:when test="${proposed.value.maximum.amount==0}">
-						<em><acme:message code="administrator.dashboard.form.no-data"/>${proposed.key}</em>/
+						<em><acme:message code="patron.dashboard.form.no-data"/>${proposed.key}</em>/
 					</jstl:when>
 					<jstl:otherwise>
 						<acme:print value="${proposed.value.average}"/>/ 
@@ -157,7 +157,7 @@
 			<jstl:forEach items="${proposeds}" var="proposed">
 				<jstl:choose>
 					<jstl:when test="${proposed.value.maximum.amount==0}">
-						<em><acme:message code="administrator.dashboard.form.no-data"/>${proposed.key}</em>/
+						<em><acme:message code="patron.dashboard.form.no-data"/>${proposed.key}</em>/
 					</jstl:when>
 					<jstl:otherwise>
 						<acme:print value="${proposed.value.desviation}"/>/ 
@@ -170,7 +170,7 @@
 			<jstl:forEach items="${proposeds}" var="proposed">
 				<jstl:choose>
 					<jstl:when test="${proposed.value.maximum.amount==0}">
-						<em><acme:message code="administrator.dashboard.form.no-data"/>${proposed.key}</em>/
+						<em><acme:message code="patron.dashboard.form.no-data"/>${proposed.key}</em>/
 					</jstl:when>
 					<jstl:otherwise>
 						<acme:print value="${proposed.value.minimum}"/>/ 
@@ -183,7 +183,7 @@
 			<jstl:forEach items="${proposeds}" var="proposed">
 				<jstl:choose>
 					<jstl:when test="${proposed.value.maximum.amount==0}">
-						<em><acme:message code="administrator.dashboard.form.no-data"/>${proposed.key}</em>/
+						<em><acme:message code="patron.dashboard.form.no-data"/>${proposed.key}</em>/
 					</jstl:when>
 					<jstl:otherwise>
 						<acme:print value="${proposed.value.maximum}"/>/ 

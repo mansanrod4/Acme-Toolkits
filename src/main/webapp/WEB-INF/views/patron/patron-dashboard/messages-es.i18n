@@ -10,11 +10,14 @@
 
 patron.dashboard.form.title.indicators = Panel de indicadores
 patron.dashboard.form.title.patronages-type = Tipos de patrocinios
+patron.dashboard.form.title.accepted-patronages = Aceptados
+patron.dashboard.form.title.denied-patronages = Denegados
+patron.dashboard.form.title.pending-patronages = Propuestos
 
-patron.dashboard.form.label.num-patronages-by-status = Numero de patronazgos
-patron.dashboard.form.label.average-budgets-by-status = Media del presupuesto 
-patron.dashboard.form.label.deviation-budgets-by-status = Desviacion del presupuesto 
-patron.dashboard.form.label.min-budget-by-status = Presupuesto minimo 
-patron.dashboard.form.label.max-budget-by-status = Presupuesto maximo
+administrator.dashboard.form.label.num = Número 
+administrator.dashboard.form.label.avg = Media
+administrator.dashboard.form.label.desv = Desviación
+administrator.dashboard.form.label.min = Mínimo
+administrator.dashboard.form.label.max = Máximo
 
-administrator.dashboard.form.no-data = Sin datos
+patron.dashboard.form.no-data = Sin datos
