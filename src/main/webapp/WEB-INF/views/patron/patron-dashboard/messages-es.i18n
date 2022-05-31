@@ -14,10 +14,10 @@ patron.dashboard.form.title.accepted-patronages = Aceptados
 patron.dashboard.form.title.denied-patronages = Denegados
 patron.dashboard.form.title.pending-patronages = Propuestos
 
-administrator.dashboard.form.label.num = Número 
-administrator.dashboard.form.label.avg = Media
-administrator.dashboard.form.label.desv = Desviación
-administrator.dashboard.form.label.min = Mínimo
-administrator.dashboard.form.label.max = Máximo
+patron.dashboard.form.label.num = Número 
+patron.dashboard.form.label.avg = Media
+patron.dashboard.form.label.desv = Desviación
+patron.dashboard.form.label.min = Mínimo
+patron.dashboard.form.label.max = Máximo
 
 patron.dashboard.form.no-data = Sin datos
