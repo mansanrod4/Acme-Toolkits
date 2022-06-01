@@ -22,9 +22,6 @@ public class AnyUserAccountListService implements AbstractListService<Any, UserA
 	@Autowired
 	protected AnyUserAccountRepository repository;
 
-	// AbstractListService<Administrator, UserAccount> interface --------------
-
-
 	@Override
 	public boolean authorise(final Request<UserAccount> request) {
 		assert request != null;

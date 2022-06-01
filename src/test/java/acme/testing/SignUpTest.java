@@ -32,6 +32,7 @@ public class SignUpTest extends TestHarness {
 		super.checkLinkExists("Sign in");
 	}
 
+	
 	// Ancillary methods ------------------------------------------------------
 	
 }
