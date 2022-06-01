@@ -44,18 +44,27 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		Integer numPatronageRequested;
 		Integer numPatronageAccepted;
 		Integer numPatronageDenied;
+//		TODO
+		final Double ratioToolWChimpum;
 
+		
 		numComponents = this.repository.getNumComps();
 		numTools = this.repository.getNumTools();
 		numPatronageRequested = this.repository.getNumPatronage(PatronageStatus.PROPOSED);
 		numPatronageAccepted = this.repository.getNumPatronage(PatronageStatus.ACCEPTED);
 		numPatronageDenied = this.repository.getNumPatronage(PatronageStatus.DENIED);
+//		TODO
+		ratioToolWChimpum = this.repository.getNumChimpum().doubleValue()/numTools.doubleValue();
 
+		
 		final Map<String, StatData> componentsDataByCurrency = new HashMap<>();
 		final Map<Pair<String, String>, StatData> componentsDataByTechnology = new HashMap<>();
 		final Map<String, StatData> toolsDataByCurrency = new HashMap<>();
 		final Map<Pair<String, String>, StatData> toolsDataByTechnology = new HashMap<>();
-		final Map<Pair<PatronageStatus, String>, StatData> patronageBudgetData = new HashMap<>();
+		final Map<Pair<PatronageStatus, String>, StatData> patronageBudgetData = new HashMap<>();	
+//		TODO
+		final Map<String, StatData>	chimpumBudgetByCurrency = new HashMap<>();	
+
 
 		final SystemConfiguration sc = this.repository.findSystemConfiguration();
 		final List<String> acceptedCurrencies = Arrays.asList(sc.getAcceptedCurrencies().trim().split(","));
@@ -81,6 +90,12 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		for (final PatronageStatus status : PatronageStatus.values()) {
 			acceptedCurrencies.forEach(x -> patronageBudgetData.put(Pair.of(status, x), StatData.of(this.repository.getPatronageBudgetDataByStatusAndCurrency(status, x), x)));
 		}
+		
+		//--------Chimpum Data By Currency---------------------------------------
+		//TODO
+		acceptedCurrencies.forEach(x -> chimpumBudgetByCurrency.put(x, StatData.of(this.repository.getChimpumBudgetByCurrency(x),x)));
+
+		
 
 		result = new AdminDashboard();
 
@@ -94,6 +109,8 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setToolsDataByTechnology(toolsDataByTechnology);
 		result.setToolsDataByCurrency(toolsDataByCurrency);
 		result.setPatronageBudgetData(patronageBudgetData);
+		//TODO
+		result.setRatioChimpum(ratioToolWChimpum);
 
 		return result;
 	}
@@ -104,13 +121,17 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "numComponents", "numTools", "numPatronageRequested", "numPatronageAccepted", "numPatronageDenied", "componentsDataByTechnology", "toolsDataByTechnology");
+//		TODO
+		request.unbind(entity, model, "numComponents", "numTools", "numPatronageRequested", "numPatronageAccepted", "numPatronageDenied", "componentsDataByTechnology", "toolsDataByTechnology", "ratioChimpum");
 		final Map<String, StatData> accepteds=new HashMap<String, StatData>();
 		final Map<String, StatData> denieds=new HashMap<String, StatData>();
 		final Map<String, StatData> pendings=new HashMap<String, StatData>();
 		final Map<String, StatData> tools=new HashMap<String, StatData>();
 		final Map<String, StatData> comps=new HashMap<String, StatData>();
 		
+		final Map<String, StatData> chimpumTools=new HashMap<String, StatData>();
+		
+		//agrupar por monedas
 		for(final String curr:this.repository.findSystemConfiguration().getAcceptedCurrencies().split(",")) {
 			model.setAttribute("dataComp"+curr,  entity.getComponentsDataByCurrency().get(curr));
 			model.setAttribute("dataTool"+curr, entity.getToolsDataByCurrency().get(curr));
@@ -126,6 +147,10 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 			model.setAttribute("tools", tools);
 			comps.put(curr, entity.getComponentsDataByCurrency().get(curr));
 			model.setAttribute("comps",comps);
+			
+			//TODO
+			chimpumTools.put(curr, entity.getChimpumBudgetByCurrency().get(curr));
+			model.setAttribute("chimpumTools", chimpumTools);
 		};
 }
 

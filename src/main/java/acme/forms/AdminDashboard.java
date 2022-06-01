@@ -22,6 +22,8 @@ public class AdminDashboard implements Serializable {
 	Integer											numPatronageRequested;
 	Integer											numPatronageAccepted;
 	Integer											numPatronageDenied;
+//TODO
+	Double											ratioChimpum;
 
 	//StatData=[Sum, Average, Desviation, Minimum, Maximum]
 
@@ -34,5 +36,8 @@ public class AdminDashboard implements Serializable {
 	Map<Pair<String, String>, StatData>				toolsDataByTechnology;
 
 	Map<Pair<PatronageStatus, String>, StatData>	patronageBudgetData;
+
+//TODO
+	Map<String, StatData>							chimpumBudgetByCurrency;
 
 }

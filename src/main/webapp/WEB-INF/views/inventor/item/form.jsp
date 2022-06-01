@@ -35,7 +35,16 @@
 			<acme:submit code="inventor.item.form.button.publish" action="/inventor/item/publish"/>
 			<acme:submit code="inventor.item.form.button.delete" action="/inventor/item/delete"/>
 		</jstl:when>
+		
 	</jstl:choose>
+	
+	<!-- TODO -->
+	<jstl:choose>
+	<jstl:when test="${isArtefact && !hasChimpum}">
+			<acme:button test="${showCreate}" code="inventor.chimpum.list.button.create" action="/inventor/chimpum/create?itemId=${id}"/>
+	</jstl:when>
+	</jstl:choose>
+	
 		
 </acme:form> 	
 

@@ -44,5 +44,17 @@ public interface AdministratorDashboardRepository extends AbstractRepository {
 	@Query("select sum(i.retailPrice.amount), avg(i.retailPrice.amount), stddev(i.retailPrice.amount),min(i.retailPrice.amount)," + " max(i.retailPrice.amount) from Item i where i.itemType=:type "
 		+ "and i.retailPrice.currency=:currency and i.technology=:technology")
 	Tuple getItemDataByTechnologyAndCurrency(ItemType type, String technology, String currency);
+	
+	
+	//dashboard para examen (chimpum)
+	//TODO
+//	nuemro de Chimpum /item 
+	@Query("select count(c) from Chimpum c where c.item.itemType='TOOL'")
+	Integer getNumChimpum();
+	
+
+	//[media, desviacion, minimo, maximo]
+	@Query("select avg(c.budget.amount), stddev(c.budget.amount), min(c.budget.amount), max(c.budget.amount) from Chimpum c where c.budget.currency=:currency")
+	Tuple getChimpumBudgetByCurrency(String currency);
 
 }

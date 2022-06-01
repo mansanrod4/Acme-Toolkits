@@ -4,8 +4,11 @@ package acme.features.inventor.item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.Chimpum;
 import acme.entities.toolkits.Item;
+import acme.entities.toolkits.ItemType;
 import acme.features.authenticated.systemConfiguration.AuthenticatedSystemConfigurationRepository;
+import acme.features.inventor.chimpum.InventorChimpumRepository;
 import acme.forms.MoneyExchange;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
@@ -24,6 +27,9 @@ public class InventorItemShowService implements AbstractShowService<Inventor, It
 	
 	@Autowired
 	protected AuthenticatedSystemConfigurationRepository authenticatedSystemConfigurationRepository;
+	
+	@Autowired
+	protected InventorChimpumRepository chimpumRepository;
 	
 
 	@Override
@@ -58,7 +64,15 @@ public class InventorItemShowService implements AbstractShowService<Inventor, It
 		
 		request.unbind(entity, model, "code", "name", "technology", "description", "retailPrice", "info", "published");
 		model.setAttribute("systemMoney", moneyExchange.target);
-
+		
+		//TODO
+		final boolean isArtefact = entity.getItemType().equals(ItemType.TOOL);
+		model.setAttribute("isArtefact", isArtefact);
+		
+		final Chimpum chimpumByItemId = this.chimpumRepository.findOneChimpumItemById(entity.getId());
+		final boolean hasChimpum = chimpumByItemId != null;
+		
+		model.setAttribute("hasChimpum", hasChimpum);
 
 	}
 
