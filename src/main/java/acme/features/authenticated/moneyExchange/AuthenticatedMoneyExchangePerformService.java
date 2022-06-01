@@ -153,8 +153,10 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 			entity.setRate(exchange.getRate());
 			entity.setDate(exchange.getDate());
 			final Money target = new Money();
-			target.setAmount(entity.getSource().getAmount() * entity.getRate());
-			target.setCurrency(entity.getTargetCurrency());
+			//			target.setAmount(entity.getSource().getAmount() * entity.getRate());
+			//			target.setCurrency(entity.getTargetCurrency());
+			target.setAmount(exchange.getChange().getAmount());
+			target.setCurrency(exchange.getChange().getCurrency());
 			entity.setChange(target);
 
 		}
@@ -174,6 +176,8 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 		ExchangeRate record;
 		Double rate;
 		final Money changeMoney = new Money();
+
+		final double scale = Math.pow(10, 2);
 
 		final Calendar c = Calendar.getInstance();
 		c.add(Calendar.DAY_OF_MONTH, -1);
@@ -196,26 +200,35 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 			rate = record.getRates().get(targetCurrency);
 
 			change = new MoneyExchange();
-			change.setSource(moneyToCompute);
+			final Money sourceMoney = new Money();
+			sourceMoney.setAmount(moneyToCompute.getAmount());
+			sourceMoney.setCurrency(moneyToCompute.getCurrency());
+			change.setSource(sourceMoney);
 			change.setTargetCurrency(targetCurrency);
 			change.setRate(rate);
 			change.setDate(record.getDate());
 
-			this.repository.save(change);
+			final double d = moneyToCompute.getAmount() * change.getRate();
+			final double amount = Math.round(d * scale) / scale;
+			changeMoney.setAmount(amount);
+			changeMoney.setCurrency(targetCurrency);
+			change.setChange(changeMoney);
+
 			
+			this.repository.save(change);
+
+		} else {
+			final double d = moneyToCompute.getAmount() * change.getRate();
+			final double amount = Math.round(d * scale) / scale;
+			changeMoney.setAmount(amount);
+			changeMoney.setCurrency(targetCurrency);
+			change.setChange(changeMoney);
 		}
-		final double scale = Math.pow(10, 2); 
-		final double d =	moneyToCompute.getAmount() * change.getRate();
-		final double amount = Math.round(d*scale)/scale;
-		changeMoney.setAmount(amount);
-		changeMoney.setCurrency(targetCurrency);
-		change.setChange(changeMoney);
 
 		return change;
 
 	}
-	
-	//TODO
+
 	public List<Money> convertMoney(final List<Money> ls, final String targetCurrency) {
 		final List<Money> resLs = new ArrayList<>();
 		for (final Money price : ls) {
@@ -226,7 +239,7 @@ public class AuthenticatedMoneyExchangePerformService implements AbstractPerform
 				Money aux;
 				aux = (this.computeMoneyExchange(price, targetCurrency).getChange());
 				price.setAmount(aux.getAmount());
-				price.setCurrency(aux.getCurrency());				
+				price.setCurrency(aux.getCurrency());
 			}
 			resLs.add(price);
 		}
