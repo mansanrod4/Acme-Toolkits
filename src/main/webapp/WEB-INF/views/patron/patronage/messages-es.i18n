@@ -28,6 +28,8 @@ patron.patronage.form.error.end-date = La fecha final, al menos, debe ser un mes
 
 patron.patronage.form.button.patronage-reports = Reportes
 patron.patronage.form.button.create = Crear
+patron.patronage.form.button.update = Actualizar
+
 
 patron.patronage.form.button.delete = Eliminar
 patron.patronage.form.button.publish = Publicar

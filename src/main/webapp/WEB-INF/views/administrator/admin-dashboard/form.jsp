@@ -26,28 +26,178 @@
 	<tr>
 		<td style="color:#58D68D"><strong><acme:message code="administrator.dashboard.form.title.accepted-patronages"/></strong></td>
 		<td><acme:print value="${numPatronageAccepted}"/></td>
-		<td><acme:print value="${dataAcceptedEUR.average}"/>/ <acme:print value="${dataAcceptedUSD.average}"/>/ <acme:print value="${dataAcceptedGBP.average}"/></td>
-		<td><acme:print value="${dataAcceptedEUR.desviation}"/>/ <acme:print value="${dataAcceptedUSD.desviation}"/>/ <acme:print value="${dataAcceptedGBP.desviation}"/></td>
-		<td><acme:print value="${dataAcceptedEUR.minimum}"/>/ <acme:print value="${dataAcceptedUSD.minimum}"/>/ <acme:print value="${dataAcceptedGBP.minimum}"/></td>
-		<td><acme:print value="${dataAcceptedEUR.maximum}"/>/ <acme:print value="${dataAcceptedUSD.maximum}"/>/ <acme:print value="${dataAcceptedGBP.maximum}"/></td>
+		
+		<td>
+		
+		<jstl:forEach items="${accepteds}" var="accepted">
+			<jstl:choose>
+				<jstl:when test="${accepted.value.maximum.amount==0}">
+					<em><acme:message code="administrator.dashboard.form.no-data"/> ${accepted.key}</em>/
+				</jstl:when>
+				<jstl:otherwise>
+					<acme:print value="${accepted.value.average}"/>/ 
+				</jstl:otherwise>
+			</jstl:choose>
+		</jstl:forEach>
+		
+		</td>
+		<td>
+		
+		<jstl:forEach items="${accepteds}" var="accepted">
+			<jstl:choose>
+				<jstl:when test="${accepted.value.maximum.amount==0}">
+					<em><acme:message code="administrator.dashboard.form.no-data"/> ${accepted.key}</em>/
+				</jstl:when>
+				<jstl:otherwise>
+					<acme:print value="${accepted.value.desviation}"/>/ 
+				</jstl:otherwise>
+			</jstl:choose>
+		</jstl:forEach>
+		
+		</td>
+		<td>
+		
+		<jstl:forEach items="${accepteds}" var="accepted">
+			<jstl:choose>
+				<jstl:when test="${accepted.value.maximum.amount==0}">
+					<em><acme:message code="administrator.dashboard.form.no-data"/> ${accepted.key}</em>/
+				</jstl:when>
+				<jstl:otherwise>
+					<acme:print value="${accepted.value.minimum}"/>/ 
+				</jstl:otherwise>
+			</jstl:choose>
+		</jstl:forEach>
+		
+		</td>
+		<td>
+		
+		<jstl:forEach items="${accepteds}" var="accepted">
+			<jstl:choose>
+				<jstl:when test="${accepted.value.maximum.amount==0}">
+					<em><acme:message code="administrator.dashboard.form.no-data"/> ${accepted.key}</em>/
+				</jstl:when>
+				<jstl:otherwise>
+					<acme:print value="${accepted.value.maximum}"/>/ 
+				</jstl:otherwise>
+			</jstl:choose>
+		</jstl:forEach>
+		
+		</td>
 	</tr>
-	<tr>
+	
+		<tr>
 		<td style="color:#C0392B"><strong><acme:message code="administrator.dashboard.form.title.denied-patronages"/></strong></td>
 		<td><acme:print value="${numPatronageDenied}"/></td>
-		<td><acme:print value="${dataDeniedEUR.average}"/>/ <acme:print value="${dataDeniedUSD.average}"/>/ <acme:print value="${dataDeniedGBP.average}"/></td>
-		<td><acme:print value="${dataDeniedEUR.desviation}"/>/ <acme:print value="${dataDeniedUSD.desviation}"/>/ <acme:print value="${dataDeniedGBP.desviation}"/></td>
-		<td><acme:print value="${dataDeniedEUR.minimum}"/>/ <acme:print value="${dataDeniedUSD.minimum}"/>/ <acme:print value="${dataDeniedGBP.minimum}"/></td>
-		<td><acme:print value="${dataDeniedEUR.maximum}"/>/ <acme:print value="${dataDeniedUSD.maximum}"/>/ <acme:print value="${dataDeniedGBP.maximum}"/></td>
+		
+		<td>
+		<jstl:forEach items="${denieds}" var="denied">
+			<jstl:choose>
+				<jstl:when test="${denied.value.maximum.amount==0}">
+					<em><acme:message code="administrator.dashboard.form.no-data"/> ${denied.key}</em>/
+				</jstl:when>
+				<jstl:otherwise>
+					<acme:print value="${denied.value.average}"/>/ 
+				</jstl:otherwise>
+			</jstl:choose>
+		</jstl:forEach>
+		</td>
+		
+		<td>
+			<jstl:forEach items="${denieds}" var="denied">
+				<jstl:choose>
+					<jstl:when test="${denied.value.maximum.amount==0}">
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${denied.key}</em>/
+					</jstl:when>
+					<jstl:otherwise>
+						<acme:print value="${denied.value.desviation}"/>/ 
+					</jstl:otherwise>
+				</jstl:choose>
+			</jstl:forEach>
+		</td>
+		
+		<td>
+			<jstl:forEach items="${denieds}" var="denied">
+				<jstl:choose>
+					<jstl:when test="${denied.value.maximum.amount==0}">
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${denied.key}</em>/
+					</jstl:when>
+					<jstl:otherwise>
+						<acme:print value="${denied.value.minimum}"/>/ 
+					</jstl:otherwise>
+				</jstl:choose>
+			</jstl:forEach>
+		</td>
+		
+		<td>
+			<jstl:forEach items="${denieds}" var="denied">
+				<jstl:choose>
+					<jstl:when test="${denied.value.maximum.amount==0}">
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${denied.key}</em>/
+					</jstl:when>
+					<jstl:otherwise>
+						<acme:print value="${denied.value.maximum}"/>/ 
+					</jstl:otherwise>
+				</jstl:choose>
+			</jstl:forEach>
+		</td>
 	</tr>
-	<tr>
+	
+		<tr>
 		<td style="color:#616A6B"><strong><acme:message code="administrator.dashboard.form.title.pending-patronages"/></strong></td>
 		<td><acme:print value="${numPatronageRequested}"/></td>
-		<td><acme:print value="${dataPendingEUR.average}"/>/ <acme:print value="${dataPendingUSD.average}"/>/ <acme:print value="${dataPendingGBP.average}"/></td>
-		<td><acme:print value="${dataPendingEUR.desviation}"/>/ <acme:print value="${dataPendingUSD.desviation}"/>/ <acme:print value="${dataPendingGBP.desviation}"/></td>
-		<td><acme:print value="${dataPendingEUR.minimum}"/>/ <acme:print value="${dataPendingUSD.minimum}"/>/ <acme:print value="${dataPendingGBP.minimum}"/></td>
-		<td><acme:print value="${dataPendingEUR.maximum}"/>/ <acme:print value="${dataPendingUSD.maximum}"/>/ <acme:print value="${dataPendingGBP.maximum}"/></td>
+		
+		<td>
+			<jstl:forEach items="${pendings}" var="pending">
+				<jstl:choose>
+					<jstl:when test="${pending.value.maximum.amount==0}">
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${pending.key}</em>/
+					</jstl:when>
+					<jstl:otherwise>
+						<acme:print value="${pending.value.average}"/>/ 
+					</jstl:otherwise>
+				</jstl:choose>
+			</jstl:forEach>
+		</td>
+		
+		<td>
+			<jstl:forEach items="${pendings}" var="pending">
+				<jstl:choose>
+					<jstl:when test="${pending.value.maximum.amount==0}">
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${pending.key}</em>/
+					</jstl:when>
+					<jstl:otherwise>
+						<acme:print value="${pending.value.desviation}"/>/ 
+					</jstl:otherwise>
+				</jstl:choose>
+			</jstl:forEach>
+		</td>
+		
+		<td>
+			<jstl:forEach items="${pendings}" var="pending">
+				<jstl:choose>
+					<jstl:when test="${pending.value.maximum.amount==0}">
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${pending.key}</em>/
+					</jstl:when>
+					<jstl:otherwise>
+						<acme:print value="${pending.value.minimum}"/>/ 
+					</jstl:otherwise>
+				</jstl:choose>
+			</jstl:forEach>
+		</td>
+		
+		<td>
+			<jstl:forEach items="${pendings}" var="pending">
+				<jstl:choose>
+					<jstl:when test="${pending.value.maximum.amount==0}">
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${pending.key}</em>/
+					</jstl:when>
+					<jstl:otherwise>
+						<acme:print value="${pending.value.maximum}"/>/ 
+					</jstl:otherwise>
+				</jstl:choose>
+			</jstl:forEach>
+		</td>
 	</tr>
-
 </table>
 
 <br><br><br>
@@ -80,20 +230,36 @@
 		<th scope="row">
 			<acme:message code="administrator.dashboard.form.label.desviationComp"/>
 		</th>
+
 		<td>
-			<acme:print value="${dataCompEUR.desviation}"/>/
-			<acme:print value="${dataCompUSD.desviation}"/>/
-			<acme:print value="${dataCompGBP.desviation}"/>			
+			<jstl:forEach items="${comps}" var="comp">
+				<jstl:choose>
+					<jstl:when test="${comp.value.maximum.amount==0}">
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${comp.key}</em>/
+					</jstl:when>
+					<jstl:otherwise>
+						<acme:print value="${comp.value.desviation}"/>/
+					</jstl:otherwise>
+				</jstl:choose>
+			</jstl:forEach>
 		</td>
 	</tr>
+	
 	<tr>
 		<th scope="row">
 			<acme:message code="administrator.dashboard.form.label.desviationTool"/>
 		</th>
-		<td>		
-			<acme:print value="${dataToolEUR.desviation}"/>/
-			<acme:print value="${dataToolUSD.desviation}"/>/
-			<acme:print value="${dataToolGBP.desviation}"/>
+		<td>
+			<jstl:forEach items="${tools}" var="tool">
+				<jstl:choose>
+					<jstl:when test="${tool.value.maximum.amount==0}">
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${tool.key}</em>/
+					</jstl:when>
+					<jstl:otherwise>
+						<acme:print value="${tool.value.desviation}"/>/
+					</jstl:otherwise>
+				</jstl:choose>
+			</jstl:forEach>
 		</td>
 	</tr>
 </table>
@@ -113,18 +279,24 @@
 		var data = {
 		
 			labels : [
-					"COMP-EUR","COMP-USD","COMP-GBP","TOOL-EUR", "TOOL-USD","TOOL-GBP"
+					<jstl:forEach items="${comps}" var="comp">
+						"COMP-"+"${comp.key}",
+					</jstl:forEach>
+					<jstl:forEach items="${tools}" var="tool">
+						"TOOL-"+"${tool.key}",
+					</jstl:forEach>
 			],
 			datasets : [
 				{	
 					backgroundColor: color,
 					data : [
-						<jstl:out value="${dataCompEUR.average.amount}"/>,
-						<jstl:out value="${dataCompUSD.average.amount}"/>, 
-						<jstl:out value="${dataCompGBP.average.amount}"/>, 
-						<jstl:out value="${dataToolEUR.average.amount}"/>,
-						<jstl:out value="${dataToolUSD.average.amount}"/>, 
-						<jstl:out value="${dataToolGBP.average.amount}"/>,
+						<jstl:forEach items="${comps}" var="comp">
+							<jstl:out value="${comp.value.average.amount}"/>,
+						</jstl:forEach>
+						<jstl:forEach items="${tools}" var="tool">
+							<jstl:out value="${tool.value.average.amount}"/>,
+						</jstl:forEach>
+						
 					]
 				}
 			]
@@ -135,7 +307,7 @@
 					{
 						ticks : {
 							suggestedMin : 0.0,
-							suggestedMax : 70.0
+							suggestedMax : 50.0
 						}
 					}
 				]
@@ -174,18 +346,19 @@
 		var data = {
 		
 			labels : [
-					"MIN-EUR-COMP","MAX-EUR-COMP","MIN-USD-COMP", "MAX-USD-COMP","MIN-GBP-COMP","MAX-GBP-COMP"
-			],
+				<jstl:forEach items="${comps}" var="comp">
+					"MIN-"+"${comp.key}"+"-COMP",
+					"MAX-"+"${comp.key}"+"-COMP",
+				</jstl:forEach>
+					],
 			datasets : [
 				{	
 					backgroundColor: color,
 					data : [
-						<jstl:out value="${dataCompEUR.minimum.amount}"/>,
-						<jstl:out value="${dataCompEUR.maximum.amount}"/>,
-						<jstl:out value="${dataCompUSD.minimum.amount}"/>,
-						<jstl:out value="${dataCompUSD.maximum.amount}"/>, 
-						<jstl:out value="${dataCompGBP.minimum.amount}"/>,
-						<jstl:out value="${dataCompGBP.maximum.amount}"/>
+						<jstl:forEach items="${comps}" var="comp">
+							<jstl:out value="${comp.value.minimum.amount}"/>,
+							<jstl:out value="${comp.value.maximum.amount}"/>,
+						</jstl:forEach>
 					]
 				}
 			]
@@ -231,22 +404,24 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		var color = ["#819EED", "#819EED","#91DC60","#91DC60","#F0EF85","#F0EF85"]
+		var color = ["#819EED", "#819EED","#91DC60","#91DC60","#F0EF85","#F0EF85","#F0EF85","#F0EF85"]
 		var data = {
 		
 			labels : [
-				"MIN-EUR-TOOL","MAX-EUR-TOOL","MIN-USD-TOOL", "MAX-USD-TOOL","MIN-GBP-TOOL","MAX-GBP-TOOL"
+				
+				<jstl:forEach items="${tools}" var="tool">
+					"MIN-"+"${tool.key}"+"-TOOL",
+					"MAX-"+"${tool.key}"+"-TOOL",
+				</jstl:forEach>
 			],
 			datasets : [
 				{	
 					backgroundColor: color,
 					data : [
-						<jstl:out value="${dataToolEUR.minimum.amount}"/>,
-						<jstl:out value="${dataToolEUR.maximum.amount}"/>,
-						<jstl:out value="${dataToolUSD.minimum.amount}"/>, 
-						<jstl:out value="${dataToolUSD.maximum.amount}"/>,
-						<jstl:out value="${dataToolGBP.minimum.amount}"/>,
-						<jstl:out value="${dataToolGBP.maximum.amount}"/>
+						<jstl:forEach items="${tools}" var="tool">
+							<jstl:out value="${tool.value.minimum.amount}"/>,
+							<jstl:out value="${tool.value.maximum.amount}"/>,
+						</jstl:forEach>
 					]
 				}
 			]
@@ -295,14 +470,22 @@
 	
 	<jstl:forEach items="${componentsDataByTechnology}" var="data">
 			<tr>
-				<td><acme:print value="${data['key'].getFirst()} (${data['key'].getSecond() })"></acme:print></td>
-				<td><acme:print value="${data['value'].average}"></acme:print></td>
-				<td><acme:print value="${data['value'].desviation}"></acme:print></td>
-				<td><acme:print value="${data['value'].minimum}"></acme:print></td>
-				<td><acme:print value="${data['value'].maximum}"></acme:print></td>
+			<td><acme:print value="${data['key'].getFirst()} (${data['key'].getSecond() })"></acme:print></td>
+				<jstl:choose>
+					<jstl:when test="${data['value'].maximum.amount==0}">
+						<td><em><acme:message code="administrator.dashboard.form.no-data"/></em></td>
+						<td><em><acme:message code="administrator.dashboard.form.no-data"/></em></td>
+						<td><em><acme:message code="administrator.dashboard.form.no-data"/></em></td>
+						<td><em><acme:message code="administrator.dashboard.form.no-data"/></em></td>					
+					</jstl:when>
+					<jstl:otherwise>
+						<td><acme:print value="${data['value'].average}"></acme:print></td>
+						<td><acme:print value="${data['value'].desviation}"></acme:print></td>
+						<td><acme:print value="${data['value'].minimum}"></acme:print></td>
+						<td><acme:print value="${data['value'].maximum}"></acme:print></td>
+					</jstl:otherwise>
+				</jstl:choose>
 			</tr>
-			
-
 	</jstl:forEach>
 
 </table>
@@ -324,10 +507,21 @@
 	<jstl:forEach items="${toolsDataByTechnology}" var="data">
 			<tr>
 				<td><acme:print value="${data['key'].getFirst()} (${data['key'].getSecond() })"></acme:print></td>
-				<td><acme:print value="${data['value'].average}"></acme:print></td>
-				<td><acme:print value="${data['value'].desviation}"></acme:print></td>
-				<td><acme:print value="${data['value'].minimum}"></acme:print></td>
-				<td><acme:print value="${data['value'].maximum}"></acme:print></td>
+				<jstl:choose>
+					<jstl:when test="${data['value'].maximum.amount==0}">
+						<td><em><acme:message code="administrator.dashboard.form.no-data"/></em></td>	
+						<td><em><acme:message code="administrator.dashboard.form.no-data"/></em></td>	
+						<td><em><acme:message code="administrator.dashboard.form.no-data"/></em></td>	
+						<td><em><acme:message code="administrator.dashboard.form.no-data"/></em></td>					
+					</jstl:when>
+					<jstl:otherwise>
+						<td><acme:print value="${data['value'].average}"></acme:print></td>
+						<td><acme:print value="${data['value'].desviation}"></acme:print></td>
+						<td><acme:print value="${data['value'].minimum}"></acme:print></td>
+						<td><acme:print value="${data['value'].maximum}"></acme:print></td>
+					</jstl:otherwise>
+				</jstl:choose>
+
 			</tr>
 			
 

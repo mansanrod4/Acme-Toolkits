@@ -14,11 +14,15 @@
 		<acme:input-textbox code="inventor.patronage.label.startDate" path="startDate" readonly="true"/>
 		<acme:input-textbox code="inventor.patronage.label.endDate" path="endDate" readonly="true"/>
 		<acme:input-textbox code="inventor.patronage.label.status" path="status" readonly="true"/>
-		
-		
 	</jstl:if>	
 	<acme:input-textarea code="inventor.patronage.label.legalStuff" path="legalStuff" readonly="true"/>
-	<acme:input-textarea code="inventor.patronage.label.budget" path="budget" readonly="true"/>
+	<acme:input-money code="inventor.patronage.label.budget" path="budget" readonly="true"/>
+	<jstl:choose>
+		<jstl:when test="${command == 'show' && !budgetIsInSystemCurrency}">
+			<acme:input-money code="inventor.patronage.label.budgetChanged" path="budgetChanged" readonly="true" />		
+		</jstl:when>
+	</jstl:choose>
+	
 	<acme:input-textarea code="inventor.patronage.label.info" path="info" readonly="true"/>			
 	
 	<acme:input-textbox code="inventor.patronage.label.patronFullName" path="patronFullName" readonly="true"/>

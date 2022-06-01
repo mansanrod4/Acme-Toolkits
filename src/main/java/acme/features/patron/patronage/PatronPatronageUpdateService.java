@@ -7,19 +7,26 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.components.configuration.SystemConfiguration;
 import acme.entities.patronages.Patronage;
+import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
 import acme.framework.services.AbstractUpdateService;
 import acme.roles.Patron;
+import notenoughspam.detector.SpamDetector;
 
 @Service
 public class PatronPatronageUpdateService implements AbstractUpdateService<Patron, Patronage> {
 
 	@Autowired
 	protected PatronPatronageRepository repository;
+	
+	@Autowired
+	protected AdministratorSystemConfigurationRepository administratorSystemConfigurationRepository;
+
 
 
 	@Override
@@ -51,10 +58,6 @@ public class PatronPatronageUpdateService implements AbstractUpdateService<Patro
 		moment = new Date(System.currentTimeMillis() - 1);
 		entity.setCreationDate(moment);
 
-		//entity.setStatus(PatronageStatus.PROPOSED);
-		//final int inventorId = request.getModel().getInteger("inventorId");
-		//entity.setInventor(this.repository.findOneInventorById(inventorId));
-
 	}
 
 	@Override
@@ -67,7 +70,6 @@ public class PatronPatronageUpdateService implements AbstractUpdateService<Patro
 		model.setAttribute("patronId", entity.getPatron().getId());
 		model.setAttribute("inventorId", entity.getInventor().getId());
 		
-		//model.setAttribute("status", entity.getStatus());
 		model.setAttribute("inventorCompany", entity.getInventor().getCompany());
 		model.setAttribute("inventorStatement", entity.getInventor().getStatement());
 		model.setAttribute("inventorFullName", entity.getInventor().getIdentity().getFullName());
@@ -125,6 +127,12 @@ public class PatronPatronageUpdateService implements AbstractUpdateService<Patro
 			
 			final String c = b.getCurrency();
 			errors.state(request, this.repository.findAcceptedCurrencies().contains(c), "budget", "patron.patronage.form.error.budget-acceptedcurrencies");
+		}
+		
+		final SystemConfiguration sc = this.administratorSystemConfigurationRepository.findSystemConfiguration();
+		final SpamDetector spamDetector = new SpamDetector(sc.getStrongSpamThreshold(), sc.getWeakSpamThreshold(), sc.getStrongSpamTerms().split(","), sc.getWeakSpamTerms().split(","));
+		if (!errors.hasErrors("title")) {
+			errors.state(request, spamDetector.stringHasNoSpam(entity.getLegalStuff()), "legalStuff", "spam.detector.error.message");
 		}
 
 	}

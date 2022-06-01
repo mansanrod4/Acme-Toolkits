@@ -7,19 +7,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.components.SpamDetector;
 import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.Item;
 import acme.entities.toolkits.ItemType;
 import acme.entities.toolkits.Toolkit;
 import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
-import acme.forms.MoneyExchange;
+import acme.features.authenticated.moneyExchange.AuthenticatedMoneyExchangePerformService;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
 import acme.framework.services.AbstractUpdateService;
 import acme.roles.Inventor;
+import notenoughspam.detector.SpamDetector;
 
 @Service
 public class InventorToolkitPublishService implements AbstractUpdateService<Inventor, Toolkit>{
@@ -28,9 +28,12 @@ public class InventorToolkitPublishService implements AbstractUpdateService<Inve
 
 	@Autowired
 	protected InventorToolkitRepository repository;
+	
 	@Autowired
 	protected AdministratorSystemConfigurationRepository administratorSystemConfigurationRepository;
 
+	@Autowired
+	protected AuthenticatedMoneyExchangePerformService		moneyExchange;
 	
 	// AbstractUpdateService<Inventor, Toolkit> interface -------------------------
 	
@@ -71,8 +74,7 @@ public class InventorToolkitPublishService implements AbstractUpdateService<Inve
 
 		request.unbind(entity, model,"code",  "title", "description", "assemblyNotes", "info", "published");
 
-		final MoneyExchange mE = new MoneyExchange();
-		final List<Money> pricesFix = mE.convertMoney(prices, sc.getSystemCurrency());
+		final List<Money> pricesFix = this.moneyExchange.convertMoney(prices, sc.getSystemCurrency());
 
 		final Money money = new Money();
 		final Double amount = pricesFix.stream().mapToDouble(Money::getAmount).sum();
@@ -118,7 +120,8 @@ public class InventorToolkitPublishService implements AbstractUpdateService<Inve
 			errors.state(request, existing==null, "code", "inventor.toolkit.form.error.duplicated-code");
 		}
 		
-		final SpamDetector spamDetector = SpamDetector.fromRepository(this.administratorSystemConfigurationRepository);
+		final SystemConfiguration sc = this.administratorSystemConfigurationRepository.findSystemConfiguration();
+		final SpamDetector spamDetector = new SpamDetector(sc.getStrongSpamThreshold(), sc.getWeakSpamThreshold(), sc.getStrongSpamTerms().split(","), sc.getWeakSpamTerms().split(","));
 		if (!errors.hasErrors("title")) {
 			errors.state(request, spamDetector.stringHasNoSpam(entity.getTitle()), "title", "spam.detector.error.message");
 		}
