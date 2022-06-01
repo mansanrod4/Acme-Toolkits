@@ -3,7 +3,7 @@ package acme.features.authenticated.moneyExchange;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import acme.forms.MoneyExchange;
+import acme.entities.MoneyExchange;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
