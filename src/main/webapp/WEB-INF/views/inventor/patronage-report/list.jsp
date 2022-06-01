@@ -5,7 +5,7 @@
 
 <acme:list>
 
-	<acme:list-column code="inventor.patronage-report.list.label.patronageCode" path="patronageCode" width="20%"/> 
+	<acme:list-column code="inventor.patronage-report.list.label.sequenceNumber" path="sequenceNumber" width="20%"/> 
  	<acme:list-column code="inventor.patronage-report.list.label.memorandum" path="memorandum" width="20%"/>
 	<acme:list-column code="inventor.patronage-report.list.label.info" path="info" width="20%"/>
 	
