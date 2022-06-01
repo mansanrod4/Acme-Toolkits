@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import acme.components.ExchangeRate;
-import acme.forms.MoneyExchange;
+import acme.entities.MoneyExchange;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
