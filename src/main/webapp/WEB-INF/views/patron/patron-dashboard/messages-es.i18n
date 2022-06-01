@@ -20,4 +20,8 @@ patron.dashboard.form.label.desv = Desviación
 patron.dashboard.form.label.min = Mínimo
 patron.dashboard.form.label.max = Máximo
 
+<<<<<<< HEAD
 patron.dashboard.form.no-data = Sin datos
+=======
+patron.dashboard.form.no-data = Sin datos
+>>>>>>> branch 'Task-512' of https://github.com/mansanrod4/Acme-Toolkits.git
