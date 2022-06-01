@@ -1,100 +1,49 @@
 
 package acme.forms;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.web.client.RestTemplate;
-
-import acme.components.ExchangeRate;
 import acme.framework.datatypes.Money;
-import acme.framework.helpers.StringHelper;
+import acme.framework.entities.AbstractEntity;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
 @Getter
 @Setter
-public class MoneyExchange {
+public class MoneyExchange extends AbstractEntity {
 
 	// Query attributes -------------------------------------------------------
 
+	/**
+	 * 
+	 */
+	protected static final long	serialVersionUID	= 1L;
+
 	@NotNull
 	@Valid
-	public Money	source;
+	protected Money				source;
 
 	@NotBlank
-	public String	targetCurrency;
-	
+	protected String			targetCurrency;
+
 	// Response attributes ----------------------------------------------------
 
 	@Valid
-	public Money	target;
+	protected Double			rate;
 
-	public Date		date;
+	@Temporal(TemporalType.TIMESTAMP)
+	protected Date				date;
 
-
-	public MoneyExchange computeMoneyExchange(final Money source, final String targetCurrency) {
-		assert source != null;
-		assert !StringHelper.isBlank(targetCurrency);
-
-		MoneyExchange result;
-		RestTemplate api;
-		ExchangeRate record;
-		String sourceCurrency;
-		Double sourceAmount, targetAmount, rate;
-		Money targetMoney;
-
-		try {
-			api = new RestTemplate();
-
-			sourceCurrency = source.getCurrency();
-			sourceAmount = source.getAmount();
-
-			record = api.getForObject( //
-				"https://api.exchangerate.host/latest?base={0}&symbols={1}", //
-				ExchangeRate.class, //
-				sourceCurrency, //
-				targetCurrency //
-			);
-
-			assert record != null;
-			rate = record.getRates().get(targetCurrency);
-			targetAmount = rate * sourceAmount;
-
-			targetMoney = new Money();
-			targetMoney.setAmount(targetAmount);
-			targetMoney.setCurrency(targetCurrency);
-
-			result = new MoneyExchange();
-			result.setSource(source);
-			result.setTargetCurrency(targetCurrency);
-			result.setDate(record.getDate());
-			result.setTarget(targetMoney);
-		} catch (final Throwable oops) {
-			result = null;
-		}
-
-		return result;
-	}
-
-	public List<Money> convertMoney(final List<Money> ls, final String targetCurrency) {
-		final List<Money> resLs = new ArrayList<>();
-		for (Money price : ls) {
-			if (price.getAmount() == null) {
-				price.setAmount(0.);
-				price.setCurrency(targetCurrency);
-			} else if (!price.getCurrency().equals(targetCurrency)) {
-				price = (this.computeMoneyExchange(price, targetCurrency).target);
-			}
-			resLs.add(price);
-		}
-		return resLs;
-	}
-
+	@Transient
+	protected Money				change;
 
 }

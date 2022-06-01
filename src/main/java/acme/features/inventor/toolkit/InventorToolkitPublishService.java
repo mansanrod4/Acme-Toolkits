@@ -12,7 +12,7 @@ import acme.entities.toolkits.Item;
 import acme.entities.toolkits.ItemType;
 import acme.entities.toolkits.Toolkit;
 import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
-import acme.forms.MoneyExchange;
+import acme.features.authenticated.moneyExchange.AuthenticatedMoneyExchangePerformService;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Errors;
 import acme.framework.controllers.Request;
@@ -28,9 +28,12 @@ public class InventorToolkitPublishService implements AbstractUpdateService<Inve
 
 	@Autowired
 	protected InventorToolkitRepository repository;
+	
 	@Autowired
 	protected AdministratorSystemConfigurationRepository administratorSystemConfigurationRepository;
 
+	@Autowired
+	protected AuthenticatedMoneyExchangePerformService		moneyExchange;
 	
 	// AbstractUpdateService<Inventor, Toolkit> interface -------------------------
 	
@@ -71,8 +74,7 @@ public class InventorToolkitPublishService implements AbstractUpdateService<Inve
 
 		request.unbind(entity, model,"code",  "title", "description", "assemblyNotes", "info", "published");
 
-		final MoneyExchange mE = new MoneyExchange();
-		final List<Money> pricesFix = mE.convertMoney(prices, sc.getSystemCurrency());
+		final List<Money> pricesFix = this.moneyExchange.convertMoney(prices, sc.getSystemCurrency());
 
 		final Money money = new Money();
 		final Double amount = pricesFix.stream().mapToDouble(Money::getAmount).sum();

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.Toolkit;
-import acme.forms.MoneyExchange;
+import acme.features.authenticated.moneyExchange.AuthenticatedMoneyExchangePerformService;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
@@ -23,6 +23,9 @@ public class AnyToolkitShowService implements AbstractShowService<Any, Toolkit> 
 
 	@Autowired
 	protected AnyToolkitRepository repository;
+	
+	@Autowired
+	protected AuthenticatedMoneyExchangePerformService moneyExchange;
 
 
 	@Override
@@ -59,8 +62,7 @@ public class AnyToolkitShowService implements AbstractShowService<Any, Toolkit> 
 			prices.add(price);
 		}
 
-		final MoneyExchange mE = new MoneyExchange();
-		final List<Money> pricesFix = mE.convertMoney(prices, sc.getSystemCurrency());
+		final List<Money> pricesFix = this.moneyExchange.convertMoney(prices, sc.getSystemCurrency());
 
 		final Money money = new Money();
 		final Double amount = pricesFix.stream().mapToDouble(Money::getAmount).sum();
