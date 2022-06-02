@@ -19,7 +19,7 @@ patron.patronage.button.create = Solicitar
 
 patron.patronage-report.list.title = Mis informes de patronazgos
 
-patron.patronage-report.list.label.patronageId = Id de Patronazgos
+patron.patronage-report.list.label.sequenceNumber = Número de Secuencia
 patron.patronage-report.list.label.memorandum = Memorandum
 patron.patronage-report.list.label.info = Info
 
