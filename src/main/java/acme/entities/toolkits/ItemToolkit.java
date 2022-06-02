@@ -1,3 +1,4 @@
+
 package acme.entities.toolkits;
 
 import javax.persistence.Entity;
@@ -12,25 +13,24 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class ItemToolkit extends AbstractEntity{
+public class ItemToolkit extends AbstractEntity {
 
-	protected static final long serialVersionUID = 1L;
-	
+	protected static final long	serialVersionUID	= 1L;
+
 	// Attributes -------------------------------------------------------------
-	
+
 	@NotNull
 	@Positive
-	protected Integer 	quantity;
-	
-	// Relationships ----------------------------------------------------------
-	
-	@ManyToOne(optional=false)
-	@NotNull
-	protected Item item;
-	
-	@ManyToOne(optional=false)
-	@NotNull
-	protected Toolkit 	toolkit;
+	protected Integer			quantity;
 
-	
+	// Relationships ----------------------------------------------------------
+
+	@ManyToOne(optional = false)
+	@NotNull
+	protected Item				item;
+
+	@ManyToOne(optional = false)
+	@NotNull
+	protected Toolkit			toolkit;
+
 }

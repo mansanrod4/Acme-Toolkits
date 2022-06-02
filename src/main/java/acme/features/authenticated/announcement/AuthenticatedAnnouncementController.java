@@ -1,3 +1,4 @@
+
 package acme.features.authenticated.announcement;
 
 import javax.annotation.PostConstruct;
@@ -10,11 +11,11 @@ import acme.framework.controllers.AbstractController;
 import acme.framework.roles.Authenticated;
 
 @Controller
-public class AuthenticatedAnnouncementController extends AbstractController<Authenticated, Announcement>{
+public class AuthenticatedAnnouncementController extends AbstractController<Authenticated, Announcement> {
 
 	@Autowired
 	protected AuthenticatedAnnouncementListService	listService;
-	
+
 	@Autowired
 	protected AuthenticatedAnnouncementShowService	showService;
 

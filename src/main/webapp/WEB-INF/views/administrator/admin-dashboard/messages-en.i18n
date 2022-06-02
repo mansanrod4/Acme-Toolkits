@@ -19,7 +19,7 @@ administrator.dashboard.form.title.pending-patronages = Pending
 administrator.dashboard.form.title.comps-tools-data = Components and Tools Data  
 administrator.dashboard.form.title.avg-data = Component and Tool Averages
 administrator.dashboard.form.title.min-max-dataComp = Components Maxs and Mins
-administrator.dashboard.form.title.min-max-dataTool = Components Maxs and Mins
+administrator.dashboard.form.title.min-max-dataTool = Tools Maxs and Mins
 administrator.dashboard.form.label.desviationComp = Component Desviation
 administrator.dashboard.form.label.desviationTool = Tool Desviation
 administrator.dashboard.form.label.numComponents =  Number of Components
@@ -35,3 +35,5 @@ administrator.dashboard.form.label.avg = Average
 administrator.dashboard.form.label.desv = Desviation
 administrator.dashboard.form.label.min = Minimum
 administrator.dashboard.form.label.max = Maximum
+
+administrator.dashboard.form.no-data = No data

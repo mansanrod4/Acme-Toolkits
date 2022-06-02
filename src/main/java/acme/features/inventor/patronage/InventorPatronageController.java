@@ -17,10 +17,13 @@ public class InventorPatronageController extends AbstractController<Inventor, Pa
 	protected InventorPatronageListService	listService;
 	@Autowired
 	protected InventorPatronageShowService	showService;
+	@Autowired
+	protected InventorPatronageChangeStatusService inventorPatronageAcceptService;
 
 
 	@PostConstruct
 	protected void initialse() {
+		super.addCommand("change-status","update", this.inventorPatronageAcceptService);
 		super.addCommand("list", this.listService);
 		super.addCommand("show", this.showService);
 	}

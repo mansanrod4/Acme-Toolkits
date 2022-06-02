@@ -1,3 +1,4 @@
+
 package acme.features.any.toolkits;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.Toolkit;
-import acme.forms.MoneyExchange;
+import acme.features.authenticated.moneyExchange.AuthenticatedMoneyExchangePerformService;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
@@ -17,12 +18,15 @@ import acme.framework.roles.Any;
 import acme.framework.services.AbstractListService;
 
 @Service
-public class AnyToolkitListService implements AbstractListService<Any, Toolkit>{
-	
+public class AnyToolkitListService implements AbstractListService<Any, Toolkit> {
+
 	// Internal State ------------------------------------------------------------------
-	
+
 	@Autowired
 	protected AnyToolkitRepository repository;
+
+	@Autowired
+	protected AuthenticatedMoneyExchangePerformService moneyExchange;
 
 	@Override
 	public boolean authorise(final Request<Toolkit> request) {
@@ -32,36 +36,35 @@ public class AnyToolkitListService implements AbstractListService<Any, Toolkit>{
 
 	@Override
 	public Collection<Toolkit> findMany(final Request<Toolkit> request) {
-		assert request !=null;
-		
+		assert request != null;
+
 		final Collection<Toolkit> result;
-		
-		result= this.repository.findAllToolkits();
-		
+
+		result = this.repository.findAllPublishedToolkits();
+
 		return result;
 	}
 
 	@Override
 	public void unbind(final Request<Toolkit> request, final Toolkit entity, final Model model) {
-		assert request !=null;
-		assert entity !=null;
-		assert model !=null;
-		final List<Money> prices=new ArrayList<>();
+		assert request != null;
+		assert entity != null;
+		assert model != null;
+		final List<Money> prices = new ArrayList<>();
 		final SystemConfiguration sc = this.repository.findSystemConfiguration();
-		for(final String curr:sc.getAcceptedCurrencies().trim().split(",")) {
-			final Money price=new Money();
+		for (final String curr : sc.getAcceptedCurrencies().trim().split(",")) {
+			final Money price = new Money();
 			price.setCurrency(curr);
 			price.setAmount(this.repository.getToolkitPricesByIdAndCurrency(entity.getId(), curr));
 			prices.add(price);
 		}
-		
-		request.unbind(entity, model, "title", "description");
-		
-		final MoneyExchange mE = new MoneyExchange();
-		final List<Money> pricesFix=mE.convertMoney(prices, sc.getSystemCurrency());
-	
+
+		request.unbind(entity, model, "code", "title", "description");
+
+		final List<Money> pricesFix = this.moneyExchange.convertMoney(prices, sc.getSystemCurrency());
+
 		final Money money = new Money();
-		final Double amount=pricesFix.stream().mapToDouble(x->x.getAmount()).sum();
+		final Double amount = pricesFix.stream().mapToDouble(Money::getAmount).sum();
 		money.setAmount(amount);
 		money.setCurrency(sc.getSystemCurrency());
 

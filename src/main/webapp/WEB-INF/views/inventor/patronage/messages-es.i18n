@@ -35,6 +35,10 @@ inventor.patronage.list.label.code = Código
 inventor.patronage.list.label.status = Estado
 inventor.patronage.list.label.patron = Mecenas
 
+inventor.patronage.errors.already-stated = El patrocinio ya ha sido procesado, por lo que su estado no puede ser cambiado.
+inventor.patronage.form.button.accept = Aceptar patrocinio
+inventor.patronage.form.button.deny = Denegar patrocinio
+
 
 
 

@@ -1,3 +1,4 @@
+
 package acme.features.authenticated.systemConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import acme.framework.roles.Authenticated;
 import acme.framework.services.AbstractShowService;
 
 @Service
-public class AuthenticatedSystemConfigurationShowService implements AbstractShowService<Authenticated, SystemConfiguration>{
+public class AuthenticatedSystemConfigurationShowService implements AbstractShowService<Authenticated, SystemConfiguration> {
 
 	@Autowired
 	protected AuthenticatedSystemConfigurationRepository repository;
@@ -39,11 +40,6 @@ public class AuthenticatedSystemConfigurationShowService implements AbstractShow
 		assert model != null;
 
 		request.unbind(entity, model, "systemCurrency", "acceptedCurrencies");
-		model.setAttribute("USDexchange", 0.833171);
-		model.setAttribute("GBPexchange", 1.083546);
-		;
-		
 	}
-	
 
 }

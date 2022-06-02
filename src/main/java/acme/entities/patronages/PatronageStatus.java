@@ -1,5 +1,5 @@
-package acme.entities.patronages;
 
+package acme.entities.patronages;
 
 public enum PatronageStatus {
 

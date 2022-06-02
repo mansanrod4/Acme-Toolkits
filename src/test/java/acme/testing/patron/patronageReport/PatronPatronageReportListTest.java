@@ -16,8 +16,6 @@ public class PatronPatronageReportListTest extends TestHarness {
 	public void checkListAllPatronageReportShow(final int patronageIndex,final int recordIndex, final String reference,
 		 final String moment, final String memorandum, final String info, final String sequenceNumber) {
 	
-		
-		
 		super.signIn("patron2", "patron2");
 		
 		super.navigateHome();

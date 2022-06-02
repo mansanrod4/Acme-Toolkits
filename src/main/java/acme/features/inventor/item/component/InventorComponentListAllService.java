@@ -1,3 +1,4 @@
+
 package acme.features.inventor.item.component;
 
 import java.util.Collection;
@@ -13,14 +14,14 @@ import acme.framework.services.AbstractListService;
 import acme.roles.Inventor;
 
 @Service
-public class InventorComponentListAllService implements AbstractListService<Inventor, Item>{
+public class InventorComponentListAllService implements AbstractListService<Inventor, Item> {
 
 	@Autowired
 	protected InventorItemRepository repository;
-	
+
+
 	@Override
 	public boolean authorise(final Request<Item> request) {
-		assert request != null;
 		return true;
 	}
 
@@ -30,7 +31,6 @@ public class InventorComponentListAllService implements AbstractListService<Inve
 		Collection<Item> result;
 		final int inventorId = request.getPrincipal().getActiveRoleId();
 		result = this.repository.findAllComponentsFromInventor(inventorId);
-		
 		return result;
 	}
 
@@ -39,10 +39,8 @@ public class InventorComponentListAllService implements AbstractListService<Inve
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		
+
 		request.unbind(entity, model, "code","name","technology","retailPrice");
-		
 	}
-	
-	
+
 }

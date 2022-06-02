@@ -1,3 +1,4 @@
+
 package acme.features.patron.patronageReport;
 
 import java.util.Collection;
@@ -12,11 +13,12 @@ import acme.framework.services.AbstractListService;
 import acme.roles.Patron;
 
 @Service
-public class PatronPatronageReportListService  implements AbstractListService<Patron, PatronageReport>{
+public class PatronPatronageReportListService implements AbstractListService<Patron, PatronageReport> {
 
 	@Autowired
 	protected PatronPatronageReportRepository repository;
-	
+
+
 	@Override
 	public boolean authorise(final Request<PatronageReport> request) {
 		assert request != null;
@@ -26,7 +28,7 @@ public class PatronPatronageReportListService  implements AbstractListService<Pa
 	@Override
 	public Collection<PatronageReport> findMany(final Request<PatronageReport> request) {
 		assert request != null;
-		
+
 		Collection<PatronageReport> result;
 		int patronageId;
 
@@ -35,17 +37,16 @@ public class PatronPatronageReportListService  implements AbstractListService<Pa
 
 		return result;
 
-		}
+	}
 
 	@Override
 	public void unbind(final Request<PatronageReport> request, final PatronageReport entity, final Model model) {
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		
-		request.unbind(entity, model, "memorandum", "info");
-		model.setAttribute("patronageId", entity.getPatronage().getId());
-		
+
+		request.unbind(entity, model,  "memorandum", "info","sequenceNumber");
+
 	}
 
 }
