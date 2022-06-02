@@ -64,7 +64,8 @@ public class InventorToolkitListService implements AbstractListService<Inventor,
 
 		request.unbind(entity, model, "code", "title", "description");
 
-		final List<Money> pricesFix = this.moneyExchange.convertMoney(prices, sc.getSystemCurrency());
+		List<Money> pricesFix = new ArrayList<>();
+		pricesFix = this.moneyExchange.convertMoney(prices, sc.getSystemCurrency());
 
 		final Money money = new Money();
 		final Double amount = pricesFix.stream().mapToDouble(Money::getAmount).sum();

@@ -16,7 +16,7 @@ public class AuthenticatedBecomeInventorTest extends TestHarness{
 		super.signIn(username, password);
 		super.navigateHome();
 		
-		super.clickOnMenu("Account", "Become a inventor");
+		super.clickOnMenu("Account", "Become an inventor");
 		super.fillInputBoxIn("company", company);
 		super.fillInputBoxIn("statement", statement);
 		super.fillInputBoxIn("info", info);
@@ -40,7 +40,7 @@ public class AuthenticatedBecomeInventorTest extends TestHarness{
 		super.signIn(username, password);
 		super.navigateHome();
 		
-		super.clickOnMenu("Account", "Become a inventor");
+		super.clickOnMenu("Account", "Become an inventor");
 		super.fillInputBoxIn("company", company);
 		super.fillInputBoxIn("statement", statement);
 		super.fillInputBoxIn("info", info);

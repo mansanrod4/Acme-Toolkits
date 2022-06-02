@@ -35,3 +35,5 @@ administrator.dashboard.form.label.avg = Average
 administrator.dashboard.form.label.desv = Desviation
 administrator.dashboard.form.label.min = Minimum
 administrator.dashboard.form.label.max = Maximum
+
+administrator.dashboard.form.no-data = No data

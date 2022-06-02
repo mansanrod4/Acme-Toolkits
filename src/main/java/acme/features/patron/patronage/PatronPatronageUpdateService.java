@@ -52,11 +52,9 @@ public class PatronPatronageUpdateService implements AbstractUpdateService<Patro
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		Date moment;
 
 		request.bind(entity, errors, "code", "legalStuff", "budget", "startDate", "endDate", "info");
-		moment = new Date(System.currentTimeMillis() - 1);
-		entity.setCreationDate(moment);
+
 
 	}
 
