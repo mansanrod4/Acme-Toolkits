@@ -29,6 +29,7 @@ public class Chimpum  extends AbstractEntity{
 	protected static final long serialVersionUID = 1L;
 	
 	//d -> digit, w -> text, [yy/mm/dd]
+//	@Column(unique = true)
 	@Pattern(regexp = "^[0-9]{2}/[0-9]{2}/[0-9]{2}$")
 	@NotBlank 
 	protected String code;

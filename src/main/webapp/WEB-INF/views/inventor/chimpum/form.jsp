@@ -18,6 +18,12 @@
 		path="endDate" />
 	<acme:input-textbox code="inventor.chimpum.form.label.budget"
 		path="budget" />
+		<jstl:choose>
+		<jstl:when test="${command == 'show' && !budgetIsInSystemCurrency}">
+			<acme:input-textarea code="inventor.chimpum.label.budgetChanged"
+				path="budgetChanged" readonly="true" />
+		</jstl:when>
+	 </jstl:choose>
 	<acme:input-textbox code="inventor.chimpum.form.label.link" path="link" />
 	
 <%-- 	<acme:input-select code="inventor.item.label.inventor" path="itemId">

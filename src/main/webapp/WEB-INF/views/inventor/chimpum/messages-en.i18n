@@ -24,5 +24,8 @@ inventor.chimpum.list.label.code = Code
 inventor.chimpum.list.label.title = Title
 inventor.chimpum.list.label.budget = Budget
 
+inventor.chimpum.form.button.create = Create
+inventor.chimpum.button.update = Update
+inventor.chimpum.form.button.delete = Delete
 
 

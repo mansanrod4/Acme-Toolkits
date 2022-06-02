@@ -1,3 +1,4 @@
+
 package acme.features.inventor.chimpum;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +18,15 @@ import acme.roles.Inventor;
 public class InventorChimpumShowService implements AbstractShowService<Inventor, Chimpum> {
 
 	@Autowired
-	protected InventorChimpumRepository repository;
-	
+	protected InventorChimpumRepository						repository;
+
 	@Autowired
-	protected AdministratorSystemConfigurationRepository repoSys;
-	
+	protected AdministratorSystemConfigurationRepository	repoSys;
+
 	@Autowired
-	protected AuthenticatedMoneyExchangePerformService serviceMoney;
-	
+	protected AuthenticatedMoneyExchangePerformService		serviceMoney;
+
+
 	@Override
 	public boolean authorise(final Request<Chimpum> request) {
 		assert request != null;
@@ -33,13 +35,12 @@ public class InventorChimpumShowService implements AbstractShowService<Inventor,
 		int chimpumId;
 		Chimpum chimpum;
 		int inventorId;
-		
 
 		chimpumId = request.getModel().getInteger("id");
 		chimpum = this.repository.findOneChimpumById(chimpumId);
 		inventorId = chimpum.getItem().getInventor().getId();
-		
-		result = chimpum!= null && inventorId == request.getPrincipal().getActiveRoleId();
+
+		result = chimpum != null && inventorId == request.getPrincipal().getActiveRoleId();
 		return result;
 	}
 
@@ -61,25 +62,30 @@ public class InventorChimpumShowService implements AbstractShowService<Inventor,
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "code", "moment", "title", "description", "startDate",
-			"endDate", "budget", "link");
+		request.unbind(entity, model, "code", "moment", "title", "description", "startDate", "endDate", "budget", "link");
+
+		SystemConfiguration sc;
+		String systemCurrency;
+		Money budget;
+		boolean budgetIsInSystemCurrency;
 		
-		final SystemConfiguration sc = this.repoSys.findSystemConfiguration();
-		final String systemCurrency = sc.getSystemCurrency();
-		final Money budget = entity.getBudget();
-		final boolean budgetIsInSystemCurrency = systemCurrency.equals(budget.getCurrency());
+		sc = this.repoSys.findSystemConfiguration();
+		
+		systemCurrency = sc.getSystemCurrency();
+	
+		budget = entity.getBudget();
+
+		budgetIsInSystemCurrency = systemCurrency.equals(budget.getCurrency());
 		model.setAttribute("budgetIsInSystemCurrency", budgetIsInSystemCurrency);
-		if(!budgetIsInSystemCurrency) {
+		if (!budgetIsInSystemCurrency) {
 			final Money budgetChanged;
 			budgetChanged = this.serviceMoney.computeMoneyExchange(budget, systemCurrency).getChange();
-			
+
 			model.setAttribute("budgetChanged", budgetChanged);
 
 		}
-		
-		
-		model.setAttribute("itemName", entity.getItem().getName());
 
+		model.setAttribute("itemName", entity.getItem().getName());
 
 	}
 

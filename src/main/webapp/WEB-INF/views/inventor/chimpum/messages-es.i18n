@@ -27,3 +27,7 @@ inventor.patronage-report.list.label.info = Info
 inventor.patronage-report.list.button.create = Crear reporte
 spam.detector.error.message = Spam Detected
 
+inventor.chimpum.button.update = Actualizar
+inventor.chimpum.form.button.delete = Borrar
+
+

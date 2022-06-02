@@ -18,3 +18,5 @@ inventor.item.form.error.retailPrice.currency-not-supported = La moneda introduc
 inventor.component.list.label.price-system: Precio convertido
 inventor.patronage.label.budgetChanged = Precio en la moneda del sistema:
 spam.detector.error.message = Spam Detectado
+
+inventor.chimpum.list.button.create = Crear chimpum

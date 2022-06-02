@@ -11,7 +11,7 @@ public class InventorChimpumCreateTest extends TestHarness {
 	@ParameterizedTest
 	@CsvFileSource(resources = "/inventor/chimpum/create-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void positiveTest(final int reportIndex, final int recordIndex,
+	public void positiveTest(final int itemIndex, final int recordIndex,
 		final String title, final String description, final String startDate, final String
 		endDate, final String budget, final String link) {
 
@@ -19,14 +19,14 @@ public class InventorChimpumCreateTest extends TestHarness {
 
 		super.navigateHome();
 
-		//patronages
+		//tools
 		super.clickOnMenu("Inventor", "My Tools");
-		this.clickOnListingRecord(reportIndex);
-		super.clickOnButton("Create Chimpum");
+		this.clickOnListingRecord(itemIndex);
+		super.clickOnButton("Create chimpum");
 
 		super.fillInputBoxIn("title", title);
 
-		super.fillInputBoxIn("dsescription", description);
+		super.fillInputBoxIn("description", description);
 		super.fillInputBoxIn("startDate", startDate);
 		super.fillInputBoxIn("endDate", endDate);
 		super.fillInputBoxIn("budget", budget);
@@ -45,7 +45,7 @@ public class InventorChimpumCreateTest extends TestHarness {
 		this.clickOnListingRecord(recordIndex);
 
 		super.checkInputBoxHasValue("title", title);
-		super.checkInputBoxHasValue("dsescription", description);
+		super.checkInputBoxHasValue("description", description);
 		super.checkInputBoxHasValue("startDate", startDate);
 		super.checkInputBoxHasValue("endDate", endDate);
 		super.checkInputBoxHasValue("budget", budget);
