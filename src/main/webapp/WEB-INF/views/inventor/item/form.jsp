@@ -9,7 +9,12 @@
 	<acme:input-textbox code="inventor.component.list.label.tech" path="technology"/>
 	<acme:input-textbox code="inventor.component.list.label.description" path="description"/>
 	<acme:input-money code="inventor.component.list.label.price" path="retailPrice"/>
-	<acme:input-money code="inventor.component.list.label.price-system" path="systemMoney" readonly="true"/>
+	<jstl:choose>
+		<jstl:when test="${command == 'show' && !retailPriceIsInSystemCurrency}">
+			<acme:input-money code="inventor.component.list.label.price-system" path="systemMoney" readonly="true"/>
+		</jstl:when>
+	</jstl:choose>
+	
 	<acme:input-textarea code="inventor.component.list.label.info" path="info" placeholder="URL"/>
 	
 	<jstl:choose>

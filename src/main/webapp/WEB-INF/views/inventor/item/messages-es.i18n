@@ -16,4 +16,5 @@ inventor.item.form.button.delete = Eliminar
 inventor.item.form.error.retailPrice.negativeOrZero = El precio debe de ser mayor a cero
 inventor.item.form.error.retailPrice.currency-not-supported = La moneda introducida no está disponible
 inventor.component.list.label.price-system: Precio convertido
+inventor.patronage.label.budgetChanged = Precio en la moneda del sistema:
 spam.detector.error.message = Spam Detectado

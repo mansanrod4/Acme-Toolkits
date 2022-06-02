@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import acme.components.configuration.SystemConfiguration;
 import acme.entities.toolkits.Toolkit;
-import acme.forms.MoneyExchange;
+import acme.features.authenticated.moneyExchange.AuthenticatedMoneyExchangePerformService;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
@@ -23,7 +23,10 @@ public class InventorToolkitListService implements AbstractListService<Inventor,
 	// Internal State ------------------------------------------------------------------
 
 	@Autowired
-	protected InventorToolkitRepository repository;
+	protected InventorToolkitRepository					repository;
+
+	@Autowired
+	protected AuthenticatedMoneyExchangePerformService	moneyExchange;
 
 
 	@Override
@@ -59,10 +62,10 @@ public class InventorToolkitListService implements AbstractListService<Inventor,
 			prices.add(price);
 		}
 
-		request.unbind(entity, model,"code", "title", "description");
+		request.unbind(entity, model, "code", "title", "description");
 
-		final MoneyExchange mE = new MoneyExchange();
-		final List<Money> pricesFix = mE.convertMoney(prices, sc.getSystemCurrency());
+		List<Money> pricesFix = new ArrayList<>();
+		pricesFix = this.moneyExchange.convertMoney(prices, sc.getSystemCurrency());
 
 		final Money money = new Money();
 		final Double amount = pricesFix.stream().mapToDouble(Money::getAmount).sum();
@@ -70,9 +73,9 @@ public class InventorToolkitListService implements AbstractListService<Inventor,
 		money.setCurrency(sc.getSystemCurrency());
 
 		model.setAttribute("price", money);
-		if(entity.isPublished()) {
-			model.setAttribute("state","PUBLISHED");
-		}else {
+		if (entity.isPublished()) {
+			model.setAttribute("state", "PUBLISHED");
+		} else {
 			model.setAttribute("state", "NOT PUBLISHED");
 		}
 	}

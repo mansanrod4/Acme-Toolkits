@@ -12,7 +12,7 @@ import acme.testing.TestHarness;
 public class InventorItemToolkitCreateTest extends TestHarness {
 	
 	@ParameterizedTest
-	@CsvFileSource(resources = "/inventor/itemToolkit/create-item-toolkit.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/inventor/itemtoolkit/create-item-toolkit.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(3)
 	public void positiveCreateItemToolkit(final int toolkitIndex, final int recordIndex, final String quantity, final String name, final String itemType,
 		final String code,final String technology,final String retailPrice, final String toolkitPrice) {
@@ -53,7 +53,7 @@ public class InventorItemToolkitCreateTest extends TestHarness {
 	}
 	
 	@ParameterizedTest
-	@CsvFileSource(resources = "/inventor/itemToolkit/create-itemToolkit-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/inventor/itemtoolkit/create-itemToolkit-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(2)
 	public void negativeCreateItemToolkit(final int recordIndex, final String quantity) {
 		super.signIn("inventor2", "inventor2");

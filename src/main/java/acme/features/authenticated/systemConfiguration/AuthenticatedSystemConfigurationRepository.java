@@ -11,5 +11,10 @@ public interface AuthenticatedSystemConfigurationRepository extends AbstractRepo
 
 	@Query("select sc from SystemConfiguration sc")
 	SystemConfiguration findSystemConfiguration();
-
+	
+	@Query("select sc.acceptedCurrencies from SystemConfiguration sc")
+	String findAcceptedCurrencies();
+	
+	@Query("select sc.systemCurrency from SystemConfiguration sc")
+	String findSystemCurrency();
 }

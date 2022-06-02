@@ -32,7 +32,7 @@
 		<jstl:forEach items="${accepteds}" var="accepted">
 			<jstl:choose>
 				<jstl:when test="${accepted.value.maximum.amount==0}">
-					<em><acme:message code="administrator.dashboard.form.no-data"/></em>/
+					<em><acme:message code="administrator.dashboard.form.no-data"/> ${accepted.key}</em>/
 				</jstl:when>
 				<jstl:otherwise>
 					<acme:print value="${accepted.value.average}"/>/ 
@@ -46,7 +46,7 @@
 		<jstl:forEach items="${accepteds}" var="accepted">
 			<jstl:choose>
 				<jstl:when test="${accepted.value.maximum.amount==0}">
-					<em><acme:message code="administrator.dashboard.form.no-data"/></em>/
+					<em><acme:message code="administrator.dashboard.form.no-data"/> ${accepted.key}</em>/
 				</jstl:when>
 				<jstl:otherwise>
 					<acme:print value="${accepted.value.desviation}"/>/ 
@@ -60,7 +60,7 @@
 		<jstl:forEach items="${accepteds}" var="accepted">
 			<jstl:choose>
 				<jstl:when test="${accepted.value.maximum.amount==0}">
-					<em><acme:message code="administrator.dashboard.form.no-data"/></em>/
+					<em><acme:message code="administrator.dashboard.form.no-data"/> ${accepted.key}</em>/
 				</jstl:when>
 				<jstl:otherwise>
 					<acme:print value="${accepted.value.minimum}"/>/ 
@@ -74,7 +74,7 @@
 		<jstl:forEach items="${accepteds}" var="accepted">
 			<jstl:choose>
 				<jstl:when test="${accepted.value.maximum.amount==0}">
-					<em><acme:message code="administrator.dashboard.form.no-data"/></em>/
+					<em><acme:message code="administrator.dashboard.form.no-data"/> ${accepted.key}</em>/
 				</jstl:when>
 				<jstl:otherwise>
 					<acme:print value="${accepted.value.maximum}"/>/ 
@@ -93,7 +93,7 @@
 		<jstl:forEach items="${denieds}" var="denied">
 			<jstl:choose>
 				<jstl:when test="${denied.value.maximum.amount==0}">
-					<em><acme:message code="administrator.dashboard.form.no-data"/></em>/
+					<em><acme:message code="administrator.dashboard.form.no-data"/> ${denied.key}</em>/
 				</jstl:when>
 				<jstl:otherwise>
 					<acme:print value="${denied.value.average}"/>/ 
@@ -106,7 +106,7 @@
 			<jstl:forEach items="${denieds}" var="denied">
 				<jstl:choose>
 					<jstl:when test="${denied.value.maximum.amount==0}">
-						<em><acme:message code="administrator.dashboard.form.no-data"/></em>/
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${denied.key}</em>/
 					</jstl:when>
 					<jstl:otherwise>
 						<acme:print value="${denied.value.desviation}"/>/ 
@@ -119,7 +119,7 @@
 			<jstl:forEach items="${denieds}" var="denied">
 				<jstl:choose>
 					<jstl:when test="${denied.value.maximum.amount==0}">
-						<em><acme:message code="administrator.dashboard.form.no-data"/></em>/
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${denied.key}</em>/
 					</jstl:when>
 					<jstl:otherwise>
 						<acme:print value="${denied.value.minimum}"/>/ 
@@ -132,7 +132,7 @@
 			<jstl:forEach items="${denieds}" var="denied">
 				<jstl:choose>
 					<jstl:when test="${denied.value.maximum.amount==0}">
-						<em><acme:message code="administrator.dashboard.form.no-data"/></em>/
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${denied.key}</em>/
 					</jstl:when>
 					<jstl:otherwise>
 						<acme:print value="${denied.value.maximum}"/>/ 
@@ -150,7 +150,7 @@
 			<jstl:forEach items="${pendings}" var="pending">
 				<jstl:choose>
 					<jstl:when test="${pending.value.maximum.amount==0}">
-						<em><acme:message code="administrator.dashboard.form.no-data"/></em>/
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${pending.key}</em>/
 					</jstl:when>
 					<jstl:otherwise>
 						<acme:print value="${pending.value.average}"/>/ 
@@ -163,7 +163,7 @@
 			<jstl:forEach items="${pendings}" var="pending">
 				<jstl:choose>
 					<jstl:when test="${pending.value.maximum.amount==0}">
-						<em><acme:message code="administrator.dashboard.form.no-data"/></em>/
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${pending.key}</em>/
 					</jstl:when>
 					<jstl:otherwise>
 						<acme:print value="${pending.value.desviation}"/>/ 
@@ -176,7 +176,7 @@
 			<jstl:forEach items="${pendings}" var="pending">
 				<jstl:choose>
 					<jstl:when test="${pending.value.maximum.amount==0}">
-						<em><acme:message code="administrator.dashboard.form.no-data"/></em>/
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${pending.key}</em>/
 					</jstl:when>
 					<jstl:otherwise>
 						<acme:print value="${pending.value.minimum}"/>/ 
@@ -189,7 +189,7 @@
 			<jstl:forEach items="${pendings}" var="pending">
 				<jstl:choose>
 					<jstl:when test="${pending.value.maximum.amount==0}">
-						<em><acme:message code="administrator.dashboard.form.no-data"/></em>/
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${pending.key}</em>/
 					</jstl:when>
 					<jstl:otherwise>
 						<acme:print value="${pending.value.maximum}"/>/ 
@@ -235,7 +235,7 @@
 			<jstl:forEach items="${comps}" var="comp">
 				<jstl:choose>
 					<jstl:when test="${comp.value.maximum.amount==0}">
-						<em><acme:message code="administrator.dashboard.form.no-data"/></em>/
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${comp.key}</em>/
 					</jstl:when>
 					<jstl:otherwise>
 						<acme:print value="${comp.value.desviation}"/>/
@@ -253,7 +253,7 @@
 			<jstl:forEach items="${tools}" var="tool">
 				<jstl:choose>
 					<jstl:when test="${tool.value.maximum.amount==0}">
-						<em><acme:message code="administrator.dashboard.form.no-data"/></em>/
+						<em><acme:message code="administrator.dashboard.form.no-data"/> ${tool.key}</em>/
 					</jstl:when>
 					<jstl:otherwise>
 						<acme:print value="${tool.value.desviation}"/>/

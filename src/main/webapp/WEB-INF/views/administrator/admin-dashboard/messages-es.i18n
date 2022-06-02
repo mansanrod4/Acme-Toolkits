@@ -36,3 +36,5 @@ administrator.dashboard.form.label.avg = Media
 administrator.dashboard.form.label.desv = Desviación
 administrator.dashboard.form.label.min = Mínimo
 administrator.dashboard.form.label.max = Máximo
+
+administrator.dashboard.form.no-data = Sin datos

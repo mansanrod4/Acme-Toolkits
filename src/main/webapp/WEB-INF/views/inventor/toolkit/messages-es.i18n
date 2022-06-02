@@ -9,12 +9,12 @@ inventor.toolkit.form.label.info = Info
 inventor.toolkit.form.label.inventor = Inventor
 inventor.toolkit.form.label.published = Estado
 
-inventor.toolkit.form.button.create = Crear Toolkit
-inventor.toolkit.form.button.update = Editar Toolkit
+inventor.toolkit.form.button.create = Crear Kit de Herramientas
+inventor.toolkit.form.button.update = Editar Kit de Herramientas
 inventor.toolkit.form.button.add-content = Añadir Elementos
-inventor.toolkit.form.button.delete = Eliminar Toolkit
-inventor.toolkit.form.button.publish = Publicar Toolkit
+inventor.toolkit.form.button.delete = Eliminar Kit de Herramientas
+inventor.toolkit.form.button.publish = Publicar Kit de Herramientas
 
-inventor.toolkit.no-tool-in-toolkit = Tu Toolkit no contiene ninguna herramienta. Tienes que añadir una herramienta antes de publicarlo
-inventor.toolkit.form.error.duplicated-code = Este código pertenece a otro elemento. El codigo de tu Toolkit debe ser único
+inventor.toolkit.no-tool-in-toolkit = Tu Kit de Herramientas no contiene ninguna herramienta. Tienes que añadir una herramienta antes de publicarlo
+inventor.toolkit.form.error.duplicated-code = Este código pertenece a otro elemento. El codigo de tu Kit de Herramientas debe ser único
 spam.detector.error.message = Spam Detectado
