@@ -10,7 +10,7 @@ import acme.testing.TestHarness;
 public class AuthenticatedBecomeInventorTest extends TestHarness{
 
 	@ParameterizedTest
-	@CsvFileSource(resources =  "/authenticated/userAccount/patron-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources =  "/authenticated/userAccount/inventor-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void positiveTest(final String username, final String password, final String company, final String statement, final String info) {
 		super.signIn(username, password);
