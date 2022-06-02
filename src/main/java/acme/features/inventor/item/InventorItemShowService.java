@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import acme.entities.Chimpum;
 import acme.entities.toolkits.Item;
 import acme.entities.toolkits.ItemType;
+import acme.features.authenticated.moneyExchange.AuthenticatedMoneyExchangePerformService;
 import acme.features.authenticated.systemConfiguration.AuthenticatedSystemConfigurationRepository;
 import acme.features.inventor.chimpum.InventorChimpumRepository;
-import acme.forms.MoneyExchange;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
@@ -31,6 +31,9 @@ public class InventorItemShowService implements AbstractShowService<Inventor, It
 	
 	@Autowired
 	protected InventorChimpumRepository chimpumRepository;
+	
+	@Autowired
+	protected AuthenticatedMoneyExchangePerformService moneyExchangePerformService;
 	
 
 	@Override

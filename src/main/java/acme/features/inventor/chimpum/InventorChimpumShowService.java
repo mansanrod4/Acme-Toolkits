@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import acme.components.configuration.SystemConfiguration;
 import acme.entities.Chimpum;
 import acme.features.administrator.systemConfiguration.AdministratorSystemConfigurationRepository;
-import acme.forms.MoneyExchange;
+import acme.features.authenticated.moneyExchange.AuthenticatedMoneyExchangePerformService;
 import acme.framework.components.models.Model;
 import acme.framework.controllers.Request;
 import acme.framework.datatypes.Money;
@@ -21,6 +21,9 @@ public class InventorChimpumShowService implements AbstractShowService<Inventor,
 	
 	@Autowired
 	protected AdministratorSystemConfigurationRepository repoSys;
+	
+	@Autowired
+	protected AuthenticatedMoneyExchangePerformService serviceMoney;
 	
 	@Override
 	public boolean authorise(final Request<Chimpum> request) {
@@ -68,8 +71,7 @@ public class InventorChimpumShowService implements AbstractShowService<Inventor,
 		model.setAttribute("budgetIsInSystemCurrency", budgetIsInSystemCurrency);
 		if(!budgetIsInSystemCurrency) {
 			final Money budgetChanged;
-			final MoneyExchange mE = new MoneyExchange();
-			budgetChanged = mE.computeMoneyExchange(budget, systemCurrency).target;
+			budgetChanged = this.serviceMoney.computeMoneyExchange(budget, systemCurrency).getChange();
 			
 			model.setAttribute("budgetChanged", budgetChanged);
 
