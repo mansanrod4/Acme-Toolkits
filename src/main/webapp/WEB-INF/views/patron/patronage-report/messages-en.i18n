@@ -19,7 +19,7 @@ patron.patronage.button.create = Apply
 
 patron.patronage-report.list.title = My patronages report
 
-patron.patronage-report.list.label.patronageId = Id Patronage
+patron.patronage-report.list.label.sequenceNumber = Sequence Number
 patron.patronage-report.list.label.memorandum = Memorandum
 patron.patronage-report.list.label.info = info
 
